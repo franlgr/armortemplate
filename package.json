@@ -9,7 +9,6 @@
     "ssr-dev": "vite build && nodemon index.js"
   },
   "dependencies": {
-    "@esbuild/darwin-arm64": "^0.18.18",
     "@feathersjs/authentication-client": "^5.0.8",
     "@feathersjs/feathers": "^5.0.8",
     "@feathersjs/rest-client": "^5.0.8",
