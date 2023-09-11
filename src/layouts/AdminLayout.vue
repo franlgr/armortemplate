@@ -16,7 +16,7 @@
                             </div>
                             <ul class="space-y-2 mt-8 tracking-wide bg-white p-4">
                                 <li>
-                                    <router-link to="/admin/dashboard" href="#" aria-label="dashboard" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/dashboard' }" class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-gradient-to-r bg-white">
+                                    <router-link @click="hiddenMenu()" to="/admin/dashboard" href="#" aria-label="dashboard" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/dashboard' }" class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-gradient-to-r bg-white">
                                         <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                                         <path d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z" class="fill-current text-cyan-400 dark:fill-slate-600"></path>
                                         <path d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z" class="fill-current text-cyan-200 group-hover:text-cyan-300"></path>
@@ -27,7 +27,7 @@
                                 </li>
                                 <li>
     
-                                    <router-link to="/admin/categories" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/categories' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/categories" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/categories' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
@@ -36,7 +36,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/admin/products" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/products" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
@@ -45,7 +45,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/admin/blogs" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/blogs" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
@@ -54,7 +54,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/admin/components" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/components' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/components" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/components' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd" />
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
@@ -63,21 +63,21 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/admin/users" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/users' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/users" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/users' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                                     </svg>
                                         <span class="group-hover:text-gray-700">Users</span>
                                     </router-link>
-                                    <router-link to="/admin/profile" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/profile' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/profile" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/profile' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
                                     </svg>
                                         <span class="group-hover:text-gray-700">Profile</span>
                                     </router-link>
-                                    <router-link to="/admin/default" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/default' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
+                                    <router-link @click="hiddenMenu()" to="/admin/default" v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/default' }" class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path class="fill-current text-gray-600 group-hover:text-cyan-600" d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                                         <path class="fill-current text-gray-300 group-hover:text-cyan-300" d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
@@ -123,9 +123,13 @@ export default {
     created() {
         // Check for and authenticate with the stored token
         this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
+        
     },
     methods: {
-        ...mapActions(['logout', 'authenticateWithStoredToken', 'toggleMenu']), // Map Vuex actions to component methods
+        ...mapActions(['logout', 'authenticateWithStoredToken', 'toggleMenu', 'hiddenMenu']), // Map Vuex actions to component methods
+        selectMenu() {
+            this.hiddenMenu();
+        },
     },
     computed: {
         ...mapGetters(['isAuthenticated', 'getMenuState']), // Map Vuex getters to computed properties

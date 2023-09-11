@@ -20,6 +20,7 @@ export default {
   created() {
     // Check for and authenticate with the stored token
     this.authenticateWithStoredToken();
+
   },
   methods: {
     ...mapActions(['authenticateWithStoredToken']),

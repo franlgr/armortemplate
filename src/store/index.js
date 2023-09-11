@@ -19,7 +19,11 @@ export default createStore({
     // Mutation to toggle the menu state
     setToggleMenu(state) {
       state.menu = !state.menu;
+    },
+    hiddenMenuMutation(state) {
+      state.menu = false;
     }
+    
   },
   
   // Define actions for performing asynchronous tasks
@@ -32,6 +36,9 @@ export default createStore({
     // Action to toggle the menu, commits the 'setToggleMenu' mutation
     toggleMenu({ commit }) {
       commit('setToggleMenu');
+    },
+    hiddenMenu({ commit }) {
+      commit('hiddenMenuMutation');
     }
   },
   
