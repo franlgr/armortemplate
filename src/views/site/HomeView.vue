@@ -8,14 +8,14 @@
 <script>
   // @ is an alias to /src
   // import HelloWorld from '@/components/HelloWorld.vue';
-  import Carousel from '@/components/Carousel.vue';
+
   export default {
     name: 'HomeView',
     layout: 'DefaultLayout',
     components: {
       // HelloWorld,
 
-      Carousel,
+
     },
     data() {
       return {
