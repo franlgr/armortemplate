@@ -19,6 +19,7 @@ import Profile from '@/views/admin/Profile.vue';
 import Users from '@/views/admin/users/Users.vue';
 import Login from '@/views/admin/auth/Login.vue';
 import Register from '@/views/admin/auth/Register.vue';
+import Default from '@/views/admin/Default.vue';
 
 import store from '../store/index.js';
 
@@ -38,6 +39,7 @@ const routes = [
       { path: '/admin/components', component: Components },
       { path: '/admin/profile', component: Profile },
       { path: '/admin/users', component: Users },
+      { path: '/admin/default', component: Default },
     ],
   },
   // Auth routes
