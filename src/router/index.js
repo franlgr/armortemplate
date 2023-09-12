@@ -22,7 +22,7 @@ import Profile from '@/views/admin/Profile.vue';
 import Users from '@/views/admin/users/Users.vue';
 import Login from '@/views/admin/auth/Login.vue';
 import Register from '@/views/admin/auth/Register.vue';
-import Default from '@/views/admin/Default.vue';
+import DefaultAdmin from '@/views/admin/Default.vue';
 import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
@@ -47,7 +47,7 @@ const routes = [
       { path: '/admin/components', component: Components },
       { path: '/admin/profile', component: Profile, name: 'admin-profile' },
       { path: '/admin/users', component: Users },
-      { path: '/admin/default', component: Default },
+      { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat},
       { path: '/admin/products/edit/:id', component: EditProduct, name: 'admin-products-edit',},
       { path: '/admin/blogs/edit/:id', component: EditBlogs, name: 'admin-blogs-edit',},
