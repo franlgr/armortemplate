@@ -26,15 +26,23 @@
         <div
           class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg"
         >
-          <div class="h-20 w-20 rounded-full border overflow-hidden">
-            <img
-              src="https://avatars3.githubusercontent.com/u/2763884?s=128"
-              alt="Avatar"
-              class="h-full w-full"
-            />
-          </div>
-          <div class="text-sm font-semibold mt-2">Aminos Co.</div>
-          <div class="text-xs text-gray-500">Lead UI/UX Designer</div>
+        <div class="h-20 w-20 rounded-full border overflow-hidden">
+          <img
+            v-if="getUser.image"
+            :src="getUser.image"
+            alt="Avatar"
+            class="h-full w-full"
+          />
+          <img
+            v-else
+            src="https://picsum.photos/200/300"
+            alt="Placeholder"
+            class="h-full w-full"
+          />
+        </div>
+        <div v-if="getUser.name" class="text-sm font-semibold mt-2">{{ getUser.name }}</div>
+          <div v-else class="text-sm font-semibold mt-2">{{getUser._id}}</div>
+          <div class="text-xs text-gray-500">{{getUser.email}}</div>
           <div class="flex flex-row items-center mt-3">
             <div
               class="flex flex-col justify-center h-4 w-8 bg-indigo-500 rounded-full"
@@ -52,63 +60,16 @@
               >4</span
             >
           </div>
-          <div class="flex flex-col space-y-1 mt-4 -mx-2 h-48 overflow-y-auto">
-            <button
-              class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
-              >
-                H
-              </div>
-              <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-            </button>
-            <button
-              class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 bg-gray-200 rounded-full"
-              >
-                M
-              </div>
-              <div class="ml-2 text-sm font-semibold">Marta Curtis</div>
-              <div
-                class="flex items-center justify-center ml-auto text-xs text-white bg-red-500 h-4 w-4 rounded leading-none"
-              >
-                2
-              </div>
-            </button>
-            <button
-              class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 bg-orange-200 rounded-full"
-              >
-                P
-              </div>
-              <div class="ml-2 text-sm font-semibold">Philip Tucker</div>
-            </button>
-            <button
-              class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 bg-pink-200 rounded-full"
-              >
-                C
-              </div>
-              <div class="ml-2 text-sm font-semibold">Christine Reid</div>
-            </button>
-            <button
-              class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 bg-purple-200 rounded-full"
-              >
-                J
-              </div>
-              <div class="ml-2 text-sm font-semibold">Jerry Guzman</div>
-            </button>
-          </div>
+          <!-- {{ getUser }} -->
+          <div class="flex flex-col space-y-1 -mx-2 h-48 overflow-y-auto">
+    <button v-for="user in users" :key="user.index" class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
+      <div class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full">
+        <img v-if="user.image" :src="user.image" alt="User Image" class="h-8 w-8 rounded-full">
+        <img v-if="!user.image" src="https://picsum.photos/200/300" alt="User Image" class="h-8 w-8 rounded-full">
+      </div>
+      <div class="ml-2 text-sm font-semibold">{{ user.name + ' ' + user.lastname }}</div>
+    </button>
+  </div>
           <div class="flex flex-row items-center justify-between text-xs mt-6">
             <span class="font-bold">Archivied</span>
             <span
@@ -404,3 +365,54 @@
     </div>
   </div></div>
 </template>
+
+
+<script>
+// import store from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
+import FeathersClient from '@/FeathersClient.js';
+
+export default {
+    layout: "AdminLayout",
+    data() {
+        return {
+            users: []  // Variable para almacenar los datos de usuarios
+        }
+    },
+    components: {
+
+    },
+    computed: {
+        ...mapGetters(['getUser']),
+    },
+
+    mounted() {
+        this.fetchUsers();  // Llama a la función para obtener los usuarios
+    },
+    methods: {
+        ...mapActions(['loadingSet']),
+        async fetchUsers() {
+            this.loadingSet(true);
+            try {
+                const res = await FeathersClient.service('users').find({
+                    query: {
+                        // Puedes agregar filtros o parámetros de consulta aquí si es necesario
+                    }
+                });
+                this.loadingSet(false);
+                this.users = res.data;  // Almacena los datos de usuarios en la variable users
+                console.log('fetchUsers', res);
+            } catch (error) {
+                this.loadingSet(false);
+                this.$snotify.error(error, 'Error', {
+                    timeout: 2000,
+                    showProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true
+                });
+                console.error(error);
+            }
+        },
+    },
+}
+</script>

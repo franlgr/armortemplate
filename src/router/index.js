@@ -25,6 +25,8 @@ import Register from '@/views/admin/auth/Register.vue';
 import Default from '@/views/admin/Default.vue';
 import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
+import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
+import EditCategories from '@/views/admin/categories/EditCategories.vue';
 
 import store from '../store/index.js';
 
@@ -48,6 +50,8 @@ const routes = [
       { path: '/admin/default', component: Default },
       { path: '/admin/chat', component: Chat},
       { path: '/admin/products/edit/:id', component: EditProduct, name: 'admin-products-edit',},
+      { path: '/admin/blogs/edit/:id', component: EditBlogs, name: 'admin-blogs-edit',},
+      { path: '/admin/categories/edit/:id', component: EditCategories, name: 'admin-categories-edit',},
     ],
   },
   // Auth routes
