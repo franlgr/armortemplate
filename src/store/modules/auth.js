@@ -29,6 +29,10 @@ const mutations = {
 
 // Define actions to perform authentication-related tasks
 const actions = {
+  //set user
+  setUser({ commit }, user) {
+    commit('SET_USER', user);
+  },
   // Action to log in a user
   async login({ commit }, { email, password }) {
     console.log('login', email, password);

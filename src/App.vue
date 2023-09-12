@@ -18,6 +18,7 @@ export default {
 
     // Set the snotify instance on the store
     this.$store.$snotify = this.$snotify;
+    this.$router = this.$router;
 
 
   },

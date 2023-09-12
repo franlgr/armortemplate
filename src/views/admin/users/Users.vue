@@ -20,7 +20,7 @@
                                             <input type="checkbox" class="checkbox" />
                                         </label>
                                     </th>
-                                    <th>Name</th>
+                                    <th>Full Name</th>
                                     <th>Job</th>
                                     <th>Email</th>
                                     <th>Permissions</th>
@@ -39,13 +39,13 @@
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
-                                                    <img src="https://picsum.photos/300/300"
+                                                    <img :src="user.image"
                                                         alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="font-bold">Hart Hagerty</div>
-                                                <div class="text-sm opacity-50">United States</div>
+                                                <div class="font-bold">{{user.name}}</div>
+                                                <div class="text-sm font-bold">{{user.lastname}}</div>
                                             </div>
                                         </div>
                                     </td>

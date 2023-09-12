@@ -161,7 +161,7 @@ export default {
   data() {
     return {
       //
-      email: 'test2024@email.com',
+      email: 'carlo.gammarota@gmail.com',
       password: 'my-password',
     }
   },

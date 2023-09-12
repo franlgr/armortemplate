@@ -18,6 +18,8 @@
     "@feathersjs/feathers": "^5.0.8",
     "@feathersjs/rest-client": "^5.0.8",
     "@feathersjs/socketio-client": "^5.0.8",
+    "@formkit/themes": "^1.0.0",
+    "@formkit/vue": "^1.1.0-e5c1903",
     "@typescript-eslint/eslint-plugin": "^6.2.1",
     "@typescript-eslint/parser": "^6.2.1",
     "@vue/eslint-config-prettier": "^8.0.0",
