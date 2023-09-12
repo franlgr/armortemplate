@@ -1,112 +1,188 @@
-<!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
-  <div>
     <div>
-    <AdminHeader title="Users"></AdminHeader>
+        <div>
+            <AdminHeader title="Users"></AdminHeader>
 
-    <div class=" m-4 2xl:container ">
-        <div class="grid gap-6  " >
-            <div class="overflow-x-auto">
-        <table class="table">
-            <!-- head -->
-            <thead>
-                <tr>
-                    <th>
-                        <label>
-                    <input type="checkbox" class="checkbox" />
-                  </label>
-                    </th>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- row 1 -->
-                <tr v-for="user in users" :key="user.index">
-                    <th>
-                        <label>
-                    <input type="checkbox" class="checkbox" />
-                  </label>
-                    </th>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div class="avatar">
-                                <div class="mask mask-squircle w-12 h-12">
-                                    <img src="https://picsum.photos/300/300" alt="Avatar Tailwind CSS Component" />
-                                </div>
-                            </div>
-                            <div>
-                                <div class="font-bold">Hart Hagerty</div>
-                                <div class="text-sm opacity-50">United States</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        Zemlak, Daniel and Leannon
-                        <br/>
-    
-                    </td>
-                    <td>Purple</td>
-                    <th>
-                        <button class="btn btn-sm border-solid border-black bg-green-400">show</button>
-                        <button class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</button>
-                        <button class="btn btn-sm border-solid border-black bg-red-400">delete</button>
-                    </th>
-                </tr>
-            </tbody>
-            <!-- foot -->
-            <!-- <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Job</th>
-                                        <th>Favorite Color</th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot> -->
-    
-        </table>
-    </div>
+            <div class="p-8 bg-red-100" hidden>
+                <p class="font-bold">DEBUG</p>
+                {{ users }}
+            </div>
+
+            <div class="m-4 2xl:container">
+                <div class="grid gap-6">
+                    <div class="overflow-x-auto">
+                        <table class="table">
+                            <!-- head -->
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Job</th>
+                                    <th>Email</th>
+                                    <th>Permissions</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- row 1 -->
+                                <tr v-for="user in users" :key="user.index">
+                                    <th>
+                                        <label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
+                                    </th>
+                                    <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="avatar">
+                                                <div class="mask mask-squircle w-12 h-12">
+                                                    <img src="https://picsum.photos/300/300"
+                                                        alt="Avatar Tailwind CSS Component" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold">Hart Hagerty</div>
+                                                <div class="text-sm opacity-50">United States</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Zemlak, Daniel and Leannon
+                                        <br />
+                                    </td>
+                                    <td>
+                                        {{ user.email }}
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="permission in user.permissions" :key="user.index">{{ permission }}
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <th>
+                                        <button class="btn btn-sm border-solid border-black bg-green-400">view</button>
+                                        <button class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</button>
+                                        <button @click="deleteUserConfirm(user._id)"
+                                            class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                    </th>
+                                </tr>
+                            </tbody>
+                            <!-- foot -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paginación -->
+            <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+                <button class="join-item btn btn-outline" @click="prevPage" :disabled="currentPage === 1">Previous</button>
+                <button class="join-item btn btn-outline" @click="nextPage" :disabled="users.length < perPage">Next</button>
+            </div>
+
         </div>
     </div>
-</div>
-  </div>
 </template>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import BreadCrumbs from '@/components/admin/BreadCrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 import FeathersClient from '@/FeathersClient';
-
 export default {
-    //logout
-    // name: "AdminDashboard",
     layout: "AdminLayout",
     data: () => ({
         users: [],
+        currentPage: 1, // Página actual
+        perPage: 10,   // Cantidad de elementos por página
     }),
     components: {
         BreadCrumbs,
         AdminHeader,
-
     },
     mounted() {
-        // this.$store.dispatch('admin/getUsers');
-        FeathersClient.service('users').find({
-            query: {
-                $limit: 100,
-                // skip: 1,
-            }
-        }).then((res) => {
-            console.log(res.data    );
-            this.users = res.data;
-        })
+        this.fetchUsers();
     },
     methods: {
+        ...mapActions(['loadingSet']),
+        async fetchUsers() {
+            this.loadingSet(true);
+            try {
+                const res = await FeathersClient.service('users').find({
+                    query: {
+                        $limit: this.perPage,
+                        $skip: (this.currentPage - 1) * this.perPage,
+                    }
+                });
+                this.users = res.data;
+                this.loadingSet(false);
+            } catch (error) {
+                console.error(error);
+                this.loadingSet(false);
+            }
+        },
+        deleteUserConfirm(id) {
+            this.$snotify.confirm('Example body content', 'Example title', {
+                timeout: 5000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                buttons: [
+                    { text: 'Yes', action: (toast) => this.deleteUser(id, toast.id), bold: false },
+                    { text: 'Close', action: (toast) => { console.log('Clicked: No'); this.$snotify.remove(toast.id); }, bold: true },
+                ]
+            });
+        },
+        deleteUser(id, toastId) {
+            console.log('deleteUser', id);
+            this.$snotify.remove(toastId);
+            FeathersClient.service('users').remove(id)
+                .then(res => {
+                    console.log('deleteUser', res);
+                    this.$snotify.success('User deleted', 'Success', {
+                        timeout: 2000,
+                        showProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true
+                    });
+                    this.fetchUsers();
+                })
+                .catch(err => {
+                    console.error(err);
+
+                    this.$snotify.error(err, 'Error', {
+                        timeout: 2000,
+                        showProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true
+                    });
+                });
+        },
+        nextPage() {
+            this.currentPage++;
+            this.fetchUsers();
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.fetchUsers();
+            }
+        },
+        goToPage(pageNumber) {
+            this.currentPage = pageNumber;
+            this.fetchUsers();
+        },
+    },
+    computed: {
+        totalPages() {
+            return Math.ceil(this.totalUsers / this.perPage);
+        },
     },
 }
 </script>
-<style>
+
+<style scoped>
+/* Estilos CSS específicos para este componente, si es necesario */
 </style>
