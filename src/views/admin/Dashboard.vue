@@ -351,7 +351,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import BreadCrumbs from '@/components/admin/BreadCrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
-
+import FeathersClient from '@/FeathersClient.js';
 
 export default {
     //logout
@@ -363,6 +363,17 @@ export default {
         AdminHeader
 
     },
+    created() {
+    // app.authenticate().then(() => {
+    //   this.user.authenticated = true
+    // })
+        // We will also see when new users get created in real-time
+   
+    // On errors we just redirect back to the login page
+    // .catch(error => {
+    //   console.log('Error authenticating!', error)
+    // });
+  },
     mounted() {
 
     },

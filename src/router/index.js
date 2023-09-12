@@ -20,8 +20,11 @@ import Users from '@/views/admin/users/Users.vue';
 import Login from '@/views/admin/auth/Login.vue';
 import Register from '@/views/admin/auth/Register.vue';
 import Default from '@/views/admin/Default.vue';
+import Chat from '@/views/admin/Chat.vue';
+import EditProduct from '@/views/admin/products/EditProduct.vue';
 
 import store from '../store/index.js';
+
 
 // Define your routes
 const routes = [
@@ -40,6 +43,8 @@ const routes = [
       { path: '/admin/profile', component: Profile },
       { path: '/admin/users', component: Users },
       { path: '/admin/default', component: Default },
+      { path: '/admin/chat', component: Chat},
+      { path: '/admin/products/edit/:id', component: EditProduct, name: 'admin-products-edit',},
     ],
   },
   // Auth routes

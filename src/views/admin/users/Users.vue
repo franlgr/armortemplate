@@ -124,7 +124,7 @@ export default {
             }
         },
         deleteUserConfirm(id) {
-            this.$snotify.confirm('Example body content', 'Example title', {
+            this.$snotify.confirm('Are you sure you want to delete this user ?', 'Delete User', {
                 timeout: 5000,
                 showProgressBar: true,
                 closeOnClick: false,

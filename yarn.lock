@@ -603,6 +603,14 @@
     ajv-formats "^2.1.1"
     json-schema-to-ts "^2.9.1"
 
+"@feathersjs/socketio-client@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@feathersjs/socketio-client/-/socketio-client-5.0.8.tgz#e15e27ea13c385bf543c168df47d531a6767344e"
+  integrity sha512-rZU56ZFbNJxxAoQLimxNhi39BwLQMdDkiVgdKYML3RV50wliYSCHeKBgE9jsoqZVOucBWFqDvrGpgYbzcFFCTw==
+  dependencies:
+    "@feathersjs/feathers" "^5.0.8"
+    "@feathersjs/transport-commons" "^5.0.8"
+
 "@feathersjs/transport-commons@^5.0.8":
   version "5.0.8"
   resolved "https://registry.yarnpkg.com/@feathersjs/transport-commons/-/transport-commons-5.0.8.tgz#bfc6bdd1235c43b6b57443b04245b3f820189594"
