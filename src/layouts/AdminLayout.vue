@@ -183,7 +183,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import BreadCrumbs from '@/components/admin/BreadCrumbs.vue';
+import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
+
 import Loading from '@/components/Loading.vue';
 
 export default {

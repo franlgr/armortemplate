@@ -79,7 +79,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import BreadCrumbs from '@/components/admin/BreadCrumbs.vue';
+import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 import FeathersClient from '@/FeathersClient.js';
 
