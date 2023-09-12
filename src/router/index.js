@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-// Import your views
+// Import your site views 
 import HomeView from '@/views/site/HomeView.vue';
 import AboutView from '@/views/site/AboutView.vue';
+import SiteProducts from '@/views/site/products/Products.vue';
+import SingleProduct from '@/views/site/products/SingleProduct.vue';
 import NotFound from '@/views/NotFound.vue';
+
 
 // Import your layouts
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
@@ -11,7 +14,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 
 // Import your admin views
 import Dashboard from '@/views/admin/Dashboard.vue';
-import Products from '@/views/admin/products/Products.vue';
+import AdminProducts from '@/views/admin/products/Products.vue';
 import Categories from '@/views/admin/categories/Categories.vue';
 import Blogs from '@/views/admin/blogs/Blogs.vue';
 import Components from '@/views/admin/Components.vue';
@@ -36,7 +39,7 @@ const routes = [
     children: [
       { path: '', component: Dashboard },
       { path: '/admin/dashboard', component: Dashboard },
-      { path: '/admin/products', component: Products },
+      { path: '/admin/products', component: AdminProducts },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs },
       { path: '/admin/components', component: Components },
@@ -65,6 +68,8 @@ const routes = [
     children: [
       { path: '/', name: 'home', component: HomeView },
       { path: '/about', name: 'about', component: AboutView },
+      { path: '/products', name: 'site-products', component: SiteProducts },
+      { path: '/products/:id', name: 'site-product', component: SingleProduct },
     ],
   },
   // Catch-all route for not found

@@ -2,7 +2,9 @@
     <div>
         <div>
             <AdminHeader title="Products"></AdminHeader>
-            {{products}}
+            <div class="p-4">
+               {{products}}
+            </div>
             <div class=" m-4 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
@@ -16,7 +18,7 @@
                               </label>
                                     </th>
                                     <th>Titulo</th>
-                                    <th>Job</th>
+                                    <th>Precio</th>
                                     <th>Favorite Color</th>
                                     <th></th>
                                 </tr>
@@ -37,13 +39,13 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="font-bold">{{product.titulo}}</div>
+                                                <div class="font-bold">{{product.title}}</div>
                                                 <div class="text-sm opacity-50">United States</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        Zemlak, Daniel and Leannon
+                                        $ {{product.price}}
                                         <br/>
     
                                     </td>

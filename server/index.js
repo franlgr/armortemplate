@@ -27,19 +27,17 @@ const staticOptions = {
 app.use(express.static(path.join(__dirname, '../dist'), staticOptions));
 
 //cuando la ruta es /productos/:id_del_producto
-app.get('/productos/:id_producto', async (req, res) => {
-  console.log('SSR PRODUCTOS', req.params.id_producto);
+app.get('/products/:id_product', async (req, res) => {
+  console.log('SSR PRODUCTOS', req.params.id_product);
 
   let data = {};
   try {
     const response = await axios.get(
-      `https://api.alguientiene.com/productos/${req.params.id_producto}`,
+      `http://localhost:1313/products/${req.params.id_product}`,
     );
-    console.log(response.data);
-    data = {
-      title: response.data.titulo,
-      description: response.data.descripcion,
-    };
+    // console.log(response.data);
+    console.log(response.data.metaData);
+    data = response.data.metaData;
   } catch (error) {
     console.error(error);
     res.status(500).send('Error interno del servidor');
@@ -47,11 +45,14 @@ app.get('/productos/:id_producto', async (req, res) => {
 
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
+  // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  // console.log(response.data.metaData);
   const metaTags = `
         <title>${data.title}</title>
-        <meta name="description" content=" ${data.description}">
-        <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
-        <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+        <meta name="description" content=" ${data.content}">
+        <meta itemprop="image" content="${data.img}">
+        <meta property="og:image" itemprop="image" content="${data.img}">
         <!-- Otras metaetiquetas dinámicas -->
     `;
 
