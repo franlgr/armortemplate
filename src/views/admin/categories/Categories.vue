@@ -51,7 +51,7 @@
                                     <th>
                                         <button class="btn btn-sm border-solid border-black bg-green-400">show</button>
                                          <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
-                                         <router-link :to="{ name: 'admin-blogs-edit', params: { id: blog._id } }" class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
+                                         <router-link :to="{ name: 'admin-categories-edit', params: { id: blog._id } }" class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
 
                                         <button class="btn btn-sm border-solid border-black bg-red-400">delete</button>
     
