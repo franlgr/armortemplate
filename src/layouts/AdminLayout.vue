@@ -183,14 +183,14 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
+// import BreadCrumbs from '/components/admin/Breadcrumbs.vue';
 
 import Loading from '@/components/Loading.vue';
 
 export default {
     name: 'AdminLayout',
     components: {
-        BreadCrumbs, // Import and include the BreadCrumbs component
+        // BreadCrumbs, // Import and include the BreadCrumbs component
         Loading,
     },
     created() {
