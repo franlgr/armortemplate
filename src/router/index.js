@@ -22,7 +22,7 @@ import Profile from '@/views/admin/Profile.vue';
 import Users from '@/views/admin/users/Users.vue';
 import Login from '@/views/admin/auth/Login.vue';
 import Register from '@/views/admin/auth/Register.vue';
-import DefaultAdmin from '@/views/admin/Default.vue';
+import DefaultAdmin from '@/views/admin/DefaultAdmin.vue';
 import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
