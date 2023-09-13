@@ -12,8 +12,12 @@
                         </a>
                     </div>
                     <div class="mt-8 text-center">
-                        <img :src="getUser.image" alt=""
+                        <img v-if="getUser.image" :src="getUser.image" alt=""
                             class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+                        <img v-if="!getUser.image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350" alt=""
+                            class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+
+                        
                         <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{{ getUser.name }} {{ getUser.lastname }}</h5>
                         <p>{{ getUser.email }}</p>
                         <span class="hidden text-gray-400 lg:block">Admin</span>
