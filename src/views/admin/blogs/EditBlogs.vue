@@ -4,97 +4,95 @@
       <div class="p-4">
         {{ blogs }}
       </div>
-      <div class=" m-4 2xl:container">
-        <div class="">
+      <div class="m-4 2xl:container">
+        <div>
           Text Editor
           <br>
-          <!--FORM EDIT-->
-          <div>
-            {{ formData }}
-            <FormKit
-              type="form"
-              id="edit-blog-form"
-              :form-class="submitted ? 'hide' : 'show'"
-              submit-label="Edit Blog"
-              @submit="editBlog"
-              :actions="false"
-              #default="{ value }"
-              v-model="formData"
-            >
-              <h1>Edit Blog</h1>
-              <p>
-                You can put any type of element inside a form, not just FormKit inputs
-                (although only FormKit inputs are included with the submission).
-              </p>
-              <hr />
+          <!-- FORM EDIT -->
+          <div class="flex flex-col-reverse md:flex-row justify-center items-center h-full w-full">
+            <div class="md:w-1/2 p-4">
+              {{ formData }}
               <FormKit
-                type="text"
-                name="title"
-                label="Title"
-                :value="blogs.title"
-                placeholder="Title of blog"
-                help="Put a title blog"
-                validation="required"
-              />
-              <FormKit
-                type="text"
-                name="content"
-                label="Description"
-                :value="blogs.content"
-                placeholder="Description of blog"
-                help="Put a content blog"
-                validation="required"
-              />
-              <!-- <FormKit
-                type="text"
-                name="ubication"
-                label="Ubication"
-                :value="blogs.ubicacion"
-                placeholder="Example: Rio De Janeiro"
-                help="Put a ubication"
-                validation=""
-              /> -->
-              <FormKit
-                type="submit"
-                label="Edit Blog"
-              />
-              <pre wrap>{{ value }}</pre>
-            </FormKit>
-          </div>
-          <!--EDIT END-->
-          <br>
-          Card Modelo Example
-          <div class="max-w-md mx-auto mb-4">
-            <div class="bg-white rounded-lg shadow-lg">
-              <!-- Título y Descripción -->
-              <div class="p-4">
-                <h2 class="text-xl font-semibold">{{ blogs.title }}</h2>
-                <p class="text-gray-600">{{ blogs.content }}</p>
-              </div>
-              <!--Carousel Blog-->
-              <div v-for="blog in blogs.images" :key="blog.index">
-                {{ blog }}
-              </div>
-              <div class="carousel w-full max-w-md max-h-auto mx-auto">
-                <div class="carousel-container">
+                type="form"
+                id="edit-blog-form"
+                :form-class="submitted ? 'hide' : 'show'"
+                submit-label="Edit Blog"
+                @submit="editBlog"
+                :actions="false"
+                #default="{ value }"
+                v-model="formData"
+              >
+                <h1>Edit Blog</h1>
+                <hr />
+                <FormKit
+                  type="text"
+                  name="title"
+                  label="Title"
+                  :value="blogs.title"
+                  placeholder="Title of blog"
+                  help="Put a title blog"
+                  validation="required"
+                />
+                <FormKit
+                  type="text"
+                  name="content"
+                  label="Description"
+                  :value="blogs.content"
+                  placeholder="Description of blog"
+                  help="Put a content blog"
+                  validation="required"
+                />
+                <FormKit
+                  type="text"
+                  name="ubication"
+                  label="Ubication"
+                  :value="blogs.ubication"
+                  validation=""
+                />
+                <FormKit
+                  type="submit"
+                  label="Edit Blog"
+                />
+                <pre wrap>{{ value }}</pre>
+              </FormKit>
+            </div>
+            <div class="md:w-1/2">
+              <!-- EDIT END -->
+              <br>
+              Card Modelo Example
+              <div class="max-w-md mx-auto mb-4">
+                <div class="bg-white rounded-lg shadow-lg">
+                  <!-- Título y Descripción -->
+                  <div class="p-4">
+                    <h2 class="text-xl font-semibold">{{ blogs.title }}</h2>
+                    <p class="text-gray-600">{{ blogs.content }}</p>
+                  </div>
+                  <!-- Carousel Blog -->
+                  <div v-for="blog in blogs.images" :key="blog.index">
+                    {{ blog }}
+                  </div>
                   <div class="carousel w-full max-w-md max-h-auto mx-auto">
-                    <div
-                      v-for="(blog, index) in blogs.images"
-                      :key="index"
-                      :id="'slide' + (index + 1)"
-                      class="carousel-item relative w-full"
-                    >
-                      <img :src="blog" class="w-full" />
-                      <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a :href="'#slide' + (index === 0 ? blogs.images.length : index)" class="btn btn-circle">❮</a>
-                        <a :href="'#slide' + (index === blogs.images.length - 1 ? 1 : index + 2)" class="btn btn-circle">❯</a>
-                      </div>
-                      <div class="absolute bottom-0 left-0 right-0 bg-white p-4">
-                        <!-- Información adicional debajo de la imagen -->
-                        <p class="text-gray-500"> {{ fechaActual }}</p>
-                        <p class="text-gray-500">Ubication: {{ blog.ubicacion }}</p>
-                        <p class="text-gray-500">User: {{ getUser.name + ' ' + getUser.lastname }}</p>
-                        <!-- Agrega más datos de usuario u otra información aquí -->
+                    <div class="carousel-container">
+                      <div class="carousel w-full max-w-md max-h-auto mx-auto">
+                        <div
+                          v-for="(blog, index) in blogs.images"
+                          :key="index"
+                          :id="'slide' + (index + 1)"
+                          class="carousel-item relative w-full"
+                        >
+                          <img :src="blog" class="w-full" />
+                          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                            <a :href="'#slide' + (index === 0 ? blogs.images.length : index)" class="btn btn-circle">❮</a>
+                            <a :href="'#slide' + (index === blogs.images.length - 1 ? 1 : index + 2)" class="btn btn-circle">❯</a>
+                          </div>
+                          <div  class="absolute bottom-0 left-0 right-0 bg-white p-4">
+                            <!-- Información adicional debajo de la imagen -->
+                            <p class="text-gray-500"> {{ blogs.th }}</p>
+                            <p class="text-gray-500">Ubication: {{ blogs.ubication }}</p>
+                            <p class="text-gray-500">User: {{ blogs.user }}</p>
+                            <!-- Agrega más datos de usuario u otra información aquí -->
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -106,6 +104,7 @@
       </div>
     </div>
   </template>
+  
   
   <script>
   import { mapActions, mapGetters } from 'vuex';
@@ -164,7 +163,12 @@
       async editBlog() {
         this.submitted = true;
         try {
-          const updatedBlog = await FeathersClient.service("blogs").patch(this.blogs._id, this.formData);
+          // Incluye los campos th, ubication y user en la solicitud PATCH
+          const updatedBlog = await FeathersClient.service("blogs").patch(this.blogs._id, {
+            ...this.formData,
+            th: this.fechaActual,
+            user: this.getUser.name +' '+this.getUser.lastname,
+          });
           console.log("editBlog", updatedBlog);
           // Actualiza los datos del blog con los datos editados
           this.blogs = updatedBlog;
