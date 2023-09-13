@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import BreadCrumbs from './BreadCrumbs.vue'
+import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'HeaderAdmin',
