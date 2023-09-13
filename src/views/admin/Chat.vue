@@ -53,13 +53,15 @@
           </div>
         </div>
         <div class="flex flex-col mt-8">
+         
           <div class="flex flex-row items-center justify-between text-xs">
-            <span class="font-bold">Active Conversations</span>
+            <span class="font-bold">Users</span>
             <span
               class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full"
-              >4</span
+              >{{ users.length }}</span
             >
           </div>
+          <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto m-4 h-7" />
           <!-- {{ getUser }} -->
           <div class="flex flex-col space-y-1 -mx-2 h-48 overflow-y-auto">
     <button v-for="user in users" :key="user.index" class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2">
