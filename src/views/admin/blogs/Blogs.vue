@@ -32,9 +32,11 @@
                                     <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                                <!-- <div class="mask mask-squircle w-12 h-12" v-for="image in blog.images" :key="image.index">
+                                                <div class="avatar">
+                                                <div class="mask mask-squircle w-12 h-12" v-for="image in blog.images" :key="image.index">
                                                     <img :src="image" alt="Avatar Tailwind CSS Component" />
-                                                </div> -->
+                                                </div>
+                                            </div>
                                             </div>
                                             <div>
                                                 <div class="font-bold">{{blog.title}}</div>
