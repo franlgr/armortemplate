@@ -23,8 +23,8 @@
                     <p class="font-medium">© 2022 Company</p>
                 </div>
     
-                <!-- Login -->
-                <div class="flex flex-1 flex-col items-center justify-center px-10 relative">
+                <!-- Register -->
+                <div class="flex flex-1 flex-col items-center justify-center relative w-full">
                     <div class="flex lg:hidden justify-between items-center w-full py-4">
                         <div class="flex items-center justify-start space-x-3">
                             <span class="bg-black rounded-full w-6 h-6"></span>
@@ -38,13 +38,13 @@
                         </div>
                     </div>
                     <!-- Login box -->
-                    <div class="flex flex-1 flex-col  justify-center space-y-5 max-w-md">
+                    <div class="flex flex-1 flex-col justify-center space-y-5 max-w-md w-full mt-8">
                         <div class="flex flex-col space-y-2 text-center">
                             <h2 class="text-3xl md:text-4xl font-bold">Register</h2>
                             <p class="text-md md:text-xl">Register in to place the order!</p>
                         </div>
                         <div class="flex flex-col max-w-md space-y-5">
-                            {{formData}}
+
                             <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
     
                                 <!-- <FormKit type="text" name="lastname" label="Your Last Name" placeholder="Doe" help="What is your first name?" validation="required" /> -->
@@ -54,16 +54,12 @@
                           matches: 'Please include at least one symbol',
                         }" placeholder="Your password" help="Choose a password" />
                                 <FormKit type="password" name="password_confirm" label="Confirm password" placeholder="Confirm password" validation="required|confirm" help="Confirm your password" />
-                                <FormKit type="submit" label="Register" />
+                                <FormKit type="submit" label="Register"  />
                                 <!-- <pre wrap>{{ value }}</pre> -->
                             </FormKit>
     
     
     
-                            <input type="text" v-model="email" placeholder="email" class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal" />
-                            <input type="password" v-model="password" placeholder="password" class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal" />
-                            <input type="password" v-model="rePassword" placeholder="repeat password" class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal" />
-                            <button @click="register()" class="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white">Register</button>
                             <div class="flex justify-center items-center">
                                 <span class="w-full border border-black"></span>
                                 <span class="px-4">Or</span>
@@ -85,8 +81,7 @@
     
                     <!-- Footer -->
                     <div class="flex justify-center flex-col m-auto mb-16 text-center text-lg dark:text-slate-200 ">
-                        <p class="font-bold mb-1">Built by <a href="#" class="underline dark:text-white">Frank Esteban</a></p>
-                        <p>Contact me on the different platforms and social networks</p>
+                       
                         <div class="flex items-center justify-center space-x-2 mt-4 flex-wrap"><a href="https://www.linkedin.com/in/frankuxui/" class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"><svg
                             width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="4.983" cy="5.009" r="2.188" fill="currentColor"></circle>
@@ -190,7 +185,9 @@ export default {
             FeathersClient.service('users').create({
                 // strategy: "local",
                 email: this.formData.email,
-                password: this.formData.password
+                password: this.formData.password,
+                //image default for profile
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350',
             }).then((res) => {
                 console.log(res);
                 this.setUser(res);
@@ -223,23 +220,11 @@ export default {
 }
 </script>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-html,
-body {
-    font-family: 'Roboto', sans-serif;
+<style >
+.formkit-wrapper {
+  max-width: 100% !important;
 }
-
-.break-inside {
-    -moz-column-break-inside: avoid;
-    break-inside: avoid;
-}
-
-body {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.5;
+.formkit-input {
+  width: 100% !important;
 }
 </style>

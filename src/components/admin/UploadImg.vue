@@ -3,16 +3,7 @@
         <div v-if="url == ''">
             <img :src="url" alt="">
         </div>
-         <button v-on:click="open" id="upload_widget" class="cloudinary-button">
-            <!-- <i class="fa-solid fa-upload text-white pr-2"></i> Subir Imagenes -->
-            <i class="fa-solid fa-upload text-white pr-2"></i> Subir Imagenes
-        </button>
-        
-       
-        <!-- <button @click="test()">test</button> -->
-        <!-- {{ url }} -->
-       
-        <br>
+        <button class="btn btn-xs uploadButton" v-on:click="open" id="upload_widget" >{{ title }}</button>
         
     </div>
   </template>
@@ -41,7 +32,17 @@
       uploadPreset : "eimrafgu",
       url: ''
     }),
-    props: ['texto'],
+    props: {
+      title: {
+        type: String,
+        default: 'Upload Image',
+      },
+      msg: {
+        type: String,
+        default: 'Upload Image',
+      }
+
+    },
     mounted() {
         // alert('test')
         this.myWidget = cloudinary.createUploadWidget(
@@ -72,10 +73,15 @@
     },
     methods: {
     },
-    props: {
-      msg: String,
-    },
   };
   </script>
+  <style>
+  .uploadButton {
+    padding-bottom: 20px;
+    margin:auto;
+    display: block;
+
+  }
+  </style>
   
   

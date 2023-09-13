@@ -4,12 +4,15 @@
         <div>
             <AdminHeader title="Profile"></AdminHeader>
             <!-- {{getUser}} -->
-            <UploadImg class="p-4" v-on:links="links"></UploadImg>
+            
             <div class="m-4 2xl:container ">
                 <div class=" ">
                     <div>
-                        
-                        <img :src="formData.image" alt="">
+                       <div class="mb-4">
+                        <img :src="formData.image" alt=""
+                            class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+                       </div>
+                        <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
                         <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
                             <h1>Profile</h1>
                             <p>
