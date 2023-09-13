@@ -2,16 +2,14 @@
     <div>
       <AdminHeader title="Edit Blog"></AdminHeader>
       <div class="p-4">
-        {{ blogs }}
+        <!-- {{ blogs }} -->
       </div>
       <div class="m-4 2xl:container">
         <div>
-          Text Editor
-          <br>
           <!-- FORM EDIT -->
           <div class="flex flex-col-reverse md:flex-row justify-center items-center h-full w-full">
             <div class="md:w-1/2 p-4">
-              {{ formData }}
+              <!-- {{ formData }} -->
               <FormKit
                 type="form"
                 id="edit-blog-form"
@@ -22,12 +20,12 @@
                 #default="{ value }"
                 v-model="formData"
               >
-                <h1>Edit Blog</h1>
+                <h1 class="mb-5">Edit Blog</h1>
                 <hr />
-                <FormKit
+                <FormKit 
                   type="text"
                   name="title"
-                  label="Title"
+                  label="Title *"
                   :value="blogs.title"
                   placeholder="Title of blog"
                   help="Put a title blog"
@@ -36,7 +34,7 @@
                 <FormKit
                   type="text"
                   name="content"
-                  label="Description"
+                  label="Description *"
                   :value="blogs.content"
                   placeholder="Description of blog"
                   help="Put a content blog"
@@ -45,7 +43,7 @@
                 <FormKit
                   type="text"
                   name="ubication"
-                  label="Ubication"
+                  label="Ubication (Optional)"
                   :value="blogs.ubication"
                   validation=""
                 />
@@ -53,13 +51,12 @@
                   type="submit"
                   label="Edit Blog"
                 />
-                <pre wrap>{{ value }}</pre>
+                <!-- <pre wrap>{{ value }}</pre> -->
               </FormKit>
             </div>
             <div class="md:w-1/2">
               <!-- EDIT END -->
               <br>
-              Card Modelo Example
               <div class="max-w-md mx-auto mb-4">
                 <div class="bg-white rounded-lg shadow-lg">
                   <!-- Título y Descripción -->
@@ -69,7 +66,7 @@
                   </div>
                   <!-- Carousel Blog -->
                   <div v-for="blog in blogs.images" :key="blog.index">
-                    {{ blog }}
+                    <!-- {{ blog }} -->
                   </div>
                   <div class="carousel w-full max-w-md max-h-auto mx-auto">
                     <div class="carousel-container">
