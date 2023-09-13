@@ -14,7 +14,7 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import BreadCrumbs from '@/components/admin/BreadCrumbs.vue';
+// import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 
 export default {
@@ -22,7 +22,7 @@ export default {
     // name: "AdminDashboard",
     layout: "AdminLayout",
     components: {
-        BreadCrumbs,
+        // BreadCrumbs,
         AdminHeader
 
     },

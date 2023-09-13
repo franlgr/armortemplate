@@ -50,7 +50,6 @@ import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'HeaderAdmin',
-    layout: 'AdminLayout.vue',
     components: {
         BreadCrumbs,
     },
