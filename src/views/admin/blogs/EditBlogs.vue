@@ -144,6 +144,7 @@
         try {
           const res = await FeathersClient.service("blogs").get(id);
           this.blogs = res;
+          this.formData = res;
           console.log("fetchBlog", res);
           this.loadingSet(false);
         } catch (error) {
