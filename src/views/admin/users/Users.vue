@@ -39,9 +39,9 @@
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
-                                                   <img v-if="getUser.image" :src="getUser.image" alt=""
+                                                   <img v-if="user.image" :src="user.image" alt=""
                             class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
-                        <img v-if="!getUser.image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350" alt=""
+                        <img v-if="!user.image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350" alt=""
                             class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
 
                                                 </div>

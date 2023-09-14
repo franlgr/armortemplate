@@ -3,7 +3,7 @@ import App from './App.vue';
 import './style.css';
 import snotify from 'vue3-snotify';
 
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
 import { plugin, defaultConfig } from "@formkit/vue";

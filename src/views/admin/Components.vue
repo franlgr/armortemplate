@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <br>
-    
+                    <Mapbox></Mapbox>
                     <!-- Se pueden buscar componentes en https://daisyui.com/components/ -->
     
                 </div>
@@ -41,6 +41,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
+import Mapbox from '@/components/Mapbox.vue';
 
 import Ckeditor from '@/components/Ckeditor.vue';
 import TableDefault from '@/components/TableDefault.vue';
@@ -54,7 +55,8 @@ export default {
         BreadCrumbs,
         AdminHeader,
         Ckeditor,
-        TableDefault
+        TableDefault,
+        Mapbox
 
     },
     methods: {},
