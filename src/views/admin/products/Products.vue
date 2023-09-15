@@ -121,6 +121,7 @@ export default {
             try {
                 const res = await FeathersClient.service('products').find({
                     query: {
+                        user_id: this.getUser._id,
                         // $limit: this.perPage,
                         // $skip: (this.currentPage - 1) * this.perPage,
                     }
@@ -178,6 +179,9 @@ export default {
         }
 
     },
+    computed: {
+        ...mapGetters(['getUser'])
+    }
 }
 </script>
 

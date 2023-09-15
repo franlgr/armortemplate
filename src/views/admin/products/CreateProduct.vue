@@ -3,6 +3,7 @@
     <div>
         <div>
             <AdminHeader title="Create Product"></AdminHeader>
+            {{getUser}}
             <div class="carousel carousel-end rounded-box fix">
                 <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                     <div>
@@ -21,7 +22,7 @@
                         <FormKit class="mt-4" type="text" name="name" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                         <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                         <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                                help="What is your name?" validation="required" /> -->
+                                                        help="What is your name?" validation="required" /> -->
                         <br>
                         <!-- <label for="price">USD PRICE</label> -->
                         <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800" help="What is your title product ?" validation="required" />
@@ -29,20 +30,20 @@
                         <ProductSelectCategory v-if="options.length > 0 " :options="options" />
                         <br>
                         <p class="text-lg font-bold">Meta Data Description</p>
-                        
+    
                         <br>
                         <!-- {{value}} -->
-                        
+    
                         <br>
-                          <FormKit class="mt-4" type="text" name="title" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
-                            <FormKit class="mt-4" type="text" name="content" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
-                            <FormKit type="submit" label="Create Product" />
+                        <FormKit class="mt-4" type="text" name="title" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
+                        <FormKit class="mt-4" type="text" name="content" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
+                        <FormKit type="submit" label="Create Product" />
                     </FormKit>
                     <div name="metaData" style="padding-bottom:50px">
-                            <p>Image for Meta Data Seo</p>
-                            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
-                            <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
-                        </div>
+                        <p>Image for Meta Data Seo</p>
+                        <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+                        <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,6 +143,7 @@ export default {
                     images: this.images,
                     category: this.formData.category,
                     metaData: this.metaData,
+                    user: this.getUser,
                 });
                 console.log('createProduct', res);
                 this.$snotify.success('Product Created', 'Success', {
@@ -160,9 +162,16 @@ export default {
                     pauseOnHover: true,
                 });
             }
-        }
+            
+        },
+
+
 
     },
+
+        computed: {
+            ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+        },
 }
 </script>
 
