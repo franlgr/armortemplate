@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-// Import your site views 
-import HomeView from '@/views/site/HomeView.vue';
+// Import your site views
+import SiteHome from '@/views/site/SiteHome.vue';
 import AboutView from '@/views/site/AboutView.vue';
 import SiteProducts from '@/views/site/products/Products.vue';
 import SingleProduct from '@/views/site/products/SingleProduct.vue';
 import NotFound from '@/views/NotFound.vue';
-
+import SiteBlog from '@/views/site/blogs/Blog.vue';
 
 // Import your layouts
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
@@ -27,9 +27,10 @@ import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import EditCategories from '@/views/admin/categories/EditCategories.vue';
+import CreateProduct from '@/views/admin/products/CreateProduct.vue';
+import ProductCategories from '@/views/admin/products/ProductCategories.vue';
 
 import store from '../store/index.js';
-
 
 // Define your routes
 const routes = [
@@ -40,7 +41,11 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: '', component: Dashboard },
-      { path: '/admin/dashboard', component: Dashboard, name: 'admin-dashboard' },
+      {
+        path: '/admin/dashboard',
+        component: Dashboard,
+        name: 'admin-dashboard',
+      },
       { path: '/admin/products', component: AdminProducts },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs },
@@ -48,10 +53,32 @@ const routes = [
       { path: '/admin/profile', component: Profile, name: 'admin-profile' },
       { path: '/admin/users', component: Users },
       { path: '/admin/default', component: DefaultAdmin },
-      { path: '/admin/chat', component: Chat},
-      { path: '/admin/products/edit/:id', component: EditProduct, name: 'admin-products-edit',},
-      { path: '/admin/blogs/edit/:id', component: EditBlogs, name: 'admin-blogs-edit',},
-      { path: '/admin/categories/edit/:id', component: EditCategories, name: 'admin-categories-edit',},
+      { path: '/admin/chat', component: Chat },
+      {
+        path: '/admin/products/edit/:id',
+        component: EditProduct,
+        name: 'admin-products-edit',
+      },
+      {
+        path: '/admin/blogs/edit/:id',
+        component: EditBlogs,
+        name: 'admin-blogs-edit',
+      },
+      {
+        path: '/admin/categories/edit/:id',
+        component: EditCategories,
+        name: 'admin-categories-edit',
+      },
+      {
+        path: '/admin/products/create',
+        component: CreateProduct,
+        name: 'admin-products-create',
+      },
+      {
+        path: '/admin/products/categories',
+        component: ProductCategories,
+        name: 'admin-products-categories',
+      },
     ],
   },
   // Auth routes
@@ -70,10 +97,11 @@ const routes = [
     path: '/',
     component: DefaultLayout,
     children: [
-      { path: '/', name: 'home', component: HomeView },
+      { path: '/', name: 'home', component: SiteHome },
       { path: '/about', name: 'about', component: AboutView },
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },
+      { path: '/blog', name: 'site-blog', component: SiteBlog },
     ],
   },
   // Catch-all route for not found

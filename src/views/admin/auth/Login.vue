@@ -12,7 +12,7 @@
         <div class='hidden lg:flex flex-col justify-between bg-[#ffe85c] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg'>
           <div class="flex items-center justify-start space-x-3">
             <span class="bg-black rounded-full w-8 h-8"></span>
-            <a href="#" class="font-medium text-xl">Brand</a>
+            <a href="#" class="font-medium text-xl">Warrior</a>
           </div>
           <div class='space-y-5'>
             <h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">Enter your account and discover new
@@ -30,7 +30,7 @@
           <div class="flex lg:hidden justify-between items-center w-full py-4">
             <div class="flex items-center justify-start space-x-3">
               <span class="bg-black rounded-full w-6 h-6"></span>
-              <a href="#" class="font-medium text-lg">Brand</a>
+              <a href="#" class="font-medium text-lg">Warrior</a>
             </div>
             <div class="flex items-center space-x-2">
               <span>Not a member? </span>
@@ -79,10 +79,11 @@
 
           <!-- Footer -->
           <div class="flex justify-center flex-col m-auto mb-16 text-center text-lg dark:text-slate-200 ">
-            <p class="font-bold mb-1">Built by <a href="#" class="underline dark:text-white">Frank Esteban</a></p>
+            <p class="font-bold mb-1">Built by <a href="https://www.linkedin.com/in/carlo-gammarota-23493b24/"
+                class="underline dark:text-white">CG 2023</a></p>
             <p>Contact me on the different platforms and social networks</p>
             <div class="flex items-center justify-center space-x-2 mt-4 flex-wrap"><a
-                href="https://www.linkedin.com/in/frankuxui/"
+                href="https://www.linkedin.com/in/carlo-gammarota-23493b24/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"><svg
                   width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <circle cx="4.983" cy="5.009" r="2.188" fill="currentColor"></circle>
@@ -194,4 +195,5 @@ body {
   flex-direction: column;
   min-height: 100vh;
   line-height: 1.5;
-}</style>
+}
+</style>

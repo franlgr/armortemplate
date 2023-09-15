@@ -3,7 +3,7 @@
         <div>
             <AdminHeader title="Products"></AdminHeader>
             <div class="p-4">
-               {{products}}
+                {{ products }}
             </div>
             <div class=" m-4 2xl:container ">
                 <div class="">
@@ -14,8 +14,8 @@
                                 <tr>
                                     <th>
                                         <label>
-                                <input type="checkbox" class="checkbox" />
-                              </label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
                                     </th>
                                     <th>Titulo</th>
                                     <th>Precio</th>
@@ -28,35 +28,39 @@
                                 <tr v-for="product in products" :key="product.index">
                                     <th>
                                         <label>
-                                <input type="checkbox" class="checkbox" />
-                              </label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
                                     </th>
                                     <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                                <div class="mask mask-squircle w-12 h-12" v-for="image in product.images" :key="image.index">
+                                                <div class="mask mask-squircle w-12 h-12" v-for="image in product.images"
+                                                    :key="image.index">
                                                     <img :src="image" alt="Avatar Tailwind CSS Component" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="font-bold">{{product.title}}</div>
+                                                <div class="font-bold">{{ product.title }}</div>
                                                 <div class="text-sm opacity-50">United States</div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        $ {{product.price}}
-                                        <br/>
-    
+                                        $ {{ product.price }}
+                                        <br />
+
                                     </td>
                                     <td>Purple</td>
                                     <th>
-                                        <button class="btn btn-sm border-solid border-black bg-green-400">show</button>
-                                         <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
-                                         <router-link :to="{ name: 'admin-products-edit', params: { id: product._id } }" class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
+                                        <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
+                                        <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
+                                        <router-link class="btn btn-sm border-solid border-black bg-green-400"
+                                            :to="{ name: 'site-product', params: { id: product._id } }">SHOW</router-link>
+                                        <router-link :to="{ name: 'admin-products-edit', params: { id: product._id } }"
+                                            class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
 
                                         <button class="btn btn-sm border-solid border-black bg-red-400">delete</button>
-    
+
                                     </th>
                                 </tr>
                             </tbody>
@@ -70,7 +74,7 @@
                                                     <th></th>
                                                 </tr>
                                             </tfoot> -->
-    
+
                         </table>
                     </div>
                 </div>
@@ -130,11 +134,11 @@ export default {
             } catch (error) {
                 this.loadingSet(false);
                 this.$snotify.error(error, 'Error', {
-                        timeout: 2000,
-                        showProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true
-                    });
+                    timeout: 2000,
+                    showProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true
+                });
                 console.error(error);
             }
         },
@@ -143,6 +147,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>
