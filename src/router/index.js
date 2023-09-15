@@ -29,6 +29,9 @@ import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import CreateProduct from '@/views/admin/products/CreateProduct.vue';
+// import ProductCategories from '@/views/admin/products/ProductCategories.vue';
+import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
+// import PostBlog from '@/views/admin/blogs/PostBlog.vue';
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
 import EditCategories from '@/views/admin/products/categories/EditCategory.vue';
 
@@ -57,7 +60,7 @@ const routes = [
       { path: '/admin/users', component: Users },
       { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat },
-      { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
+      // { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
       {
         path: '/admin/products/edit/:id',
         component: EditProduct,
@@ -85,7 +88,6 @@ const routes = [
       },
       {
         path: '/admin/products/categories',
-        component: AdminProductsCategories,
         component: AdminProductsCategories,
         name: 'admin-products-categories',
       },
