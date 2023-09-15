@@ -1,75 +1,14 @@
 <template>
     <div class="uw">
-<<<<<<< HEAD
-      <div v-for="(image, index) in images" :key="index">
-        <img :src="image" alt="" class="thumbnail">
-        <button @click="removeImage(index)" class="remove-button">Eliminar</button>
-      </div>
-      <button @click="openUploadWidget" class="cloudinary-button">
-        <i class="fa-solid fa-upload text-white pr-2"></i> Subir Imágenes
-      </button>
-=======
         <div v-if="url == ''">
             <img :src="url" alt="">
         </div>
         <button class="btn btn-xs uploadButton" v-on:click="open" id="upload_widget" >{{ title }}</button>
         
->>>>>>> a77b55b (update)
     </div>
   </template>
   
   <script>
-<<<<<<< HEAD
-  export default {
-    name: "UploadImg",
-    data() {
-      return {
-        images: [],
-        cloudName: "doznjtpmk",
-        uploadPreset: "eimrafgu",
-      };
-    },
-    methods: {
-      openUploadWidget() {
-        cloudinary.openUploadWidget(
-          {
-            cloudName: this.cloudName,
-            uploadPreset: this.uploadPreset,
-            multiple: true, // Habilitar carga múltiple
-            folder: "user_images",
-          },
-          (error, result) => {
-            if (!error && result && result.event === "success") {
-              console.log("Imagen cargada con éxito: ", result);
-              this.images.push(result.info.secure_url); // Agregar la URL directamente
-              this.$emit("images", this.images); // Emitir las imágenes al componente padre
-            }
-          }
-        );
-      },
-      removeImage(index) {
-        this.images.splice(index, 1);
-        this.$emit("images", this.images); // Emitir las imágenes actualizadas al componente padre
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .thumbnail {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 5px;
-  }
-  
-  .remove-button {
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  </style>
-=======
 //   const cloudName = "doznjtpmk"; // replace with your own cloud name
 //   const uploadPreset = "eimrafgu"; // replace with your own upload preset
   
@@ -146,4 +85,3 @@
   </style>
   
   
->>>>>>> a77b55b (update)

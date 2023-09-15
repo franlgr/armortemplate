@@ -8,6 +8,7 @@ import SingleProduct from '@/views/site/products/SingleProduct.vue';
 import NotFound from '@/views/NotFound.vue';
 import SiteBlog from '@/views/site/blogs/Blog.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
+// import SiteProductsCategories from '@/views/site/products/Categories.vue';
 
 // Import your layouts
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
@@ -28,15 +29,8 @@ import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import CreateProduct from '@/views/admin/products/CreateProduct.vue';
-<<<<<<< HEAD
-import CreateBlog from '@/views/admin/blogs/CreateBlog.vue';
-import ProductCategories from '@/views/admin/products/ProductCategories.vue';
-import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
-import PostBlog from '@/views/admin/blogs/PostBlog.vue';
-=======
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
 import EditCategories from '@/views/admin/products/categories/EditCategory.vue';
->>>>>>> a77b55b (update)
 
 import store from '../store/index.js';
 
@@ -54,6 +48,7 @@ const routes = [
         component: Dashboard,
         name: 'admin-dashboard',
       },
+      { path: '/admin/products', name: "admin-products", component: AdminProducts },
       { path: '/admin/products', name: "admin-products", component: AdminProducts },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs },
@@ -78,6 +73,11 @@ const routes = [
       //   component: EditCategories,
       //   name: 'admin-categories-edit',
       // },
+      // {
+      //   path: '/admin/categories/edit/:id',
+      //   component: EditCategories,
+      //   name: 'admin-categories-edit',
+      // },
       {
         path: '/admin/products/create',
         component: CreateProduct,
@@ -86,23 +86,13 @@ const routes = [
       {
         path: '/admin/products/categories',
         component: AdminProductsCategories,
+        component: AdminProductsCategories,
         name: 'admin-products-categories',
       },
       {
-<<<<<<< HEAD
-        path: '/admin/blogs/categories',
-        component: BlogsCategories,
-        name: 'admin-blogs-categories',
-      },
-      {
-        path: '/admin/blogs/create',
-        component: CreateBlog,
-        name: 'admin-blogs-create',
-=======
         path: '/admin/products/categories/edit/:id',
         component: EditCategories,
         name: 'admin-products-categories-edit',
->>>>>>> a77b55b (update)
       },
     ],
   },
@@ -127,15 +117,11 @@ const routes = [
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },
       { path: '/blog', name: 'site-blog', component: SiteBlog },
-<<<<<<< HEAD
-      
-=======
       // {
       //   path: '/products/categories/:id',
       //   name: 'site-products-categories',
       //   component: SiteProductsCategories,
       // },
->>>>>>> a77b55b (update)
     ],
   },
   // Catch-all route for not found
