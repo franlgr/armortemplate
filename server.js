@@ -6,6 +6,9 @@ const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
 
+//userSocketMap
+const userSocketMap = new Map();
+
 const app = express();
 const server = http.createServer(app);
 
@@ -51,23 +54,59 @@ io.on('connection', (socket) => {
 
 
   // Manejar eventos personalizados aquí
-  socket.on('MESSAGES', () => {
+  socket.on('MESSAGES_SERVER', () => {
     // console.log('Mensaje recibido:', msg);
-    io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
+    // io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
+    //broadcast
+    // socket.broadcast.emit("hello", "world");
+    socket.emit('MESSAGES_CLIENT', messages);
+    
   });
 
 
 
-  socket.on('NEW_MESSAGE', (data) => {
+  socket.on('NEW_MESSAGE_SERVER', (data) => {
     console.log('Mensaje recibido:', data);
     messages.push(data);
-    io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
+    // io.emit('NEW_MESSAGE_CLIENT', data); // Enviar el mensaje a todos los clientes
+    //BROADCAST
+    // socket.emit('NEW_MESSAGE_CLIENT', data);
+    socket.broadcast.emit('NEW_MESSAGE_CLIENT', data);
   });
   //
+
+
+  // Manejar evento para unirse a un canal privado
+  // socket.on('unirse-a-canal-privado', (userId) => {
+  //   userSocketMap.set(userId, socket.id);
+  //   console.log(`Usuario ${userId} se unió al canal privado.`);
+  // });
+
+  
+  // Manejar evento para unirse a una sala privada
+  socket.on('unirse-a-sala-privada', (roomId) => {
+    socket.join(roomId);
+    console.log(`Usuario ${socket.id} se unió a la sala privada ${roomId}`);
+  });
+
+  // Manejar evento de mensaje privado
+  socket.on('mensaje-privado', ({ roomId, mensaje }) => {
+    // Enviar el mensaje a todos los usuarios en la sala privada menos al remitente
+    socket.broadcast.to(roomId).emit('mensaje', mensaje);
+    console.log(`Mensaje enviado a la sala privada ${roomId}: ${mensaje}`);
+  });
 
   // Manejar evento de desconexión
   socket.on('disconnect', () => {
     console.log('Un cliente se ha desconectado.');
+      // Eliminar la asociación entre el ID de usuario y el ID de socket al desconectar
+      // for (const [userId, socketId] of userSocketMap) {
+      //   if (socketId === socket.id) {
+      //     userSocketMap.delete(userId);
+      //     console.log(`Usuario ${userId} desconectado.`);
+      //     break;
+      //   }
+      // }
   });
 });
 
