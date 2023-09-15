@@ -28,7 +28,10 @@ import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import EditCategories from '@/views/admin/categories/EditCategories.vue';
 import CreateProduct from '@/views/admin/products/CreateProduct.vue';
+import CreateBlog from '@/views/admin/blogs/CreateBlog.vue';
 import ProductCategories from '@/views/admin/products/ProductCategories.vue';
+import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
+import PostBlog from '@/views/admin/blogs/PostBlog.vue';
 
 import store from '../store/index.js';
 
@@ -54,6 +57,7 @@ const routes = [
       { path: '/admin/users', component: Users },
       { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat },
+      { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
       {
         path: '/admin/products/edit/:id',
         component: EditProduct,
@@ -79,6 +83,16 @@ const routes = [
         component: ProductCategories,
         name: 'admin-products-categories',
       },
+      {
+        path: '/admin/blogs/categories',
+        component: BlogsCategories,
+        name: 'admin-blogs-categories',
+      },
+      {
+        path: '/admin/blogs/create',
+        component: CreateBlog,
+        name: 'admin-blogs-create',
+      },
     ],
   },
   // Auth routes
@@ -102,6 +116,7 @@ const routes = [
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },
       { path: '/blog', name: 'site-blog', component: SiteBlog },
+      
     ],
   },
   // Catch-all route for not found
