@@ -14,15 +14,10 @@ export default {
   mounted() {
     // alert('Socket.vue mounted');
 
-    this.$socket.on('connect', () => {
-      console.log('Conectado al servidor Socket.io');
+    this.$socket.on('message', () => {
+      console.log('hola hola hola');
     });
 
-    //escuchar mensaje
-    this.$socket.on('message', (message) => {
-      console.log(message);
-      // this.messages.push(message);
-    });
 
     // Aquí puedes escuchar y emitir eventos Socket.io según tus necesidades
   },

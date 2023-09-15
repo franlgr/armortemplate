@@ -76,10 +76,7 @@ app.get('/products/:id_product', async (req, res) => {
     res.send(modifiedHtml);
   });
 });
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store');
-  next();
-});
+
 app.get('*', async (req, res) => {
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
@@ -142,7 +139,10 @@ const io = socketIo(server, {
 });
 
 
-
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  next();
+});
 // Ruta principal
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname, '../dist/index.html');

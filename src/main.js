@@ -15,15 +15,10 @@ import store from '@/store';
 import 'vue3-snotify/style';
 // import './assets/tailwind.css';
 
-import io from 'socket.io-client';
 
 
-const socket = io('http://localhost:3000', {
-    transports: ['websocket'],
-    cors: {
-      origin: '*',
-    },
-  });
+// Importa el socket desde el archivo socket.js
+import socket from './plugins/socket.js';
 
 // Usa el plugin Snotify
 

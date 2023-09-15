@@ -26,11 +26,42 @@ const staticOptions = {
 //   res.setHeader('Cache-Control', 'no-store');
 //   next();
 // });
-app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store');
-  next();
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+  }
 });
-app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
+
+
+
+app.get('/message', (req, res) => {
+  // const { message } = req.body;
+  console.log('Mensaje recibido:');
+  io.emit('message', "hola");
+  res.send('Mensaje enviado');
+});
+
+
+// Manejador de conexiones de Socket.io
+io.on('connection', (socket) => {
+  console.log('Un cliente se ha conectado.');
+
+  //enviar mensaje al recibirlo
+
+
+  // Manejar eventos personalizados aquí
+  socket.on('chat message', (msg) => {
+    console.log('Mensaje recibido:', msg);
+    io.emit('chat message', msg); // Enviar el mensaje a todos los clientes
+  });
+
+  // Manejar evento de desconexión
+  socket.on('disconnect', () => {
+    console.log('Un cliente se ha desconectado.');
+  });
+});
+
 app.get('*', async (req, res) => {
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
@@ -82,11 +113,6 @@ app.get('*', async (req, res) => {
   });
 });
 
-const io = socketIo(server, {
-  cors: {
-    origin: '*',
-  }
-});
 
 // Ruta principal
 app.get('/', (req, res) => {
@@ -96,29 +122,13 @@ app.get('/', (req, res) => {
 
 //enviar mensaje 
 
-// Manejador de conexiones de Socket.io
-io.on('connection', (socket) => {
-  console.log('Un cliente se ha conectado.');
 
-  //enviar mensaje al recibirlo
 
-  app.get('/message', (req, res) => {
-    // const { message } = req.body;
-    io.emit('message', "hola");
-    res.send('Mensaje enviado');
-  });
-
-  // Manejar eventos personalizados aquí
-  socket.on('chat message', (msg) => {
-    console.log('Mensaje recibido:', msg);
-    io.emit('chat message', msg); // Enviar el mensaje a todos los clientes
-  });
-
-  // Manejar evento de desconexión
-  socket.on('disconnect', () => {
-    console.log('Un cliente se ha desconectado.');
-  });
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  next();
 });
+app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
 
 // Iniciar el servidor
 const port = process.env.PORT || 3000;

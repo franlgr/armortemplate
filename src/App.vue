@@ -15,29 +15,19 @@ export default {
   created() {
     // Check for and authenticate with the stored token
     this.authenticateWithStoredToken();
+    this.socketStart();
 
     // Set the snotify instance on the store
     this.$store.$snotify = this.$snotify;
     this.$router = this.$router;
 
 
-    //socket io realtime server 
-
-    this.$socket.on('connect', () => {
-      console.log('Conectado al servidor Socket.io');
-    });
-
-    //escuchar mensaje
-    this.$socket.on('message', (message) => {
-      console.log(message);
-      // this.messages.push(message);
-    });
-
+    
 
   },
   methods: {
 
-    ...mapActions(['authenticateWithStoredToken']),
+    ...mapActions(['authenticateWithStoredToken', 'socketStart']),
 
   },
   computed: {

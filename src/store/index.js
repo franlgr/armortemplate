@@ -46,6 +46,13 @@ export default createStore({
     loadingSet({ commit }, payload) {
       commit('setLoading', payload);
     },
+    socketStart({ commit }) {
+      console.log('socketStart');
+      //socket io realtime server 
+
+
+      
+    }
   },
 
   // Define getters to retrieve state data
