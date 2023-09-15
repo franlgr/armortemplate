@@ -2,11 +2,16 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
+const http = require('http');
+const socketIo = require('socket.io');
 
-
+const port = 3000;
 
 const app = express();
-const port = 2222;
+
+
+//this is the socket io server for realtime plugis
+
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
@@ -24,8 +29,8 @@ const staticOptions = {
 // app.use(express.static(path.join(__dirname, './dist'), staticOptions));
 
 // Middleware para servir archivos estáticos con opciones personalizadas
-app.use(express.static(path.join(__dirname, '../dist'), staticOptions));
-
+// app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
+// app.use(express.static(path.join(__dirname, 'public')));
 //cuando la ruta es /productos/:id_del_producto
 app.get('/products/:id_product', async (req, res) => {
   console.log('SSR PRODUCTOS', req.params.id_product);
@@ -86,8 +91,32 @@ app.get('*', async (req, res) => {
         <!-- Otras metaetiquetas dinámicas -->
     `;
 
+    // res.setHeader('Content-Type', 'application/javascript');
+
   // Lee el archivo "index.html"
-  const indexPath = path.join(__dirname, '../dist', 'index.html');
+  // if (req.url === '/dist/assets/index-d5f393a9.js') {
+  //   // Establece el tipo MIME para JavaScript
+  //   res.setHeader('Content-Type', 'application/javascript');
+    
+  //   // Lee y sirve el archivo JavaScript
+  //   fs.readFile(__dirname, '/dist/assets/index-d5f393a9.js', (err, data) => {
+  //     if (err) {
+  //       // Manejar errores aquí
+  //       console.error(err);
+  //       res.statusCode = 500;
+  //       res.end('Error interno del servidor');
+  //     } else {
+  //       res.end(data);
+  //     }
+  //   });
+  // } else {
+  //   // Manejar otras rutas o recursos aquí
+  //   res.statusCode = 404;
+  //   res.end('Recurso no encontrado');
+  // }
+
+  
+  const indexPath = path.join(__dirname, '/dist', 'index.html');
   fs.readFile(indexPath, 'utf-8', (err, html) => {
     if (err) {
       console.error('Error al leer el archivo index.html', err);
@@ -99,6 +128,50 @@ app.get('*', async (req, res) => {
 
     // Envía el archivo "index.html" modificado con las metaetiquetas
     res.send(modifiedHtml);
+  });
+});
+
+
+const server = http.createServer(app);
+const io = socketIo(server, {
+  transports: ['websocket'],
+  cors: {
+    // origin: ['http://localhost:5173'],
+    origin: '*',
+  }
+});
+
+
+
+// Ruta principal
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname, '../dist/index.html');
+// });
+
+
+//enviar mensaje 
+
+// Manejador de conexiones de Socket.io
+io.on('connection', (socket) => {
+  console.log('Un cliente se ha conectado.');
+
+  //enviar mensaje al recibirlo
+
+  app.get('/message', (req, res) => {
+    // const { message } = req.body;
+    io.emit('message', "hola");
+    res.send('Mensaje enviado');
+  });
+
+  // Manejar eventos personalizados aquí
+  socket.on('chat message', (msg) => {
+    console.log('Mensaje recibido:', msg);
+    io.emit('chat message', msg); // Enviar el mensaje a todos los clientes
+  });
+
+  // Manejar evento de desconexión
+  socket.on('disconnect', () => {
+    console.log('Un cliente se ha desconectado.');
   });
 });
 

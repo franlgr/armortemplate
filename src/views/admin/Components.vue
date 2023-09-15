@@ -29,6 +29,7 @@
                     </div>
                     <br>
                     <Mapbox></Mapbox>
+                    <Socket></Socket>
                     <!-- Se pueden buscar componentes en https://daisyui.com/components/ -->
     
                 </div>
@@ -45,6 +46,7 @@ import Mapbox from '@/components/Mapbox.vue';
 
 import Ckeditor from '@/components/Ckeditor.vue';
 import TableDefault from '@/components/TableDefault.vue';
+import Socket from '@/components/Socket.vue';
 
 
 export default {
@@ -56,7 +58,8 @@ export default {
         AdminHeader,
         Ckeditor,
         TableDefault,
-        Mapbox
+        Mapbox,
+        Socket
 
     },
     methods: {},

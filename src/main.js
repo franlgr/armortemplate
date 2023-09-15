@@ -15,9 +15,23 @@ import store from '@/store';
 import 'vue3-snotify/style';
 // import './assets/tailwind.css';
 
+import io from 'socket.io-client';
+
+
+const socket = io('http://localhost:3000', {
+    transports: ['websocket'],
+    cors: {
+      origin: '*',
+    },
+  });
+
 // Usa el plugin Snotify
 
+//hay que agregar feathers aca para usarlo globalmente
+
 const app = createApp(App);
+
+app.config.globalProperties.$socket = socket;
 
 app.use(router);
 app.use(store);

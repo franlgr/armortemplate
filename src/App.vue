@@ -21,6 +21,19 @@ export default {
     this.$router = this.$router;
 
 
+    //socket io realtime server 
+
+    this.$socket.on('connect', () => {
+      console.log('Conectado al servidor Socket.io');
+    });
+
+    //escuchar mensaje
+    this.$socket.on('message', (message) => {
+      console.log(message);
+      // this.messages.push(message);
+    });
+
+
   },
   methods: {
 
