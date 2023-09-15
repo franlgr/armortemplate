@@ -63,6 +63,7 @@ io.on('connection', (socket) => {
     messages.push(data);
     io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
   });
+  //
 
   // Manejar evento de desconexión
   socket.on('disconnect', () => {
