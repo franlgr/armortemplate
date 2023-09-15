@@ -20,7 +20,7 @@ const staticOptions = {
   },
 };
 
-// app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
+app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
 
 // app.use((req, res, next) => {
 //   res.setHeader('Cache-Control', 'no-store');
