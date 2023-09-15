@@ -42,7 +42,7 @@ app.get('/message', (req, res) => {
   res.send('Mensaje enviado');
 });
 
-
+const messages = [];
 // Manejador de conexiones de Socket.io
 io.on('connection', (socket) => {
   console.log('Un cliente se ha conectado.');
@@ -51,9 +51,17 @@ io.on('connection', (socket) => {
 
 
   // Manejar eventos personalizados aquí
-  socket.on('chat message', (msg) => {
-    console.log('Mensaje recibido:', msg);
-    io.emit('chat message', msg); // Enviar el mensaje a todos los clientes
+  socket.on('MESSAGES', () => {
+    // console.log('Mensaje recibido:', msg);
+    io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
+  });
+
+
+
+  socket.on('NEW_MESSAGE', (data) => {
+    console.log('Mensaje recibido:', data);
+    messages.push(data);
+    io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
   });
 
   // Manejar evento de desconexión

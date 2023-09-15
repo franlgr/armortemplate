@@ -14,9 +14,9 @@ export default {
   mounted() {
     // alert('Socket.vue mounted');
 
-    this.$socket.on('message', () => {
-      console.log('hola hola hola');
-    });
+    // this.$socket.on('message', () => {
+    //   console.log('hola hola hola');
+    // });
 
 
     // Aquí puedes escuchar y emitir eventos Socket.io según tus necesidades

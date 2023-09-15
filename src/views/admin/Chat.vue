@@ -1,6 +1,6 @@
 <template>
     <div><div class="flex h-screen antialiased text-gray-800">
-    <div class="flex flex-row h-full w-full overflow-x-hidden">
+    <div class="flex flex-row h-full w-full overflow-x-hidden" @keyup.enter="send()">
       <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
         <div class="flex flex-row items-center justify-center h-12 w-full">
           <div
@@ -97,16 +97,39 @@
         <div
           class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
         >
-          <div class="flex flex-col h-full overflow-x-auto mb-4">
+        <div class="flex flex-col h-full overflow-x-auto mb-4">
+  <div class="flex flex-col h-full">
+    <div class="grid grid-cols-12 gap-y-2">
+      <div class="col-start-1 col-end-8 p-2 rounded-lg " v-for="(message, index) in messages" :key="index">
+      
+        <div class="flex flex-row items-center">
+          <!-- {{message.sender.image}} -->
+          <div class=" rounded" style="height:50px; width:50px">
+          
+    <img class="rounded-full w-12 h-12" :src="message.sender.image" />
+  </div>
+          <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+            <div>{{ message.text }}</div>
+            <div v-if="message.seen" class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">Seen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <!-- <div class="flex flex-col h-full overflow-x-auto mb-4">
             <div class="flex flex-col h-full">
               <div class="grid grid-cols-12 gap-y-2">
                 <div class="col-start-1 col-end-8 p-3 rounded-lg">
+                {{messages}}
                   <div class="flex flex-row items-center">
                     <div
                       class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
                     >
                       A
                     </div>
+                    
                     <div
                       class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                     >
@@ -288,7 +311,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
+          <!-- {{messages}} -->
           <div
             class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
           >
@@ -315,6 +339,7 @@
             <div class="flex-grow ml-4">
               <div class="relative w-full">
                 <input
+                v-model="message"
                   type="text"
                   class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                 />
@@ -340,6 +365,7 @@
             </div>
             <div class="ml-4">
               <button
+              @click="send()"
                 class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
               >
                 <span>Send</span>
@@ -378,7 +404,9 @@ export default {
     layout: "AdminLayout",
     data() {
         return {
-            users: []  // Variable para almacenar los datos de usuarios
+            users: [],
+            message: '',
+            messages: [],
         }
     },
     components: {
@@ -390,6 +418,12 @@ export default {
 
     mounted() {
         this.fetchUsers();  // Llama a la función para obtener los usuarios
+        this.$socket.emit('MESSAGES');
+        this.$socket.on('MESSAGES_CLIENT', (messages) => {
+            console.log('messages', messages);
+            this.messages = messages;
+        });
+
     },
     methods: {
         ...mapActions(['loadingSet']),
@@ -415,6 +449,14 @@ export default {
                 console.error(error);
             }
         },
+        send() {
+            this.$socket.emit('NEW_MESSAGE', {
+                text: this.message,
+                sender: this.getUser,
+                seen: false,
+            });
+            this.message = '';
+        }
     },
 }
 </script>
