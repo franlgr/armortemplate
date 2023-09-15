@@ -2,9 +2,6 @@
     <div>
         <div>
             <AdminHeader title="Products"></AdminHeader>
-            <div class="p-4">
-                {{ products }}
-            </div>
             <div class=" m-4 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
@@ -59,7 +56,7 @@
                                         <router-link :to="{ name: 'admin-products-edit', params: { id: product._id } }"
                                             class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
 
-                                        <button class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                        <button @click="deleteProductConfirm(product._id)" class="btn btn-sm border-solid border-black bg-red-400">delete</button>
 
                                     </th>
                                 </tr>
@@ -142,6 +139,43 @@ export default {
                 console.error(error);
             }
         },
+        async deleteProductConfirm(id){
+            this.$snotify.confirm('Are you sure you want to delete this product ?', 'Delete Product', {
+                timeout: 5000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                buttons: [
+                    { text: 'Yes', action: (toast) => this.deleteProduct(id, toast.id), bold: false },
+                    { text: 'Close', action: (toast) => { console.log('Clicked: No'); this.$snotify.remove(toast.id); }, bold: true },
+                ]
+            });
+        },
+        async deleteProduct(id, toastId) {
+            console.log('deleteProduct', id);
+            this.$snotify.remove(toastId);
+            FeathersClient.service('products').remove(id)
+                .then(res => {
+                    console.log('deleteProduct', res);
+                    this.$snotify.success('Product deleted', 'Success', {
+                        timeout: 2000,
+                        showProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true
+                    });
+                    this.fetchProducts();
+                })
+                .catch(err => {
+                    console.error(err);
+
+                    this.$snotify.error(err, 'Error', {
+                        timeout: 2000,
+                        showProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true
+                    });
+                })
+        }
 
     },
 }
