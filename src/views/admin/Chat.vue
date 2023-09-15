@@ -411,10 +411,11 @@ export default {
             console.log('messages', messages);
             this.messages = messages;
             // audio.play();
-            if (audio.paused) {
+
+            //si el sender no es el usuario logueado no suena
+
+            if (messages.sender._id != this.getUser._id) {
                 audio.play();
-            } else {
-                audio.pause();
             }
 
         });
@@ -450,11 +451,11 @@ export default {
                 sender: this.getUser,
                 seen: false,
             });
-            this.messages.push({
-                text: this.message,
-                sender: this.getUser,
-                seen: false,
-            });
+            // this.messages.push({
+            //     text: this.message,
+            //     sender: this.getUser,
+            //     seen: false,
+            // });
             this.message = '';
         }
     },
