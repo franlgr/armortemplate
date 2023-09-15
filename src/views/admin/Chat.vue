@@ -411,12 +411,12 @@ export default {
             console.log('messages', messages);
             this.messages = messages;
             // audio.play();
-
+            audio.play();
             //si el sender no es el usuario logueado no suena
 
-            if (messages.sender._id != this.getUser._id) {
-                audio.play();
-            }
+            // if (messages.sender._id != this.getUser._id) {
+            //     audio.play();
+            // }
 
         });
 
