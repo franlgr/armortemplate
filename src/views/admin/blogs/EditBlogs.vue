@@ -62,7 +62,7 @@
                   <!-- Título y Descripción -->
                   <div class="p-4">
                     <h2 class="text-xl font-semibold">{{ blogs.title }}</h2>
-                    <p class="text-gray-600">{{ blogs.content }}</p>
+                    <p style="word-wrap: break-word;" class="text-gray-600">{{ blogs.content }}</p>
                   </div>
                   <!-- Carousel Blog -->
                   <div v-for="blog in blogs.images" :key="blog.index">
@@ -83,10 +83,17 @@
                             <a :href="'#slide' + (index === blogs.images.length - 1 ? 1 : index + 2)" class="btn btn-circle">❯</a>
                           </div>
                           <div  class="absolute bottom-0 left-0 right-0 bg-white p-4">
+
                             <!-- Información adicional debajo de la imagen -->
+                            <button class="flex flex-row items-center bg-white rounded-xl p-2 text-gray-500">
+                            <div class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full">
+                                <img v-if="blogs.imgUser" :src="blogs.imgUser" alt="User Image" class="h-8 w-8 rounded-full">
+                                <img v-if="!blogs.imgUser" src="https://picsum.photos/200/300" alt="User Image" class="h-8 w-8 rounded-full">
+                            </div>
+                            <div class="ml-2 text-sm font-semibold">{{ blogs.user }}</div>
+                            </button>
                             <p class="text-gray-500"> {{ blogs.th }}</p>
                             <p class="text-gray-500">Ubication: {{ blogs.ubication }}</p>
-                            <p class="text-gray-500">User: {{ blogs.user }}</p>
                             <!-- Agrega más datos de usuario u otra información aquí -->
                           </div>
                         </div>
@@ -144,7 +151,7 @@
         try {
           const res = await FeathersClient.service("blogs").get(id);
           this.blogs = res;
-          this.formData = res;
+          this.formData=res;
           console.log("fetchBlog", res);
           this.loadingSet(false);
         } catch (error) {
@@ -164,8 +171,8 @@
           // Incluye los campos th, ubication y user en la solicitud PATCH
           const updatedBlog = await FeathersClient.service("blogs").patch(this.blogs._id, {
             ...this.formData,
-            th: this.fechaActual,
-            user: this.getUser.name +' '+this.getUser.lastname,
+            // th: this.fechaActual,
+            // user: this.getUser.name +' '+this.getUser.lastname,
           });
           console.log("editBlog", updatedBlog);
           // Actualiza los datos del blog con los datos editados
