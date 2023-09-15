@@ -61,7 +61,7 @@ io.on('connection', (socket) => {
   socket.on('NEW_MESSAGE', (data) => {
     console.log('Mensaje recibido:', data);
     messages.push(data);
-    io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
+    socket.broadcast.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
   });
 
   // Manejar evento de desconexión
