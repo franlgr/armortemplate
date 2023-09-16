@@ -1,11 +1,12 @@
 <template>
     <div>
         <SiteHeader></SiteHeader>
+        {{product}}
         <section class="text-gray-700 body-font overflow-hidden bg-white">
             <div class="container px-5 py-24 mx-auto">
                 <div class="lg:w-4/5 mx-auto flex flex-wrap">
                     <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-                        src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg">
+                        v-if="image" :src="image">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                         <h2 class="text-sm title-font text-gray-500 tracking-widest">Warrior NAME</h2>
                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
@@ -131,7 +132,8 @@ import SiteHeader from '@/components/site/SiteHeader.vue'
 export default {
     data() {
         return {
-            product: {}
+            product: {},
+            image: null
         }
     },
     components: {
@@ -140,7 +142,8 @@ export default {
     mounted() {
         FeathersClient.service('products').get(this.$route.params.id).then(product => {
             console.log(product)
-            this.product = product
+            this.product = product;
+            this.image = product.images[0]
         })
     }
 }
