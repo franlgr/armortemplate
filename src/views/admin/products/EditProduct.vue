@@ -28,7 +28,7 @@
                     <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
                         help="What is your title product ?" validation="required" />
                     <br>
-                    <ProductSelectCategory  v-on:category="setCategory" />
+                    <ProductSelectCategory :category="editProduct.category"  v-on:category="setCategory" />
                     <br>
                     <p class="text-lg font-bold">Meta Data Description</p>
 
@@ -80,6 +80,9 @@ export default {
             linkImgMeta: [],
             formData: {},
             category: {},
+            editProduct: {
+                category: {},
+            },
         };
     },
     mounted() {
@@ -114,15 +117,17 @@ export default {
             try {
                 const res = await FeathersClient.service('products').get(id);
                 console.log('fetchProducts', res.content);
-                this.fetchCategories();
+                // this.fetchCategories();
                 this.product = res;
                 this.category = res.category;
+                this.editProduct.category = res.category;
                 this.editorData = res.content;
                 this.metaData = {
                     title: res.metaData.title,
                     content: res.metaData.content,
                     img: res.metaData.img,
                 }
+                this.images = res.images;
                 this.formData = {
                     title: res.title,
                     price: res.price,
@@ -131,6 +136,7 @@ export default {
                     titleMeta: res.metaData.title,
                     contentMeta: res.metaData.content,
                 }
+
 
 
 
@@ -159,7 +165,8 @@ export default {
                     title: this.formData.title,
                     content: this.editorData,
                     price: this.formData.price,
-                    category: this.formData.category,
+                    category: this.editProduct.category,
+
                     metaData: {
                         title: this.formData.titleMeta,
                         content: this.formData.contentMeta,
@@ -186,33 +193,9 @@ export default {
                 });
             }
         },
-
-        async fetchCategories() {
-            this.loadingSet(true);
-            //con await
-            try {
-                const res = await FeathersClient.service('products-categories').find();
-                this.categories = res.data;
-                console.log('fetchCategories', res);
-                // this.setCategories();
-                this.loadingSet(false);
-            } catch (error) {
-                console.error(error);
-                this.loadingSet(false);
-            }
-
-        },
-
-        // setCategories() {
-        //     this.categories.forEach((category) => {
-        //         this.options.push({
-        //             value: category._id,
-        //             label: category.title,
-        //         });
-        //     });
-        // },
         setCategory(category) {
             console.log('setCategory', category);
+            this.editProduct.category = category;
         },
 
 

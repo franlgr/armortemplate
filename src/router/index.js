@@ -71,11 +71,11 @@ const routes = [
         component: EditBlogs,
         name: 'admin-blogs-edit',
       },
-      // {
-      //   path: '/admin/categories/edit/:id',
-      //   component: EditCategories,
-      //   name: 'admin-categories-edit',
-      // },
+      {
+        path: '/admin/categories/edit/:id',
+        component: EditCategories,
+        name: 'admin-categories-edit',
+      },
       // {
       //   path: '/admin/categories/edit/:id',
       //   component: EditCategories,

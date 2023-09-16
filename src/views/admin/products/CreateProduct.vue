@@ -3,7 +3,7 @@
     <div>
         <div>
             <AdminHeader title="Create Product"></AdminHeader>
-            {{getUser}}
+            <!-- {{getUser}} -->
             <div class="carousel carousel-end rounded-box fix">
                 <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                     <div>
@@ -17,7 +17,9 @@
             </div>
             <div class=" m-4 2xl:container my-4">
                 <div class="">
+                
                     <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
+                    
                     <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false"  v-model="formData">
                         <FormKit class="mt-4" type="text" name="name" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                         <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
@@ -144,7 +146,6 @@ export default {
             this.images.splice(id, 1);
         },
         async createProduct() {
-            console.log('createProduct');
             try {
                 const res = await FeathersClient.service('products').create({
                     title: this.formData.name,
@@ -155,7 +156,6 @@ export default {
                     metaData: this.metaData,
                     user: this.getUser,
                 });
-                console.log('createProduct', res);
                 this.$snotify.success('Product Created', 'Success', {
                     timeout: 2000,
                     showProgressBar: false,
@@ -176,7 +176,6 @@ export default {
         },
 
         setCategory(category) {
-            console.log('setCategory', category);
             this.newProduct.category = category;
         },
 

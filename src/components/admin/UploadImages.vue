@@ -1,8 +1,17 @@
 <template>
     <div class="uw">
+    
         <div v-if="url == ''">
             <img :src="url" alt="">
         </div>
+        <!-- aca hay que mostrar los archivos subidos aca dejo un modelo -->
+                    <FormKit
+  type="file"
+  label="Your files"
+  help="This input starts with files already “attached”."
+  multiple="true"
+  :value="[{ name: 'purple-taste.pdf' }, { name: 'chocolate-recipe.docx' }]"
+/>
         <button class="btn btn-xs uploadButton" v-on:click="open" id="upload_widget" >{{ title }}</button>
         
     </div>
