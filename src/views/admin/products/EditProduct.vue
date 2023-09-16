@@ -1,46 +1,52 @@
 <template>
     <div>
         <AdminHeader title="Edit Product"></AdminHeader>
-        <div class="carousel carousel-end rounded-box fix">
+        <div class="carousel carousel-end rounded-box fix p-8">
             <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                 <div>
                     <img class="w-24 m-auto" :src="image" alt="Drink" />
                     <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
                 </div>
-    
+
             </div>
             <!-- {{options}} -->
-    
+
         </div>
         <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
         <div class=" m-4 2xl:container my-4">
             <div class="">
-    
-                <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
-                    <FormKit class="mt-4" type="text" name="title" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
+
+                <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register"
+                    @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
+                    <FormKit class="mt-4" type="text" name="title" label="Title Product"
+                        placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                     <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                     <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
                                                                 help="What is your name?" validation="required" /> -->
                     <br>
                     <!-- <label for="price">USD PRICE</label> -->
-                    <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800" help="What is your title product ?" validation="required" />
+                    <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
+                        help="What is your title product ?" validation="required" />
                     <br>
-                    <ProductSelectCategory v-if="options.length > 0 " :options="options" />
+                    <ProductSelectCategory v-if="options.length > 0" :options="options" />
                     <br>
                     <p class="text-lg font-bold">Meta Data Description</p>
-    
-    
+
+
                     <br>
-                    <FormKit class="mt-4" type="text" name="titleMeta" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
-                    <FormKit class="mt-4" type="text" name="contentMeta" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
-                    <FormKit type="submit" label="Save Product" /> {{value}}
+                    <FormKit class="mt-4" type="text" name="titleMeta" label="title for meta"
+                        placeholder="red jacket like new" help="product title for meta seo" validation="required" />
+                    <FormKit class="mt-4" type="text" name="contentMeta" label="content for meta"
+                        placeholder="It is very well cared for, I used it very little." help="Describe your product ?"
+                        validation="required" />
+                    <FormKit type="submit" label="Save Product" /> {{ value }}
                 </FormKit>
                 <div name="metaData" style="padding-bottom:50px">
                     <p>Image for Meta Data Seo</p>
                     <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
                     <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
                 </div>
-    
+
             </div>
         </div>
     </div>
@@ -118,6 +124,7 @@ export default {
                 this.formData = {
                     title: res.title,
                     price: res.price,
+                    images: res.images,
                     category: res.category._id,
                     titleMeta: res.metaData.title,
                     contentMeta: res.metaData.content,

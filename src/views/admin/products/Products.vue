@@ -47,8 +47,9 @@
                                         <br />
 
                                     </td>
-                                     <!-- <td v-html="getCategory(product.category)"></td> -->
-                                     <td>NOMBRE CATEGORIA</td>
+                                    {{ product }}
+                                    <!-- <td v-html="getCategory(product.category)"></td> -->
+                                    <td>{{ setCategory(product.category) }}</td>
                                     <th>
                                         <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
                                         <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
@@ -57,7 +58,8 @@
                                         <router-link :to="{ name: 'admin-products-edit', params: { id: product._id } }"
                                             class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
 
-                                        <button @click="deleteProductConfirm(product._id)" class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                        <button @click="deleteProductConfirm(product._id)"
+                                            class="btn btn-sm border-solid border-black bg-red-400">delete</button>
 
                                     </th>
                                 </tr>
@@ -130,6 +132,9 @@ export default {
                 this.loadingSet(false);
                 this.products = res.data;
 
+
+                // this.setCategory(res.data.products)
+
                 console.log('fetchProduct', res);
             } catch (error) {
                 this.loadingSet(false);
@@ -142,7 +147,7 @@ export default {
                 console.error(error);
             }
         },
-        async deleteProductConfirm(id){
+        async deleteProductConfirm(id) {
             this.$snotify.confirm('Are you sure you want to delete this product ?', 'Delete Product', {
                 timeout: 5000,
                 showProgressBar: true,
@@ -179,6 +184,15 @@ export default {
                     });
                 })
         },
+        async setCategory(id) {
+            console.log('setCategory', id);
+
+            const res = await FeathersClient.service('products-categories').get(id);
+            for (let i = 0; i < this.products.length; i++) {
+                const element = this.products[i];
+                element.category = res.title;
+            }
+        },
 
         //hay que resolver devolver el nombre de la categoria segun el id 
 
@@ -188,7 +202,7 @@ export default {
         //     const res = await FeathersClient.service('products-categories').get(id)
 
 
-            
+
         //     // try {
         //     //     const res = await FeathersClient.service('products-categories').get(id);
         //     //     console.log('getCategory', res.title);
@@ -196,7 +210,7 @@ export default {
         //     // } catch (error) {
         //     //     console.error(error);
         //     // }
-            
+
         // },
 
     },
@@ -210,7 +224,7 @@ export default {
     //     },
     computed: {
         ...mapGetters(['getUser']),
-        
+
     }
 }
 </script>

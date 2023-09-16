@@ -1,15 +1,24 @@
-<template>
-    <div>
-     <FormKit type="select" label="What is your product category?" placeholder="Select a Category" name="category" :options="options" />
-    </div>
-</template>
-<script>
-export default {
-    props: {
-        options: {
-            type: Array,
-            required: true,
-        },
+<script setup>
+async function loadHorrorMovies() {
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    const res = await fetch(`https://api.themoviedb.org/4/list/8219282?page=1&api_key=f48bcc9ed9cbce41f6c28ea181b67e14`)
+    if (res.ok) {
+        const data = await res.json()
+        // Iterating over results to set the required
+        // `label` and `value` keys.
+        return data.results.map((result) => {
+            return {
+                label: result.title,
+                value: result.id
+            }
+        })
     }
+    // If the request fails, we return an empty array.
+    return []
 }
 </script>
+
+<template>
+    <FormKit name="horrorMovie" type="dropdown" label="Select a horror movie" placeholder="Example placeholder"
+        :options="loadHorrorMovies" />
+</template>
