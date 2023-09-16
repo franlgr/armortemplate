@@ -18,7 +18,7 @@
             <div class=" m-4 2xl:container my-4">
                 <div class="">
                     <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
-                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
+                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false"  v-model="formData">
                         <FormKit class="mt-4" type="text" name="name" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                         <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                         <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
@@ -27,7 +27,7 @@
                         <!-- <label for="price">USD PRICE</label> -->
                         <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800" help="What is your title product ?" validation="required" />
                         <br>
-                        <ProductSelectCategory v-if="options.length > 0 " :options="options" />
+                        <ProductSelectCategory v-on:category="setCategory" />
                         <br>
                         <p class="text-lg font-bold">Meta Data Description</p>
     
@@ -76,7 +76,17 @@ export default {
                 "title": "Meta Título",
                 "content": "Meta Descripción",
                 "img": "URL de la imagen de meta"
-            }
+            },
+            //hay que ordenar la data en este objeto
+            newProduct: {
+                // "title": "Título del producto",
+                // "content": "Descripción del producto",
+                // "price": "Precio del producto",
+                // "images": "URL de las imágenes del producto",
+                // "category": "ID de la categoría del producto",
+                // "metaData": "Objeto con los datos de meta"
+                category: {},
+            },
         }
     },
     mounted() {
@@ -141,7 +151,7 @@ export default {
                     content: this.editorData,
                     price: this.formData.price,
                     images: this.images,
-                    category: this.formData.category,
+                    category: this.newProduct.category,
                     metaData: this.metaData,
                     user: this.getUser,
                 });
@@ -163,6 +173,11 @@ export default {
                 });
             }
             
+        },
+
+        setCategory(category) {
+            console.log('setCategory', category);
+            this.newProduct.category = category;
         },
 
 

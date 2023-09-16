@@ -47,9 +47,9 @@
                                         <br />
 
                                     </td>
-                                    {{ product }}
+                                   
                                     <!-- <td v-html="getCategory(product.category)"></td> -->
-                                    <td>{{ setCategory(product.category) }}</td>
+                                    <td>{{ product.category.title }}</td>
                                     <th>
                                         <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
                                         <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
@@ -184,16 +184,6 @@ export default {
                     });
                 })
         },
-        async setCategory(id) {
-            console.log('setCategory', id);
-
-            const res = await FeathersClient.service('products-categories').get(id);
-            for (let i = 0; i < this.products.length; i++) {
-                const element = this.products[i];
-                element.category = res.title;
-            }
-        },
-
         //hay que resolver devolver el nombre de la categoria segun el id 
 
         // async getCategory(id) {

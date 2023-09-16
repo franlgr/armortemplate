@@ -1,24 +1,76 @@
-<script setup>
-async function loadHorrorMovies() {
-    await new Promise((resolve) => setTimeout(resolve, 500))
-    const res = await fetch(`https://api.themoviedb.org/4/list/8219282?page=1&api_key=f48bcc9ed9cbce41f6c28ea181b67e14`)
-    if (res.ok) {
-        const data = await res.json()
-        // Iterating over results to set the required
-        // `label` and `value` keys.
-        return data.results.map((result) => {
-            return {
-                label: result.title,
-                value: result.id
-            }
-        })
-    }
-    // If the request fails, we return an empty array.
-    return []
-}
-</script>
+
 
 <template>
-    <FormKit name="horrorMovie" type="dropdown" label="Select a horror movie" placeholder="Example placeholder"
-        :options="loadHorrorMovies" />
+    <div>
+        <FormKit type="select" label="What is your product category ?" @change="onSelectedCategory" name="category" placeholder="Select a country" :options="options" help="Don’t worry, you can’t get this one wrong." v-model="value"  />
+    </div>
 </template>
+
+<script>
+import FeathersClient from '@/FeathersClient';
+export default {
+    data() {
+        return {
+            options: [],
+            state: false,
+            dataLoaded: false,
+            value: {
+            },
+
+        }
+    },
+    props: {
+        // value: {
+        //     type: Object,
+        //     default: () => {
+        //         return {
+        //             label: '',
+        //             value: '',
+        //             attrs: { disabled: false },
+        //         };
+        //     },
+        // },
+    },
+    mounted() {
+
+
+        this.fetchCategories()
+
+
+    },
+    methods: {
+        onSelectedCategory() {
+            this.$emit('category', this.value);
+        },
+        async fetchCategories() {
+            try {
+                const res = await FeathersClient.service('products-categories').find({
+                    query: {
+                        $limit: 100,
+                        $skip: 0,
+                    },
+                });
+                
+                this.options = res.data.map(item => {
+                    console.log('item', item.title);
+                    return {
+                        label: item.title,
+                        value: item,
+                        attrs: { disabled: false },
+                    };
+                });
+                 this.dataLoaded = true;
+            } catch (error) {
+                console.error('Error al obtener las categorías:', error);
+            }
+        },
+    },
+    //onchange
+    watch: {
+        value: function (val) {
+            // this.$emit('category', this.value);
+            // this.sendCategory();
+        }
+    },
+}
+</script>

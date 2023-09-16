@@ -28,7 +28,7 @@
                     <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
                         help="What is your title product ?" validation="required" />
                     <br>
-                    <ProductSelectCategory v-if="options.length > 0" :options="options" />
+                    <ProductSelectCategory  v-on:category="setCategory" />
                     <br>
                     <p class="text-lg font-bold">Meta Data Description</p>
 
@@ -79,6 +79,7 @@ export default {
             // links: [],
             linkImgMeta: [],
             formData: {},
+            category: {},
         };
     },
     mounted() {
@@ -115,6 +116,7 @@ export default {
                 console.log('fetchProducts', res.content);
                 this.fetchCategories();
                 this.product = res;
+                this.category = res.category;
                 this.editorData = res.content;
                 this.metaData = {
                     title: res.metaData.title,
@@ -192,7 +194,7 @@ export default {
                 const res = await FeathersClient.service('products-categories').find();
                 this.categories = res.data;
                 console.log('fetchCategories', res);
-                this.setCategories();
+                // this.setCategories();
                 this.loadingSet(false);
             } catch (error) {
                 console.error(error);
@@ -201,13 +203,16 @@ export default {
 
         },
 
-        setCategories() {
-            this.categories.forEach((category) => {
-                this.options.push({
-                    value: category._id,
-                    label: category.title,
-                });
-            });
+        // setCategories() {
+        //     this.categories.forEach((category) => {
+        //         this.options.push({
+        //             value: category._id,
+        //             label: category.title,
+        //         });
+        //     });
+        // },
+        setCategory(category) {
+            console.log('setCategory', category);
         },
 
 
