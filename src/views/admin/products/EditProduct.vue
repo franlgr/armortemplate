@@ -1,7 +1,6 @@
 <template>
     <div>
         <AdminHeader title="Edit Product"></AdminHeader>
-        {{product}}
         <div class="carousel carousel-end rounded-box fix">
             <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                 <div>
@@ -13,14 +12,15 @@
             <!-- {{options}} -->
     
         </div>
+        <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
         <div class=" m-4 2xl:container my-4">
             <div class="">
-                <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
+    
                 <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
                     <FormKit class="mt-4" type="text" name="title" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                     <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                     <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                                            help="What is your name?" validation="required" /> -->
+                                                                help="What is your name?" validation="required" /> -->
                     <br>
                     <!-- <label for="price">USD PRICE</label> -->
                     <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800" help="What is your title product ?" validation="required" />
@@ -29,19 +29,18 @@
                     <br>
                     <p class="text-lg font-bold">Meta Data Description</p>
     
-                    <br>
-                    <!-- {{value}} -->
     
                     <br>
-                    <FormKit class="mt-4" type="text" name="title" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
-                    <FormKit class="mt-4" type="text" name="content" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
-                    <FormKit type="submit" label="Save Product" />
+                    <FormKit class="mt-4" type="text" name="titleMeta" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
+                    <FormKit class="mt-4" type="text" name="contentMeta" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
+                    <FormKit type="submit" label="Save Product" /> {{value}}
                 </FormKit>
                 <div name="metaData" style="padding-bottom:50px">
                     <p>Image for Meta Data Seo</p>
                     <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
                     <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
                 </div>
+    
             </div>
         </div>
     </div>
@@ -51,7 +50,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import FeathersClient from '@/FeathersClient';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
-import Ckeditor from '@/components/Ckeditor.vue';
+
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
 import UploadImages from '@/components/admin/UploadImages.vue';
@@ -61,7 +60,7 @@ export default {
     data() {
         return {
             editor: ClassicEditor,
-            editorData: '<p>Content of the editor.</p>',
+            editorData: '',
             editorConfig: {
                 // The configuration of the editor.
             },
@@ -71,7 +70,7 @@ export default {
             },
             options: [],
             images: [],
-            links: [],
+            // links: [],
             linkImgMeta: [],
             formData: {},
         };
@@ -80,28 +79,51 @@ export default {
         const id = this.$route.params.id;
         if (id) {
             this.fetchProduct(id);
+
         }
     },
     components: {
         AdminHeader,
-        Ckeditor,
         ProductSelectCategory,
         UploadImages,
-        UploadImg,
+        // UploadImg,
     },
 
 
     methods: {
         ...mapActions(['loadingSet']),
+
+        links(links) {
+            console.log('links', links);
+            this.images.push(links);
+        },
+        linkImgMeta(link) {
+            console.log('linkImgMeta', link);
+            this.metaData.img = link;
+        },
+
         async fetchProduct(id) {
             this.loadingSet(true);
             try {
                 const res = await FeathersClient.service('products').get(id);
-                console.log('fetchProducts', res);
+                console.log('fetchProducts', res.content);
+                this.fetchCategories();
                 this.product = res;
-                this.metaData = res.metaData;
-                this.editorData = res.description;
-                this.formData = res
+                this.editorData = res.content;
+                this.metaData = {
+                    title: res.metaData.title,
+                    content: res.metaData.content,
+                    img: res.metaData.img,
+                }
+                this.formData = {
+                    title: res.title,
+                    price: res.price,
+                    category: res.category._id,
+                    titleMeta: res.metaData.title,
+                    contentMeta: res.metaData.content,
+                }
+
+
 
                 this.loadingSet(false);
             } catch (error) {
@@ -128,12 +150,13 @@ export default {
                     title: this.formData.title,
                     content: this.editorData,
                     price: this.formData.price,
-                    category: this.formData.category_id,
+                    category: this.formData.category,
                     metaData: {
-                        title: this.formData.title,
-                        content: this.formData.content,
+                        title: this.formData.titleMeta,
+                        content: this.formData.contentMeta,
                         img: this.metaData.img,
                     },
+
                     images: this.images,
                 });
                 this.$snotify.success('Product Updated', 'Success', {
@@ -153,6 +176,31 @@ export default {
                     pauseOnHover: true
                 });
             }
+        },
+
+        async fetchCategories() {
+            this.loadingSet(true);
+            //con await
+            try {
+                const res = await FeathersClient.service('products-categories').find();
+                this.categories = res.data;
+                console.log('fetchCategories', res);
+                this.setCategories();
+                this.loadingSet(false);
+            } catch (error) {
+                console.error(error);
+                this.loadingSet(false);
+            }
+
+        },
+
+        setCategories() {
+            this.categories.forEach((category) => {
+                this.options.push({
+                    value: category._id,
+                    label: category.title,
+                });
+            });
         },
 
 

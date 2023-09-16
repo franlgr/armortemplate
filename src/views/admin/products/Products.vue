@@ -16,7 +16,7 @@
                                     </th>
                                     <th>Titulo</th>
                                     <th>Precio</th>
-                                    <th>Favorite Color</th>
+                                    <th>Category</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -47,7 +47,8 @@
                                         <br />
 
                                     </td>
-                                    <td>Purple</td>
+                                     <!-- <td v-html="getCategory(product.category)"></td> -->
+                                     <td>NOMBRE CATEGORIA</td>
                                     <th>
                                         <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
                                         <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
@@ -92,7 +93,7 @@ export default {
     layout: "AdminLayout",
     data() {
         return {
-            products: []
+            products: [],
         }
     },
     components: {
@@ -128,6 +129,7 @@ export default {
                 });
                 this.loadingSet(false);
                 this.products = res.data;
+
                 console.log('fetchProduct', res);
             } catch (error) {
                 this.loadingSet(false);
@@ -176,11 +178,39 @@ export default {
                         pauseOnHover: true
                     });
                 })
-        }
+        },
+
+        //hay que resolver devolver el nombre de la categoria segun el id 
+
+        // async getCategory(id) {
+        //     console.log('getCategory', id);
+        //     return "res";
+        //     const res = await FeathersClient.service('products-categories').get(id)
+
+
+            
+        //     // try {
+        //     //     const res = await FeathersClient.service('products-categories').get(id);
+        //     //     console.log('getCategory', res.title);
+        //     //     return res.title;
+        //     // } catch (error) {
+        //     //     console.error(error);
+        //     // }
+            
+        // },
 
     },
+    // watch get category
+    // watch: {
+    //     async getCategory(id) {
+    //         console.log('getCategory', id);
+    //         const res = await FeathersClient.service('products-categories').get(id);
+    //         console.log('getCategory', res.title);
+    //         return res.title;
+    //     },
     computed: {
-        ...mapGetters(['getUser'])
+        ...mapGetters(['getUser']),
+        
     }
 }
 </script>
