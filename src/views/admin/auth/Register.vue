@@ -26,17 +26,17 @@
                 </div>
 
                 <!-- Register -->
-                <div class="flex flex-1 flex-col items-center justify-center relative w-full">
+                <div class="flex flex-1 flex-col items-center justify-center relative w-full mx-8">
                     <div class="flex lg:hidden justify-between items-center w-full py-4">
                         <div class="flex items-center justify-start space-x-3">
                             <span class="bg-black rounded-full w-6 h-6"></span>
                             <a href="#" class="font-medium text-lg">Warrior</a>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <span>Not a member? </span>
-                            <a href="#" class="underline font-medium text-[#070eff]">
+                            <span>member? </span>
+                            <router-link :to="{ name: 'login' }" class="underline font-medium text-[#070eff]">
                                 Sign up now
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                     <!-- Login box -->

@@ -3,7 +3,7 @@
         <div class="container flex flex-col mx-auto md:flex-row md:items-center md:justify-between">
             <div class="flex items-center justify-between">
                 <div>
-                    <a href="#" class="text-xl font-bold text-gray-800 md:text-2xl">Warrior</a>
+                    <a href="http://localhost:5173" class="text-xl font-bold text-gray-800 md:text-2xl">Warrior</a>
                 </div>
                 <div>
                     <button type="button"

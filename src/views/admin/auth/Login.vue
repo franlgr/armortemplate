@@ -18,7 +18,7 @@
             <h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">Enter your account and discover new
               experiences</h1>
             <p class="text-lg">You do not have an account?</p>
-            <router-link to="/register"
+            <router-link :to="{ name: 'register' }"
               class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white">Create
               account here</router-link>
           </div>
@@ -34,9 +34,9 @@
             </div>
             <div class="flex items-center space-x-2">
               <span>Not a member? </span>
-              <a href="#" class="underline font-medium text-[#070eff]">
+              <router-link :to="{ name: 'register' }" class="underline font-medium text-[#070eff]">
                 Sign up now
-              </a>
+              </router-link>
             </div>
           </div>
           <!-- Login box -->

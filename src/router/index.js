@@ -105,11 +105,13 @@ const routes = [
   {
     path: '/login',
     component: Login,
+    name: 'login',
     meta: { requiresAuth: false },
   },
   {
     path: '/register',
     component: Register,
+    name: 'register',
     meta: { requiresAuth: false },
   },
   // Default layout routes
