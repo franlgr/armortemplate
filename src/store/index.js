@@ -4,6 +4,7 @@
 import { createStore } from 'vuex';
 import authModule from './modules/auth'; // Import custom authentication module
 import createPersistedState from 'vuex-persistedstate'; // Import Vuex plugin for state persistence
+import socketModule from './modules/chat';
 
 // Create and export the Vuex store
 export default createStore({
@@ -71,6 +72,7 @@ export default createStore({
   // Register modules (in this case, the 'auth' module)
   modules: {
     auth: authModule, // Register the authentication module in the store as 'auth'
+    chat: socketModule,
     // Other store modules if you have them
   },
 

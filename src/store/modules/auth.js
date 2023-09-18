@@ -114,6 +114,13 @@ const actions = {
         // Return the authentication response
         return response;
       } catch (error) {
+        this.$snotify.error('Invalid login', 'Authentication', {
+          timeout: 4000,
+          // showProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
+        router.push('/login');
         console.log('no hay token');
         console.error('Authentication error', error); // Log an error if authentication fails
 

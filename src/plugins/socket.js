@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
-// const socket = io('http://192.168.1.3:2222', {
-const socket = io('http://64.227.76.217:2222', {
+const socket = io('http://localhost:2222', {
+// const socket = io('http://64.227.76.217:2222', {
   transports: ['websocket'],
   cors: {
     origin: '*',
