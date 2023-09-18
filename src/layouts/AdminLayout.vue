@@ -22,7 +22,8 @@
                         <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{{ getUser.name }} {{
                             getUser.lastname }}</h5>
                         <p>{{ getUser.email }}</p>
-                        <span class="hidden text-gray-400 lg:block">Admin</span>
+                        <span class="hidden text-gray-400 lg:block"
+                            v-for="permission in getUser.permissions">{{ permission }}</span>
                     </div>
                     <ul class="space-y-2 mt-8 tracking-wide bg-white p-4">
                         <li>
