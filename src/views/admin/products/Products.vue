@@ -18,7 +18,7 @@
                                     <th>Titulo</th>
                                     <th>Precio</th>
                                     <th>Category</th>
-                                    <th></th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,6 +89,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 

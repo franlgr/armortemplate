@@ -3,9 +3,19 @@
     <div>
         <div>
             <AdminHeader title="Products Categories"></AdminHeader>
-    
+
             <!-- {{categories}} -->
-    
+
+            <router-link to="/admin/products/categories"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded mt-4 ">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                    </path>
+                </svg>
+                Volver Atrás
+            </router-link>
+
             <div class=" m-4 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
@@ -15,8 +25,8 @@
                                 <tr>
                                     <th>
                                         <label>
-                        <input type="checkbox" class="checkbox" />
-                      </label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
                                     </th>
                                     <th>Title & Description</th>
                                     <th>Slug</th>
@@ -29,8 +39,8 @@
                                 <tr v-for="category in categories" :key="category.index">
                                     <th>
                                         <label>
-                        <input type="checkbox" class="checkbox" />
-                      </label>
+                                            <input type="checkbox" class="checkbox" />
+                                        </label>
                                     </th>
                                     <td>
                                         <div class="flex items-center space-x-3">
@@ -40,17 +50,20 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="font-bold">{{category.title}}</div>
+                                                <div class="font-bold">{{ category.title }}</div>
                                                 <!-- <div class="text-sm opacity-50">{{category.description}}</div> -->
                                                 <div class="text-sm opacity-50" v-html="category.description"></div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{category.slug}}</td>
+                                    <td>{{ category.slug }}</td>
                                     <th>
                                         <button class="btn btn-sm border-solid border-black bg-green-400">show</button>
-                                        <router-link :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }" class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
-                                        <button @click="deleteCategoryConfirm(category._id)" class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                        <router-link
+                                            :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
+                                            class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
+                                        <button @click="deleteCategoryConfirm(category._id)"
+                                            class="btn btn-sm border-solid border-black bg-red-400">delete</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -64,8 +77,15 @@
                                             <th></th>
                                         </tr>
                                     </tfoot> -->
-    
+
                         </table>
+                        <!-- Paginación -->
+                        <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+                            <button class="join-item btn btn-outline" @click="prevPage"
+                                :disabled="currentPage === 1">Previous</button>
+                            <button class="join-item btn btn-outline" @click="nextPage"
+                                :disabled="categories.length < perPage">Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +103,8 @@ export default {
     data() {
         return {
             categories: [],
+            currentPage: 1, // Página actual
+            perPage: 10,   // Cantidad de elementos por página
             // title: 'Product Categories',
         }
     },
@@ -98,7 +120,9 @@ export default {
         fetchCategories() {
             FeathersClient.service('products-categories').find({
                 query: {
-                    $limit: 100,
+                    $limit: this.perPage,
+                    $skip: (this.currentPage - 1) * this.perPage,
+
                 }
             }).then(res => {
                 this.categories = res.data;
@@ -112,8 +136,12 @@ export default {
                 pauseOnHover: true,
                 buttons: [
                     { text: 'Yes', action: (toast) => this.deleteCategory(id, toast.id), bold: false },
-                    { text: 'Close', action: (toast) => { console.log('Clicked: No');
-                            this.$snotify.remove(toast.id); }, bold: true },
+                    {
+                        text: 'Close', action: (toast) => {
+                            console.log('Clicked: No');
+                            this.$snotify.remove(toast.id);
+                        }, bold: true
+                    },
                 ]
             });
         },
@@ -166,11 +194,31 @@ export default {
                         pauseOnHover: true
                     });
                 });
-        }
+        },
+        nextPage() {
+            this.currentPage++;
+            this.fetchCategories();
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.fetchCategories();
+            }
+        },
+        goToPage(pageNumber) {
+            this.currentPage = pageNumber;
+            this.fetchCategories();
+        },
     },
+    computed: {
+
+        ...mapGetters(['getUser']),
+        totalPages() {
+            return Math.ceil(this.categories / this.perPage);
+        },
+
+    }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

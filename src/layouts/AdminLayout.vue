@@ -162,7 +162,8 @@
                 </div>
             </aside>
             <Loading v-if="isLoading" />
-            <router-view class=" ml-auto scroll lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-gray-100 "></router-view>
+            <router-view class=" ml-auto scroll lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-gray-100 "
+                z-index="99999"></router-view>
 
         </div>
     </div>

@@ -4,29 +4,37 @@
         <div>
             <AdminHeader title="Profile"></AdminHeader>
             <!-- {{getUser}} -->
-            
-            <div class="m-4 2xl:container ">
+
+            <div class="2xl:container md:w-1/2 m-auto px-8">
                 <div class=" ">
                     <div>
-                       <div class="mb-4">
-                        <img :src="formData.image" alt=""
-                            class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
-                       </div>
+                        <div class="mb-4 mt-4">
+                            <img :src="formData.image" alt="" class="w-64 h-64 m-auto rounded-full object-cover">
+                        </div>
                         <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
-                        <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
+                        <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
+                            submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
+                            v-model="formData">
                             <h1>Profile</h1>
                             <p>
-                                You can put any type of element inside a form, not just FormKit inputs (although only FormKit inputs are included with the submission).
+                                You can put any type of element inside a form, not just FormKit inputs (although only
+                                FormKit inputs are included with the submission).
                             </p>
-    
+
                             <hr />
-    
-                            <FormKit type="text" name="name" label="Your name" placeholder="Jane" help="What is your name?" validation="required" />
-                            <FormKit type="text" name="lastname" label="Your Last Name" placeholder="Doe" help="What is your first name?" validation="required" />
-                            <FormKit type="text" name="email" label="Your email" placeholder="jane@example.com" help="What email should we use?" validation="required|email" />
-                            <FormKit type="number" name="telephone" label="Your Telephone" placeholder="+54 3548 639432" help="What is your Telephone?" validation="required|number" />
-                            <FormKit type="text" name="address" label="Your Address" placeholder="Av. Libertador 1421" help="What is address?" validation="required" />
-                            <FormKit type="text" name="city" label="Your City" placeholder="Las Vegas, EEUU" help="What is your City?" validation="required" />
+
+                            <FormKit type="text" name="name" label="Your name" placeholder="Jane" help="What is your name?"
+                                validation="required" />
+                            <FormKit type="text" name="lastname" label="Your Last Name" placeholder="Doe"
+                                help="What is your first name?" validation="required" />
+                            <FormKit type="text" name="email" label="Your email" placeholder="jane@example.com"
+                                help="What email should we use?" validation="required|email" />
+                            <FormKit type="number" name="telephone" label="Your Telephone" placeholder="+54 3548 639432"
+                                help="What is your Telephone?" validation="required|number" />
+                            <FormKit type="text" name="address" label="Your Address" placeholder="Av. Libertador 1421"
+                                help="What is address?" validation="required" />
+                            <FormKit type="text" name="city" label="Your City" placeholder="Las Vegas, EEUU"
+                                help="What is your City?" validation="required" />
                             <!-- <div class="double">
           <FormKit
             type="password"
@@ -48,7 +56,7 @@
             help="Confirm your password"
           />
         </div> -->
-    
+
                             <FormKit type="submit" label="Guardar" />
                             <!-- <pre wrap>{{ value }}</pre> -->
                         </FormKit>
@@ -93,25 +101,25 @@ export default {
             // Send the form data to the server
             FeathersClient.service('users').patch(this.getUser._id, this.formData).then(res => {
                 console.log(res)
-                
+
                 this.$snotify.success('Product Save', 'Save', {
-                        timeout: 2000,
-                        showProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true
-                    });
+                    timeout: 2000,
+                    showProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true
+                });
                 this.loadingSet(false);
                 this.setUser(res)
                 this.$router.push({ name: 'admin-dashboard' })
             }).catch(error => {
                 console.log(error)
                 this.loadingSet(false);
-                 this.$snotify.error(error, 'Error', {
-                        timeout: 2000,
-                        showProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true
-                    });
+                this.$snotify.error(error, 'Error', {
+                    timeout: 2000,
+                    showProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true
+                });
             })
 
             this.submitted = true;

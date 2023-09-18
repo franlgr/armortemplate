@@ -24,7 +24,7 @@
                                     <th>City</th>
                                     <th>Email</th>
                                     <th>Permissions</th>
-                                    <th></th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

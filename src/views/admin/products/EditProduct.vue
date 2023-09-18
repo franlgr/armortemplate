@@ -1,6 +1,28 @@
 <template>
     <div>
         <AdminHeader title="Edit Product"></AdminHeader>
+        <!-- <router-link to="/admin/"
+            class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white">Create
+            account here</router-link>
+        <router-link :to="{ to: '/admin/' }"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-4 rounded">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Volver Atrás
+        </router-link> -->
+        <router-link to="/admin/products"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded mt-4 ">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                </path>
+            </svg>
+            Volver Atrás
+        </router-link>
+
         <div class="carousel carousel-end rounded-box fix p-8">
             <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                 <div>
@@ -16,19 +38,16 @@
         <div class=" m-4 2xl:container my-4">
             <div class="">
 
-                <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register"
-                    @submit="submitHandler" :actions="false" #default="{ value }" v-model="formData">
+                <FormKit type="form" id="guardar-example" submit-label="Register" @submit="submitHandler" v-model="data"
+                    :actions="false">
                     <FormKit class="mt-4" type="text" name="title" label="Title Product"
                         placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                     <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-                    <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                                                help="What is your name?" validation="required" /> -->
                     <br>
-                    <!-- <label for="price">USD PRICE</label> -->
                     <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
                         help="What is your title product ?" validation="required" />
                     <br>
-                    <ProductSelectCategory :category="editProduct.category"  v-on:category="setCategory" />
+                    <ProductSelectCategory :category="editProduct.category" v-on:category="setCategory" />
                     <br>
                     <p class="text-lg font-bold">Meta Data Description</p>
 
@@ -39,7 +58,7 @@
                     <FormKit class="mt-4" type="text" name="contentMeta" label="content for meta"
                         placeholder="It is very well cared for, I used it very little." help="Describe your product ?"
                         validation="required" />
-                    <FormKit type="submit" label="Save Product" /> {{ value }}
+                    <FormKit type="submit" label="Save Product" />
                 </FormKit>
                 <div name="metaData" style="padding-bottom:50px">
                     <p>Image for Meta Data Seo</p>
@@ -78,7 +97,7 @@ export default {
             images: [],
             // links: [],
             linkImgMeta: [],
-            formData: {},
+            data: {},
             category: {},
             editProduct: {
                 category: {},
@@ -128,7 +147,7 @@ export default {
                     img: res.metaData.img,
                 }
                 this.images = res.images;
-                this.formData = {
+                this.data = {
                     title: res.title,
                     price: res.price,
                     images: res.images,
@@ -162,14 +181,14 @@ export default {
             console.log('updateProduct');
             try {
                 const res = await FeathersClient.service('products').patch(this.product._id, {
-                    title: this.formData.title,
+                    title: this.data.title,
                     content: this.editorData,
-                    price: this.formData.price,
+                    price: this.data.price,
                     category: this.editProduct.category,
 
                     metaData: {
-                        title: this.formData.titleMeta,
-                        content: this.formData.contentMeta,
+                        title: this.data.titleMeta,
+                        content: this.data.contentMeta,
                         img: this.metaData.img,
                     },
 
@@ -181,6 +200,9 @@ export default {
                     closeOnClick: false,
                     pauseOnHover: true
                 });
+                //FINISH
+
+
                 this.$router.push({ name: 'admin-products' });
                 console.log('res', res);
             } catch (error) {

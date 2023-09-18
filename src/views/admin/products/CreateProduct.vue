@@ -15,7 +15,7 @@
                 <!-- {{options}} -->
 
             </div>
-            <div class=" m-4 2xl:container my-4">
+            <div class="2xl:container md:w-1/2 m-auto px-8 ">
                 <div class="">
 
                     <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
@@ -205,4 +205,5 @@ export default {
     display: flex;
     margin-top: 30px;
     margin-bottom: 30px;
-}</style>
+}
+</style>
