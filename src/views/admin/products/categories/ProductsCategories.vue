@@ -108,7 +108,9 @@ export default {
         this.fetchCategories();
     },
     methods: {
+        ...mapActions(['loadingSet']),
         fetchCategories() {
+            this.loadingSet(true);
             FeathersClient.service('products-categories').find({
                 query: {
                     $limit: this.perPage,
@@ -116,8 +118,13 @@ export default {
 
                 }
             }).then(res => {
+                this.loadingSet(false);
                 this.categories = res.data;
-            })
+
+            }).catch(err => {
+                console.error(err);
+                this.loadingSet(false);
+            });
         },
         deleteCategoryConfirm(id) {
             this.$snotify.confirm('Are you sure you want to delete this category ?', 'Delete Category', {
@@ -164,6 +171,7 @@ export default {
         deleteCategory(id, toastId) {
             console.log('deleteCategory', id);
             this.$snotify.remove(toastId);
+            this.loadingSet(true);
             FeathersClient.service('products-categories').remove(id)
                 .then(res => {
                     console.log('deleteCategory', res);
@@ -173,11 +181,12 @@ export default {
                         closeOnClick: false,
                         pauseOnHover: true
                     });
+                    this.loadingSet(false);
                     this.fetchCategories();
                 })
                 .catch(err => {
                     console.error(err);
-
+                    this.loadingSet(false);
                     this.$snotify.error(err, 'Error', {
                         timeout: 2000,
                         showProgressBar: false,

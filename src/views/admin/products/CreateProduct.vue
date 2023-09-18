@@ -25,7 +25,7 @@
                 <!-- {{options}} -->
 
             </div>
-            <div class="2xl:container md:w-1/2 m-auto px-8 ">
+            <div class="2xl:container md:w-2/3 m-auto px-8 ">
                 <div class="">
 
                     <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
