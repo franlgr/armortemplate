@@ -11,7 +11,6 @@
                                 class="w-32 mx-8 mt-2 m-auto" alt="tailus logo">
                         </a>
                     </div>
-                    <!-- {{ isAdmin }} -->
                     <div class="mt-8 text-center">
                         <img v-if="getUser.image" :src="getUser.image" alt=""
                             class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
@@ -190,25 +189,13 @@ export default {
     created() {
         // Check for and authenticate with the stored token
         this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
+        this.isAdmin();
 
     },
     methods: {
         ...mapActions(['logout', 'authenticateWithStoredToken', 'toggleMenu', 'hiddenMenu']), // Map Vuex actions to component methods
         selectMenu() {
             this.hiddenMenu();
-        },
-    },
-    computed: {
-        ...mapGetters(['isAuthenticated', 'getMenuState', 'isLoading', 'getUser']), // Map Vuex getters to computed properties
-        getClassForActiveRoute() {
-            // Get the desired route from the router
-            const desiredRoute = this.$router.currentRoute.path;
-
-            // Define the Tailwind CSS class to apply when the route is active
-            const activeClass = 'from-sky-600 to-cyan-400'; // Adjust this based on your Tailwind CSS configuration
-
-            // Compare the current route with the desired route and apply the class if they match
-            return this.$route.path === desiredRoute ? activeClass : '';
         },
         isAdmin() {
             if (!this.admin) {
@@ -226,6 +213,21 @@ export default {
                 });
             }
         },
+
+    },
+    computed: {
+        ...mapGetters(['isAuthenticated', 'getMenuState', 'isLoading', 'getUser']), // Map Vuex getters to computed properties
+        getClassForActiveRoute() {
+            // Get the desired route from the router
+            const desiredRoute = this.$router.currentRoute.path;
+
+            // Define the Tailwind CSS class to apply when the route is active
+            const activeClass = 'from-sky-600 to-cyan-400'; // Adjust this based on your Tailwind CSS configuration
+
+            // Compare the current route with the desired route and apply the class if they match
+            return this.$route.path === desiredRoute ? activeClass : '';
+        },
+
     },
 }
 </script>
