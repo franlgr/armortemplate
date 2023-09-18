@@ -51,7 +51,7 @@
                 v-model="formData">
                 <h1>Login!</h1>
                 <p class="my-4">
-                  Sign up or log in to place the order,no password require!
+                  Sign up or log in to place the order.
                 </p>
                 <hr />
                 <FormKit class="register" type="text" name="email" label="Your email" placeholder="jane@example.com"

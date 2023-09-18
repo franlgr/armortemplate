@@ -1,5 +1,5 @@
 <template>
-    <div style="display: block;">
+    <div style="display: block; width: 100%;">
         <vue3-chart-js ref="chartRef" v-bind="{ ...localDoughnutChartOptions }" @after-render="afterRender" />
     </div>
     <!-- <button class="btn my-2" type="submit" @click="updateChart">Update Doughnut Data</button>
@@ -16,6 +16,8 @@ import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 const doughnutChart = {
     id: 'bar',
     type: 'bar',
+    height: 500,
+    width: 280,
     data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [

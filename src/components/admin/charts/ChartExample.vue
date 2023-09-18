@@ -1,5 +1,5 @@
 <template>
-    <div style="width: 100%;height:50%;display: block;">
+    <div style="width: 100%;display: block;">
         <vue3-chart-js v-bind="{ ...barChart }" @after-update="afterUpdate" />
     </div>
     <div style="display: block;">

@@ -5,11 +5,17 @@
                 class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu">
                 <div class="contenido">
                     <button class="text-white lg:hidden m-4" @click="toggleMenu()">Close</button>
-                    <div class="-mx-6 px-6 py-4">
-                        <a href="#" title="home">
+                    <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
+                        <router-link to="/" title="home" class="mb-4 ">
                             <img src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
-                                class="w-32 mx-8 mt-2 m-auto" alt="tailus logo">
-                        </a>
+                                class="w-32 mx-8 mt-2 logo" alt="tailus logo">
+                        </router-link>
+                        <div class="m-auto mt-12 text-center">
+                            <router-link to="/" title="home">
+                                <button class="btn btn-sm text-center ">Go Site</button>
+                            </router-link>
+                        </div>
+
                     </div>
                     <div class="mt-8 text-center">
                         <img v-if="getUser.image" :src="getUser.image" alt=""
@@ -22,8 +28,9 @@
                         <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{{ getUser.name }} {{
                             getUser.lastname }}</h5>
                         <p>{{ getUser.email }}</p>
-                        <span class="hidden text-gray-400 lg:block"
-                            v-for="permission in getUser.permissions">{{ permission }}</span>
+                        <p class="hidden lg:block mt-4 font-bold">Permissions</p>
+                        <span class="hidden text-gray-400 lg:block" v-for="permission in getUser.permissions">{{ permission
+                        }}</span>
                     </div>
                     <ul class="space-y-2 mt-8 tracking-wide bg-white p-4">
                         <li>
@@ -280,5 +287,9 @@ export default {
 .menu {
     z-index: 9999;
     transition: all 1s;
+}
+
+.logo {
+    margin: auto;
 }
 </style>

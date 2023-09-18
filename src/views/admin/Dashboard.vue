@@ -48,7 +48,7 @@
             </div> -->
 
             <div class=" m-4 2xl:container ">
-                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-24 ">
+                <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  pb-24 ">
                     <div class="md:col-span-2 lg:col-span-1 ">
                         <div class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
                             <div class="mb-8">
