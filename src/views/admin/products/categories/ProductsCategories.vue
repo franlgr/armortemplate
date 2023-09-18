@@ -5,16 +5,7 @@
             <AdminHeader title="Products Categories"></AdminHeader>
 
             <!-- {{categories}} -->
-
-            <router-link to="/admin/products/categories"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded mt-4 ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                    </path>
-                </svg>
-                Volver Atrás
-            </router-link>
+            <br>
 
             <div class=" m-4 2xl:container ">
                 <div class="">

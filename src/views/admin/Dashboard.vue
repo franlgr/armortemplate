@@ -95,19 +95,6 @@
                                 <span class="text-gray-500">Compared to last week $13,988</span>
                             </div>
                             <Bar> </Bar>
-                            <div class="mt-6">
-                                <h5 class="text-xl text-gray-700 text-center">Ask to customize</h5>
-                                <div class="mt-2 flex justify-center gap-4">
-                                    <h3 class="text-3xl font-bold text-gray-700">28</h3>
-                                    <div class="flex items-end gap-1 text-green-500">
-                                        <svg class="w-3" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor" />
-                                        </svg>
-                                        <span>2%</span>
-                                    </div>
-                                </div>
-                                <span class="block text-center text-gray-500">Compared to last week 13</span>
-                            </div>
                             <table class="mt-6 -mb-2 w-full text-gray-600">
                                 <tbody>
                                     <tr>

@@ -55,10 +55,10 @@
                 </p>
                 <hr />
                 <FormKit class="register" type="text" name="email" label="Your email" placeholder="jane@example.com"
-                  help="What email should we use?" validation="required|email" />
+                  help="What email should we use?" validation="required|email" v-model="email" />
                 <div class="double">
                   <FormKit class="register" type="password" name="password" label="Password"
-                    validation="required|length:6|matches:/[^a-zA-Z]/" :validation-messages="{
+                    validation="required|length:6|matches:/[^a-zA-Z]/" v-model="password" :validation-messages="{
                       matches: 'Please include at least one symbol',
                     }" placeholder="Your password" help="Choose a password" />
                 </div>

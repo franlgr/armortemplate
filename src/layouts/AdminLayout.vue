@@ -11,6 +11,7 @@
                                 class="w-32 mx-8 mt-2 m-auto" alt="tailus logo">
                         </a>
                     </div>
+                    <!-- {{ isAdmin }} -->
                     <div class="mt-8 text-center">
                         <img v-if="getUser.image" :src="getUser.image" alt=""
                             class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
@@ -66,11 +67,11 @@
                                                 class="ml-8 text-black">
                                                 My Products</span></p>
                                     </router-link>
-                                    <router-link @click="hiddenMenu()" to="/admin/products/categories"
+                                    <router-link @click="hiddenMenu()" to="/admin/products/categories" v-if="admin == true"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/categories' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
                                         <p><i class="fa-regular fa-rectangle-list text-black"></i><span
-                                                class="ml-8 text-black">Categories</span></p>
+                                                class="ml-8 text-black">Categories (admin)</span></p>
                                     </router-link>
                                 </div>
 
@@ -177,6 +178,11 @@ import Loading from '@/components/Loading.vue';
 
 export default {
     name: 'AdminLayout',
+    data() {
+        return {
+            admin: false,
+        }
+    },
     components: {
         // BreadCrumbs, // Import and include the BreadCrumbs component
         Loading,
@@ -203,6 +209,22 @@ export default {
 
             // Compare the current route with the desired route and apply the class if they match
             return this.$route.path === desiredRoute ? activeClass : '';
+        },
+        isAdmin() {
+            if (!this.admin) {
+                this.getUser.permissions.forEach((role) => {
+
+
+                    const is = role.includes('admin') ? true : false;
+                    if (is == true) {
+                        this.admin = true
+
+
+                    }
+
+
+                });
+            }
         },
     },
 }

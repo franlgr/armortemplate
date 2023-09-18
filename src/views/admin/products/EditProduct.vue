@@ -130,6 +130,9 @@ export default {
             console.log('linkImgMeta', link);
             this.metaData.img = link;
         },
+        deleteImage(id) {
+            this.images.splice(id, 1);
+        },
 
         async fetchProduct(id) {
             this.loadingSet(true);
