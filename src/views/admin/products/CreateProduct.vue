@@ -10,35 +10,42 @@
                         <img class="w-24 m-auto" :src="image" alt="Drink" />
                         <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
                     </div>
-    
+
                 </div>
                 <!-- {{options}} -->
-    
+
             </div>
             <div class=" m-4 2xl:container my-4">
                 <div class="">
-                
+
                     <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
-                    
-                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false"  v-model="formData">
-                        <FormKit class="mt-4" type="text" name="name" label="Title Product" placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
+
+                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'"
+                        submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData">
+                        <FormKit class="mt-4" type="text" name="name" label="Title Product"
+                            placeholder="Leather jacket like new" help="What is your title product ?"
+                            validation="required" />
                         <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                         <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
                                                         help="What is your name?" validation="required" /> -->
                         <br>
                         <!-- <label for="price">USD PRICE</label> -->
-                        <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800" help="What is your title product ?" validation="required" />
+                        <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
+                            help="What is your title product ?" validation="required" />
                         <br>
                         <ProductSelectCategory v-on:category="setCategory" />
                         <br>
                         <p class="text-lg font-bold">Meta Data Description</p>
-    
+
                         <br>
                         <!-- {{value}} -->
-    
+
                         <br>
-                        <FormKit class="mt-4" type="text" name="title" label="title for meta" placeholder="red jacket like new" help="product title for meta seo" validation="required" />
-                        <FormKit class="mt-4" type="text" name="content" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your product ?" validation="required" />
+                        <FormKit class="mt-4" type="text" name="title" label="title for meta"
+                            placeholder="red jacket like new" help="product title for meta seo" validation="required" />
+                        <FormKit class="mt-4" type="text" name="content" label="content for meta"
+                            placeholder="It is very well cared for, I used it very little." help="Describe your product ?"
+                            validation="required" />
                         <FormKit type="submit" label="Create Product" />
                     </FormKit>
                     <div name="metaData" style="padding-bottom:50px">
@@ -154,6 +161,7 @@ export default {
                     images: this.images,
                     category: this.newProduct.category,
                     metaData: this.metaData,
+                    user_id: this.getUser._id,
                     user: this.getUser,
                 });
                 this.$snotify.success('Product Created', 'Success', {
@@ -172,7 +180,7 @@ export default {
                     pauseOnHover: true,
                 });
             }
-            
+
         },
 
         setCategory(category) {
@@ -183,9 +191,9 @@ export default {
 
     },
 
-        computed: {
-            ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
-        },
+    computed: {
+        ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+    },
 }
 </script>
 
@@ -197,5 +205,4 @@ export default {
     display: flex;
     margin-top: 30px;
     margin-bottom: 30px;
-}
-</style>
+}</style>

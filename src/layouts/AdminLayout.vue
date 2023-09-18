@@ -33,7 +33,7 @@
                                 <span class="-mr-1 font-medium">Dashboard</span>
                             </router-link>
                         </li>
-                        <li>
+                        <!-- <li>
 
                             <router-link @click="hiddenMenu()" to="/admin/categories"
                                 v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/categories' }"
@@ -41,7 +41,7 @@
                                 <i class="fa-regular fa-rectangle-list"></i>
                                 <span class="group-hover:text-gray-700">Categories</span>
                             </router-link>
-                        </li>
+                        </li> -->
                         <li>
                             <details class="collapse ">
                                 <summary

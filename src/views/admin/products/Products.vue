@@ -2,6 +2,7 @@
     <div>
         <div>
             <AdminHeader title="Products"></AdminHeader>
+
             <div class=" m-4 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
@@ -47,7 +48,7 @@
                                         <br />
 
                                     </td>
-                                   
+
                                     <!-- <td v-html="getCategory(product.category)"></td> -->
                                     <td>{{ product.category.title }}</td>
                                     <th>
@@ -76,6 +77,14 @@
                                             </tfoot> -->
 
                         </table>
+
+                        <!-- Paginación -->
+                        <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+                            <button class="join-item btn btn-outline" @click="prevPage"
+                                :disabled="currentPage === 1">Previous</button>
+                            <button class="join-item btn btn-outline" @click="nextPage"
+                                :disabled="products.length < perPage">Next</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,6 +105,8 @@ export default {
     data() {
         return {
             products: [],
+            currentPage: 1, // Página actual
+            perPage: 10,   // Cantidad de elementos por página
         }
     },
     components: {
@@ -127,6 +138,8 @@ export default {
                         user_id: this.getUser._id,
                         // $limit: this.perPage,
                         // $skip: (this.currentPage - 1) * this.perPage,
+                        $limit: this.perPage,
+                        $skip: (this.currentPage - 1) * this.perPage,
                     }
                 });
                 this.loadingSet(false);
@@ -184,6 +197,20 @@ export default {
                     });
                 })
         },
+        nextPage() {
+            this.currentPage++;
+            this.fetchProducts();
+        },
+        prevPage() {
+            if (this.currentPage > 1) {
+                this.currentPage--;
+                this.fetchProducts();
+            }
+        },
+        goToPage(pageNumber) {
+            this.currentPage = pageNumber;
+            this.fetchProducts();
+        },
         //hay que resolver devolver el nombre de la categoria segun el id 
 
         // async getCategory(id) {
@@ -213,7 +240,11 @@ export default {
     //         return res.title;
     //     },
     computed: {
+
         ...mapGetters(['getUser']),
+        totalPages() {
+            return Math.ceil(this.products / this.perPage);
+        },
 
     }
 }

@@ -51,8 +51,16 @@ const routes = [
         component: Dashboard,
         name: 'admin-dashboard',
       },
-      { path: '/admin/products', name: "admin-products", component: AdminProducts },
-      { path: '/admin/products', name: "admin-products", component: AdminProducts },
+      {
+        path: '/admin/products',
+        name: 'admin-products',
+        component: AdminProducts,
+      },
+      {
+        path: '/admin/products',
+        name: 'admin-products',
+        component: AdminProducts,
+      },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs },
       { path: '/admin/components', component: Components },

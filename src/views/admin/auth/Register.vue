@@ -70,7 +70,7 @@
                                         validation="required|confirm" help="Confirm your password" />
                                 </div>
 
-                                <FormKit type="submit" label="Login" />
+                                <FormKit type="submit" label="Register" />
                                 <!-- <pre wrap>{{ value }}</pre> -->
                             </FormKit>
 
