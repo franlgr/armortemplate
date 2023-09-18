@@ -12,7 +12,6 @@ const userSocketMap = new Map();
 const app = express();
 const server = http.createServer(app);
 
-
 const staticOptions = {
   etag: false,
   maxAge: '1d',
@@ -33,15 +32,13 @@ app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
 const io = socketIo(server, {
   cors: {
     origin: '*',
-  }
+  },
 });
-
-
 
 app.get('/message', (req, res) => {
   // const { message } = req.body;
   console.log('Mensaje recibido:');
-  io.emit('message', "hola");
+  io.emit('message', 'hola');
   res.send('Mensaje enviado');
 });
 
@@ -52,7 +49,6 @@ io.on('connection', (socket) => {
 
   //enviar mensaje al recibirlo
 
-
   // Manejar eventos personalizados aquí
   socket.on('MESSAGES_SERVER', () => {
     // console.log('Mensaje recibido:', msg);
@@ -60,10 +56,7 @@ io.on('connection', (socket) => {
     //broadcast
     // socket.broadcast.emit("hello", "world");
     socket.emit('MESSAGES_CLIENT', messages);
-    
   });
-
-
 
   socket.on('NEW_MESSAGE_SERVER', (data) => {
     console.log('Mensaje recibido:', data);
@@ -75,14 +68,12 @@ io.on('connection', (socket) => {
   });
   //
 
-
   // Manejar evento para unirse a un canal privado
   // socket.on('unirse-a-canal-privado', (userId) => {
   //   userSocketMap.set(userId, socket.id);
   //   console.log(`Usuario ${userId} se unió al canal privado.`);
   // });
 
-  
   // Manejar evento para unirse a una sala privada
   socket.on('unirse-a-sala-privada', (roomId) => {
     socket.join(roomId);
@@ -99,21 +90,66 @@ io.on('connection', (socket) => {
   // Manejar evento de desconexión
   socket.on('disconnect', () => {
     console.log('Un cliente se ha desconectado.');
-      // Eliminar la asociación entre el ID de usuario y el ID de socket al desconectar
-      // for (const [userId, socketId] of userSocketMap) {
-      //   if (socketId === socket.id) {
-      //     userSocketMap.delete(userId);
-      //     console.log(`Usuario ${userId} desconectado.`);
-      //     break;
-      //   }
-      // }
+    // Eliminar la asociación entre el ID de usuario y el ID de socket al desconectar
+    // for (const [userId, socketId] of userSocketMap) {
+    //   if (socketId === socket.id) {
+    //     userSocketMap.delete(userId);
+    //     console.log(`Usuario ${userId} desconectado.`);
+    //     break;
+    //   }
+    // }
+  });
+});
+
+app.get('/products/:id_product', async (req, res) => {
+  console.log('SSR PRODUCTOS', req.params.id_product);
+
+  let data = {};
+  try {
+    const response = await axios.get(
+      `http://192.168.1.3:1313/products/${req.params.id_product}`,
+    );
+    // console.log(response.data);
+    console.log('response.data.metaData');
+    data = response.data.metaData;
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+
+  // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
+  // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
+  // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  // console.log(response.data.metaData);
+  const metaTags = `
+        <title>${data.title}</title>
+        <meta name="description" content=" ${data.content}">
+        <meta itemprop="image" content="${data.img}">
+        <meta property="og:image" itemprop="image" content="${data.img}">
+        <!-- Otras metaetiquetas dinámicas -->
+    `;
+
+  // Lee el archivo "index.html"
+  const indexPath = path.join(__dirname, '/dist', 'index.html');
+  fs.readFile(indexPath, 'utf-8', (err, html) => {
+    if (err) {
+      console.error('Error al leer el archivo index.html', err);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
+    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+
+    // Envía el archivo "index.html" modificado con las metaetiquetas
+    res.send(modifiedHtml);
   });
 });
 
 app.get('*', async (req, res) => {
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
-  const metaTags = `<title>DEFAULT TEMPLATE CHARLY G</title>
+  const metaTags = `<title>Warrior Template</title>
         <meta name="description" content=" test">
         <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
         <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
@@ -121,13 +157,13 @@ app.get('*', async (req, res) => {
         <!-- Otras metaetiquetas dinámicas -->
     `;
 
-    // res.setHeader('Content-Type', 'application/javascript');
+  // res.setHeader('Content-Type', 'application/javascript');
 
   // Lee el archivo "index.html"
   // if (req.url === '/dist/assets/index-d5f393a9.js') {
   //   // Establece el tipo MIME para JavaScript
   //   res.setHeader('Content-Type', 'application/javascript');
-    
+
   //   // Lee y sirve el archivo JavaScript
   //   fs.readFile(__dirname, '/dist/assets/index-d5f393a9.js', (err, data) => {
   //     if (err) {
@@ -145,7 +181,6 @@ app.get('*', async (req, res) => {
   //   res.end('Recurso no encontrado');
   // }
 
-  
   const indexPath = path.join(__dirname, '/dist', 'index.html');
   fs.readFile(indexPath, 'utf-8', (err, html) => {
     if (err) {
@@ -161,16 +196,12 @@ app.get('*', async (req, res) => {
   });
 });
 
-
 // Ruta principal
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
-
-//enviar mensaje 
-
-
+//enviar mensaje
 
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
