@@ -6,16 +6,14 @@ import snotify from 'vue3-snotify';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import CKEditor from '@ckeditor/ckeditor5-vue';
 
-import { plugin, defaultConfig } from "@formkit/vue";
-
+import { createThemePlugin } from '@formkit/themes';
+import { plugin, defaultConfig } from '@formkit/vue';
 
 // import router from '@/router/index.js';
 import router from './router';
 import store from '@/store';
 import 'vue3-snotify/style';
 // import './assets/tailwind.css';
-
-
 
 // Importa el socket desde el archivo socket.js
 import socket from './plugins/socket.js';
@@ -32,6 +30,11 @@ app.use(router);
 app.use(store);
 app.use(snotify);
 app.use(CKEditor);
+// app.use(plugin, {
+//   plugins: [
+//     createThemePlugin()
+//   ]
+// }
 app.use(plugin, defaultConfig);
 
 app.mount('#app');
