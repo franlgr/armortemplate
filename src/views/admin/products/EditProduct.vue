@@ -13,17 +13,20 @@
             </svg>
             Volver Atrás
         </router-link> -->
+       <div class="mt-6">
+       
         <router-link to="/admin/products"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded mt-4 ">
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
                 </path>
             </svg>
             Volver Atrás
-        </router-link>
+        </router-link></div>
 
         <div class="carousel carousel-end rounded-box fix p-8">
+        
             <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
                 <div>
                     <img class="w-24 m-auto" :src="image" alt="Drink" />
