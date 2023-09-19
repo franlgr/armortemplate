@@ -2,7 +2,7 @@
 <template>
     <div>
 
-        <AdminHeader title="Events"></AdminHeader>
+        <AdminHeader title="My Events"></AdminHeader>
 
 
 

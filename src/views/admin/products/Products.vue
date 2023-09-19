@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Products"></AdminHeader>
+            <AdminHeader title="My Products"></AdminHeader>
 
             <div class=" 2xl:container ">
                 <div class="">
