@@ -13,8 +13,9 @@
                     <TableDefault></TableDefault>
                     <br>
                     Card Modelo Example
-                    <div class="card w-96 bg-base-100 shadow-xl my-8">
-                        <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+                    <div class="card w-100 bg-base-100 shadow-xl my-8 p-4">
+                        <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+                                alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title">
                                 Shoes!
@@ -29,9 +30,10 @@
                     </div>
                     <br>
                     <Mapbox></Mapbox>
-                    <Socket></Socket>
+                    <br>
+                    <!-- <Socket></Socket> -->
                     <!-- Se pueden buscar componentes en https://daisyui.com/components/ -->
-    
+
                 </div>
             </div>
         </div>
@@ -46,7 +48,6 @@ import Mapbox from '@/components/Mapbox.vue';
 
 import Ckeditor from '@/components/Ckeditor.vue';
 import TableDefault from '@/components/TableDefault.vue';
-import Socket from '@/components/Socket.vue';
 
 
 export default {
@@ -59,13 +60,10 @@ export default {
         Ckeditor,
         TableDefault,
         Mapbox,
-        Socket
 
     },
     methods: {},
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

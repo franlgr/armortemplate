@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="">
         <div>
             <aside :class="[!getMenuState ? 'ml-[-100%]' : '']"
                 class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu">
-                <div class="contenido">
-                    <button class="text-white lg:hidden m-4" @click="toggleMenu()">Close</button>
+                <div class="contenido menuAdmin">
+                    <button class="text-white bg-black lg:hidden m-4 " @click="toggleMenu()">Close</button>
                     <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
                         <router-link to="/" title="home" class="mb-4 ">
                             <img src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
@@ -17,17 +17,17 @@
                         </div>
 
                     </div>
-                    <div class="mt-8 text-center">
+                    <div class="mt-8 text-center p-4">
                         <img v-if="getUser.image" :src="getUser.image" alt=""
-                            class="w-64 h-64 m-auto rounded-full object-cover">
+                            class="w-32 h-32 m-auto rounded-full object-cover">
                         <img v-if="!getUser.image"
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350"
-                            alt="" class="w-64 h-64 m-auto rounded-full object-cover ">
+                            alt="" class="w-32 h-32 m-auto rounded-full object-cover ">
 
 
-                        <h5 class="hidden mt-4 text-3xl font-semibold text-gray-600 lg:block">{{ getUser.name }} {{
+                        <h5 class="hidden mt-4 text-1xl font-semibold text-gray-600 lg:block">{{ getUser.name }} {{
                             getUser.lastname }}</h5>
-                        <p class="text-3xl mt-2">{{ getUser.email }}</p>
+                        <p class="text-1xl mt-2">{{ getUser.email }}</p>
                         <p class="hidden lg:block mt-4 font-bold">Permissions</p>
                         <span class="hidden text-gray-400 lg:block" v-for="permission in getUser.permissions">{{ permission
                         }}</span>
@@ -79,6 +79,41 @@
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
                                         <p><i class="fa-regular fa-rectangle-list text-black"></i><span
                                                 class="ml-8 text-black">Categories (admin)</span></p>
+                                    </router-link>
+                                </div>
+
+
+                            </details>
+                        </li>
+                        <li>
+                            <details class="collapse ">
+                                <summary
+                                    v-bind:class="{ 'from-sky-600 to-cyan-400 ': $route.path === '/admin/events' || $route.path === '/admin/events/create' || $route.path === '/admin/events/events' }"
+                                    class="py-3 text-md  group-hover:text-cyan-600  m-0 bg-gradient-to-r">
+                                    <i class="fa-Warriors fa-product-hunt"></i>
+                                    <span class=" px-6"
+                                        v-bind:class="{ 'font-bold': $route.path === '/admin/events' || '/admin/events/create' || '/admin/events/categories' }">Events</span>
+                                </summary>
+                                <div>
+                                    <router-link @click="hiddenMenu()" to="/admin/events/create"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/create' }"
+                                        class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2">
+                                        <p><i class="fa-solid fa-square-plus text-black"></i><span
+                                                class="ml-8 text-black">Create Event</span></p>
+                                    </router-link>
+
+                                    <router-link @click="hiddenMenu()" to="/admin/events"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs' }"
+                                        class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
+                                        <p><i class="fa-solid fa-cart-shopping text-black"></i><span
+                                                class="ml-8 text-black">
+                                                My Events</span></p>
+                                    </router-link>
+                                    <router-link @click="hiddenMenu()" to="/admin/events/categories"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events/categories' }"
+                                        class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
+                                        <p><i class="fa-regular fa-rectangle-list text-black"></i><span
+                                                class="ml-8 text-black">Categories</span></p>
                                     </router-link>
                                 </div>
 
@@ -241,7 +276,14 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,700;1,300&display=swap');
+
+.menuAdmin {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+}
+
 .contenedor {
     overflow: hidden;
     position: auto;

@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="md:grid-cols-4 grid-cols-2 gap-6 pt-4 pb-16 items-start container flex justify-between mx-auto mt-8">
+        <div class="md:grid-cols-4 grid-cols-1 gap-6 pt-4 pb-16 items-start container flex justify-between mx-auto mt-8">
             <!-- sidebar -->
             <!-- drawer init and toggle -->
             <!-- <div class="text-center md:hidden">
@@ -317,7 +317,7 @@
             </div>
             <!-- products -->
             <div class="col-span-3">
-                <div class="flex items-center mb-4">
+                <div class="flex items-center mb-4 p-4">
                     <select name="sort" id="sort"
                         class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary">
                         <option value="">Default sorting</option>
@@ -338,11 +338,11 @@
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-3 grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 gap-6 p-4">
 
-                    <div class="bg-white shadow rounded overflow-hidden group" v-for="product in products"
-                        :key="products.index">
-                        <div class="relative">
+                    <div class="  rounded overflow-hidden group" v-for="product in products" :key="products.index">
+
+                        <div class="relative bg-gray-300">
                             <img :src="product.images[0]" alt="product 1" class="w-full h-64 w-64">
                             <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                                 justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
