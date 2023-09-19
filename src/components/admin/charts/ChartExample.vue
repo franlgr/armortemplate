@@ -41,7 +41,8 @@ const barChart = {
                     }
                 }
             }
-        }
+        },
+        responsive: true,
     }
 }
 

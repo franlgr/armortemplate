@@ -13,6 +13,8 @@ import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
 const barChart = {
     type: 'line',
+    height: 480,
+    width: 280,
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
@@ -24,6 +26,7 @@ const barChart = {
         }]
     },
     options: {
+        responsive: true,
         maintainAspectRatio: false,
         plugins: {
             zoom: {

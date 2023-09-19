@@ -1,12 +1,9 @@
 <template>
-    <div style="width: 100%;height:50%;display: block;">
+    <div>
         <vue3-chart-js v-bind="{ ...barChart }" @after-update="afterUpdate" />
     </div>
-    <!-- <div style="display: block;">
-        <vue3-chart-js ref="chartRef" v-bind="{ ...localDoughnutChartOptions }" @after-render="afterRender" />
-    </div> -->
-    <button type="submit" @click="updateChart">Update Doughnut Data</button>
-    <button type="submit" @click="exportChart">Export Chart as PNG</button>
+    <!-- <button type="submit" @click="updateChart">Update Doughnut Data</button>
+    <button type="submit" @click="exportChart">Export Chart as PNG</button> -->
 </template>
 
 <script setup>
@@ -16,6 +13,8 @@ import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
 const barChart = {
     type: 'radar',
+    height: 480,
+    width: 280,
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
@@ -27,6 +26,7 @@ const barChart = {
         }]
     },
     options: {
+        responsive: true,
         maintainAspectRatio: false,
         plugins: {
             zoom: {
@@ -46,10 +46,10 @@ const barChart = {
 }
 
 const doughnutChart = {
-    id: 'doughnut',
+    id: 'radar',
     type: 'radar',
     height: 800,
-    // width: 800,
+    width: 800,
     data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [
@@ -72,23 +72,23 @@ const doughnutChart = {
 }
 
 const beforeInit = (e) => {
-    console.log('chart is before init', e)
+    // console.log('chart is before init', e)
 }
 
 const beforeUpdate = (e) => {
-    console.log('beforeUpdate', e)
+    // console.log('beforeUpdate', e)
 }
 
 const afterUpdate = (e) => {
-    console.log('afterUpdate', e)
+    // console.log('afterUpdate', e)
 }
 
 const afterRender = (e) => {
-    console.log('afterRender', e)
+    // console.log('afterRender', e)
 }
 
 const testFunc = () => {
-    console.log('test func called')
+    // console.log('test func called')
 }
 
 const chartRef = ref(null)

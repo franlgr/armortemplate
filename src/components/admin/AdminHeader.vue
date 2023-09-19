@@ -1,12 +1,12 @@
 <template>
   <div class="sticky z-10 top-0  border-b lg:py-2.5 bg-white">
-    <div class="px-6 flex items-center justify-between space-x-4 2xl:container">
+    <div class="px-6 flex items-center justify-between space-x-4 2xl:container pb-4">
       <h5 hidden class="text-2xl text-gray-600 font-medium lg:block">
         {{ title }}
         <BreadCrumbs></BreadCrumbs>
       </h5>
 
-      <button @click="toggleMenu()" class="w-16 h-16 -mr-2 border-r lg:hidden text-white mt-4">
+      <button @click="toggleMenu()" class="w-16 h-16 -mr-2 border-r lg:hidden text-black bg-green-300 mt-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 my-auto" fill="none" viewBox="0 0 24 24"
           stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

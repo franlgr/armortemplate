@@ -1,9 +1,9 @@
 <template>
-    <div style="display: block;">
+    <div style="display: block; width: 100%;">
         <vue3-chart-js ref="chartRef" v-bind="{ ...localDoughnutChartOptions }" @after-render="afterRender" />
     </div>
-    <button type="submit" @click="updateChart">Update Doughnut Data</button>
-    <button type="submit" @click="exportChart">Export Chart as PNG</button>
+    <!-- <button class="btn my-2" type="submit" @click="updateChart">Update Doughnut Data</button>
+    <button class="btn my-2" type="submit" @click="exportChart">Export Chart as PNG</button> -->
 </template>
 
 <script setup>
@@ -11,53 +11,13 @@
 import { ref } from 'vue'
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 
-const barChart = {
-    type: 'line',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    },
-    options: {
-        maintainAspectRatio: false,
-        plugins: {
-            zoom: {
-                zoom: {
-                    wheel: {
-                        enabled: true,
-                        mode: 'xy',
-                    },
-                    pinch: {
-                        enabled: true,
-                        mode: 'xy',
-                    }
-                }
-            }
-        }
-    }
-}
+
 
 const doughnutChart = {
-    type: 'bar',
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Floating Bar Chart'
-            }
-        }
-    },
-    // height: 800,
-    // width: 800,
+    id: 'line',
+    type: 'line',
+    height: 300,
+    width: 280,
     data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [
@@ -73,30 +33,31 @@ const doughnutChart = {
         ]
     },
     options: {
-        responsive: false,
+        responsive: true,
         cutout: '10%',
+        indexAxis: 'y',
         plugins: {}
     }
 }
 
 const beforeInit = (e) => {
-    console.log('chart is before init', e)
+    // console.log('chart is before init', e)
 }
 
 const beforeUpdate = (e) => {
-    console.log('beforeUpdate', e)
+    // console.log('beforeUpdate', e)
 }
 
 const afterUpdate = (e) => {
-    console.log('afterUpdate', e)
+    // console.log('afterUpdate', e)
 }
 
 const afterRender = (e) => {
-    console.log('afterRender', e)
+    // console.log('afterRender', e)
 }
 
 const testFunc = () => {
-    console.log('test func called')
+    // console.log('test func called')
 }
 
 const chartRef = ref(null)
@@ -141,3 +102,8 @@ const exportChart = () => {
 }
 
 </script>
+<style>
+#doughnut {
+    margin: auto;
+}
+</style>

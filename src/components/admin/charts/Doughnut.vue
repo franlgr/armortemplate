@@ -16,6 +16,7 @@ import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
 const doughnutChart = {
     id: 'doughnut',
     type: 'doughnut',
+    width: 1000,
     data: {
         labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
         datasets: [
@@ -31,7 +32,7 @@ const doughnutChart = {
         ]
     },
     options: {
-        responsive: false,
+        responsive: true,
         cutout: '10%',
         plugins: {}
     }
