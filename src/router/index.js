@@ -7,6 +7,7 @@ import SiteProducts from '@/views/site/products/Products.vue';
 import SingleProduct from '@/views/site/products/SingleProduct.vue';
 import NotFound from '@/views/NotFound.vue';
 import SiteBlog from '@/views/site/blogs/Blog.vue';
+import SiteEvents from '@/views/site/events/Events.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 
@@ -43,6 +44,7 @@ import Events from '@/views/admin/events/Events.vue';
 import EventsCategories from '@/views/admin/events/categories/EventsCategories.vue';
 import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
 import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
+
 
 import store from '../store/index.js';
 
@@ -140,6 +142,10 @@ const routes = [
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },
       { path: '/blog', name: 'site-blog', component: SiteBlog },
+      { path: '/events', name: 'site-events', component: SiteEvents },
+      //single
+      { path: '/events/:id', name: 'site-event', component: SiteEvents },
+      // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',
       //   name: 'site-products-categories',

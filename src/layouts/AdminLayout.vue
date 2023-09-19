@@ -109,11 +109,11 @@
                                                 class="ml-8 text-black">
                                                 My Events</span></p>
                                     </router-link>
-                                    <router-link @click="hiddenMenu()" to="/admin/events/categories"
+                                    <router-link @click="hiddenMenu()" to="/admin/events/categories" v-if="admin == true"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events/categories' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
                                         <p><i class="fa-regular fa-rectangle-list text-black"></i><span
-                                                class="ml-8 text-black">Categories</span></p>
+                                                class="ml-8 text-black">Categories (admin)</span></p>
                                     </router-link>
                                 </div>
 
@@ -131,7 +131,7 @@
                                 </summary>
                                 <div>
                                     <router-link @click="hiddenMenu()" to="/admin/blogs/create"
-                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/create' }"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs/create' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2">
                                         <p><i class="fa-solid fa-square-plus text-black"></i><span
                                                 class="ml-8 text-black">Create</span></p>
@@ -144,11 +144,11 @@
                                                 class="ml-8 text-black">
                                                 My Blogs</span></p>
                                     </router-link>
-                                    <router-link @click="hiddenMenu()" to="/admin/blogs/categories"
+                                    <router-link @click="hiddenMenu()" to="/admin/blogs/categories" v-if="admin == true"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs/categories' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
                                         <p><i class="fa-regular fa-rectangle-list text-black"></i><span
-                                                class="ml-8 text-black">Categories</span></p>
+                                                class="ml-8 text-black">Categories (admin)</span></p>
                                     </router-link>
                                 </div>
 

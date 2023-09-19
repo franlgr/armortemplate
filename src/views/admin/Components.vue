@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <br>
-                    <Mapbox></Mapbox>
+                    <Mapbox class="m-8"></Mapbox>
                     <br>
 
             <div class=" m-4 2xl:container ">
@@ -165,7 +165,6 @@ export default {
         Ckeditor,
         TableDefault,
         Mapbox,
-
         ChartLine,
         Doughnut,
         Bar,

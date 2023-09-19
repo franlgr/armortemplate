@@ -13,8 +13,8 @@
             Volver Atrás
         </router-link></div>
     <div class=" m-4 2xl:container ">
-        <div class="" >
-             <MapBox></MapBox>
+        <div class="pb-4" >
+             <MapBox class="m-8 "></MapBox>
         </div>
     </div>
 </div>
