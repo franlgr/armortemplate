@@ -36,10 +36,8 @@
                             placeholder="Leather jacket like new" help="What is your title product ?"
                             validation="required" />
                         <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-                        <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                                        help="What is your name?" validation="required" /> -->
+                       
                         <br>
-                        <!-- <label for="price">USD PRICE</label> -->
                         <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
                             help="What is your title product ?" validation="required" />
                         <br>
@@ -48,7 +46,7 @@
                         <p class="text-lg font-bold">Meta Data Description</p>
 
                         <br>
-                        <!-- {{value}} -->
+                        
 
                         <br>
                         <FormKit class="mt-4" type="text" name="title" label="title for meta"
@@ -207,13 +205,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 .fix {
     margin: auto;
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
-    margin-top: 30px;
-    margin-bottom: 30px;
+
+    justify-content: center;
+    right: 10px;
 }
 </style>

@@ -8,7 +8,7 @@
                 {{ users }}
             </div>
 
-            <div class="m-4 2xl:container">
+            <div class="2xl:container">
                 <div class="grid gap-6">
                     <div class="overflow-x-auto">
                         <table class="table">

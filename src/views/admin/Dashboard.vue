@@ -201,11 +201,11 @@ export default {
 <style>
 .fix {
     position: relative;
-    right: 10px;
+
 }
 
 .fix-search {
     position: relative;
-    right: 8px;
+
 }
 </style>

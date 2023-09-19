@@ -35,6 +35,15 @@ import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
 import EditCategories from '@/views/admin/products/categories/EditCategory.vue';
 
+//events CreateEvent.vue, EditEvent.vue, Events.vue
+// Import your store
+import CreateEvent from '@/views/admin/events/CreateEvent.vue';
+import EditEvent from '@/views/admin/events/EditEvent.vue';
+import Events from '@/views/admin/events/Events.vue';
+import EventsCategories from '@/views/admin/events/categories/EventsCategories.vue';
+import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
+import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
+
 import store from '../store/index.js';
 
 // Define your routes
@@ -63,6 +72,13 @@ const routes = [
       { path: '/admin/users', component: Users },
       { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat },
+      { path: '/admin/events', component: Events, name: 'admin-events' },
+      { path: '/admin/events/create', component: CreateEvent, name: 'admin-events-create' },
+      { path: '/admin/events/edit/:id', component: EditEvent, name: 'admin-events-edit' },
+      { path: '/admin/events/categories', component: EventsCategories, name: 'admin-events-categories' },
+      { path: '/admin/events/categories/edit/:id', component: EditEventsCategories, name: 'admin-events-categories-edit' },
+      { path: '/admin/events/categories/create', component: CreateEventsCategories, name: 'admin-events-categories-create' },
+      // { path: '/admin/blogs/categories', component: BlogsCategories, name: 'admin-blogs-categories' },
       // { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
       {
         path: '/admin/products/edit/:id',

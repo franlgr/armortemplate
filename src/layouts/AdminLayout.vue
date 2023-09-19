@@ -55,7 +55,7 @@
                                 <summary
                                     v-bind:class="{ 'from-sky-600 to-cyan-400 ': $route.path === '/admin/products' || $route.path === '/admin/products/create' || $route.path === '/admin/products/categories' }"
                                     class="py-3 text-md  group-hover:text-cyan-600  m-0 bg-gradient-to-r">
-                                    <i class="fa-Warriors fa-product-hunt"></i>
+                                    <i class="fa-brands fa-product-hunt fa-beat"></i>
                                     <span class=" px-6"
                                         v-bind:class="{ 'font-bold': $route.path === '/admin/products' || '/admin/products/create' || '/admin/products/categories' }">Product</span>
                                 </summary>
@@ -63,7 +63,7 @@
                                     <router-link @click="hiddenMenu()" to="/admin/products/create"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/create' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2">
-                                        <p><i class="fa-solid fa-square-plus text-black"></i><span
+                                        <p><i class="fa-solid fa-square-plus text-black "></i><span
                                                 class="ml-8 text-black">Create</span></p>
                                     </router-link>
 
@@ -90,20 +90,20 @@
                                 <summary
                                     v-bind:class="{ 'from-sky-600 to-cyan-400 ': $route.path === '/admin/events' || $route.path === '/admin/events/create' || $route.path === '/admin/events/events' }"
                                     class="py-3 text-md  group-hover:text-cyan-600  m-0 bg-gradient-to-r">
-                                    <i class="fa-Warriors fa-product-hunt"></i>
+                                    <i class="fa-solid fa-calendar-days fa-beat"></i>
                                     <span class=" px-6"
                                         v-bind:class="{ 'font-bold': $route.path === '/admin/events' || '/admin/events/create' || '/admin/events/categories' }">Events</span>
                                 </summary>
                                 <div>
                                     <router-link @click="hiddenMenu()" to="/admin/events/create"
-                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/create' }"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events/create' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2">
                                         <p><i class="fa-solid fa-square-plus text-black"></i><span
                                                 class="ml-8 text-black">Create Event</span></p>
                                     </router-link>
 
                                     <router-link @click="hiddenMenu()" to="/admin/events"
-                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/blogs' }"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
                                         <p><i class="fa-solid fa-cart-shopping text-black"></i><span
                                                 class="ml-8 text-black">
@@ -125,7 +125,7 @@
                                 <summary
                                     v-bind:class="{ 'from-sky-600 to-cyan-400 ': $route.path === '/admin/blogs' || $route.path === '/admin/blogs/create' || $route.path === '/admin/blogs/categories' }"
                                     class="py-3 text-md  group-hover:text-cyan-600  m-0 bg-gradient-to-r">
-                                    <i class="fa-Warriors fa-product-hunt"></i>
+                                    <i class="fa-solid fa-blog fa-beat"></i>
                                     <span class=" px-6"
                                         v-bind:class="{ 'font-bold': $route.path === '/admin/blogs' || '/admin/blogs/create' || '/admin/blogs/categories' }">Blogs</span>
                                 </summary>

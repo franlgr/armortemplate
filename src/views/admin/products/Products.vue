@@ -3,7 +3,7 @@
         <div>
             <AdminHeader title="Products"></AdminHeader>
 
-            <div class=" m-4 2xl:container ">
+            <div class=" 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
                         <table class="table">
