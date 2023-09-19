@@ -7,8 +7,7 @@
                     <button class="text-white bg-black lg:hidden m-4 " @click="toggleMenu()">Close</button>
                     <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
                         <router-link to="/" title="home" class="mb-4 ">
-                            <img src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
-                                class="w-32 mx-8 mt-2 logo" alt="tailus logo">
+                            <img src="@/assets/logo.svg" class="w-64 mx-12 mt-2 logo " alt="tailus logo">
                         </router-link>
                         <div class="m-auto mt-12 text-center">
                             <router-link to="/" title="home">

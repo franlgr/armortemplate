@@ -45,7 +45,7 @@
             <div class="flex flex-col max-w-md space-y-5">
 
 
-
+              <img src="@/assets/AuthLogo.svg" class="w-64 mx-12 mt-2 logo " alt="tailus logo">
               <FormKit type="form" prefix-icon="email" id="login-example" :form-class="submitted ? 'hide' : 'show'"
                 submit-label="Login" @submit="submitHandler(email, password)" :actions="false" #default="{ value }"
                 v-model="formData">
