@@ -49,12 +49,45 @@
                                     </td>
                                     <td>{{ category.slug }}</td>
                                     <th>
-                                        <button class="btn btn-sm border-solid border-black bg-green-400">show</button>
-                                        <router-link
-                                            :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
-                                            class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</router-link>
-                                        <button @click="deleteCategoryConfirm(category._id)"
-                                            class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                        <!-- <button class="btn-sm border-solid border-black bg-green-400 w-24">show</button>
+                                        <div class="border-solid border-black p-4">
+                                            <router-link
+                                                :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
+                                                class=" border-solid border-black  w-24"><i
+                                                    class="fa-solid fa-pen-to-square"></i></router-link>
+                                        </div>
+                                        <div class="border-solid border-black p-4">
+                                            <router-link
+                                                :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
+                                                class="borer-solid"><i class="fa-solid fa-pen-to-square"></i></router-link>
+                                        </div>
+                                        <button @click="deleteCategoryConfirm(category._id)" class="border-solid my-2">
+                                            <router-link
+                                                :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
+                                                class=""></router-link></button> -->
+                                        <div class="flex justify-between">
+                                            <router-link to="/" class="flex items-center">
+                                                <button
+                                                    class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
+                                                    <i class="fas fa-eye text-blue-500"></i>
+                                                </button>
+                                            </router-link>
+                                            <router-link
+                                                :to="{ name: 'admin-products-categories-edit', params: { id: category._id } }"
+                                                class="flex items-center">
+                                                <button
+                                                    class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
+                                                    <i class="fas fa-edit text-yellow-500"></i>
+                                                </button>
+                                            </router-link>
+                                            <div to="/" class="flex items-center">
+                                                <button @click="deleteCategoryConfirm(category._id)"
+                                                    class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
+                                                    <i class="fas fa-trash-alt text-red-500"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
                                     </th>
                                 </tr>
                             </tbody>
@@ -71,7 +104,7 @@
 
                         </table>
                         <!-- Paginación -->
-                        <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+                        <div class=" join grid grid-cols-2 pagination w-64 m-auto py-8">
                             <button class="join-item btn btn-outline" @click="prevPage"
                                 :disabled="currentPage === 1">Previous</button>
                             <button class="join-item btn btn-outline" @click="nextPage"

@@ -13,6 +13,7 @@
                     <TableDefault></TableDefault>
                     <br>
                     Card Modelo Example
+
                     <div class="card w-100 bg-base-100 shadow-xl my-8 p-4">
                         <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
                                 alt="Shoes" /></figure>
@@ -32,17 +33,17 @@
                     <Mapbox class="m-8"></Mapbox>
                     <br>
 
-            <div class=" m-4 2xl:container ">
-                <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  pb-24 ">
-                    <div class="md:col-span-2 lg:col-span-1 ">
-                        <div class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">ChartLine</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
-                            </div>
-                            <ChartLine></ChartLine>
-                            <!-- <div>
+                    <div class=" m-4 2xl:container ">
+                        <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3  pb-24 ">
+                            <div class="md:col-span-2 lg:col-span-1 ">
+                                <div class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">ChartLine</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <ChartLine></ChartLine>
+                                    <!-- <div>
                                 <h5 class="text-xl text-gray-600 text-center">Global Activities</h5>
                                 <div class="mt-2 flex justify-center gap-4">
                                     <h3 class="text-3xl font-bold text-gray-700">$23,988</h3>
@@ -55,81 +56,81 @@
                                 </div>
                                 <span class="block text-center text-gray-500">Compared to last week $13,988</span>
                             </div> -->
-                        </div>
-                    </div>
-                    <div>
-                        <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
-
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">Doughnut</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
+                                </div>
                             </div>
-                            <Doughnut> </Doughnut>
-                            <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
+                            <div>
+                                <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
+
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">Doughnut</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <Doughnut> </Doughnut>
+                                    <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
 
 
 
-                        </div>
-                    </div>
-                    <div>
-                        <div class="lg:h-full  px-6 p-4  text-gray-600 rounded-xl border border-gray-200 bg-white">
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">Bar</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
+                                </div>
                             </div>
-                            <Bar> </Bar>
+                            <div>
+                                <div class="lg:h-full  px-6 p-4  text-gray-600 rounded-xl border border-gray-200 bg-white">
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">Bar</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <Bar> </Bar>
 
-                        </div>
-                    </div>
-                    <div>
-                        <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
-
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">Polar</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
+                                </div>
                             </div>
-                            <Polar> </Polar>
-                            <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
+                            <div>
+                                <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
+
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">Polar</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <Polar> </Polar>
+                                    <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
 
 
 
-                        </div>
-                    </div>
-                    <div>
-                        <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
-
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">FloatingBars</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
+                                </div>
                             </div>
-                            <FloatingBars> </FloatingBars>
-                            <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
+                            <div>
+                                <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
+
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">FloatingBars</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <FloatingBars> </FloatingBars>
+                                    <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
 
 
 
-                        </div>
-                    </div>
-                    <div>
-                        <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
-
-                            <div class="mb-8">
-                                <h1 class="text-5xl font-bold text-gray-800">Radar</h1>
-                                <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
-                                <span class="text-gray-500">Compared to last week $13,988</span>
+                                </div>
                             </div>
-                            <Radar> </Radar>
-                            <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
+                            <div>
+                                <div class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-white">
+
+                                    <div class="mb-8">
+                                        <h1 class="text-5xl font-bold text-gray-800">Radar</h1>
+                                        <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
+                                        <span class="text-gray-500">Compared to last week $13,988</span>
+                                    </div>
+                                    <Radar> </Radar>
+                                    <!-- <h5 class="text-xl text-gray-700">Downloads</h5> -->
 
 
 
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
                     <!-- <Socket></Socket> -->
                     <!-- Se pueden buscar componentes en https://daisyui.com/components/ -->
 
@@ -153,6 +154,9 @@ import Radar from '@/components/admin/charts/Radar.vue';
 
 import Ckeditor from '@/components/Ckeditor.vue';
 import TableDefault from '@/components/TableDefault.vue';
+
+// MaboxGeocoder stylesheet needs to be imported manually.
+import '@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 
 
 export default {

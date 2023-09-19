@@ -8,6 +8,7 @@ import SingleProduct from '@/views/site/products/SingleProduct.vue';
 import NotFound from '@/views/NotFound.vue';
 import SiteBlog from '@/views/site/blogs/Blog.vue';
 import SiteEvents from '@/views/site/events/Events.vue';
+import SingleEvent from '@/views/site/events/SingleEvent.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 
@@ -45,7 +46,6 @@ import EventsCategories from '@/views/admin/events/categories/EventsCategories.v
 import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
 import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
 
-
 import store from '../store/index.js';
 
 // Define your routes
@@ -75,11 +75,31 @@ const routes = [
       { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat },
       { path: '/admin/events', component: Events, name: 'admin-events' },
-      { path: '/admin/events/create', component: CreateEvent, name: 'admin-events-create' },
-      { path: '/admin/events/edit/:id', component: EditEvent, name: 'admin-events-edit' },
-      { path: '/admin/events/categories', component: EventsCategories, name: 'admin-events-categories' },
-      { path: '/admin/events/categories/edit/:id', component: EditEventsCategories, name: 'admin-events-categories-edit' },
-      { path: '/admin/events/categories/create', component: CreateEventsCategories, name: 'admin-events-categories-create' },
+      {
+        path: '/admin/events/create',
+        component: CreateEvent,
+        name: 'admin-events-create',
+      },
+      {
+        path: '/admin/events/edit/:id',
+        component: EditEvent,
+        name: 'admin-events-edit',
+      },
+      {
+        path: '/admin/events/categories',
+        component: EventsCategories,
+        name: 'admin-events-categories',
+      },
+      {
+        path: '/admin/events/categories/edit/:id',
+        component: EditEventsCategories,
+        name: 'admin-events-categories-edit',
+      },
+      {
+        path: '/admin/events/categories/create',
+        component: CreateEventsCategories,
+        name: 'admin-events-categories-create',
+      },
       // { path: '/admin/blogs/categories', component: BlogsCategories, name: 'admin-blogs-categories' },
       // { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
       {
@@ -144,7 +164,7 @@ const routes = [
       { path: '/blog', name: 'site-blog', component: SiteBlog },
       { path: '/events', name: 'site-events', component: SiteEvents },
       //single
-      { path: '/events/:id', name: 'site-event', component: SiteEvents },
+      { path: '/events/:id', name: 'site-event', component: SingleEvent },
       // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',

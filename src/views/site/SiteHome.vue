@@ -2,7 +2,18 @@
     <div>
         <div class="overflow-x-hidden bg-gray-100">
             <SiteHeader></SiteHeader>
-
+            <div class="hero min-h-screen"
+                style="background-image: url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg);">
+                <div class="hero-overlay bg-opacity-60"></div>
+                <div class="hero-content text-center text-neutral-content">
+                    <div class="max-w-md">
+                        <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+                        <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
+                            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <button class="btn btn-primary">Get Started</button>
+                    </div>
+                </div>
+            </div>
             <div class="px-6 py-8">
                 <div class="container flex justify-between mx-auto">
                     <div class="w-full lg:w-8/12">
@@ -17,7 +28,7 @@
                             </div>
                         </div>
                         <div class="mt-6">
-                            aca
+                            asd
                         </div>
                     </div>
                     <div class="hidden w-4/12 -mx-8 lg:block">
