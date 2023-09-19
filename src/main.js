@@ -18,6 +18,11 @@ import 'vue3-snotify/style';
 // Importa el socket desde el archivo socket.js
 import socket from './plugins/socket.js';
 
+import mapboxgl from 'mapbox-gl';
+import MapboxGLWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker?worker';
+
+mapboxgl.workerClass = MapboxGLWorker;
+
 // Usa el plugin Snotify
 
 //hay que agregar feathers aca para usarlo globalmente

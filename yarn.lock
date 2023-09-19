@@ -930,10 +930,10 @@
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
 
-"@studiometa/vue-mapbox-gl@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@studiometa/vue-mapbox-gl/-/vue-mapbox-gl-2.1.1.tgz#a1d9ae4c3dc14c5cb34656d46e118ff472ae8032"
-  integrity sha512-fFCBHxTBrJNdnztux/OOoZL9i82LNG7qoM8TVq9iqc36mbhUSxYiR4Wa0zRAfUHDlXpG5lTsfueT+khraVtR0Q==
+"@studiometa/vue-mapbox-gl@^2.14.1":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@studiometa/vue-mapbox-gl/-/vue-mapbox-gl-2.2.0.tgz#763534721f5e0410d3587fe589879167a658ca7b"
+  integrity sha512-6/qa0M7KH1kr8QXYOMEe+w3YFuBvG40DM8ZiMKShPSqQP9auvIhU3cyudOGpP+NVluCTw6YaR4S8cBQ4Et69PA==
 
 "@szmarczak/http-timer@^4.0.5":
   version "4.0.6"
