@@ -2,7 +2,7 @@
     <div>
         <div>
             <AdminHeader title="My Products"></AdminHeader>
-
+{{ products }}
             <div class=" 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">

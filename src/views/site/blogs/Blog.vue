@@ -4,7 +4,7 @@
 
             <SiteHeader></SiteHeader>
 
-            {{ blogs }}
+            <!-- {{ blogs }} -->
             <div class="px-6 py-8">
                 <div class="container flex justify-between mx-auto">
                     <div class="w-full lg:w-8/12">
@@ -20,134 +20,36 @@
                         </div>
                         <div class="mt-6" v-for="blog in blogs" :key="blog.index">
                             <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                <div class="flex items-center justify-between"><span class="font-light text-gray-600">Jun 1,
-                                        2020</span><a href="#"
-                                        class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Laravel</a>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-light text-gray-600">
+                                    {{ blog.th }}
+                                </span>
+                                <a href="#" class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="w-5 h-5 mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M320 144c0 79.5-64.5 144-144 144S32 223.5 32 144S96.5 0 176 0s144 64.5 144 144zM176 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM144 480V317.1c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9V480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"/></svg>
+                                    </svg>
+                                    {{ blog.ubication }}
+                                    </a>
+
+                                   
                                 </div>
-                                <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">{{
-                                    blog.title }}.</a>
+                                <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">
+                                    {{ blog.title }}.</a>
                                     <p v-html="blog.content" class="mt-2 text-gray-600"></p>
                                 </div>
-                                <div class="flex items-center justify-between mt-4"><a href="#"
-                                        class="text-blue-500 hover:underline">Read more</a>
+                                <div class="flex items-center justify-between mt-4">
+                                    <router-link :to="{ name: 'site-blog', params: { id: blog._id } }"
+                                        class="text-blue-500 hover:underline">Read more</router-link>
                                     <div><a href="#" class="flex items-center"><img
-                                                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
+                                                :src="blog.imgUser"
                                                 alt="avatar"
                                                 class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                            <h1 class="font-bold text-gray-700 hover:underline">Alex John</h1>
+                                            <h4 class="font-bold text-gray-700 hover:underline">{{ blog.user }}</h4>
                                         </a></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mt-6">
-                            <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                <div class="flex items-center justify-between"><span class="font-light text-gray-600">mar 4,
-                                        2019</span><a href="#"
-                                        class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Design</a>
-                                </div>
-                                <div class="mt-2"><a href="#"
-                                        class="text-2xl font-bold text-gray-700 hover:underline">Accessibility tools
-                                        for
-                                        designers and developers</a>
-                                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur
-                                        adipisicing elit.
-                                        Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-                                        enim
-                                        reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione
-                                        libero!</p>
-                                </div>
-                                <div class="flex items-center justify-between mt-4"><a href="#"
-                                        class="text-blue-500 hover:underline">Read more</a>
-                                    <div><a href="#" class="flex items-center"><img
-                                                src="https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=333&amp;q=80"
-                                                alt="avatar"
-                                                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                            <h1 class="font-bold text-gray-700 hover:underline">Jane Doe</h1>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                <div class="flex items-center justify-between"><span class="font-light text-gray-600">Feb
-                                        14,
-                                        2019</span><a href="#"
-                                        class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">PHP</a>
-                                </div>
-                                <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">PHP:
-                                        Array to Map</a>
-                                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur
-                                        adipisicing elit.
-                                        Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-                                        enim
-                                        reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione
-                                        libero!</p>
-                                </div>
-                                <div class="flex items-center justify-between mt-4"><a href="#"
-                                        class="text-blue-500 hover:underline">Read more</a>
-                                    <div><a href="#" class="flex items-center"><img
-                                                src="https://images.unsplash.com/photo-1531251445707-1f000e1e87d0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=281&amp;q=80"
-                                                alt="avatar"
-                                                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                            <h1 class="font-bold text-gray-700 hover:underline">Lisa Way</h1>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                <div class="flex items-center justify-between"><span class="font-light text-gray-600">Dec
-                                        23,
-                                        2018</span><a href="#"
-                                        class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Django</a>
-                                </div>
-                                <div class="mt-2"><a href="#"
-                                        class="text-2xl font-bold text-gray-700 hover:underline">Django
-                                        Dashboard - Learn by Coding</a>
-                                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur
-                                        adipisicing elit.
-                                        Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-                                        enim
-                                        reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione
-                                        libero!</p>
-                                </div>
-                                <div class="flex items-center justify-between mt-4"><a href="#"
-                                        class="text-blue-500 hover:underline">Read more</a>
-                                    <div><a href="#" class="flex items-center"><img
-                                                src="https://images.unsplash.com/photo-1500757810556-5d600d9b737d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=735&amp;q=80"
-                                                alt="avatar"
-                                                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                            <h1 class="font-bold text-gray-700 hover:underline">Steve Matt</h1>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-6">
-                            <div class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md">
-                                <div class="flex items-center justify-between"><span class="font-light text-gray-600">Mar
-                                        10,
-                                        2018</span><a href="#"
-                                        class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500">Testing</a>
-                                </div>
-                                <div class="mt-2"><a href="#" class="text-2xl font-bold text-gray-700 hover:underline">TDD
-                                        Frist</a>
-                                    <p class="mt-2 text-gray-600">Lorem ipsum dolor sit, amet consectetur
-                                        adipisicing elit.
-                                        Tempora expedita dicta totam aspernatur doloremque. Excepturi iste iusto eos
-                                        enim
-                                        reprehenderit nisi, accusamus delectus nihil quis facere in modi ratione
-                                        libero!</p>
-                                </div>
-                                <div class="flex items-center justify-between mt-4"><a href="#"
-                                        class="text-blue-500 hover:underline">Read more</a>
-                                    <div><a href="#" class="flex items-center"><img
-                                                src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=373&amp;q=80"
-                                                alt="avatar"
-                                                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
-                                            <h1 class="font-bold text-gray-700 hover:underline">Khatab Wedaa</h1>
-                                        </a></div>
-                                </div>
-                            </div>
+                      
+                      
                         </div>
                         <div class="mt-8">
                             <div class="flex">
@@ -183,20 +85,18 @@
                             <h1 class="mb-4 text-xl font-bold text-gray-700">Authors</h1>
                             <div class="flex flex-col max-w-sm px-6 py-4 mx-auto bg-white rounded-lg shadow-md">
                                 <ul class="-mx-4">
-                                    <li class="flex items-center"><img
-                                            src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=731&amp;q=80"
-                                            alt="avatar" class="object-cover w-10 h-10 mx-4 rounded-full">
-                                        <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Alex
-                                                John</a><span class="text-sm font-light text-gray-700">Created 23
-                                                Posts</span></p>
+                                    <li  v-for="blog in blogs" :key="blog.index" class="flex items-center mb-4">
+                                        <div><a href="#" class="flex items-center"><img
+                                                :src="blog.imgUser"
+                                                alt="avatar"
+                                                class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block">
+                                            <h4 class="font-bold text-gray-700 hover:underline">{{ blog.user }}</h4>
+                                            <span class="ml-3 font-light text-gray-600">
+                                  Created:  {{ blog.th }}
+                                </span>
+                                        </a></div>
                                     </li>
-                                    <li class="flex items-center mt-6"><img
-                                            src="https://images.unsplash.com/photo-1464863979621-258859e62245?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=333&amp;q=80"
-                                            alt="avatar" class="object-cover w-10 h-10 mx-4 rounded-full">
-                                        <p><a href="#" class="mx-1 font-bold text-gray-700 hover:underline">Jane
-                                                Doe</a><span class="text-sm font-light text-gray-700">Created 52
-                                                Posts</span></p>
-                                    </li>
+                                
                                 </ul>
                             </div>
                         </div>
