@@ -9,6 +9,9 @@ import NotFound from '@/views/NotFound.vue';
 import SiteBlog from '@/views/site/blogs/Blog.vue';
 import SiteEvents from '@/views/site/events/Events.vue';
 import SingleEvent from '@/views/site/events/SingleEvent.vue';
+import SingleBlog from '@/views/site/blogs/SingleBlog.vue';
+
+
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 
@@ -45,6 +48,7 @@ import Events from '@/views/admin/events/Events.vue';
 import EventsCategories from '@/views/admin/events/categories/EventsCategories.vue';
 import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
 import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
+import CreateBlog from '@/views/admin/blogs/CreateBlog.vue';
 
 import store from '../store/index.js';
 
@@ -101,7 +105,10 @@ const routes = [
         name: 'admin-events-categories-create',
       },
       // { path: '/admin/blogs/categories', component: BlogsCategories, name: 'admin-blogs-categories' },
-      // { path: '/admin/blogs/create/', component: PostBlog, name: 'admin-blogs-create',},
+      { path: '/admin/blogs/create/', 
+      component: CreateBlog, 
+      name: 'admin-blogs-create',
+    },
       {
         path: '/admin/products/edit/:id',
         component: EditProduct,
@@ -137,6 +144,7 @@ const routes = [
         component: EditCategories,
         name: 'admin-products-categories-edit',
       },
+      
     ],
   },
   // Auth routes
@@ -161,7 +169,8 @@ const routes = [
       { path: '/about', name: 'about', component: AboutView },
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },
-      { path: '/blog', name: 'site-blog', component: SiteBlog },
+      { path: '/blogs', name: 'site-blogs', component: SiteBlog },
+      { path: '/blog/:id', name: 'site-blog', component: SingleBlog },
       { path: '/events', name: 'site-events', component: SiteEvents },
       //single
       { path: '/events/:id', name: 'site-event', component: SingleEvent },
