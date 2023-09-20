@@ -19,7 +19,7 @@
             </div>
             <div :class="mobileMenuVisible ? 'block' : 'hidden'" class="md:flex md:flex-row md:-mx-4">
                 <!-- Menú de dispositivos de escritorio (sin cambios) -->
-                <div class="hidden md:flex md:flex-row md:-mx-4">
+                <div class="hidden md:flex md:flex-row mr-4">
                     <router-link to="/" class="my-1  text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"><i
                             class="fa-solid fa-house"></i><span class="ml-2">Home</span></router-link>
                     <router-link to="/blog" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0 ">

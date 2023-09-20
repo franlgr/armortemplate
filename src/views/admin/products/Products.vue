@@ -39,6 +39,7 @@
                                             </div>
                                             <div>
                                                 <div class="font-bold">{{ product.title }}</div>
+                                                <!-- <div class="font-bold">{{ product.user }}</div> -->
                                                 <div class="text-sm opacity-50">United States</div>
                                             </div>
                                         </div>
@@ -50,7 +51,7 @@
                                     </td>
 
                                     <!-- <td v-html="getCategory(product.category)"></td> -->
-                                    <td>{{ product.category.title }}</td>
+                                    <td v-if="product.category">{{ product.category.title }}</td>
                                     <th>
                                         <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
                                         <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
@@ -137,8 +138,6 @@ export default {
                 const res = await FeathersClient.service('products').find({
                     query: {
                         user_id: this.getUser._id,
-                        // $limit: this.perPage,
-                        // $skip: (this.currentPage - 1) * this.perPage,
                         $limit: this.perPage,
                         $skip: (this.currentPage - 1) * this.perPage,
                     }

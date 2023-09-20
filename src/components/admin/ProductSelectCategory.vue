@@ -37,6 +37,7 @@ export default {
             $skip: 0,
           },
         });
+        //options es una variable que necesita un array de objetos con las propiedades label y value es para el plugin formKit
 
         this.options = res.data.map((item) => {
           return {
