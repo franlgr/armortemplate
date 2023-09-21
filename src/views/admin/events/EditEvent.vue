@@ -4,58 +4,63 @@
             <AdminHeader title="Edit Event" icon="fa-solid fa-calendar-days"></AdminHeader>
     
             <div class="mt-6">
-                <router-link to="/admin/events" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
+                <router-link to="/admin/events" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                            </path>
-                        </svg> Volver Atrás
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    ></path>
+                  </svg> Volver Atrás
                 </router-link>
             </div>
-            <div class="2xl:container md:w-2/3 m-auto px-8 ">
+            <div class="2xl:container md:w-2/3 m-auto px-8">
                 <div class="mt-8 m-auto">
                     <!-- {{formData.images}} -->
-                    <div class="carousel-item " v-for="image in images" :key="image.index">
+                    <div class="carousel-item" v-for="image in images" :key="image.index">
                         <div class="m-auto">
-                            <img class="w-64" style="margin:auto" :src="image" alt="Drink" />
-                            <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
+                            <img class="w-64" style="margin: auto" :src="image" alt="Drink" />
+                            <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">
+                        X
+                      </button>
                         </div>
-    
                     </div>
                     <!-- componente para subir muchas imagenes  -->
                     <UploadImages title="Upload Event Images/Flayers" class="my-4" v-on:links="links"></UploadImages>
     
                     <!-- Este es el framework formkit fijate que hay otros adentro de uno pero este es el 
-                            importante porque es el que tiene la funcion a disparar cuando se le da al boton. -->
+                                    importante porque es el que tiene la funcion a disparar cuando se le da al boton. -->
                     <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData" #default="value">
                         <FormKit class="mt-4" type="text" name="title" label="Title Event" placeholder="Leather jacket like new" help="What is your title event ?" validation="required" />
                         <p for="description" class="description">Description</p>
                         <ckeditor id="ckeditor" class="my-4" v-model="formData.content" :placeholder="editorData" label="description" :editor="editor" :config="editorConfig"></ckeditor>
-                        <br>
+                        <br />
                         <FormKit type="date" name="date" value="2023-10-01" label="Start Event" help="Enter your birth day" validation="required|date_after:2023-01-01" validation-visibility="live" />
-                        <br>
-                        <p for="map" class="description">Search Location for event {{ formData.location }}</p>
+                        <br />
+                        <p for="map" class="description">
+                            Search Location for event {{ formData.location }}
+                        </p>
                         <MapBox v-on:placeName="setPlaceName" label="map" v-on:location="setLocation"></MapBox>
-                        <br>
+                        <br />
     
                         <FormKit class="mt-4 fix-margin" type="number" name="price" label="USD TICKET" placeholder="800" help="What is your ticket price  ?" validation="required" />
-                        <br>
-                        <!-- <ProductSelectCategory v-on:category="setCategory" /> -->
+                        <br />
+    
                         <EventSelectCategory label="What is your event category ?" :category="formData.category" v-on:category="setCategory" />
-                        <p class="text-lg font-bold">Meta Data SEO </p>
-                        <br>
+                        <p class="text-lg font-bold">Meta Data SEO</p>
+                        <br />
                         <FormKit class="mt-4" type="text" name="meta-title" label="title for meta" placeholder="red jacket like new" help="event title for meta seo" />
                         <FormKit class="mt-4" type="text" name="meta-content" label="content for meta" placeholder="It is very well cared for, I used it very little." help="Describe your event ?" />
                         <FormKit type="submit" label="Save Event" />
                         <!-- {{formData}} -->
                     </FormKit>
-                    <div name="metaData" style="padding-bottom:50px">
+                    <div name="metaData" style="padding-bottom: 50px">
                         <p>Image for Meta Data Seo</p>
                         <!-- <img class="w-24 m-auto" :src="metaData.img" alt="IMG" /> -->
                         <!-- componente para subir una imagen -->
-                        {{formData}}
+                        {{ formData }}
                         <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
-    
                     </div>
                 </div>
             </div>
@@ -89,7 +94,14 @@ export default {
                 title: '',
                 content: '',
                 price: 0,
-                category: {}
+                category: {
+                    "_id": "650c8c5adde77fbc419fcc31",
+                    "title": "Music Events",
+                    "description": "Upcoming music events, concerts, and festivals.",
+                    "image": "https://picsum.photos/300/200/?random",
+                    "slug": "music-events",
+                    "metaData": { "title": "Meta Title", "content": "Meta Description", "img": "Meta Image URL" }
+                }
             },
             //esto es para el componente de subir imagenes
             images: [],

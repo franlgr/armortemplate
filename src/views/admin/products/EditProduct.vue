@@ -41,7 +41,7 @@
         <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
         <div class=" m-4 2xl:container my-4">
             <div class="">
-
+        
                 <FormKit type="form" id="guardar-example" submit-label="Register" @submit="submitHandler" v-model="data"
                     :actions="false">
                     <FormKit class="mt-4" type="text" name="title" label="Title Product"
