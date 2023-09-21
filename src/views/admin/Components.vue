@@ -146,7 +146,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
-import Mapbox from '@/components/Mapbox.vue';
+import Mapbox from '@/components/MapBox.vue';
 import ChartLine from '@/components/admin/charts/Line.vue';
 import Doughnut from '@/components/admin/charts/Doughnut.vue';
 import Bar from '@/components/admin/charts/Bar.vue';

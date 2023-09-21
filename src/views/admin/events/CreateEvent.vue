@@ -76,7 +76,7 @@
 import { mapActions, mapGetters } from 'vuex';
 // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
-import MapBox from '@/components/MapBox.vue'
+import MapBox from '@/components/Mapbox.vue'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import UploadImages from '@/components/admin/UploadImages.vue';
 import UploadImg from '@/components/admin/UploadImg.vue';
