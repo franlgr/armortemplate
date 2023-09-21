@@ -5,6 +5,7 @@
     <AdminHeader title="Events Categories"></AdminHeader>
 
 <div class="my-6">
+{{categories}}
                <router-link to="/admin/events"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
@@ -89,18 +90,29 @@
 import { mapActions, mapGetters } from 'vuex';
 // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
-
+import FeathersClient from '@/FeathersClient';
 export default {
-    //logout
-    // name: "AdminDashboard",
-    layout: "AdminLayout",
+    data() {
+        return {
+            categories: [],
+        }
+    },
     components: {
         // BreadCrumbs,
         AdminHeader
 
     },
+
     methods: {
+        async getEvents() {
+            const categories = await FeathersClient.service('events-categories').find();
+            this.categories = categories.data;
+        },
     },
+    mounted() {
+        this.getEvents();
+    },
+
 }
 </script>
 <style>

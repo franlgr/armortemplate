@@ -54,6 +54,7 @@ export default {
           this.value = this.category;
         }
         this.dataLoaded = true;
+
       } catch (error) {
         this.$router.push('/login');
         console.error('Error al obtener las categorías:', error);
