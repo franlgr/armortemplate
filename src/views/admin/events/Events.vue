@@ -3,10 +3,6 @@
     <div>
 
         <AdminHeader title="My Events"></AdminHeader>
-
-
-
-
         <div class="overflow-x-auto">
             <table class="table">
                 <!-- head -->
@@ -18,8 +14,8 @@
                             </label>
                         </th>
                         <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>Price</th>
+                        <th>Category</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -35,21 +31,21 @@
                             <div class="flex items-center space-x-3">
                                 <div class="avatar">
                                     <div class="mask mask-squircle w-12 h-12">
-                                        <img src="https://picsum.photos/300/300" alt="Avatar Tailwind CSS Component" />
+                                        <img :src="event.images[0]" alt="Avatar Tailwind CSS Component" />
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="font-bold">Hart Hagerty</div>
-                                    <div class="text-sm opacity-50">United States</div>
+                                    <div class="font-bold">{{event.title}}</div>
+                                    <div class="text-sm opacity-50">{{event.location}}</div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            Zemlak, Daniel and Leannon
+                            {{event.price}}
                             <br />
 
                         </td>
-                        <td>Purple</td>
+                        <td>{{event.category.title}}</td>
                         <th>
                             <div class="flex justify-between">
                                 <router-link :to="{ name: 'site-event', params: { id: event._id } }"
@@ -99,13 +95,12 @@ import { mapActions, mapGetters } from 'vuex';
 // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 import FeathersClient from '@/FeathersClient'
+
 export default {
-    //logout
-    // name: "AdminDashboard",
     layout: "AdminLayout",
     components: {
         // BreadCrumbs,
-        AdminHeader
+        AdminHeader,
 
     },
     data() {

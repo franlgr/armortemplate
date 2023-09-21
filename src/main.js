@@ -22,6 +22,7 @@ import mapboxgl from 'mapbox-gl';
 import MapboxGLWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker?worker';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
+
 mapboxgl.workerClass = MapboxGLWorker;
 
 // Usa el plugin Snotify

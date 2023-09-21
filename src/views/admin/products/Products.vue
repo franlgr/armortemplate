@@ -1,8 +1,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="My Products"></AdminHeader>
-{{ products }}
+            <AdminHeader title="My Products" icon="fa-brands fa-product-hunt"></AdminHeader>
             <div class=" 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">

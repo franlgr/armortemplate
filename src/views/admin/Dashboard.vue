@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Dashboard"></AdminHeader>
+            <AdminHeader title="Dashboard" icon="fa-solid fa-chart-line"></AdminHeader>
             <!-- <div class="stats shadow mx-4 mt-4">
 
                 <div class="stat">

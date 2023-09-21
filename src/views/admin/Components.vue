@@ -2,9 +2,10 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Components"></AdminHeader>
+            <AdminHeader title="Components" icon="fa-solid fa-screwdriver-wrench"></AdminHeader>
 
             <div class=" m-4 2xl:container">
+             <vue-awesome-swiper class="my-24"> </vue-awesome-swiper>
                 <div class="">
                     Text Editor
                     <br>
@@ -135,6 +136,7 @@
                     <!-- Se pueden buscar componentes en https://daisyui.com/components/ -->
 
                 </div>
+                
             </div>
         </div>
     </div>
@@ -151,6 +153,7 @@ import Bar from '@/components/admin/charts/Bar.vue';
 import Polar from '@/components/admin/charts/Polar.vue';
 import FloatingBars from '@/components/admin/charts/FloatingBars.vue';
 import Radar from '@/components/admin/charts/Radar.vue';
+import VueAwesomeSwiper from '@/components/VueAwesomeSwiper.vue';
 
 import Ckeditor from '@/components/Ckeditor.vue';
 import TableDefault from '@/components/TableDefault.vue';
@@ -174,7 +177,8 @@ export default {
         Bar,
         Polar,
         FloatingBars,
-        Radar
+        Radar,
+        VueAwesomeSwiper
 
     },
     methods: {},

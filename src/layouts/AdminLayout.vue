@@ -7,16 +7,16 @@
                     <button class="text-white bg-black lg:hidden m-4 " @click="toggleMenu()">Close</button>
                     <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
                         <router-link to="/" title="home" class="mb-4 ">
-                            <img src="@/assets/logo.svg" class="w-64 mx-12 mt-2 logo " alt="tailus logo">
+                            <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo " alt="tailus logo">
                         </router-link>
-                        <div class="m-auto mt-12 text-center">
+                        <div class="m-auto mt-4 text-center">
                             <router-link to="/" title="home">
-                                <button class="btn btn-sm text-center ">Go Site</button>
+                                <button class="btn px-4 bg-green-500 text-center ">Go Site</button>
                             </router-link>
                         </div>
 
                     </div>
-                    <div class="mt-8 text-center p-4">
+                    <div class=" text-center p-4">
                         <img v-if="getUser.image" :src="getUser.image" alt=""
                             class="w-32 h-32 m-auto rounded-full object-cover">
                         <img v-if="!getUser.image"
@@ -98,13 +98,13 @@
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events/create' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2">
                                         <p><i class="fa-solid fa-square-plus text-black"></i><span
-                                                class="ml-8 text-black">Create Event</span></p>
+                                                class="ml-8 text-black">Create</span></p>
                                     </router-link>
 
                                     <router-link @click="hiddenMenu()" to="/admin/events"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/events' }"
                                         class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
-                                        <p><i class="fa-solid fa-cart-shopping text-black"></i><span
+                                        <p><i class="fa-solid fa-calendar-days text-black"></i><span
                                                 class="ml-8 text-black">
                                                 My Events</span></p>
                                     </router-link>

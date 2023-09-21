@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Users"></AdminHeader>
+            <AdminHeader title="Users" icon="fa-solid fa-users"></AdminHeader>
 
             <div class="p-8 bg-red-100" hidden>
                 <p class="font-bold">DEBUG</p>

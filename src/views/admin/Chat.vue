@@ -1,5 +1,6 @@
 <template>
     <div>
+    <AdminHeader title="Default" icon="fa-solid fa-star"></AdminHeader>
         <div class="flex h-screen antialiased text-gray-800">
             <!-- {{messages}} -->
             <!-- {{getMessages}} -->
@@ -20,7 +21,7 @@
                                         ></path>
                                       </svg>
                         </div>
-                        <div class="ml-2 font-bold text-2xl">QuickChat</div>
+                        <div class="ml-2 font-bold text-2xl">General Chat</div>
                     </div>
                     <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
                         <div class="h-20 w-20 rounded-full border overflow-hidden">
@@ -81,25 +82,8 @@
                                         </div>
                                       </button>
                                     </div>
-                                    <div
-                                      class="flex flex-row items-center justify-between text-xs mt-6"
-                                    >
-                                      <span class="font-bold">Archivied</span>
-                            <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">7</span
-                                      >
-                                    </div>
-                                    <div class="flex flex-col space-y-1 mt-4 -mx-2">
-                                      <button
-                                        class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-                                      >
-                                        <div
-                                          class="flex items-center justify-center h-8 w-8 bg-indigo-200 rounded-full"
-                                        >
-                                          H
-                                        </div>
-                                        <div class="ml-2 text-sm font-semibold">Henry Boyd</div>
-                                      </button>
-                                    </div>
+                                    
+                                    
                                   </div>
                                 </div>
                                 <div class="flex flex-col flex-auto h-full p-6">
@@ -119,6 +103,7 @@
                                               <!-- {{message.sender.image}} -->
                                               <div class="rounded" style="height: 50px; width: 50px">
                                                 <img
+                                                v-if="message.sender"
                                                   class="rounded-full w-12 h-12"
                                                   :src="message.sender.image"
                                                 />
@@ -462,9 +447,9 @@
 // import store from 'vuex'
 import { mapActions, mapGetters } from 'vuex';
 import FeathersClient from '@/FeathersClient.js';
+import AdminHeader from '@/components/admin/AdminHeader.vue';
 
 export default {
-    layout: 'AdminLayout',
     data() {
         return {
             users: [],
@@ -590,6 +575,9 @@ export default {
 
             this.message = '';
         }
+    },
+    components: {
+        AdminHeader,
     },
 };
 </script>

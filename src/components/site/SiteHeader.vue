@@ -22,8 +22,8 @@
                 <div class="hidden md:flex md:flex-row mr-4">
                     <router-link to="/" class="my-1  text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"><i
                             class="fa-solid fa-house"></i><span class="ml-2">Home</span></router-link>
-                    <router-link to="/blog" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0 ">
-                        <i class="fa-solid fa-blog w-4"></i><span class="ml-2">Blog</span>
+                    <router-link to="/blogs" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0 ">
+                        <i class="fa-solid fa-blog w-4"></i><span class="ml-2">Blogs</span>
                     </router-link>
                     <router-link to="/products" class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0">
                         <i class="fa-solid fa-cart-shopping text-black"></i><span class="ml-2">Market</span>
@@ -39,8 +39,8 @@
                 <div class="md:hidden">
                     <router-link to="/" class="block my-2  hover:text-blue-500 text-3xl "><i
                             class="fa-solid fa-house"></i><span class="ml-5">Home</span></router-link>
-                    <router-link to="/blog" class="block my-2  hover:text-blue-500 text-3xl ">
-                        <i class="fa-solid fa-blog "></i><span class="ml-6">Blog</span>
+                    <router-link to="/blogs" class="block my-2  hover:text-blue-500 text-3xl ">
+                        <i class="fa-solid fa-blog "></i><span class="ml-6">Blogs</span>
                     </router-link>
                     <router-link to="/products" class="block my-2 text-gray-800 hover:text-blue-500 text-3xl ">
                         <i class="fa-solid fa-cart-shopping "></i><span class="ml-6">Market</span>

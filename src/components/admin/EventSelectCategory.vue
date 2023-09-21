@@ -20,7 +20,7 @@ export default {
     category: {
       type: Object,
     },
-     label: {
+    label: {
       type: String,
       default: 'Category',
     },
@@ -35,7 +35,7 @@ export default {
     },
     async fetchCategories() {
       try {
-        const res = await FeathersClient.service('products-categories').find({
+        const res = await FeathersClient.service('events-categories').find({
           query: {
             $limit: 100,
             $skip: 0,

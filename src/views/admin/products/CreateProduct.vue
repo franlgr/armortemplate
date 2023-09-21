@@ -2,7 +2,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Create Product"></AdminHeader>
+            <AdminHeader title="Create Product" icon="fa-solid fa-square-plus"></AdminHeader>
             <!-- {{getUser}} -->
             <div class="mt-6">
                 <router-link to="/admin/products"
@@ -42,10 +42,11 @@
 
                         <br>
                         <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
-                            help="What is your title product ?" validation="required" />
+                            help="What is your price for this product ?" validation="required" />
                         <br>
+                        
                         <!-- {{ newProduct }} -->
-                        <ProductSelectCategory v-on:category="setCategory" />
+                        <ProductSelectCategory label="What is your product category ?" v-on:category="setCategory" />
                         <br>
                         <p class="text-lg font-bold">Meta Data Description</p>
 

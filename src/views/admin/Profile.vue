@@ -2,17 +2,48 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="Profile"></AdminHeader>
+            <AdminHeader title="Profile" icon="fa-solid fa-user"></AdminHeader>
             <!-- {{getUser}} -->
-
+             <div class="mt-6">
+                <router-link to="/admin/"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18">
+                        </path>
+                    </svg>
+                    Volver Atrás
+                </router-link>
+            </div>
             <div class="2xl:container md:w-1/2 m-auto px-8">
                 <div class=" ">
                     <div>
                         <div class="mb-4 mt-4">
                             <img :src="formData.image" alt="" class="w-64 h-64 m-auto rounded-full object-cover">
                         </div>
-                        <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
-                        <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
+                    
+                        <div v-if="!edit">
+                            <p>{{getUser.email}}</p>
+                        <p>{{getUser.role}}</p>
+                        <p>{{getUser.name}}</p>
+                        <p>{{getUser.lastname}}</p>
+                        <p>{{getUser.telephone}}</p>
+                        <p>{{getUser.address}}</p>
+                        <p>{{getUser.city}}</p>
+                        <p>{{getUser.country}}</p>
+                         <!-- Boton editar profile -->
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 mt-2 rounded "
+                            @click="edit = !edit">
+                            Edit Profile
+                        </button>
+
+                        </div>
+                        
+                       
+                        <div v-if="edit">
+                            <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
+                        <FormKit  type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
                             submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
                             v-model="formData">
                             <h1>Profile</h1>
@@ -60,6 +91,7 @@
                             <FormKit type="submit" label="Guardar" />
                             <!-- <pre wrap>{{ value }}</pre> -->
                         </FormKit>
+                        </div>
                     </div>
                     <!-- <div v-if="submitted">
                         <h2>Submission successful!</h2>
@@ -82,6 +114,7 @@ export default {
     data: () => ({
         submitted: false,
         formData: {},
+        edit: false,
     }),
     mounted() {
         this.formData = this.getUser
@@ -102,7 +135,7 @@ export default {
             FeathersClient.service('users').patch(this.getUser._id, this.formData).then(res => {
                 console.log(res)
 
-                this.$snotify.success('Product Save', 'Save', {
+                this.$snotify.success('Profile Save', 'Save', {
                     timeout: 2000,
                     showProgressBar: false,
                     closeOnClick: false,
@@ -110,7 +143,8 @@ export default {
                 });
                 this.loadingSet(false);
                 this.setUser(res)
-                this.$router.push({ name: 'admin-dashboard' })
+                this.edit = false;
+                this.$router.push({ name: 'admin-profile' })
             }).catch(error => {
                 console.log(error)
                 this.loadingSet(false);
