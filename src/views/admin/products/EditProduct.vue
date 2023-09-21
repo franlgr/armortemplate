@@ -28,9 +28,9 @@
 
         <div class="carousel carousel-end rounded-box fix p-8">
 
-            <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
-                <div>
-                    <img class="w-24 m-auto" :src="image" alt="Drink" />
+            <div class="carousel-item" v-for="image in images" :key="image.index">
+                <div class="m-auto">
+                    <img class="w-24" :src="image" alt="Drink" />
                     <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
                 </div>
 

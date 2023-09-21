@@ -29,9 +29,10 @@ export default {
     },
     methods: {
         async resultsHandler(results) {
-            console.log(results.result.geometry.coordinates);
+            console.log("select map results", results.result);
             //Emit
             this.$emit('location', results.result.geometry.coordinates);
+            this.$emit('placeName', results.result.place_name);
             // console.log(results.geometry.coordinates);
         }
 

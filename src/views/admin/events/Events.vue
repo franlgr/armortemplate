@@ -28,6 +28,7 @@
                             </label>
                         </th>
                         <td>
+                        
                             <div class="flex items-center space-x-3">
                                 <div class="avatar">
                                     <div class="mask mask-squircle w-12 h-12">
@@ -36,12 +37,12 @@
                                 </div>
                                 <div>
                                     <div class="font-bold">{{event.title}}</div>
-                                    <div class="text-sm opacity-50">{{event.location}}</div>
+                                    <div class="text-sm opacity-50">{{event.placeName}}</div>
                                 </div>
                             </div>
                         </td>
                         <td>
-                            {{event.price}}
+                            u$s {{event.price}}
                             <br />
 
                         </td>
@@ -62,7 +63,7 @@
                                     </button>
                                 </router-link>
                                 <div class="flex items-center">
-                                    <button @click="deleteCategoryConfirm(event._id)"
+                                    <button @click="deleteEventConfirm(event._id)"
                                         class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
                                         <i class="fas fa-trash-alt text-red-500"></i>
                                     </button>
@@ -85,7 +86,7 @@
             </table>
         </div>
 
-        {{ events }}
+        <!-- {{ events }} -->
 
 
     </div>
@@ -130,7 +131,20 @@ export default {
                 this.loadingSet(false)
             }
         },
-        async deleteEvent(id) {
+         async deleteEventConfirm(id) {
+            this.$snotify.confirm('Are you sure you want to delete this product ?', 'Delete Product', {
+                timeout: 5000,
+                showProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                buttons: [
+                    { text: 'Yes', action: (toast) => this.deleteEvent(id, toast.id), bold: false },
+                    { text: 'Close', action: (toast) => { console.log('Clicked: No'); this.$snotify.remove(toast.id); }, bold: true },
+                ]
+            });
+        },
+        async deleteEvent(id, toastId) {
+            this.$snotify.remove(toastId);
             this.loadingSet(true)
             try {
                 await FeathersClient.service('events').remove(id)

@@ -17,6 +17,13 @@
             </div>
             <div class="2xl:container md:w-2/3 m-auto px-8 ">
                 <div class="">
+                 <div class="carousel-item " v-for="image in images" :key="image.index">
+                        <div class="m-auto">
+                            <img class="w-64" style="margin:auto" :src="image" alt="Drink" />
+                            <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
+                        </div>
+    
+                    </div>
                     <!-- componente para subir muchas imagenes  -->
                     <UploadImages title="Upload Event Images/Flayers" class="my-4" v-on:links="links"></UploadImages>
 
@@ -34,7 +41,7 @@
                         validation="required|date_after:2023-01-01" validation-visibility="live" />
                         <br>
                         <p for="map" class="description">Search Location for event</p>
-                        <MapBox label="map" v-on:location="setLocation"></MapBox>
+                        <MapBox v-on:placeName="setPlaceName" label="map" v-on:location="setLocation"></MapBox>
                         <br>
                         
                         <FormKit class="mt-4 fix-margin"  type="number" name="price" label="USD TICKET" placeholder="800"
@@ -45,10 +52,10 @@
                         <p class="text-lg font-bold">Meta Data SEO </p>
                         <br>
                         <FormKit class="mt-4" type="text" name="meta-title"  label="title for meta"
-                            placeholder="red jacket like new" help="event title for meta seo" validation="required" />
+                            placeholder="red jacket like new" help="event title for meta seo" />
                         <FormKit class="mt-4" type="text" name="meta-content" label="content for meta"
                             placeholder="It is very well cared for, I used it very little." help="Describe your event ?"
-                            validation="required" />
+                             />
                         <FormKit type="submit" label="Create Event" />
                         <!-- {{formData}} -->
                     </FormKit>
@@ -131,6 +138,10 @@ export default {
             this.formData.location = location;
 
         },
+         setPlaceName(placeName) {
+            // console.log('setPlaceName', placeName);
+            this.formData.placeName = placeName;
+        },
         //esta funcion recibe los links de las imagenes que se suben al componente UploadImages
         links(links) {
             console.log('links', links);
@@ -145,40 +156,6 @@ export default {
         deleteImage(id) {
             this.images.splice(id, 1);
         },
-        async createProduct() {
-            try {
-                //creamos el producto en feathers
-                const res = await FeathersClient.service('products').create({
-                    title: this.formData.name,
-                    content: this.editorData,
-                    price: this.formData.price,
-                    images: this.images,
-                    category: this.newProduct.category,
-                    metaData: this.metaData,
-                    user_id: this.getUser._id,
-                    user: this.getUser,
-                });
-
-                //notificacion de exito
-                this.$snotify.success('Product Created', 'Success', {
-                    timeout: 2000,
-                    showProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                });
-                this.$router.push({ name: 'admin-products' });
-            } catch (error) {
-                //imprimimos y notificamos si hay error
-                console.error(error);
-                this.$snotify.error(error, 'Error', {
-                    timeout: 2000,
-                    showProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                });
-            }
-
-        },
         async createEvent(){
             try {
                 //creamos el producto en feathers
@@ -186,7 +163,9 @@ export default {
                     title: this.formData.title,
                     content: this.formData.content,
                     price: this.formData.price,
+                    date: this.formData.date,
                     location: this.formData.location,
+                    placeName: this.formData.placeName,
                     images: this.images,
                     category: this.formData.category,
                     category_id: this.formData.category._id,
