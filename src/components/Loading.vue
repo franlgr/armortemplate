@@ -1,6 +1,7 @@
 <template>
   <div class="loading-overlay">
-    <span class="loading loading-spinner loading-lg"></span>
+    <!-- <span class="loading loading-spinner loading-lg"></span> -->
+    <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo ease-in duration-300 animate-ping" alt="tailus logo">
   </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
 }
 
 .loading-spinner {
-    z-index: 99999;
+  z-index: 99999;
   /* Estilos para tu spinner, puedes personalizarlos según tus necesidades */
 }
 </style>

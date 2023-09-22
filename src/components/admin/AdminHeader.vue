@@ -15,50 +15,79 @@
 
       <div class="flex space-x-4">
         <!--search bar -->
-        <div hidden class="md:block">
-          <div class="relative flex items-center text-gray-400 focus-within:text-cyan-400">
-            <span class="absolute left-4 h-6 flex items-center pr-3 border-r border-gray-300">
-              <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 fill-current fix-search" viewBox="0 0 35.997 36.004">
-                <path id="Icon_awesome-search" data-name="search"
-                  d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z">
-                </path>
-              </svg>
-            </span>
-            <input type="search" name="leadingIcon" id="leadingIcon" placeholder="Search here"
-              class="w-full pl-14 pr-4 py-2.5 rounded-xl text-sm text-gray-600 outline-none border border-gray-300 focus:border-cyan-300 transition" />
-          </div>
-        </div>
+
         <!--/search bar -->
-        <button aria-label="search"
-          class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden">
-          <svg xmlns="http://ww50w3.org/2000/svg" class="w-4 mx-auto fill-current text-gray-600 fix-search"
-            viewBox="0 0 35.997 36.004">
-            <path id="Icon_awesome-search" data-name="search"
-              d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z">
-            </path>
-          </svg>
-        </button>
-        <button aria-label="chat" class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600 fix" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-          </svg>
-        </button>
-        <div class="relative">
-          <button @click="notification = !notification" aria-label="notification"
-            class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 relative">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-auto text-gray-600 fix" viewBox="0 0 20 20"
-              fill="currentColor">
+        <div class="relative mt-4 ">
+          <!-- <button @click="notification = !notification" aria-label="notification"
+            class="w-14 h-14 rounded-xl border left-1 bg-gray-100 focus:bg-gray-100 active:bg-gray-200 relative mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 m-auto text-gray-600 fix right-1"
+              style="margin-left: 5px;" viewBox="0 0 20 20" fill="currentColor">
               <path
                 d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
             </svg>
             <span
-              class="absolute top-0 right-0 bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-xs">5</span>
+              class="absolute bottom-10 left-10 bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-xs">5</span>
           </button>
+          <button @click="notification = !notification" aria-label="notification"
+            class="w-14 h-14  rounded-xl border left-1 bg-gray-100 focus:bg-gray-100 active:bg-gray-200 relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 m-auto text-gray-600 fix right-1"
+              style="margin-left: 5px;" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+            </svg>
+            <span
+              class="absolute bottom-10 left-10 bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-xs">5</span>
+          </button> -->
+          <div class="navbar ">
+            <div class="flex-none">
+              <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost btn-circle">
+                  <div class="indicator">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span class="badge badge-sm indicator-item">8</span>
+                  </div>
+                </label>
+                <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                  <div class="card-body">
+                    <span class="font-bold text-lg">8 Items</span>
+                    <span class="text-info">Subtotal: $999</span>
+                    <div class="card-actions">
+                      <button class="btn btn-primary btn-block">View cart</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                  <div class="w-10 rounded-full">
+                    <img :src="getUser.image" />
+                  </div>
+                </label>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                  <li>
+                    <a class="justify-between">
+                      Profile
+                      <span class="badge">New</span>
+                    </a>
+                  </li>
+                  <li><a>Settings</a></li>
+                  <li><a>Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="m-auto mt-4 text-center">
+            <router-link to="/" title="home">
+              <button class="btn px-4 bg-green-500 text-center ">Go Site</button>
+            </router-link>
+          </div> -->
 
-          <div class="absolute noty" v-if="notification">
-            <div class="flex items-center bg-green-300 p-4">
+          <div class="absolute noty " v-if="notification">
+            <div class="flex items-center bg-green-300 p-4 rounded-md">
               <div class="relative inline-block shrink-0">
                 <img class="w-12 h-12 rounded-full" src="https://picsum.photos/200/300" alt="Jese Leos image" />
                 <span
@@ -121,14 +150,14 @@ export default {
     // },
   },
   computed: {
-    ...mapGetters(['getMenuState']),
+    ...mapGetters(['getMenuState', 'getUser']),
   },
 };
 </script>
 <style>
 .noty {
   right: 1px;
-  top: 80px;
+  top: 110px;
   width: 300px;
 }
 </style>

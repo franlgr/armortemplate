@@ -1,43 +1,42 @@
 <template>
     <div class="text-white text-4xl">
         <SiteHeader></SiteHeader>
+
+        <p class="text-3xl text-center text-black py-8">Events</p>
+
         <section class="bg-white dark:bg-gray-900">
-            <div class="container px-6 py-10 mx-auto animate-pulse">
+            <div class="container px-6 py-10 mx-auto">
                 <h1 class="w-48 h-2 mx-auto bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
 
                 <p class="w-64 h-2 mx-auto mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
                 <p class="w-64 h-2 mx-auto mt-4 bg-gray-200 rounded-lg sm:w-80 dark:bg-gray-700"></p>
 
-                <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3">
-                    <div class="w-full ">
-                        <div class="w-full h-64 bg-gray-100 rounded-lg "></div>
-
-
-                        <h1 class="w-56 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-                        <p class="w-24 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="card-normal shadow-xl my-2 p-2 text-black rounded-md" v-for="event in events"
+                        :key="event.index">
+                        <figure><img :src="event.images[0]" style="min-height: 200px; width: 100%;" alt="Shoes"
+                                class="mt-2" />
+                        </figure>
+                        <div class="card-body text-black">
+                            <h2 class="card-title">
+                                Shoes!
+                                <div class="badge badge-secondary">NEW</div>
+                            </h2>
+                            <p>If a dog chews shoes whose shoes does he choose?</p>
+                            <div class="card-actions justify-end">
+                                <div class="badge badge-outline">Fashion</div>
+                                <div class="badge badge-outline">Products</div>
+                            </div>
+                        </div>
+                        <!-- <button class="btn btn-wide mt-4 w-full"></button> -->
+                        <router-link :to="{ name: 'site-event', params: { id: event._id } }"
+                            class="btn w-full mt-4">View</router-link>
                     </div>
-
-                    <div class="w-full ">
-                        <!-- <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"></div> -->
-                        <img class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600" src="https://picsum.photos/200/300"
-                            alt="">
-
-                        <h1 class="w-56 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-                        <p class="w-24 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-                    </div>
-                    <div class="w-full ">
-                        <!-- <div class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600"></div> -->
-                        <img class="w-full h-64 bg-gray-300 rounded-lg dark:bg-gray-600" src="https://picsum.photos/200/300"
-                            alt="">
-
-                        <h1 class="w-56 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-                        <p class="w-24 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-                    </div>
-    
                 </div>
             </div>
         </section>
-        {{ events }}
+
+
     </div>
 </template>
 <script>
@@ -86,6 +85,15 @@ export default {
                 this.loadingSet(false)
             }
         },
+    },
+    computed: {
+        primerImagen() {
+            if (this.events.images && this.events.images.length > 0) {
+                return this.events.images[0];
+            }
+            // Si el array está vacío o no existe, puedes devolver un valor predeterminado o null
+            return null; // Cambia esto según tus necesidades
+        }
     }
 }
 </script>

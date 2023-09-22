@@ -7,13 +7,10 @@
                     <button class="text-white bg-black lg:hidden m-4 " @click="toggleMenu()">Close</button>
                     <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
                         <router-link to="/" title="home" class="mb-4 ">
-                            <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo " alt="tailus logo">
+                            <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo ease-in duration-300 animate-pulse"
+                                alt="tailus logo">
                         </router-link>
-                        <div class="m-auto mt-4 text-center">
-                            <router-link to="/" title="home">
-                                <button class="btn px-4 bg-green-500 text-center ">Go Site</button>
-                            </router-link>
-                        </div>
+
 
                     </div>
                     <div class=" text-center p-4">
@@ -204,8 +201,7 @@
                 </div>
             </aside>
             <Loading v-if="isLoading" />
-            <router-view class=" ml-auto scroll lg:w-[75%] xl:w-[80%] 2xl:w-[85%] bg-gray-100 "
-                z-index="99999"></router-view>
+            <router-view class=" ml-auto scroll lg:w-[75%] xl:w-[80%] 2xl:w-[85%] background" z-index="99999"></router-view>
 
         </div>
     </div>
@@ -281,6 +277,10 @@ export default {
 .menuAdmin {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;
+}
+
+.background {
+    background-color: #f4f6f8 !important;
 }
 
 .contenedor {
