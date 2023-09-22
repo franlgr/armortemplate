@@ -49,7 +49,7 @@
         {
         cloudName: this.cloudName,
         uploadPreset: this.uploadPreset,
-        // cropping: true, //add a cropping step
+        cropping: false, //add a cropping step
         // showAdvancedOptions: true,  //add advanced options (public_id and tag)
         // sources: [ "local", "url"], // restrict the upload sources to URL and local files
         multiple: false,  //restrict upload to a single file
@@ -65,7 +65,7 @@
             if (!error && result && result.event === "success") {
                 console.log("Done! Here is the image info: ", result);
                 this.url = result.info.secure_url
-                this.$emit('links', result.info.secure_url)
+                this.$emit('link', result.info.secure_url)
             }
         }
   );

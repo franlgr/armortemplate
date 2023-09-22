@@ -64,7 +64,7 @@
                         <!-- <img class="w-24 m-auto" :src="metaData.img" alt="IMG" /> -->
                         <!-- componente para subir una imagen -->
                         {{formData}}
-                        <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
+                        <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
 
                     </div>
                 </div>

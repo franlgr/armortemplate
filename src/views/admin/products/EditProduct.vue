@@ -42,7 +42,7 @@
         <div class=" m-4 2xl:container my-4">
             <div class="">
         
-                <FormKit type="form" id="guardar-example" submit-label="Register" @submit="submitHandler" v-model="data"
+                <FormKit type="form"  :ignore="true" @submit="submitHandler" v-model="data"
                     :actions="false">
                     <FormKit class="mt-4" type="text" name="title" label="Title Product"
                         placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
@@ -64,14 +64,18 @@
                         validation="required" />
                     <FormKit type="submit" label="Save Product" />
                 </FormKit>
+                
+                {{metaData}}
                 <div name="metaData" style="padding-bottom:50px">
                     <p>Image for Meta Data Seo</p>
                     <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
-                    <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
+                    
                 </div>
 
             </div>
+            
         </div>
+        <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
     </div>
 </template>
 
@@ -100,7 +104,7 @@ export default {
             options: [],
             images: [],
             // links: [],
-            linkImgMeta: [],
+            ImgMeta: "",
             data: {},
             category: {},
             editProduct: {
@@ -119,7 +123,7 @@ export default {
         AdminHeader,
         ProductSelectCategory,
         UploadImages,
-        // UploadImg,
+        UploadImg,
     },
 
 
@@ -130,7 +134,7 @@ export default {
             console.log('links', links);
             this.images.push(links);
         },
-        linkImgMeta(link) {
+        async linkImgMeta(link) {
             console.log('linkImgMeta', link);
             this.metaData.img = link;
         },
@@ -142,7 +146,7 @@ export default {
             this.loadingSet(true);
             try {
                 const res = await FeathersClient.service('products').get(id);
-                console.log('fetchProducts', res.content);
+                // console.log('fetchProducts', res.content);
                 // this.fetchCategories();
                 this.product = res;
                 this.category = res.category;
@@ -192,7 +196,7 @@ export default {
                     content: this.editorData,
                     price: this.data.price,
                     category: this.editProduct.category,
-
+                    category_id: this.editProduct.category._id,
                     metaData: {
                         title: this.data.titleMeta,
                         content: this.data.contentMeta,

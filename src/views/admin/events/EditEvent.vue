@@ -31,7 +31,7 @@
     
                     <!-- Este es el framework formkit fijate que hay otros adentro de uno pero este es el 
                                     importante porque es el que tiene la funcion a disparar cuando se le da al boton. -->
-                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData" #default="value">
+                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'" submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData" >
                         <FormKit class="mt-4" type="text" name="title" label="Title Event" placeholder="Leather jacket like new" help="What is your title event ?" validation="required" />
                         <p for="description" class="description">Description</p>
                         <ckeditor id="ckeditor" class="my-4" v-model="formData.content" :placeholder="editorData" label="description" :editor="editor" :config="editorConfig"></ckeditor>
@@ -60,7 +60,7 @@
                         <!-- <img class="w-24 m-auto" :src="metaData.img" alt="IMG" /> -->
                         <!-- componente para subir una imagen -->
                         {{ formData }}
-                        <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
+                        <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,8 @@ export default {
             this.images.push(links);
         },
         //esta funcion recibe el link de la imagen que se sube al componente UploadImg
-        linkImgMeta(link) {
+        async linkImgMeta(link) {
+            // await new Promise((resolve) => setTimeout(resolve, 1000));
             console.log('linkImgMeta', link);
             this.formData.metaData.img = link;
         },

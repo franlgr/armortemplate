@@ -116,18 +116,7 @@ export default {
 
     },
     mounted() {
-
-
         this.fetchProducts();
-
-
-        // this.$snotify.success('Example body content', 'Example title', {
-        //     timeout: 2000,
-        //     showProgressBar: false,
-        //     closeOnClick: false,
-        //     pauseOnHover: true
-        // });
-
     },
     methods: {
         ...mapActions(['loadingSet']),
@@ -210,34 +199,6 @@ export default {
             this.currentPage = pageNumber;
             this.fetchProducts();
         },
-        //hay que resolver devolver el nombre de la categoria segun el id 
-
-        // async getCategory(id) {
-        //     console.log('getCategory', id);
-        //     return "res";
-        //     const res = await FeathersClient.service('products-categories').get(id)
-
-
-
-        //     // try {
-        //     //     const res = await FeathersClient.service('products-categories').get(id);
-        //     //     console.log('getCategory', res.title);
-        //     //     return res.title;
-        //     // } catch (error) {
-        //     //     console.error(error);
-        //     // }
-
-        // },
-
-    },
-    // watch get category
-    // watch: {
-    //     async getCategory(id) {
-    //         console.log('getCategory', id);
-    //         const res = await FeathersClient.service('products-categories').get(id);
-    //         console.log('getCategory', res.title);
-    //         return res.title;
-    //     },
     computed: {
 
         ...mapGetters(['getUser']),

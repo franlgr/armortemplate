@@ -65,8 +65,9 @@
                         <p>Image for Meta Data Seo</p>
                         <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
                         <!-- componente para subir una imagen -->
-                        <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
+                        <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
                     </div>
+                    {{newProduct.category}}
                 </div>
             </div>
         </div>
@@ -156,6 +157,7 @@ export default {
                     price: this.formData.price,
                     images: this.images,
                     category: this.newProduct.category,
+                    category_id: this.newProduct.category._id,
                     metaData: this.metaData,
                     user_id: this.getUser._id,
                     user: this.getUser,

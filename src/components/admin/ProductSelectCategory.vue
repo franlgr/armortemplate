@@ -1,7 +1,8 @@
 <template>
   <div>
     <FormKit type="select" :label="label" @change="onSelectedCategory" :options="options"
-      help="Don’t worry, you can’t get this one wrong." v-model="value" />
+      help="Don’t worry, you can’t get this one wrong."  v-model="value" />
+      {{value}}
   </div>
 </template>
 
