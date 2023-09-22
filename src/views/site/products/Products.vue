@@ -403,6 +403,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import FeathersClient from '@/FeathersClient'
 import SiteHeader from '@/components/site/SiteHeader.vue'
 import MarketCategories from '@/components/site/market/MarketCategories.vue'
@@ -427,19 +428,24 @@ export default {
         console.log(this.variableDeURL)
     },
     methods: {
-
-        fetchProducts() {
-            FeathersClient.service('products').find({
-                query: {
-                    //  user_id: this.getUser._id,
-                    $limit: this.perPage,
-                    $skip: (this.currentPage - 1) * this.perPage,
-                    // $limit: 10
-                }
-            }).then(products => {
-                console.log(products)
-                this.products = products.data
-            })
+        ...mapActions(['loadingSet']),
+        async fetchProducts() {
+            try {
+                this.loadingSet(true)
+                const response = await FeathersClient.service('products').find({
+                    query: {
+                        $limit: this.perPage,
+                        $skip: (this.currentPage - 1) * this.perPage,
+                        $sort: {
+                            createdAt: -1
+                        }
+                    }
+                })
+                this.products = response.data
+                this.loadingSet(false)
+            } catch (error) {
+                console.log(error)
+            }
         },
         fetchCategories() {
             FeathersClient.service('products-categories').find({

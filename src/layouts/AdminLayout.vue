@@ -214,7 +214,6 @@ import { mapActions, mapGetters } from 'vuex';
 import Loading from '@/components/Loading.vue';
 
 export default {
-    name: 'AdminLayout',
     data() {
         return {
             admin: false,
