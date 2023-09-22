@@ -107,7 +107,7 @@ app.get('/products/:id_product', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `http://64.227.76.217:1313/products/${req.params.id_product}`,
+      `https://armor-api.alguientiene.com/products/${req.params.id_product}`,
     );
     // console.log(response.data);
     console.log('response.data.metaData');
