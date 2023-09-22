@@ -151,10 +151,10 @@ app.get('/events/:id_event', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://armor-api.alguientiene.com/events/${req.params.id_product}`,
+      `https://armor-api.alguientiene.com/events/${req.params.id_event}`,
     );
     // console.log(response.data);
-    console.log('response.data.metaData');
+    console.log('response.data.metaData event');
     data = response.data.metaData;
   } catch (error) {
     console.error(error);
