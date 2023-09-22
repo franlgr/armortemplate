@@ -30,7 +30,7 @@
                     <!-- Este es el framework formkit fijate que hay otros adentro de uno pero este es el 
                         importante porque es el que tiene la funcion a disparar cuando se le da al boton. -->
                     <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'"
-                        submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData" #default="value" >
+                        submit-label="Register" @submit="submitHandler" :actions="false" v-model="formData"  >
                         <FormKit class="mt-4" type="text" name="title" label="Title Event"
                             placeholder="Leather jacket like new" help="What is your title event ?"
                             validation="required" />

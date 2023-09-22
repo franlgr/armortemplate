@@ -199,6 +199,7 @@ export default {
             this.currentPage = pageNumber;
             this.fetchProducts();
         },
+    },
     computed: {
 
         ...mapGetters(['getUser']),
