@@ -42,7 +42,7 @@
 
 
                         <div v-if="edit">
-                            <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
+                            <UploadImg class="" title="Upload Image" v-on:link="link"></UploadImg>
                             <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
                                 submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
                                 v-model="formData">
@@ -158,7 +158,7 @@ export default {
 
             this.submitted = true;
         },
-        links(url) {
+        link(url) {
             console.log(url)
             this.formData.image = url;
         },
