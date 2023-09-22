@@ -11,7 +11,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
                 </path>
             </svg>
-            Volver Atrás
+            Go back
         </router-link> -->
         <div class="mt-6">
 
@@ -22,7 +22,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
                     </path>
                 </svg>
-                Volver Atrás
+                Go back
             </router-link>
         </div>
 
@@ -41,9 +41,8 @@
         <UploadImages title="Upload Product Images" class="my-4" v-on:links="links"></UploadImages>
         <div class=" m-4 2xl:container my-4">
             <div class="">
-        
-                <FormKit type="form"  :ignore="true" @submit="submitHandler" v-model="data"
-                    :actions="false">
+
+                <FormKit type="form" :ignore="true" @submit="submitHandler" v-model="data" :actions="false">
                     <FormKit class="mt-4" type="text" name="title" label="Title Product"
                         placeholder="Leather jacket like new" help="What is your title product ?" validation="required" />
                     <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
@@ -64,16 +63,16 @@
                         validation="required" />
                     <FormKit type="submit" label="Save Product" />
                 </FormKit>
-                
-                {{metaData}}
+
+                {{ metaData }}
                 <div name="metaData" style="padding-bottom:50px">
                     <p>Image for Meta Data Seo</p>
                     <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
-                    
+
                 </div>
 
             </div>
-            
+
         </div>
         <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
     </div>

@@ -4,7 +4,7 @@
         <div>
             <AdminHeader title="Profile" icon="fa-solid fa-user"></AdminHeader>
             <!-- {{getUser}} -->
-             <div class="mt-6">
+            <div class="mt-6">
                 <router-link to="/admin/"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none"
@@ -13,7 +13,7 @@
                             d="M10 19l-7-7m0 0l7-7m-7 7h18">
                         </path>
                     </svg>
-                    Volver Atrás
+                    Go back
                 </router-link>
             </div>
             <div class="2xl:container md:w-1/2 m-auto px-8">
@@ -22,51 +22,51 @@
                         <div class="mb-4 mt-4">
                             <img :src="formData.image" alt="" class="w-64 h-64 m-auto rounded-full object-cover">
                         </div>
-                    
+
                         <div v-if="!edit">
-                            <p>{{getUser.email}}</p>
-                        <p>{{getUser.role}}</p>
-                        <p>{{getUser.name}}</p>
-                        <p>{{getUser.lastname}}</p>
-                        <p>{{getUser.telephone}}</p>
-                        <p>{{getUser.address}}</p>
-                        <p>{{getUser.city}}</p>
-                        <p>{{getUser.country}}</p>
-                         <!-- Boton editar profile -->
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 mt-2 rounded "
-                            @click="edit = !edit">
-                            Edit Profile
-                        </button>
+                            <p>{{ getUser.email }}</p>
+                            <p>{{ getUser.role }}</p>
+                            <p>{{ getUser.name }}</p>
+                            <p>{{ getUser.lastname }}</p>
+                            <p>{{ getUser.telephone }}</p>
+                            <p>{{ getUser.address }}</p>
+                            <p>{{ getUser.city }}</p>
+                            <p>{{ getUser.country }}</p>
+                            <!-- Boton editar profile -->
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 mt-2 rounded "
+                                @click="edit = !edit">
+                                Edit Profile
+                            </button>
 
                         </div>
-                        
-                       
+
+
                         <div v-if="edit">
                             <UploadImg class="" title="Upload Image" v-on:links="links"></UploadImg>
-                        <FormKit  type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
-                            submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
-                            v-model="formData">
-                            <h1>Profile</h1>
-                            <p>
-                                You can put any type of element inside a form, not just FormKit inputs (although only
-                                FormKit inputs are included with the submission).
-                            </p>
+                            <FormKit type="form" id="registration-example" :form-class="submitted ? 'hide' : 'show'"
+                                submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
+                                v-model="formData">
+                                <h1>Profile</h1>
+                                <p>
+                                    You can put any type of element inside a form, not just FormKit inputs (although only
+                                    FormKit inputs are included with the submission).
+                                </p>
 
-                            <hr />
+                                <hr />
 
-                            <FormKit type="text" name="name" label="Your name" placeholder="Jane" help="What is your name?"
-                                validation="required" />
-                            <FormKit type="text" name="lastname" label="Your Last Name" placeholder="Doe"
-                                help="What is your first name?" validation="required" />
-                            <FormKit type="text" name="email" label="Your email" placeholder="jane@example.com"
-                                help="What email should we use?" validation="required|email" />
-                            <FormKit type="number" name="telephone" label="Your Telephone" placeholder="+54 3548 639432"
-                                help="What is your Telephone?" validation="required|number" />
-                            <FormKit type="text" name="address" label="Your Address" placeholder="Av. Libertador 1421"
-                                help="What is address?" validation="required" />
-                            <FormKit type="text" name="city" label="Your City" placeholder="Las Vegas, EEUU"
-                                help="What is your City?" validation="required" />
-                            <!-- <div class="double">
+                                <FormKit type="text" name="name" label="Your name" placeholder="Jane"
+                                    help="What is your name?" validation="required" />
+                                <FormKit type="text" name="lastname" label="Your Last Name" placeholder="Doe"
+                                    help="What is your first name?" validation="required" />
+                                <FormKit type="text" name="email" label="Your email" placeholder="jane@example.com"
+                                    help="What email should we use?" validation="required|email" />
+                                <FormKit type="number" name="telephone" label="Your Telephone" placeholder="+54 3548 639432"
+                                    help="What is your Telephone?" validation="required|number" />
+                                <FormKit type="text" name="address" label="Your Address" placeholder="Av. Libertador 1421"
+                                    help="What is address?" validation="required" />
+                                <FormKit type="text" name="city" label="Your City" placeholder="Las Vegas, EEUU"
+                                    help="What is your City?" validation="required" />
+                                <!-- <div class="double">
           <FormKit
             type="password"
             name="password"
@@ -88,9 +88,9 @@
           />
         </div> -->
 
-                            <FormKit type="submit" label="Guardar" />
-                            <!-- <pre wrap>{{ value }}</pre> -->
-                        </FormKit>
+                                <FormKit type="submit" label="Guardar" />
+                                <!-- <pre wrap>{{ value }}</pre> -->
+                            </FormKit>
                         </div>
                     </div>
                     <!-- <div v-if="submitted">

@@ -10,7 +10,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18">
           </path>
         </svg>
-        Volver Atrás
+        Go back
       </router-link>
       <div class="my-4">
         <label for="image" class="font-bold p-4">Image</label>

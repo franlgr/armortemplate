@@ -10,7 +10,7 @@
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg> Volver Atrás
+                    </svg> Go back
                 </router-link>
             </div>
             <div class="2xl:container md:w-2/3 m-auto px-8">

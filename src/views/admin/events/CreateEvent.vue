@@ -12,7 +12,7 @@
                             d="M10 19l-7-7m0 0l7-7m-7 7h18">
                         </path>
                     </svg>
-                    Volver Atrás
+                    Go back
                 </router-link>
             </div>
             <div class="2xl:container md:w-2/3 m-auto px-8 ">

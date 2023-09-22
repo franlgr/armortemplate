@@ -13,7 +13,7 @@
                             d="M10 19l-7-7m0 0l7-7m-7 7h18">
                         </path>
                     </svg>
-                    Volver Atrás
+                    Go back
                 </router-link>
             </div>
             <div class="carousel carousel-end rounded-box fix">
@@ -44,7 +44,7 @@
                         <FormKit class="mt-4" type="number" name="price" label="USD PRICE" placeholder="800"
                             help="What is your price for this product ?" validation="required" />
                         <br>
-                        
+
                         <!-- {{ newProduct }} -->
                         <ProductSelectCategory label="What is your product category ?" v-on:category="setCategory" />
                         <br>
@@ -67,7 +67,7 @@
                         <!-- componente para subir una imagen -->
                         <UploadImg title="Upload Meta Image" class="my-4" v-on:link="linkImgMeta"></UploadImg>
                     </div>
-                    {{newProduct.category}}
+                    {{ newProduct.category }}
                 </div>
             </div>
         </div>
