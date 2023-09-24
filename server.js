@@ -140,20 +140,20 @@ app.get('/products/:id_product', async (req, res) => {
 <!-- Google / Search Engine Tags -->
 <meta itemprop="name" content="Performance Running Shoes">
 <meta itemprop="description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-<meta itemprop="image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+<meta itemprop="image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
 
 <!-- Facebook Meta Tags -->
 <meta property="og:url" content="https://armor.alguientiene.com/products/6508a5868ffa5650fb3258c8">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Performance Running Shoes">
 <meta property="og:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-<meta property="og:image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+<meta property="og:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
 
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Performance Running Shoes">
 <meta name="twitter:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-<meta name="twitter:image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+<meta name="twitter:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
 
 <!-- Meta Tags Generated via http://heymeta.com -->
     `;
