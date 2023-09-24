@@ -35,7 +35,7 @@
         <div class="lg:w-1/4">
           <!-- ./sidebar -->
           <div class=" ">
-            <div class="divide-y divide-gray-200 space-y-5">
+            <div class="divide-y divide-gray-200 space-y-5 p-4 mb:p-0">
               <MarketCategories
                 :categories="categories"
                 :tag="tag"

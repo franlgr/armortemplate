@@ -20,9 +20,9 @@ atego
             >
               <div
                 class="flex items-end justify-end h-56 w-full bg-cover"
-                style="
-                  background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80');
-                "
+                :style="{
+                  'background-image': 'url(' + product.images[0] + ')',
+                }"
               >
                 <button
                   class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500"
@@ -55,6 +55,7 @@ atego
 </template>
 <script>
   import FeathersClient from '@/FeathersClient';
+  import { mapActions } from 'vuex';
   export default {
     name: 'MoreProductsByCategory',
     data() {
@@ -74,9 +75,11 @@ atego
       this.getProducts();
     },
     methods: {
+      ...mapActions(['loadingSet']),
       async getProducts() {
         try {
           if (!this.category) {
+            this.loadingSet(true);
             const response = await FeathersClient.service('products').find({
               query: {
                 $limit: 4,
@@ -88,6 +91,7 @@ atego
               },
             });
           }
+          this.loadingSet(true);
           const response = await FeathersClient.service('products').find({
             query: {
               $limit: 4,
@@ -100,7 +104,9 @@ atego
             },
           });
           this.products = response.data;
+          this.loadingSet(false);
         } catch (error) {
+          this.loadingSet(false);
           console.log(error);
         }
       },

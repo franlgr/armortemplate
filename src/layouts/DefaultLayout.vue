@@ -120,6 +120,7 @@
         :class="
           cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'
         "
+        style="z-index: 99999"
         class="fixed right-0 top-0 max-w-xs w-full h-full px-6 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300"
       >
         <div class="flex items-center justify-between pt-4">
