@@ -118,7 +118,18 @@ app.get('/products/:id_product', async (req, res) => {
     res.status(500).send('Error interno del servidor');
   } //backup meta
   //backup meta
-  const metaTags = `
+  if (
+    data.title === undefined ||
+    data.content === undefined ||
+    data.img === undefined
+  ) {
+    data = {
+      title: 'Warrior Template',
+      content: 'test',
+      img: 'https://i.ibb.co/BNRGXxY/140x140.png',
+    };
+  } else {
+    const metaTags = `
         <!-- HTML Meta Tags -->
         <title>${
           data.title ||
@@ -180,6 +191,7 @@ app.get('/products/:id_product', async (req, res) => {
 
         <!-- Meta Tags Generated via http://heymeta.com -->
     `;
+  }
   // Lee el archivo "index.html"
   const indexPath = path.join(__dirname, '/dist', 'index.html');
   fs.readFile(indexPath, 'utf-8', (err, html) => {
