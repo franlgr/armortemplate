@@ -294,6 +294,9 @@
                 </div>
               </div>
             </div>
+            <div class="bg-gray-100 p-4 text-center" v-if="products.length < 1">
+              No hay productos en esta categoría
+            </div>
             <div
               class="grid md:grid-cols-1 sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4"
             >
