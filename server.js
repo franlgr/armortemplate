@@ -104,51 +104,72 @@ io.on('connection', (socket) => {
 app.get('/products/:id_product', async (req, res) => {
   console.log('SSR PRODUCTOS', req.params.id_product);
 
+  let data = {};
   try {
     const response = await axios.get(
       `https://armor-api.alguientiene.com/products/${req.params.id_product}`,
     );
-    const data = response.data.metaData;
-
-    // Genera las etiquetas meta dinámicamente utilizando los datos obtenidos
-    const metaTags = `
-      <!-- HTML Meta Tags -->
-      <title>${data.title}</title>
-      <meta name="description" content="${data.content}">
-      <meta itemprop="image" content="${data.img}">
-      <meta property="og:image" itemprop="image" content="${data.img}">
-      
-      <!-- ... Otras etiquetas meta dinámicas ... -->
-
-      <!-- Twitter Meta Tags -->
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:site" content="${data.username_de_twitter}">
-      <meta name="twitter:site:id" content="${data.ID_de_Twitter_del_sitio}">
-      <meta name="twitter:title" content="${data.title}">
-      <meta name="twitter:description" content="${data.content}">
-      <meta name="twitter:image" content="${data.img}">
-    `;
-
-    // Lee el archivo "index.html"
-    const indexPath = path.join(__dirname, '/dist', 'index.html');
-    fs.readFile(indexPath, 'utf-8', (err, html) => {
-      if (err) {
-        console.error('Error al leer el archivo index.html', err);
-        return res.status(500).send('Error interno del servidor');
-      }
-
-      // Inserta las etiquetas meta dinámicas en el archivo "index.html"
-      const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
-
-      // Envía el archivo "index.html" modificado con las etiquetas meta
-      res.send(modifiedHtml);
-    });
+    // console.log(response.data);
+    console.log('response.data.metaData');
+    data = response.data.metaData;
   } catch (error) {
     console.error(error);
     res.status(500).send('Error interno del servidor');
-  }
-});
+  }let data = {};
 
+try {
+  const response = await axios.get(
+    `https://armor-api.alguientiene.com/products/${req.params.id_product}`
+  );
+
+  // Verifica si la respuesta contiene datos y si la propiedad 'metaData' está presente
+  if (response.data && response.data.metaData) {
+    data = response.data.metaData;
+
+    //backup meta
+    const metaTags = `
+        <!-- HTML Meta Tags -->
+        <title>${data.title || 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'}</title>
+        <meta name="description" content="${data.content || 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style."'}">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="${data.title || 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'}">
+        <meta itemprop="description" content="${data.content || 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style."'}">
+        <meta itemprop="image" content="${data.img || 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'}">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://armor.alguientiene.com/products/6508a5868ffa5650fb3258c8">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${data.title || 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'}">
+        <meta property="og:description" content="${data.content || 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style."'}">
+        <meta property="og:image" content="${data.img || 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'}">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+        <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
+        <meta name="twitter:title" content="${data.title || 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'}">
+        <meta name="twitter:description" content="${data.content || 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style."'}">
+        <meta name="twitter:image" content="${data.img || 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'}">
+
+        <!-- Meta Tags Generated via http://heymeta.com -->
+    `;
+
+  // Lee el archivo "index.html"
+  const indexPath = path.join(__dirname, '/dist', 'index.html');
+  fs.readFile(indexPath, 'utf-8', (err, html) => {
+    if (err) {
+      console.error('Error al leer el archivo index.html', err);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
+    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+
+    // Envía el archivo "index.html" modificado con las metaetiquetas
+    res.send(modifiedHtml);
+  });
+});
 app.get('/events/:id_event', async (req, res) => {
   console.log('SSR PRODUCTOS', req.params.id_product);
 
