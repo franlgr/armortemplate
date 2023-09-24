@@ -35,13 +35,9 @@
                   <td>
                     <div class="flex items-center space-x-3">
                       <div class="avatar">
-                        <div
-                          class="mask mask-squircle w-12 h-12"
-                          v-for="image in product.images"
-                          :key="image.index"
-                        >
+                        <div class="mask mask-squircle w-12 h-12">
                           <img
-                            :src="image"
+                            :src="product.images[0]"
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
@@ -49,7 +45,17 @@
                       <div>
                         <div class="font-bold">{{ product.title }}</div>
                         <!-- <div class="font-bold">{{ product.user }}</div> -->
-                        <div class="text-sm opacity-50">United States</div>
+
+                        <!-- <div class="text-sm" v-if="getUser">
+                          <img
+                            :src="getUser.image"
+                            alt=""
+                            class="w-8 h-8 rounded-full float-left mr-2"
+                          />
+                          <p class="mt-2 p-1">
+                            {{ getUser.name }} {{ getUser.lastname }}
+                          </p>
+                        </div> -->
                       </div>
                     </div>
                   </td>
