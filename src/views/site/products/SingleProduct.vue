@@ -1,15 +1,16 @@
 <template>
   <div>
     <SiteHeader></SiteHeader>
-    <router-link
-      :to="{ name: 'site-products' }"
-      class="btn btn-outline btn-success m-4"
-      >Go Back</router-link
-    >
+
     <section
       class="text-gray-700 body-font overflow-hidden bg-white m-4 rounded-md"
     >
-      <div class="container px-5 pt-4 mb-4 mx-auto mt-24">
+      <router-link
+        :to="{ name: 'site-products' }"
+        class="btn btn-outline btn-success m-4"
+        >Go Back</router-link
+      >
+      <div class="container px-5 mb-4 mx-auto mt-4">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"

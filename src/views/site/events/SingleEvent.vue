@@ -1,5 +1,13 @@
 <template>
-  <div>
+  <div
+    :style="getImageStyle"
+    style="
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-y: 0;
+    "
+  >
     <SiteHeader />
     <!-- boton volver atras hay que disenarlo bien para ponerlo en varios sectores -->
     <router-link
@@ -7,12 +15,9 @@
       class="btn btn-outline btn-success my-2 ml-4"
       >Go Back</router-link
     >
-    <MapBox></MapBox>
-    <div
-      :style="getImageStyle"
-      style="background-position: center"
-      class="mx-auto py-8 flex items-center justify-center px-8"
-    >
+    <!-- <MapBox></MapBox> -->
+
+    <div class="mx-auto py-8 flex items-center justify-center px-8 pt-24">
       <div
         class="flex flex-col w-full bg-white rounded shadow-lg sm:w-3/4 md:w-2/2 lg:w-3/5"
       >
@@ -26,22 +31,19 @@
                                 <img :src="image" alt="Event Image">
                             </swiper-slide>
                         </swiper> -->
-        <div class="flex flex-col w-full md:flex-row">
+        <div class="flex flex-col w-full md:flex-row p-8 pt-4">
           <div
             id="background"
-            class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase bg-gray-200 my-4 mx-2 rounded md:flex-col md:items-center md:justify-center md:w-2/4"
+            class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase my-4 mx-2 rounded md:flex-col md:items-center md:justify-center md:w-2/4"
           >
-            <!-- <div class="md:text-3xl">Jan</div>
-                                <div class="md:text-6xl">13</div>
-                                <div class="md:text-xl">7 pm</div> -->
-          </div>
-          <div class="p-4 font-normal text-gray-800 md:w-3/5">
             <h1
               class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800"
             >
               {{ event.title }}
             </h1>
             <p class="leading-normal" v-html="event.content"></p>
+          </div>
+          <div class="p-4 font-normal text-gray-800 md:w-3/5">
             <div class="flex flex-row items-center mt-4 text-gray-700">
               <div
                 class="bg-white p-4 rounded-lg shadow-md m-auto"
@@ -62,7 +64,7 @@
                 </div>
                 <div class="mt-4 m-auto">
                   <p class="text-gray-700">
-                    <strong>Address:</strong> {{ event.user.address }}
+                    <!-- <strong>Address:</strong> {{ event.user.address }} -->
                   </p>
                   <p class="text-gray-700">
                     <strong>City:</strong> {{ event.user.city }}
@@ -75,7 +77,11 @@
             </div>
           </div>
         </div>
-        <div class="p-4 border rounded-lg shadow-lg">
+        <MapBoxEventMarker
+          class="pt-0 px-8 rounded-md"
+          :event="event"
+        ></MapBoxEventMarker>
+        <div class="p-4 border rounded-lg shadow-lg m-8">
           <!-- Contenedor del comentario -->
           <div
             class="flex p-4 border-solid"
@@ -119,6 +125,7 @@
 
   import { Pagination, Navigation, Autoplay } from 'swiper/modules';
   import MapBox from '@/components/MapBox.vue';
+  import MapBoxEventMarker from '@/components/MapBoxEventMarker.vue';
   // Import Swiper styles
   import 'swiper/css';
   export default {
@@ -135,6 +142,7 @@
       Swiper,
       SwiperSlide,
       MapBox,
+      MapBoxEventMarker,
     },
     setup() {
       return {
@@ -181,7 +189,6 @@
   #background {
     background-size: cover !important;
     background-position: center !important;
-    background: url('https://res.cloudinary.com/doznjtpmk/image/upload/v1695403476/admin-web/smt2kjban6cqmddgs3hz.jpg');
   }
 
   .image {

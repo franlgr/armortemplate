@@ -1,24 +1,20 @@
 <template>
   <div class="bg-white">
     <SiteHeader></SiteHeader>
-    <router-link
-      :to="{ name: 'site-events' }"
-      class="btn btn-outline btn-success m-4"
-      >Go Back</router-link
-    >
+
     <div class="flex flex-col">
       <div class="flex flex-col justify-center">
         <div class="relative">
-          <img
-            class="hidden sm:block w-full"
-            src="https://i.ibb.co/HxXSY0j/jason-wang-Nx-Awry-Abt-Iw-unsplash-1-1.png"
-            alt="sofa"
-          />
-          <img
-            class="sm:hidden w-full"
-            src="https://i.ibb.co/B6qwqPT/jason-wang-Nx-Awry-Abt-Iw-unsplash-1.png"
-            alt="sofa"
-          />
+          <div
+            class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85"
+          >
+            <!-- Aquí está el fondo de degradado -->
+            <img
+              class="h-64 w-64 m-auto pt-8"
+              src="@/assets/AuthLogo.svg"
+              alt="Logo"
+            />
+          </div>
           <div
             class="absolute sm:bottom-8 bottom-4 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start"
           >
@@ -29,7 +25,15 @@
         </div>
       </div>
     </div>
-    <div class="pt-4 pb-16 items-start container justify-between mx-auto mt-8">
+
+    <div class="pb-16 items-start container justify-between mx-auto mt-2">
+      <div>
+        <router-link
+          :to="{ name: 'site-events' }"
+          class="btn btn-outline btn-success m-4 ml-8"
+          >Go Back</router-link
+        >
+      </div>
       <div class="md:flex">
         <!-- Columna 1 (a pantalla completa en pantallas pequeñas) -->
         <div class="lg:w-1/4">
