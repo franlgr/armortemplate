@@ -122,12 +122,40 @@ app.get('/products/:id_product', async (req, res) => {
   // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
   //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
   // console.log(response.data.metaData);
+
+  //backup meta
+  // const metaTags = `
+  //       <title>${data.title}</title>
+  //       <meta name="description" content=" ${data.content}">
+  //       <meta itemprop="image" content="${data.img}">
+  //       <meta property="og:image" itemprop="image" content="${data.img}">
+  //       <!-- Otras metaetiquetas dinámicas -->
+  //   `;
+
   const metaTags = `
-        <title>${data.title}</title>
-        <meta name="description" content=" ${data.content}">
-        <meta itemprop="image" content="${data.img}">
-        <meta property="og:image" itemprop="image" content="${data.img}">
-        <!-- Otras metaetiquetas dinámicas -->
+        <!-- HTML Meta Tags -->
+<title>Performance Running Shoes</title>
+<meta name="description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Performance Running Shoes">
+<meta itemprop="description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
+<meta itemprop="image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://armor.alguientiene.com/products/6508a5868ffa5650fb3258c8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Performance Running Shoes">
+<meta property="og:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
+<meta property="og:image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Performance Running Shoes">
+<meta name="twitter:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
+<meta name="twitter:image" content="http://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
+
+<!-- Meta Tags Generated via http://heymeta.com -->
     `;
 
   // Lee el archivo "index.html"
