@@ -144,7 +144,9 @@ app.get('/products/:id_product', async (req, res) => {
         }">
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armor.alguientiene.com/products/6508a5868ffa5650fb3258c8">
+        <meta property="og:url" content="https://armor.alguientiene.com/products/${
+          req.params.id_product
+        }">
         <meta property="og:type" content="website">
         <meta property="og:title" content="${
           data.title ||
