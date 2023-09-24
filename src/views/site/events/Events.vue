@@ -19,10 +19,10 @@
                         </figure>
                         <div class="card-body text-black">
                             <h2 class="card-title">
-                                Shoes!
+                                {{ event.title }}
                                 <div class="badge badge-secondary">NEW</div>
                             </h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
+                            <div v-html="event.content"></div>
                             <div class="card-actions justify-end">
                                 <div class="badge badge-outline">Fashion</div>
                                 <div class="badge badge-outline">Products</div>

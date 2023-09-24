@@ -7,10 +7,13 @@
                     <button class="text-white bg-black lg:hidden m-4 " @click="toggleMenu()">Close</button>
                     <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
                         <router-link to="/" title="home" class="mb-4 ">
-                            <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo ease-in duration-300 animate-pulse"
-                                alt="tailus logo">
+                            <img src="@/assets/AuthLogo.svg" class="w-36 mx-12 mt-2 logo " alt="tailus logo">
                         </router-link>
-
+                        <div class="m-auto mt-4 text-center">
+                            <router-link to="/" title="home">
+                                <button class="btn px-4 bg-green-500 text-center ">Go Site</button>
+                            </router-link>
+                        </div>
 
                     </div>
                     <div class=" text-center p-4">
@@ -69,6 +72,13 @@
                                         <p><i class="fa-solid fa-cart-shopping text-black"></i><span
                                                 class="ml-8 text-black">
                                                 My Products</span></p>
+                                    </router-link>
+                                    <router-link @click="hiddenMenu()" to="/admin/products/all"
+                                        v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/all' }"
+                                        class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200">
+                                        <p><i class="fa-solid fa-cart-shopping text-black"></i><span
+                                                class="ml-8 text-black">
+                                                All Products</span></p>
                                     </router-link>
                                     <router-link @click="hiddenMenu()" to="/admin/products/categories" v-if="admin == true"
                                         v-bind:class="{ 'from-sky-600 to-cyan-400': $route.path === '/admin/products/categories' }"
@@ -214,6 +224,7 @@ import { mapActions, mapGetters } from 'vuex';
 import Loading from '@/components/Loading.vue';
 
 export default {
+    name: 'AdminLayout',
     data() {
         return {
             admin: false,

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <AdminHeader title="My Products" icon="fa-brands fa-product-hunt"></AdminHeader>
+            <AdminHeader title="All Products" icon="fa-brands fa-product-hunt"></AdminHeader>
             <div class=" 2xl:container ">
                 <div class="">
                     <div class="overflow-x-auto">
@@ -31,10 +31,10 @@
                                     <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                                <div class="mask mask-squircle w-12 h-12" v-for="image in product.images"
-                                                    :key="image.index">
-                                                    <img :src="image" alt="Avatar Tailwind CSS Component" />
+                                                <div class="mask mask-squircle w-12 h-12" v-if="product.images">
+                                                    <img :src="product.images[0]" alt="Avatar Tailwind CSS Component" />
                                                 </div>
+
                                             </div>
                                             <div>
                                                 <div class="font-bold">{{ product.title }}</div>
@@ -123,21 +123,19 @@ export default {
         async fetchProducts() {
             this.loadingSet(true);
             try {
-                const res = await FeathersClient.service('products').find({
-                    query: {
-                        user: this.getUser._id,
-                        $limit: this.perPage,
-                        $skip: (this.currentPage - 1) * this.perPage,
-                        $sort: {
-                            createdAt: -1
+                if (this.isAdmin) {
+                    const res = await FeathersClient.service('products').find({
+                        query: {
+                            $limit: this.perPage,
+                            $skip: (this.currentPage - 1) * this.perPage,
+                            $sort: {
+                                createdAt: -1
+                            }
                         }
-                    }
-                });
-                this.loadingSet(false);
-                this.products = res.data;
-
-
-
+                    });
+                    this.loadingSet(false);
+                    this.products = res.data;
+                }
             } catch (error) {
                 this.loadingSet(false);
                 this.$snotify.error(error, 'Error', {
@@ -148,6 +146,7 @@ export default {
                 });
                 console.error(error);
             }
+            this.loadingSet(false);
         },
         async deleteProductConfirm(id) {
             this.$snotify.confirm('Are you sure you want to delete this product ?', 'Delete Product', {

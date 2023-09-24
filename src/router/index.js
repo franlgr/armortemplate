@@ -11,7 +11,6 @@ import SiteEvents from '@/views/site/events/Events.vue';
 import SingleEvent from '@/views/site/events/SingleEvent.vue';
 import SingleBlog from '@/views/site/blogs/SingleBlog.vue';
 
-
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 
@@ -39,6 +38,7 @@ import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
 // import PostBlog from '@/views/admin/blogs/PostBlog.vue';
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
 import EditCategories from '@/views/admin/products/categories/EditCategory.vue';
+import AllProducts from '@/views/admin/products/AllProducts.vue';
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -71,6 +71,11 @@ const routes = [
         name: 'admin-products',
         component: AdminProducts,
       },
+      {
+        path: '/admin/products/all',
+        component: AllProducts,
+        name: 'admin-products-all',
+      },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs },
       { path: '/admin/components', component: Components },
@@ -79,6 +84,7 @@ const routes = [
       { path: '/admin/default', component: DefaultAdmin },
       { path: '/admin/chat', component: Chat },
       { path: '/admin/events', component: Events, name: 'admin-events' },
+
       {
         path: '/admin/events/create',
         component: CreateEvent,
@@ -105,10 +111,11 @@ const routes = [
         name: 'admin-events-categories-create',
       },
       // { path: '/admin/blogs/categories', component: BlogsCategories, name: 'admin-blogs-categories' },
-      { path: '/admin/blogs/create/', 
-      component: CreateBlog, 
-      name: 'admin-blogs-create',
-    },
+      {
+        path: '/admin/blogs/create/',
+        component: CreateBlog,
+        name: 'admin-blogs-create',
+      },
       {
         path: '/admin/products/edit/:id',
         component: EditProduct,
@@ -144,7 +151,6 @@ const routes = [
         component: EditCategories,
         name: 'admin-products-categories-edit',
       },
-      
     ],
   },
   // Auth routes

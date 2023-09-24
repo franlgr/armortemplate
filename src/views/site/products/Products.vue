@@ -1,8 +1,6 @@
 <template>
     <div class="bg-white">
         <SiteHeader></SiteHeader>
-        <!-- shop wrapper -->
-        <!-- {{categories}} -->
         <router-link :to="{ name: 'site-events' }" class="btn btn-outline btn-success  m-4">Go Back</router-link>
         <div class="flex flex-col">
             <div class="flex flex-col justify-center">
@@ -19,18 +17,6 @@
             </div>
         </div>
         <div class="md:grid-cols-4 grid-cols-1 gap-6 pt-4 pb-16 items-start container flex justify-between mx-auto mt-8">
-            <!-- sidebar -->
-            <!-- drawer init and toggle -->
-            <!-- <div class="text-center md:hidden">
-                                    <button
-                                        class="text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 block md:hidden"
-                                        type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example"
-                                        aria-controls="drawer-example">
-                                        <ion-icon name="grid-outline"></ion-icon>
-                                    </button>
-                                </div> -->
-
-            <!-- drawer component -->
             <div id="drawer-example"
                 class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
                 tabindex="-1" aria-labelledby="drawer-label">
@@ -57,29 +43,11 @@
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
                         <div class="space-y-2">
                             <div class="flex items-center" v-for="category in categories" :key="category.index">
-                                <input type="checkbox" name="cat-1" id="cat-1"
-                                    class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                <label for="cat-1" class="text-gray-600 ml-3 cusror-pointer">{{ category.title }}</label>
+                                <router-link :to="{ name: 'site-products', query: { tag: category._id } }"
+                                    class="text-gray-600 ml-3 cusror-pointer">{{ category.title }}</router-link>
                                 <div class="ml-auto text-gray-600 text-sm">(15)</div>
                             </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" name="cat-2" id="cat-2"
-                                    class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                <label for="cat-2" class="text-gray-600 ml-3 cusror-pointer">Sofa</label>
-                                <div class="ml-auto text-gray-600 text-sm">(9)</div>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" name="cat-3" id="cat-3"
-                                    class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                <label for="cat-3" class="text-gray-600 ml-3 cusror-pointer">Office</label>
-                                <div class="ml-auto text-gray-600 text-sm">(21)</div>
-                            </div>
-                            <div class="flex items-center">
-                                <input type="checkbox" name="cat-4" id="cat-4"
-                                    class="text-primary focus:ring-0 rounded-sm cursor-pointer">
-                                <label for="cat-4" class="text-gray-600 ml-3 cusror-pointer">Outdoor</label>
-                                <div class="ml-auto text-gray-600 text-sm">(10)</div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -187,7 +155,6 @@
 
                         </div>
                     </div>
-
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <a href="#"
@@ -207,8 +174,7 @@
             <!-- ./sidebar -->
             <div class="col-span-1 bg-white px-4 pb-6 shadow rounded overflow-hiddenb hidden md:block">
                 <div class="divide-y divide-gray-200 space-y-5">
-                    <MarketCategories :categories="categories"></MarketCategories>
-
+                    <MarketCategories :categories="categories" :tag="tag"></MarketCategories>
                     <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Brands</h3>
                         <div class="space-y-2">
@@ -288,7 +254,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="pt-4">
                         <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Color</h3>
                         <div class="flex items-center gap-2">
@@ -338,13 +303,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 xl:grid-cols-4 gap-6 p-4">
-
                     <div class="  rounded overflow-hidden group" v-for="product in products" :key="products.index">
-
                         <div class="relative bg-gray-300">
-                            <img :src="product.images[0]" alt="product 1" class="w-full h-64 w-64">
+                            <div class="w-64 h-64">
+                                <img :src="product.images[0]" alt="product 1" class="w-full h-full object-cover">
+                            </div>
+
                             <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                                             justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
                                 <router-link :to="{ name: 'site-product', params: { id: product._id } }"
@@ -365,6 +330,10 @@
                                     {{ product.title }}
                                 </h4>
                             </a>
+                            <div v-if="product.category">
+                                <p>{{ product.category.title }}</p>
+                            </div>
+
                             <div class="flex items-baseline mb-1 space-x-2">
                                 <p class="text-xl text-primary font-semibold">${{ product.price }}</p>
                                 <p class="text-sm text-gray-400 line-through">{{ product.price + 500 }}</p>
@@ -410,6 +379,7 @@ import MarketCategories from '@/components/site/market/MarketCategories.vue'
 export default {
     data() {
         return {
+            tag: '',
             products: [],
             categories: [],
             currentPage: 1, // Página actual
@@ -421,9 +391,10 @@ export default {
         MarketCategories
     },
     created() {
+        const urlParams = new URLSearchParams(window.location.search);
+        this.tag = urlParams.get('tag');
         this.fetchProducts();
         this.fetchCategories();
-        // Captura la variable de la URL y guárdala en el data
         this.variableDeURL = this.$route.query.slug
         console.log(this.variableDeURL)
     },
@@ -432,15 +403,29 @@ export default {
         async fetchProducts() {
             try {
                 this.loadingSet(true)
-                const response = await FeathersClient.service('products').find({
-                    query: {
-                        $limit: this.perPage,
-                        $skip: (this.currentPage - 1) * this.perPage,
-                        $sort: {
-                            createdAt: -1
+                if (this.tag) {
+                    const response = await FeathersClient.service('products').find({
+                        query: {
+                            $limit: this.perPage,
+                            $skip: (this.currentPage - 1) * this.perPage,
+                            "category._id": this.tag
                         }
-                    }
-                })
+                    })
+                    this.products = response.data
+                    this.loadingSet(false)
+                    return
+                } else {
+                    const response = await FeathersClient.service('products').find({
+                        query: {
+                            $limit: this.perPage,
+                            $skip: (this.currentPage - 1) * this.perPage,
+                        }
+                    })
+                    this.products = response.data
+                    this.loadingSet(false)
+                    return
+                }
+
                 this.products = response.data
                 this.loadingSet(false)
             } catch (error) {
@@ -472,6 +457,18 @@ export default {
             this.fetchProducts();
         },
     },
+    computed: {
+        filteredItems() {
+            return this.items.filter(item => item.category === this.tag);
+        }
+    },
+    watch: {
+        $route(to, from) {
+            const urlParams = new URLSearchParams(to.query);
+            this.tag = urlParams.get('tag');
+            this.fetchProducts();
 
+        }
+    }
 }
 </script>

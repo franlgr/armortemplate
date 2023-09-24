@@ -1,8 +1,7 @@
 <template>
   <div>
     <FormKit type="select" :label="label" @change="onSelectedCategory" :options="options"
-      help="Don’t worry, you can’t get this one wrong."  v-model="value" />
-      {{value}}
+      help="Don’t worry, you can’t get this one wrong." v-model="value" />
   </div>
 </template>
 
@@ -21,7 +20,7 @@ export default {
     category: {
       type: Object,
     },
-     label: {
+    label: {
       type: String,
       default: 'Category',
     },
