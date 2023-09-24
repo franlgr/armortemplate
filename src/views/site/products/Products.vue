@@ -38,10 +38,11 @@
                     </svg>
                     <span class="sr-only">Close menu</span>
                 </button>
-                <div class="divide-y divide-gray-200 space-y-5">
+                <div class="divide-y col-span-1 divide-gray-200 space-y-5">
+                    <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
                     <div>
-                        <h3 class="text-xl text-gray-800 mb-3 uppercase font-medium">Categories</h3>
-                        <div class="space-y-2">
+
+                        <div class="space-y-2 ">
                             <div class="flex items-center" v-for="category in categories" :key="category.index">
                                 <router-link :to="{ name: 'site-products', query: { tag: category._id } }"
                                     class="text-gray-600 ml-3 cusror-pointer">{{ category.title }}</router-link>

@@ -5,7 +5,7 @@ import rest from '@feathersjs/rest-client';
 const appRest = feathers();
 
 // Connect to a different URL
-let restClient = rest('http://localhost:1313');
+let restClient = rest('http://192.168.1.3:1313');
 
 //Produccion
 // restClient = rest('http://64.227.76.217:1313');
