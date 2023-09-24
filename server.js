@@ -209,7 +209,8 @@ app.get('/events/:id_event', async (req, res) => {
   fs.readFile(indexPath, 'utf-8', (err, html) => {
     if (err) {
       console.error('Error al leer el archivo index.html', err);
-      return res.status(500).send('Error interno del servidor');
+      res.send(modifiedHtml);
+      // return res.status(500).send('Error interno del servidor');
     }
 
     // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
@@ -258,7 +259,6 @@ app.get('*', async (req, res) => {
   const indexPath = path.join(__dirname, '/dist', 'index.html');
   fs.readFile(indexPath, 'utf-8', (err, html) => {
     if (err) {
-      const indexPath = path.join(__dirname, '/dist', 'index.html');
       console.error('Error al leer el archivo index.html', err);
       return res.status(500).send('Error interno del servidor');
     }
