@@ -8,7 +8,8 @@ const appRest = feathers();
 let restClient = rest('http://localhost:1313');
 
 //Produccion
-restClient = rest('http://64.227.76.217:1313');
+// restClient = rest('http://64.227.76.217:1313');
+restClient = rest('https://armor-api.alguientiene.com');
 
 // Configure an AJAX library (see below) with that client
 appRest.configure(restClient.fetch(window.fetch.bind(window)));

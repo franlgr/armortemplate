@@ -107,10 +107,54 @@ app.get('/products/:id_product', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `http://64.227.76.217:1313/products/${req.params.id_product}`,
+      `https://armor-api.alguientiene.com/products/${req.params.id_product}`,
     );
     // console.log(response.data);
     console.log('response.data.metaData');
+    data = response.data.metaData;
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+
+  // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
+  // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
+  // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  // console.log(response.data.metaData);
+  const metaTags = `
+        <title>${data.title}</title>
+        <meta name="description" content=" ${data.content}">
+        <meta itemprop="image" content="${data.img}">
+        <meta property="og:image" itemprop="image" content="${data.img}">
+        <!-- Otras metaetiquetas dinámicas -->
+    `;
+
+  // Lee el archivo "index.html"
+  const indexPath = path.join(__dirname, '/dist', 'index.html');
+  fs.readFile(indexPath, 'utf-8', (err, html) => {
+    if (err) {
+      console.error('Error al leer el archivo index.html', err);
+      return res.status(500).send('Error interno del servidor');
+    }
+
+    // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
+    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+
+    // Envía el archivo "index.html" modificado con las metaetiquetas
+    res.send(modifiedHtml);
+  });
+});
+app.get('/events/:id_event', async (req, res) => {
+  console.log('SSR PRODUCTOS', req.params.id_product);
+
+  let data = {};
+  try {
+    const response = await axios.get(
+      `https://armor-api.alguientiene.com/events/${req.params.id_event}`,
+    );
+    // console.log(response.data);
+    console.log('response.data.metaData event');
     data = response.data.metaData;
   } catch (error) {
     console.error(error);
