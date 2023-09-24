@@ -163,13 +163,14 @@ app.get('/products/:id_product', async (req, res) => {
   // Lee el archivo "index.html"
   const indexPath = path.join(__dirname, '/dist', 'index.html');
   fs.readFile(indexPath, 'utf-8', (err, html) => {
+    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
     if (err) {
       console.error('Error al leer el archivo index.html', err);
-      return res.status(500).send('Error interno del servidor');
+      res.send(modifiedHtml);
+      // return res.status(500).send('Error interno del servidor');
     }
 
     // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
-    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
 
     // Envía el archivo "index.html" modificado con las metaetiquetas
     res.send(modifiedHtml);
