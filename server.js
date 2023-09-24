@@ -148,11 +148,12 @@ app.get('/products/:id_product', async (req, res) => {
 <meta property="og:title" content="Performance Running Shoes">
 <meta property="og:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
 <meta property="og:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
-
 <!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+<meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
 <meta name="twitter:title" content="Performance Running Shoes">
-<meta name="twitter:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
+<meta name="twitter:description" content="Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
 <meta name="twitter:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
 
 <!-- Meta Tags Generated via http://heymeta.com -->
