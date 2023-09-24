@@ -133,106 +133,32 @@ app.get('/products/:id_product', async (req, res) => {
   //   `;
 
   const metaTags = `
-    <!-- HTML Meta Tags -->
-    <title>${
-      data.title
-        ? data.title
-        : 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'
-    }</title>
-    <meta name="description" content="${
-      data.content
-        ? data.content
-        : 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style.'
-    }">
+        <!-- HTML Meta Tags -->
+  <title>${data.title}</title>
+  <meta name="description" content="${data.content}">
 
-    <!-- Google / Search Engine Tags -->
-    <meta itemprop="name" content="${
-      data.title
-        ? data.title
-        : 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'
-    }">
-    <meta itemprop="description" content="${
-      data.content
-        ? data.content
-        : 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style.'
-    }">
-    <meta itemprop="image" content="${
-      data.img
-        ? data.img
-        : 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'
-    }">
+  <!-- Google / Search Engine Tags -->
+  <meta itemprop="name" content="${data.title}">
+  <meta itemprop="description" content="${data.content}">
+  <meta itemprop="image" content="${data.img}">
 
-    <!-- Facebook Meta Tags -->
-    <meta property="og:url" content="https://armor.alguientiene.com/products/${
-      req.params.id_product
-    }">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="${
-      data.title
-        ? data.title
-        : 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'
-    }">
-    <meta property="og:description" content="${
-      data.content
-        ? data.content
-        : 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style.'
-    }">
-    <meta property="og:image" content="${
-      data.img
-        ? data.img
-        : 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'
-    }">
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://armor.alguientiene.com/products/${req.params.id_product}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${data.title}">
+  <meta property="og:description" content="${data.content}">
+  <meta property="og:image" content="${data.img}">
 
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
-    <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
-    <meta name="twitter:title" content="${
-      data.title
-        ? data.title
-        : 'Armor: CMS Template - Empower Your Website with Elegance and Functionality'
-    }">
-    <meta name="twitter:description" content="${
-      data.content
-        ? data.content
-        : 'Discover ArmorCMS, the leading platform for web design and content management. Create stunning and functional websites effortlessly and with style.'
-    }">
-    <meta name="twitter:image" content="${
-      data.img
-        ? data.img
-        : 'https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp'
-    }">
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+  <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
+  <meta name="twitter:title" content="${data.title}">
+  <meta name="twitter:description" content="${data.content}">
+  <meta name="twitter:image" content="${data.img}">
 
-    <!-- Meta Tags Generated via http://heymeta.com -->
-`;
-
-  // const metaTags = `
-  //       <!-- HTML Meta Tags -->
-  // <title>Performance Running Shoes</title>
-  // <meta name="description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-
-  // <!-- Google / Search Engine Tags -->
-  // <meta itemprop="name" content="Performance Running Shoes">
-  // <meta itemprop="description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-  // <meta itemprop="image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
-
-  // <!-- Facebook Meta Tags -->
-  // <meta property="og:url" content="https://armor.alguientiene.com/products/6508a5868ffa5650fb3258c8">
-  // <meta property="og:type" content="website">
-  // <meta property="og:title" content="Performance Running Shoes">
-  // <meta property="og:description" content=" Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-  // <meta property="og:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
-
-  // <!-- Twitter Meta Tags -->
-  // <meta name="twitter:card" content="summary_large_image">
-  // <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
-  // <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
-  // <meta name="twitter:title" content="Performance Running Shoes">
-  // <meta name="twitter:description" content="Elevate your running game with these high-performance running shoes. Engineered for comfort and speed, these shoes feature advanced cushioning technology, a breathable mesh upper, and a lightweight design. Whether you're hitting the track or the trail, these shoes will keep you ahead of the pack.">
-  // <meta name="twitter:image" content="https://res.cloudinary.com/doznjtpmk/image/upload/v1695509326/admin-web/tgffzu7kbskjzok1cpqn.webp">
-
-  // <!-- Meta Tags Generated via http://heymeta.com -->
-  //   `;
+  <!-- Meta Tags Generated via http://heymeta.com -->
+    `;
 
   // Lee el archivo "index.html"
   const indexPath = path.join(__dirname, '/dist', 'index.html');
