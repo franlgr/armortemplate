@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="fb-share-button">
+    <div class="">
       <a target="_blank" :href="shareUrl" class="fb-xfbml-parse-ignore">
         <i class="fab fa-facebook text-5xl ml-4"></i>
         <!-- <span class="text-sm pl-2 pb-2 p-0">Compartir</span> -->

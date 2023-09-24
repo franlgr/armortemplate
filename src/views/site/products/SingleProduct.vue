@@ -208,6 +208,8 @@
               </button> -->
               <FacebookShareButton></FacebookShareButton>
               <TwitterShareButton></TwitterShareButton>
+              <LinkedinShareButton></LinkedinShareButton>
+              <WhatsappShareButton></WhatsappShareButton>
             </div>
           </div>
         </div>
@@ -220,6 +222,8 @@
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
   import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
+  import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
+  import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
   export default {
     data() {
       return {
@@ -231,6 +235,8 @@
       SiteHeader,
       FacebookShareButton,
       TwitterShareButton,
+      LinkedinShareButton,
+      WhatsappShareButton,
     },
     mounted() {
       FeathersClient.service('products')

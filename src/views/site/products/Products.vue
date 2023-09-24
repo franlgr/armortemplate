@@ -340,11 +340,21 @@
                 </div>
                 <div class="pt-4 pb-3 px-4">
                   <a href="#">
-                    <h4
-                      class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition"
+                    <!-- //aca -->
+                    <router-link
+                      :to="{
+                        name: 'site-product',
+                        params: { id: product._id },
+                      }"
+                      class=""
+                      title="view product"
                     >
-                      {{ product.title }}
-                    </h4>
+                      <h4
+                        class="uppercase hover:text-blue-500 font-medium text-xl mb-2 text-gray-800 hover:text-primary transition"
+                      >
+                        {{ product.title }}
+                      </h4>
+                    </router-link>
                   </a>
                   <div v-if="product.category">
                     <p>{{ product.category.title }}</p>
