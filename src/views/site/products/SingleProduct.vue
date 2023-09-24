@@ -1,7 +1,7 @@
 <template>
     <div>
         <SiteHeader></SiteHeader>
-        <router-link :to="{ name: 'site-events' }" class="btn btn-outline btn-success  m-4">Go Back</router-link>
+        <router-link :to="{ name: 'site-products' }" class="btn btn-outline btn-success  m-4">Go Back</router-link>
         <section class="text-gray-700 body-font overflow-hidden bg-white m-4 mb-8">
             <div class="container px-5 pt-4 mb-4 mx-auto">
                 <div class="lg:w-4/5 mx-auto flex flex-wrap ">
