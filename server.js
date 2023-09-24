@@ -112,6 +112,7 @@ app.get('/products/:id_product', async (req, res) => {
     // console.log(response.data);
     console.log('response.data.metaData');
     data = response.data.metaData;
+    console.log('meta data', data);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error interno del servidor');
