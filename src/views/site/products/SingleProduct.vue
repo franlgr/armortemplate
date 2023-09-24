@@ -6,8 +6,10 @@
       class="btn btn-outline btn-success m-4"
       >Go Back</router-link
     >
-    <section class="text-gray-700 body-font overflow-hidden bg-white m-4 mb-8">
-      <div class="container px-5 pt-4 mb-4 mx-auto">
+    <section
+      class="text-gray-700 body-font overflow-hidden bg-white m-4 rounded-md"
+    >
+      <div class="container px-5 pt-4 mb-4 mx-auto mt-24">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
@@ -182,39 +184,30 @@
               </div>
             </div>
             <div class="flex">
-              <span class="title-font font-medium text-2xl text-gray-900"
-                >${{ product.price }}</span
-              >
-              <button
-                class="flex ml-auto uppercase text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
-              >
-                <span class="pt-1">Buy</span>
-              </button>
-              <!-- <button
-                class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
-              >
-                <svg
-                  fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  class="w-5 h-5"
-                  viewBox="0 0 24 24"
+              <div>
+                <span class="title-font font-medium text-2xl text-gray-900"
+                  >${{ product.price }}</span
                 >
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
-                  ></path>
-                </svg>
-              </button> -->
-              <FacebookShareButton></FacebookShareButton>
-              <TwitterShareButton></TwitterShareButton>
-              <LinkedinShareButton></LinkedinShareButton>
-              <WhatsappShareButton></WhatsappShareButton>
+                <button
+                  class="flex ml-auto uppercase text-white bg-red-500 border-0 px-6 focus:outline-none hover:bg-red-600 rounded"
+                >
+                  <span class="pt-1">Buy</span>
+                </button>
+              </div>
+              <div class="flex mt-2">
+                <FacebookShareButton></FacebookShareButton>
+                <TwitterShareButton></TwitterShareButton>
+                <LinkedinShareButton></LinkedinShareButton>
+                <WhatsappShareButton></WhatsappShareButton>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    <MoreProductsByCategory
+      :category="product.category"
+    ></MoreProductsByCategory>
   </div>
 </template>
 <script>
@@ -224,6 +217,7 @@
   import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
   import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
   import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
+  import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
   export default {
     data() {
       return {
@@ -237,6 +231,7 @@
       TwitterShareButton,
       LinkedinShareButton,
       WhatsappShareButton,
+      MoreProductsByCategory,
     },
     mounted() {
       FeathersClient.service('products')

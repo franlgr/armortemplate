@@ -4,7 +4,7 @@
     @click="shareOnWhatsApp"
     class="fb-xfbml-parse-ignore cursor-pointer hover:text-blue-500"
   >
-    <i class="fab fa-whatsapp text-5xl ml-4"></i>
+    <i class="fab fa-whatsapp text-5xl ml-4" style="color: #25d366"></i>
     <!-- <span class="text-sm pl-2 pb-2 p-0">Compartir</span> -->
   </div>
 </template>

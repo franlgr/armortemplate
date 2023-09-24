@@ -5,7 +5,7 @@
       @click="compartirEnTwitter"
       class="fb-xfbml-parse-ignore cursor-pointer hover:text-blue-500"
     >
-      <i class="fab fa-twitter text-5xl ml-4"></i>
+      <i class="fab fa-twitter text-5xl ml-4" style="color: #1d9bf0"></i>
       <!-- <span class="text-sm pl-2 pb-2 p-0">Compartir</span> -->
     </div>
   </div>
