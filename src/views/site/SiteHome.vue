@@ -28,7 +28,7 @@
             <router-link
               to="/register"
               class="btn bg-green-400 hover:bg-green-500 border-black hover:border-black hover:text-black text-3xl hover:animate-none animate-pulse"
-              >Registrate</router-link
+              >Register</router-link
             >
           </div>
         </div>
