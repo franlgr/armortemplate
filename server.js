@@ -112,10 +112,11 @@ app.get('/products/:id_product', async (req, res) => {
     // console.log(response.data);
     console.log('response.data.metaData');
     data = response.data.metaData;
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error interno del servidor');
   }
+  // catch (error) {
+  //   console.error(error);
+  //   res.status(500).send('Error interno del servidor');
+  // }
 
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
