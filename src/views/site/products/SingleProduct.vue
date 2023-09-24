@@ -207,6 +207,7 @@
                 </svg>
               </button> -->
               <FacebookShareButton></FacebookShareButton>
+              <TwitterShareButton></TwitterShareButton>
             </div>
           </div>
         </div>
@@ -218,6 +219,7 @@
   import FeathersClient from '@/FeathersClient';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
+  import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
   export default {
     data() {
       return {
@@ -228,6 +230,7 @@
     components: {
       SiteHeader,
       FacebookShareButton,
+      TwitterShareButton,
     },
     mounted() {
       FeathersClient.service('products')
