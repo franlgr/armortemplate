@@ -116,6 +116,7 @@ const actions = {
 const getters = {
   cartItems: (state) => state.cartItems,
   cartMenu: (state) => state.cartMenu,
+  cartCount: (state) => state.cartItems.length,
   isInCart: (state) => (productId) =>
     //devolver true si el producto está en el carrito
     state.cartItems.some((item) => item.product._id === productId),

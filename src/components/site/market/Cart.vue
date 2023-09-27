@@ -30,8 +30,6 @@
         v-for="item in cartItems"
         :key="item.product.id"
       >
-        <!-- {{ item }} -->
-        {{ isInCart(item._id) }}
         <div class="flex">
           <img
             class="h-20 w-20 object-cover rounded"
@@ -83,6 +81,10 @@
         </div>
         <span class="text-gray-600">{{ item.product.price }}$</span>
       </div>
+
+      <button @click="clearCart" class="mt-4" v-if="cartItems.length > 0">
+        Empty Cart
+      </button>
       <a
         v-if="cartItems.length > 0"
         class="flex items-center justify-center mt-4 px-3 py-2 my-4 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-black hover:text-white focus:outline-none focus:bg-hover-500 cursor-pointer"
@@ -101,9 +103,6 @@
         </svg>
       </a>
 
-      <button @click="clearCart" class="mt-4" v-if="cartItems.length > 0">
-        Vaciar Carrito
-      </button>
       <!-- {{ cartItems }} -->
       <div class="text-gray-600 ml-4" v-if="!cartItems.length > 0">
         <p>Your cart is empty.</p>
@@ -122,7 +121,7 @@
       };
     },
     computed: {
-      ...mapGetters(['cartItems', 'cartMenu', 'isInCart']),
+      ...mapGetters(['cartItems', 'cartMenu', 'isInCart', 'cartCount']),
       products() {
         // Esto es un array de productos de prueba. Reemplázalo con tus propios datos.
         return [];

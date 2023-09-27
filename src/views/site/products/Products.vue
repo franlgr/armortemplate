@@ -387,7 +387,11 @@
                 </div>
                 <button
                   @click="handleCartAction(product)"
-                  class="block w-full py-1 text-center border-solid border-2 border-black text-black bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
+                  v-bind:class="{
+                    'bg-red-300 text-black': isInCart(product._id),
+                    'text-primary': !isInCart(product._id),
+                  }"
+                  class="block w-full bg-green-300 py-1 text-center border-solid border-2 border-black text-black bg-primary border border-primary rounded-b hover:text-primary transition"
                 >
                   {{
                     isInCart(product._id)
@@ -395,15 +399,6 @@
                       : 'Agregar al carrito'
                   }}
                 </button>
-                <!-- {{ product.isInCart }} -->
-                {{ isInCart(product._id) }}
-                <!-- <button @click="handleCartAction(product)">
-                  {{
-                    product.isInCart
-                      ? 'Quitar del carrito'
-                      : 'Agregar al carrito'
-                  }}
-                </button> -->
               </div>
             </div>
             <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
@@ -531,11 +526,23 @@
       },
       handleCartAction(product) {
         if (this.isInCart(product._id)) {
+          this.$snotify.error('Product removed from cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
           this.removeFromCart(product);
           product.isInCart = this.isInCart(product._id);
         } else {
           this.addToCart(product);
           product.isInCart = this.isInCart(product._id);
+          this.$snotify.success('Product added to cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
         }
       },
       removeFromCart(product) {

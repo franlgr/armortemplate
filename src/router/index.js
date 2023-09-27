@@ -10,6 +10,7 @@ import SiteBlog from '@/views/site/blogs/Blog.vue';
 import SiteEvents from '@/views/site/events/Events.vue';
 import SingleEvent from '@/views/site/events/SingleEvent.vue';
 import SingleBlog from '@/views/site/blogs/SingleBlog.vue';
+import Checkout from '@/views/site/products/Checkout.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -180,6 +181,11 @@ const routes = [
       { path: '/events', name: 'site-events', component: SiteEvents },
       //single
       { path: '/events/:id', name: 'site-event', component: SingleEvent },
+      {
+        path: '/products/checkout',
+        name: 'site-products-checkout',
+        component: Checkout,
+      },
       // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',

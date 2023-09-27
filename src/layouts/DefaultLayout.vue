@@ -5,7 +5,7 @@
       <header>
         <div class="container mx-auto px-6 py-3">
           <div class="flex items-center justify-between">
-            <div class="hidden w-full text-gray-600 md:flex md:items-center">
+            <div class="hidden text-gray-600 md:flex md:items-center">
               <svg
                 class="h-5 w-5"
                 viewBox="0 0 24 24"
@@ -32,15 +32,23 @@
             >
               <img
                 src="@/assets/logo.svg"
-                class="w-52 mt-2 logo m-auto"
+                class="w-52 mt-2 logo m-0 md:m-auto"
                 alt="tailus logo"
               />
             </div>
-            <div class="flex items-center justify-end w-full">
+            <div
+              class="flex items-center justify-end w-full fixed right-8 button-cart opacity-75 hover:opacity-100"
+            >
+              <!-- {{ $route.name site-product }} -->
               <button
                 @click="cartMenuToggle()"
-                class="text-gray-600 focus:outline-none mx-4 sm:mx-0"
+                v-if="
+                  $route.name == 'site-products' ||
+                  $route.name == 'site-product'
+                "
+                class="text-gray-600 focus:outline-none mx-4 sm:mx-0 flex items-center border-black bg-white"
               >
+                <span class="mr-2">{{ cartCount }}</span>
                 <svg
                   class="h-5 w-5"
                   fill="none"
@@ -156,7 +164,18 @@
       Loading,
     },
     computed: {
-      ...mapGetters(['isAuthenticated', 'isLoading', 'getUser', 'cartMenu']), // Map Vuex getters to computed properties
+      ...mapGetters([
+        'isAuthenticated',
+        'isLoading',
+        'getUser',
+        'cartMenu',
+        'cartCount',
+      ]), // Map Vuex getters to computed properties
     },
   };
 </script>
+<style>
+  .button-cart {
+    z-index: 100;
+  }
+</style>

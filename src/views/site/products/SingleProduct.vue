@@ -170,6 +170,7 @@
 <script>
   import FeathersClient from '@/FeathersClient';
   import SiteHeader from '@/components/site/SiteHeader.vue';
+  import { mapActions, mapGetters } from 'vuex';
   import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
   import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
   import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
@@ -198,6 +199,20 @@
           this.product = product;
           this.image = product.images[0];
         });
+    },
+    methods: {
+      ...mapActions(['addToCart']),
+      handleCartAction() {
+        if (this.isInCart(this.product._id)) {
+          // this.$router.push({ name: 'site-cart' });
+          alert('This product is already in your cart.');
+        } else {
+          this.addToCart(this.product);
+        }
+      },
+    },
+    computed: {
+      ...mapGetters(['isInCart']),
     },
   };
 </script>
