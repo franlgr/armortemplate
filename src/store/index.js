@@ -5,6 +5,7 @@ import { createStore } from 'vuex';
 import authModule from './modules/auth'; // Import custom authentication module
 import createPersistedState from 'vuex-persistedstate'; // Import Vuex plugin for state persistence
 import socketModule from './modules/chat';
+import cartModule from './modules/cart';
 
 // Create and export the Vuex store
 export default createStore({
@@ -49,11 +50,8 @@ export default createStore({
     },
     socketStart({ commit }) {
       console.log('socketStart');
-      //socket io realtime server 
-
-
-      
-    }
+      //socket io realtime server
+    },
   },
 
   // Define getters to retrieve state data
@@ -73,6 +71,7 @@ export default createStore({
   modules: {
     auth: authModule, // Register the authentication module in the store as 'auth'
     chat: socketModule,
+    cart: cartModule,
     // Other store modules if you have them
   },
 

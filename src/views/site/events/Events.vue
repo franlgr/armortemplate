@@ -1,9 +1,7 @@
 <template>
   <div class="text-white text-4xl">
     <SiteHeader></SiteHeader>
-    <div class="flex flex-col">
-      <MapBoxAllEvents :events="events"></MapBoxAllEvents>
-    </div>
+
     <div class="flex flex-col">
       <div class="flex flex-col justify-center">
         <div class="relative">
@@ -26,6 +24,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="flex flex-col container m-auto mt-8">
+      <MapBoxAllEvents :events="events"></MapBoxAllEvents>
     </div>
 
     <section class="bg-white dark:bg-gray-900">

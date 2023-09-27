@@ -101,29 +101,18 @@ io.on('connection', (socket) => {
   });
 });
 
+//ssr de site products
 app.get('/products/:id_product', async (req, res) => {
-  console.log('SSR PRODUCTOS', req.params.id_product);
-
   let data = {};
   try {
     const response = await axios.get(
       `https://armor-api.alguientiene.com/products/${req.params.id_product}`,
     );
-    // console.log(response.data);
-    console.log('response.data.metaData');
+    console.log('SSR PRODUCTS', response.data.metaData);
     data = response.data.metaData;
   } catch (error) {
     console.error(error);
-    //dejar pasar igual
-    // res.status(500).send('Error interno del servidor');
   }
-
-  // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
-  // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
-  // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
-  //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
-  // console.log(response.data.metaData);
-
   //backup meta
   // const metaTags = `
   //       <title>${data.title}</title>
@@ -158,7 +147,6 @@ app.get('/products/:id_product', async (req, res) => {
   <meta name="twitter:description" content="${data.content}">
   <meta name="twitter:image" content="${data.img}">
 
-  <!-- Meta Tags Generated via http://heymeta.com -->
     `;
 
   // Lee el archivo "index.html"
@@ -177,21 +165,17 @@ app.get('/products/:id_product', async (req, res) => {
     res.send(modifiedHtml);
   });
 });
-app.get('/events/:id_event', async (req, res) => {
-  console.log('SSR PRODUCTOS', req.params.id_product);
 
+//ssr de site events
+app.get('/events/:id_event', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
       `https://armor-api.alguientiene.com/events/${req.params.id_event}`,
     );
-    // console.log(response.data);
-    console.log('response.data.metaData event');
+    console.log('SSR EVENTOS', response.data.metaData);
     data = response.data.metaData;
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error interno del servidor');
-  }
+  } catch (error) {}
 
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
@@ -199,11 +183,29 @@ app.get('/events/:id_event', async (req, res) => {
   //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
   // console.log(response.data.metaData);
   const metaTags = `
+        <!-- HTML Meta Tags -->
         <title>${data.title}</title>
-        <meta name="description" content=" ${data.content}">
+        <meta name="description" content="${data.content}">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="${data.title}">
+        <meta itemprop="description" content="${data.content}">
         <meta itemprop="image" content="${data.img}">
-        <meta property="og:image" itemprop="image" content="${data.img}">
-        <!-- Otras metaetiquetas dinámicas -->
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://armor.alguientiene.com/products/${req.params.id_product}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${data.title}">
+        <meta property="og:description" content="${data.content}">
+        <meta property="og:image" content="${data.img}">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+        <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
+        <meta name="twitter:title" content="${data.title}">
+        <meta name="twitter:description" content="${data.content}">
+        <meta name="twitter:image" content="${data.img}">
     `;
 
   // Lee el archivo "index.html"

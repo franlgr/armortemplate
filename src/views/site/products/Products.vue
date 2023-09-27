@@ -1,7 +1,9 @@
 <template>
   <div class="bg-white">
     <SiteHeader></SiteHeader>
-
+    <!-- {{ cartItems }} -->
+    <!-- {{ cartProducts }} -->
+    <Cart></Cart>
     <div class="flex flex-col">
       <div class="flex flex-col justify-center">
         <div class="relative">
@@ -383,11 +385,25 @@
                     <div class="text-xs text-gray-500 ml-3">(150)</div>
                   </div>
                 </div>
-                <a
-                  href="#"
+                <button
+                  @click="handleCartAction(product)"
                   class="block w-full py-1 text-center border-solid border-2 border-black text-black bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition"
-                  >Add to cart</a
                 >
+                  {{
+                    isInCart(product._id)
+                      ? 'Quitar del carrito'
+                      : 'Agregar al carrito'
+                  }}
+                </button>
+                <!-- {{ product.isInCart }} -->
+                {{ isInCart(product._id) }}
+                <!-- <button @click="handleCartAction(product)">
+                  {{
+                    product.isInCart
+                      ? 'Quitar del carrito'
+                      : 'Agregar al carrito'
+                  }}
+                </button> -->
               </div>
             </div>
             <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
@@ -416,10 +432,12 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import FeathersClient from '@/FeathersClient';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MarketCategories from '@/components/site/market/MarketCategories.vue';
+  import Cart from '@/components/site/market/Cart.vue';
+
   export default {
     data() {
       return {
@@ -433,6 +451,7 @@
     components: {
       SiteHeader,
       MarketCategories,
+      Cart,
     },
     created() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -444,7 +463,7 @@
       console.log(this.products);
     },
     methods: {
-      ...mapActions(['loadingSet']),
+      ...mapActions(['loadingSet', 'addToCart']),
       backgroundImageStyle(imageUrl) {
         return {
           backgroundImage: `url('${imageUrl}')`,
@@ -510,11 +529,28 @@
         this.currentPage = pageNumber;
         this.fetchProducts();
       },
+      handleCartAction(product) {
+        if (this.isInCart(product._id)) {
+          this.removeFromCart(product);
+          product.isInCart = this.isInCart(product._id);
+        } else {
+          this.addToCart(product);
+          product.isInCart = this.isInCart(product._id);
+        }
+      },
+      removeFromCart(product) {
+        if (this.isInCart(product._id)) {
+          this.$store.dispatch('removeFromCart', product); // Llama a la acción Vuex
+          product.isInCart = false; // Actualiza el estado de isInCart
+          this.isInCart(product._id);
+        }
+      },
     },
     computed: {
       filteredItems() {
         return this.items.filter((item) => item.category === this.tag);
       },
+      ...mapGetters(['cartProducts', 'isInCart']),
     },
     watch: {
       $route(to, from) {
