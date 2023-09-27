@@ -34,7 +34,7 @@
           <div
             class="w-24 h-24"
             :style="'background-image: url(' + item.product.images[0] + ');'"
-            style="background-size: 100%"
+            style="background-size: cover; background-position: center"
           ></div>
 
           <div class="mx-3">
