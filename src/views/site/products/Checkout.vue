@@ -1,11 +1,13 @@
 <template>
   <div class="bg-gray-50 py-5 container px-24">
+    <!-- {{ cartItems }} -->
     <div class="px-5">
       <div class="mb-2">
-        <a
+        <router-link
+          to="/products"
           href="#"
           class="focus:outline-none hover:underline text-gray-500 text-sm"
-          ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</a
+          ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</router-link
         >
       </div>
       <div class="mb-2">
@@ -30,24 +32,33 @@
           <div class="px-3 md:w-7/12 lg:pr-10">
             <div
               class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6"
+              v-for="item in cartItems"
+              :key="item.index"
             >
-              <div class="w-full flex items-center">
+              <div class="w-full flex items-center mt-2">
                 <div
                   class="overflow-hidden rounded-lg w-16 h-16 bg-gray-50 border border-gray-200"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
-                    alt=""
-                  />
+                  <div
+                    class="w-24 h-24"
+                    :style="
+                      'background-image: url(' + item.product.images[0] + ');'
+                    "
+                    style="background-size: 100%"
+                  ></div>
                 </div>
                 <div class="flex-grow pl-3">
                   <h6 class="font-semibold uppercase text-gray-600">
-                    Ray Ban Sunglasses.
+                    {{ item.product.title }}
                   </h6>
-                  <p class="text-gray-400">x 1</p>
+                  <p class="text-gray-400">
+                    x
+                    {{ item.quantity }}
+                  </p>
                 </div>
                 <div>
-                  <span class="font-semibold text-gray-600 text-xl">$210</span
+                  <span class="font-semibold text-gray-600 text-xl"
+                    >${{ item.product.price }}</span
                   ><span class="font-semibold text-gray-600 text-sm">.00</span>
                 </div>
               </div>
@@ -116,7 +127,11 @@
                   <span class="text-gray-600 font-semibold">Contact</span>
                 </div>
                 <div class="flex-grow pl-3">
-                  <span>Scott Windon</span>
+                  <img
+                    src="@/assets/AuthLogo.svg"
+                    class="w-6 float-left mr-2"
+                  />
+                  <span>Armor Template</span>
                 </div>
               </div>
               <div class="w-full flex items-center">
@@ -143,10 +158,7 @@
                       id="type1"
                       checked
                     />
-                    <img
-                      src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png"
-                      class="h-6 ml-3"
-                    />
+                    <img src="@/assets/cards.png" class="h-6 ml-3" />
                   </label>
                 </div>
                 <div>
@@ -270,24 +282,16 @@
       </div>
     </div>
   </div>
-
-  <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
-  <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-    <div>
-      <a
-        title="Buy me a beer"
-        href="https://www.buymeacoffee.com/scottwindon"
-        target="_blank"
-        class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
-      >
-        <img
-          class="object-cover object-center w-full h-full rounded-full"
-          src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"
-        />
-      </a>
-    </div>
-  </div>
 </template>
+<script>
+  import { mapGetters, mapActions } from 'vuex';
+  export default {
+    data() {},
+    computed: {
+      ...mapGetters(['cartItems', 'cartMenu']),
+    },
+  };
+</script>
 <style>
   /*
 module.exports = {

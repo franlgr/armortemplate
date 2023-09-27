@@ -31,11 +31,11 @@
         :key="item.product.id"
       >
         <div class="flex">
-          <img
-            class="h-20 w-20 object-cover rounded"
-            :src="item.product.images[0]"
-            alt=""
-          />
+          <div
+            class="w-24 h-24"
+            :style="'background-image: url(' + item.product.images[0] + ');'"
+            style="background-size: 100%"
+          ></div>
 
           <div class="mx-3">
             <h3 class="text-sm text-gray-600">{{ item.product.title }}</h3>
@@ -85,8 +85,9 @@
       <button @click="clearCart" class="mt-4" v-if="cartItems.length > 0">
         Empty Cart
       </button>
-      <a
+      <router-link
         v-if="cartItems.length > 0"
+        :to="{ name: 'site-products-checkout' }"
         class="flex items-center justify-center mt-4 px-3 py-2 my-4 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-black hover:text-white focus:outline-none focus:bg-hover-500 cursor-pointer"
       >
         <span>Chechout</span>
@@ -101,7 +102,7 @@
         >
           <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
-      </a>
+      </router-link>
 
       <!-- {{ cartItems }} -->
       <div class="text-gray-600 ml-4" v-if="!cartItems.length > 0">
