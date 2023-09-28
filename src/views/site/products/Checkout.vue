@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-50 py-5 container px-24">
+  <div class="bg-gray-50 py-5 mx-0 lg:mx-24">
     <!-- {{ cartItems }} -->
     <div class="px-5">
       <div class="mb-2">

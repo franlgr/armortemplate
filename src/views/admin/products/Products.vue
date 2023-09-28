@@ -162,7 +162,7 @@
         try {
           const res = await FeathersClient.service('products').find({
             query: {
-              user: this.getUser._id,
+              'user._id': this.getUser._id,
               $limit: this.perPage,
               $skip: (this.currentPage - 1) * this.perPage,
               $sort: {

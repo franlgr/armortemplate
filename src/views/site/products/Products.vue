@@ -273,10 +273,10 @@
 
         <!-- Columna 2 (a pantalla completa en pantallas pequeñas) -->
         <div class="lg:w-3/4">
-          <!-- products -->
           <div class="">
             <div class="flex items-center mb-4 p-4">
               <select
+                v-model="sortOption"
                 name="sort"
                 id="sort"
                 class="w-44 text-sm text-gray-600 py-3 px-4 border-gray-300 shadow-sm rounded focus:ring-primary focus:border-primary"
@@ -311,7 +311,7 @@
             >
               <div
                 class="rounded overflow-hidden group"
-                v-for="product in products"
+                v-for="product in sortedOrFilteredProducts"
                 :key="products.index"
               >
                 <div class="relative bg-gray-300">
@@ -440,7 +440,8 @@
         products: [],
         categories: [],
         currentPage: 1, // Página actual
-        perPage: 10, // Cantidad de elementos por página
+        perPage: 12, // Cantidad de elementos por página
+        sortOption: '',
       };
     },
     components: {
@@ -556,6 +557,30 @@
     computed: {
       filteredItems() {
         return this.items.filter((item) => item.category === this.tag);
+      },
+      sortedOrFilteredProducts() {
+        // Lógica para ordenar o filtrar productos según sortOption
+        if (this.sortOption === 'price-low-to-high') {
+          return this.products.sort((a, b) => a.price - b.price);
+        } else if (this.sortOption === 'price-high-to-low') {
+          return this.products.sort((a, b) => b.price - a.price);
+        } else if (this.sortOption === 'latest') {
+          // Agrega tu lógica para ordenar por productos más recientes
+          // Por ejemplo, si tus productos tienen una propiedad 'createdAt'
+
+          return this.products.sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+              return -1;
+            } else if (a.createdAt < b.createdAt) {
+              return 1;
+            } else {
+              return 0;
+            }
+          });
+        } else {
+          // Si no se ha seleccionado ninguna opción de ordenación, muestra los productos tal como están
+          return this.products;
+        }
       },
       ...mapGetters(['cartProducts', 'isInCart']),
     },

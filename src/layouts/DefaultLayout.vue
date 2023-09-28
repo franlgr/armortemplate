@@ -88,34 +88,34 @@
             <div class="flex flex-col sm:flex-row">
               <router-link
                 to="/"
-                class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                class="my-1 text-gray-800 hover:text-blue-500 sm:mx-4 md:my-0"
                 ><i class="fa-solid fa-house"></i
                 ><span class="ml-2">Home</span></router-link
               >
               <router-link
                 to="/blogs"
-                class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                class="my-1 text-gray-800 hover:text-blue-500 sm:mx-4 md:my-0"
               >
                 <i class="fa-solid fa-blog w-4"></i
                 ><span class="ml-2">Blogs</span>
               </router-link>
               <router-link
                 to="/products"
-                class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                class="my-1 text-gray-800 hover:text-blue-500 sm:mx-4 md:my-0"
               >
                 <i class="fa-solid fa-cart-shopping text-black"></i
                 ><span class="ml-2">Market</span>
               </router-link>
               <router-link
                 to="/events"
-                class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                class="my-1 text-gray-800 hover:text-blue-500 sm:mx-4 md:my-0"
               >
                 <i class="fa-solid fa-calendar-days"></i
                 ><span class="ml-2">Events</span>
               </router-link>
               <router-link
                 to="/admin"
-                class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0"
+                class="my-1 text-gray-800 hover:text-blue-500 sm:mx-4 md:my-0"
               >
                 <i class="fa-solid fa-lock"></i><span class="ml-2">Admin</span>
               </router-link>
