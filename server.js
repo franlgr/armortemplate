@@ -232,7 +232,7 @@ app.get('*', async (req, res) => {
     title: 'Armor CMS + API: Your All-in-One Solution for Web Development',
     content:
       'Unlock the full potential of web development with Armor CMS + API. Our powerful all-in-one solution combines a robust Content Management System (CMS) with a flexible Application Programming Interface (API). Build, customize, and manage web applications with ease. Try our beta version and be part of the future of web development.',
-    img: 'https://i.ibb.co/wMWrZzq/meta.jpg',
+    img: 'https://i.ibb.co/Wn33HgY/meta.jpg',
   };
   const metaTags = `
         <!-- HTML Meta Tags -->
