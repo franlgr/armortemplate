@@ -18,6 +18,7 @@
 </template>
 <script>
   import FeathersClient from '@/FeathersClient';
+  import { mapActions } from 'vuex';
   export default {
     data() {
       return {
@@ -25,14 +26,26 @@
       };
     },
     async mounted() {
-      const categories = await FeathersClient.service('events-categories').find(
-        {
+      this.loadingSet(true);
+      try {
+        const categories = await FeathersClient.service(
+          'events-categories',
+        ).find({
           query: {
             $limit: 20,
           },
-        },
-      );
-      this.categories = categories.data;
+        });
+        this.categories = categories.data;
+        this.loadingSet(false);
+      } catch (error) {
+        console.log(error);
+        this.loadingSet(false);
+      } finally {
+        this.loadingSet(false);
+      }
+    },
+    methods: {
+      ...mapActions(['loadingSet']),
     },
   };
 </script>

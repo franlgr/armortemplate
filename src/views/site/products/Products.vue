@@ -452,9 +452,10 @@
     created() {
       const urlParams = new URLSearchParams(window.location.search);
       this.tag = urlParams.get('tag');
+      this.variableDeURL = this.$route.query.slug;
       this.fetchProducts();
       this.fetchCategories();
-      this.variableDeURL = this.$route.query.slug;
+
       console.log(this.variableDeURL);
       console.log(this.products);
     },

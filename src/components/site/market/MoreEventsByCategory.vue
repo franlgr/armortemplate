@@ -1,9 +1,6 @@
 atego
 <template>
-  <div
-    x-data="{ cartOpen: false , isOpen: false }"
-    class="bg-white m-4 rounded-md"
-  >
+  <div x-data="{ cartOpen: false , isOpen: false }" class="m-4 rounded-md">
     <main class="my-8 py-8">
       <div class="container mx-auto px-6">
         <div class="">
