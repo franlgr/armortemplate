@@ -363,7 +363,7 @@
                     </router-link>
                   </a>
                   <div v-if="product.category">
-                    <p>{{ product.category.title }}</p>
+                    <p class="text-blue-600">{{ product.category.title }}</p>
                   </div>
 
                   <div class="flex items-baseline mb-1 space-x-2">

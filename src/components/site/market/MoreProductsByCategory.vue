@@ -47,7 +47,15 @@ atego
                   </button>
                 </div>
                 <div class="px-5 py-3 mt-2">
-                  <h3 class="text-gray-700 uppercase">{{ product.title }}</h3>
+                  <h3
+                    class="text-gray-700 uppercase hover:text-blue-600 cursor-pointer"
+                    @click="single(product._id)"
+                  >
+                    {{ product.title }}
+                  </h3>
+                  <h3 class="text-xs font-medium text-blue-600 uppercase mt-2">
+                    {{ product.category.title }}
+                  </h3>
                   <span class="text-gray-500 mt-2"
                     >u$s {{ product.price }}</span
                   >
