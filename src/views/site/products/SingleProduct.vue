@@ -152,10 +152,28 @@
               <p class="title-font font-medium text-5xl mt-4 text-gray-900">
                 ${{ product.price }}
               </p>
-              <button
-                class="ml-auto h-12 w-32 mt-4 uppercase text-white bg-red-500 border-0 px-6 focus:outline-none hover:bg-red-600 rounded"
+              <!-- <button
+                @click="handleCartAction(product)"
+                v-bind:class="{
+                  'bg-red-300 text-black': isInCart(product._id),
+                  'text-primary': !isInCart(product._id),
+                }"
+                class="ml-auto mt-4 uppercase text-white bg-green-500 border-0 px-6 focus:outline-none hover:bg-green-600 rounded"
               >
-                <span class="">Add to Cart</span>
+                <span class="" @click="handleCartAction(product)">{{
+                  isInCart(product._id) ? 'Remove to Cart' : 'Add to Cart'
+                }}</span> -->
+              <button
+                @click="handleCartAction(product)"
+                v-bind:class="{
+                  'bg-red-500 text-black hover:bg-red-600': isInCart(
+                    product._id,
+                  ),
+                  'text-primary': !isInCart(product._id),
+                }"
+                class="ml-auto mt-4 transition uppercase text-white bg-green-500 border-0 px-6 focus:outline-none rounded"
+              >
+                {{ isInCart(product._id) ? 'Remove from cart' : 'Add to Cart' }}
               </button>
             </div>
           </div>
@@ -202,12 +220,40 @@
     },
     methods: {
       ...mapActions(['addToCart']),
-      handleCartAction() {
-        if (this.isInCart(this.product._id)) {
-          // this.$router.push({ name: 'site-cart' });
-          alert('This product is already in your cart.');
+      // handleCartAction() {
+      //   if (this.isInCart(this.product._id)) {
+      //     // this.$router.push({ name: 'site-cart' });
+      //     alert('This product is already in your cart.');
+      //   } else {
+      //     this.addToCart(this.product);
+      //   }
+      // },
+      handleCartAction(product) {
+        if (this.isInCart(product._id)) {
+          this.$snotify.error('Product removed from cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+          this.removeFromCart(product);
+          product.isInCart = this.isInCart(product._id);
         } else {
-          this.addToCart(this.product);
+          this.addToCart(product);
+          product.isInCart = this.isInCart(product._id);
+          this.$snotify.success('Product added to cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+        }
+      },
+      removeFromCart(product) {
+        if (this.isInCart(product._id)) {
+          this.$store.dispatch('removeFromCart', product); // Llama a la acción Vuex
+          product.isInCart = false; // Actualiza el estado de isInCart
+          this.isInCart(product._id);
         }
       },
     },

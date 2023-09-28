@@ -35,35 +35,25 @@
       </div>
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
-          <div class="w-full lg:w-9/12">
-            <!-- <div class="flex items-center justify-between">
-              <h1 class="text-xl font-bold text-gray-700 md:text-2xl">HOME</h1>
-              <div>
-                <select
-                  class="w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                >
-                  <option>Latest</option>
-                  <option>Last Week</option>
-                </select>
-              </div>
-            </div> -->
-            <div class="mt-6">
+          <div class="w-full sm:w-12/12 lg:w-8/12">
+            <div class="">
               <h1>Last Products</h1>
               <MoreProductsByCategory></MoreProductsByCategory>
               <h1>Last Events</h1>
               <MoreEventsByCategory></MoreEventsByCategory>
               <h1>Last Blog</h1>
               <MoreBlogsByCategory></MoreBlogsByCategory>
+              <Sidebar class="md:hidden p-4"></Sidebar>
             </div>
           </div>
-          <Sidebar class="hidden w-3/12 -mx-8 lg:block"></Sidebar>
+          <Sidebar class="hidden md:w-12/12 lg:w-5/12 -mx-8 lg:block"></Sidebar>
         </div>
       </div>
       <footer class="px-6 py-2 text-gray-100 bg-gray-800">
         <div
           class="container flex flex-col items-center justify-between mx-auto md:flex-row"
         >
-          <a href="#" class="text-2xl font-bold">Warrior</a>
+          <a href="#" class="text-2xl font-bold">Armor</a>
           <p class="mt-2 md:mt-0">All rights reserved 2020.</p>
           <div class="flex mt-4 mb-2 -mx-2 md:mt-0 md:mb-0">
             <a href="#" class="mx-2 text-gray-100 hover:text-gray-400"
@@ -94,8 +84,8 @@
   // import HelloWorld from '@/components/HelloWorld.vue';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
-  import MoreEventsByCategory from '@/components/site/market/MoreEventsByCategory.vue';
-  import MoreBlogsByCategory from '@/components/site/market/MoreBlogsByCategory.vue';
+  import MoreEventsByCategory from '@/components/site/MoreEventsByCategory.vue';
+  import MoreBlogsByCategory from '@/components/site/MoreBlogsByCategory.vue';
   import ProductsCategories from '@/components/site/market/ProductsCategories.vue';
   import EventsCategories from '@/components/site/events/EventsCategories.vue';
   import LastUsers from '@/components/site/LastUsers.vue';

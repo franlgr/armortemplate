@@ -394,9 +394,7 @@
                   class="block w-full bg-green-300 py-1 text-center border-solid border-2 border-black text-black bg-primary border border-primary rounded-b hover:text-primary transition"
                 >
                   {{
-                    isInCart(product._id)
-                      ? 'Quitar del carrito'
-                      : 'Agregar al carrito'
+                    isInCart(product._id) ? 'Remove from cart' : 'Add to Cart'
                   }}
                 </button>
               </div>
