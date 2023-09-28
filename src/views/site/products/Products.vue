@@ -399,6 +399,7 @@
                 </button>
               </div>
             </div>
+            <!-- Paginación -->
             <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
               <button
                 class="join-item btn btn-outline"
@@ -415,11 +416,10 @@
                 Next
               </button>
             </div>
+            <!-- Fin Paginación -->
           </div>
         </div>
       </div>
-
-      <!-- Paginación -->
     </div>
   </div>
 </template>
@@ -510,6 +510,7 @@
             this.categories = categories.data;
           });
       },
+      //pagination
       nextPage() {
         this.currentPage++;
         this.fetchProducts();
@@ -524,6 +525,7 @@
         this.currentPage = pageNumber;
         this.fetchProducts();
       },
+      //finish pagination
       handleCartAction(product) {
         if (this.isInCart(product._id)) {
           this.$snotify.error('Product removed from cart', 'Success', {

@@ -210,15 +210,20 @@
       MoreProductsByCategory,
     },
     mounted() {
-      FeathersClient.service('products')
-        .get(this.$route.params.id)
-        .then((product) => {
-          console.log(product);
-          this.product = product;
-          this.image = product.images[0];
-        });
+      this.fetchProduct();
     },
     methods: {
+      async fetchProduct() {
+        try {
+          const response = await FeathersClient.service('products').get(
+            this.$route.params.id,
+          );
+          this.product = response;
+          this.image = response.images[0];
+        } catch (error) {
+          console.log(error);
+        }
+      },
       ...mapActions(['addToCart']),
       // handleCartAction() {
       //   if (this.isInCart(this.product._id)) {
@@ -259,6 +264,11 @@
     },
     computed: {
       ...mapGetters(['isInCart']),
+    },
+    watch: {
+      $route(to, from) {
+        this.fetchProduct();
+      },
     },
   };
 </script>

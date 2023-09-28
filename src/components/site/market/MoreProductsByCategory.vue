@@ -1,6 +1,6 @@
 atego
 <template>
-  <div x-data="{ cartOpen: false , isOpen: false }" class="rounded-md">
+  <div class="rounded-md">
     <main class="my-8">
       <div class="container mx-auto px-6">
         <div class="">
@@ -68,6 +68,7 @@ atego
 <script>
   import FeathersClient from '@/FeathersClient';
   import { mapActions } from 'vuex';
+  import router from '@/router';
   export default {
     name: 'MoreProductsByCategory',
     data() {
