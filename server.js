@@ -212,7 +212,7 @@ app.get('/events/:id_event', async (req, res) => {
   fs.readFile(indexPath, 'utf-8', (err, html) => {
     if (err) {
       console.error('Error al leer el archivo index.html', err);
-      res.send(modifiedHtml);
+      // res.send(modifiedHtml);
       // return res.status(500).send('Error interno del servidor');
     }
 

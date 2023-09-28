@@ -473,7 +473,6 @@
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,700;1,300&display=swap');
-
   .menuAdmin {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 20px;

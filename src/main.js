@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import './style.css';
+
 import snotify from 'vue3-snotify';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -22,13 +23,12 @@ import mapboxgl from 'mapbox-gl';
 import MapboxGLWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker?worker';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-
 mapboxgl.workerClass = MapboxGLWorker;
 
 // Usa el plugin Snotify
 
 //hay que agregar feathers aca para usarlo globalmente
-
+import '@/assets/amor-template-custom.css';
 const app = createApp(App);
 
 app.config.globalProperties.$socket = socket;
