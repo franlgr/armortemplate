@@ -257,7 +257,7 @@ app.get('*', async (req, res) => {
         <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
         <meta name="twitter:title" content="${data.title}">
         <meta name="twitter:description" content="${data.content}">
-        <meta name="twitter:image" content="${data.img}">
+        <meta name="twitter:image" content="https://i.ibb.co/VJrphSX/twLogo.jpg">
     `;
   // res.setHeader('Content-Type', 'application/javascript');
 
