@@ -66,7 +66,7 @@
               </button>
               <div class="flex sm:hidden">
                 <button
-                  @click="cartMenuToggle()"
+                  @click="isOpen = !isOpen"
                   type="button"
                   class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500"
                   aria-label="toggle menu"

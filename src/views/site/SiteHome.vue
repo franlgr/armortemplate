@@ -47,7 +47,10 @@
                 </select>
               </div>
             </div>
-            <div class="mt-6">asd</div>
+            <div class="mt-6">
+              <h1>Last Products</h1>
+              <MoreProductsByCategory></MoreProductsByCategory>
+            </div>
           </div>
           <div class="hidden w-4/12 -mx-8 lg:block">
             <div class="px-8">
@@ -140,7 +143,9 @@
               </div>
             </div>
             <div class="px-8 mt-10">
-              <h1 class="mb-4 text-xl font-bold text-gray-700">Categories</h1>
+              <h1 class="mb-4 text-xl font-bold text-gray-700">
+                Products Categories
+              </h1>
               <div
                 class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
               >
@@ -191,7 +196,115 @@
               </div>
             </div>
             <div class="px-8 mt-10">
-              <h1 class="mb-4 text-xl font-bold text-gray-700">Recent Post</h1>
+              <h1 class="mb-4 text-xl font-bold text-gray-700">
+                Events Categories
+              </h1>
+              <div
+                class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
+              >
+                <ul>
+                  <li>
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- AWS</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Laravel</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Vue</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Design</a
+                    >
+                  </li>
+                  <li class="flex items-center mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Django</a
+                    >
+                  </li>
+                  <li class="flex items-center mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- PHP</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px-8 mt-10">
+              <h1 class="mb-4 text-xl font-bold text-gray-700">
+                Blogs Categories
+              </h1>
+              <div
+                class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
+              >
+                <ul>
+                  <li>
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- AWS</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Laravel</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Vue</a
+                    >
+                  </li>
+                  <li class="mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Design</a
+                    >
+                  </li>
+                  <li class="flex items-center mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- Django</a
+                    >
+                  </li>
+                  <li class="flex items-center mt-2">
+                    <a
+                      href="#"
+                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
+                      >- PHP</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="px-8 mt-10">
+              <h1 class="mb-4 text-xl font-bold text-gray-700">
+                Recent Blog Post
+              </h1>
               <div
                 class="flex flex-col max-w-sm px-8 py-6 mx-auto bg-white rounded-lg shadow-md"
               >
@@ -264,6 +377,7 @@
   // @ is an alias to /src
   // import HelloWorld from '@/components/HelloWorld.vue';
   import SiteHeader from '@/components/site/SiteHeader.vue';
+  import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
 
   export default {
     name: 'HomeView',
@@ -271,11 +385,22 @@
     data() {
       return {
         imagenDeFondo: '@/assets/background.jpg',
+        category: {
+          _id: '6504a7b5c0eb3e6684d12b39',
+          title: 'Consumer Electronics',
+          description: 'Electronic devices and gadgets for your everyday life.',
+          image: 'https://econtroldevices.com/wp-content/uploads/2021/12/7.png',
+          slug: 'consumer-electronics',
+          createdAt: '2023-09-15T18:51:33.347Z',
+          updatedAt: '2023-09-15T18:51:33.347Z',
+          __v: 0,
+        },
       };
     },
     components: {
       // HelloWorld,
       SiteHeader,
+      MoreProductsByCategory,
     },
     data() {
       return {

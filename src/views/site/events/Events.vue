@@ -3,10 +3,10 @@
     <SiteHeader></SiteHeader>
 
     <!-- This is an example component -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+    <section class="grid grid-cols-1 sm:grid-cols-1 gap-4 mx-2 lg:mx-0 md:grid-cols-3 max-w-screen-xl p-2 d-block pt-8" style="margin:auto;">
       <!-- Card Component -->
       <div
-        class="transition-all duration-150 flex w-full px-4 py-6"
+        class="transition-all duration-150 flex w-full "
         v-for="event in events"
       >
         <div

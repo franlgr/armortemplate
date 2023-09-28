@@ -4,15 +4,18 @@ atego
     x-data="{ cartOpen: false , isOpen: false }"
     class="bg-white m-4 rounded-md"
   >
-    <main class="my-8 py-8" v-if="category && products.length > 1">
+    <main class="my-8 py-8">
       <div class="container mx-auto px-6">
         <div class="">
-          <h3 class="text-gray-600 text-2xl font-medium">
+          <h3
+            class="text-gray-600 text-2xl font-medium"
+            v-if="category && products.length > 1"
+          >
             More Products By {{ category.title }}
           </h3>
           <!--  -->
           <div
-            class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6"
+            class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-6"
           >
             <div v-for="product in products" :key="product.index">
               <div
@@ -89,7 +92,7 @@ atego
             this.loadingSet(true);
             const response = await FeathersClient.service('products').find({
               query: {
-                $limit: 4,
+                $limit: 6,
                 //
                 // 'category._id': this.$route.
                 //route params
@@ -98,24 +101,29 @@ atego
                 },
               },
             });
-          }
-          this.loadingSet(true);
-          const response = await FeathersClient.service('products').find({
-            query: {
-              $limit: 4,
-              //this.$route.params.id,
-              'category._id': this.category._id,
-              $sort: {
-                createdAt: -1,
+            this.products = response.data.filter(
+              (producto) => producto._id !== this.$route.params.id,
+            );
+            this.loadingSet(false);
+          } else {
+            this.loadingSet(true);
+            const response = await FeathersClient.service('products').find({
+              query: {
+                $limit: 6,
+                //this.$route.params.id,
+                'category._id': this.category._id,
+                $sort: {
+                  createdAt: -1,
+                },
               },
-            },
-          });
+            });
 
-          this.products = response.data.filter(
-            (producto) => producto._id !== this.$route.params.id,
-          );
-          // this.products = response.data;
-          this.loadingSet(false);
+            this.products = response.data.filter(
+              (producto) => producto._id !== this.$route.params.id,
+            );
+            // this.products = response.data;
+            this.loadingSet(false);
+          }
         } catch (error) {
           this.loadingSet(false);
           console.log(error);
