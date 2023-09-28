@@ -49,7 +49,7 @@ export default createStore({
       commit('setLoading', payload);
     },
     socketStart({ commit }) {
-      console.log('socketStart');
+      // console.log('socketStart');
       //socket io realtime server
     },
   },

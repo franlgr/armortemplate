@@ -228,14 +228,37 @@ app.get('/events/:id_event', async (req, res) => {
 app.get('*', async (req, res) => {
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
-  const metaTags = `<title>Warrior Template</title>
-        <meta name="description" content=" test">
-        <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
-        <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
-        <meta name="apple-mobile-web-app-title" content="hola">
-        <!-- Otras metaetiquetas dinámicas -->
-    `;
+  const data = {
+    title: 'Armor CMS + API: Your All-in-One Solution for Web Development',
+    content:
+      'Unlock the full potential of web development with Armor CMS + API. Our powerful all-in-one solution combines a robust Content Management System (CMS) with a flexible Application Programming Interface (API). Build, customize, and manage web applications with ease. Try our beta version and be part of the future of web development.',
+    img: 'https://armor.alguientiene.com/assets/AuthLogo-cc6e2eba.svg',
+  };
+  const metaTags = `
+        <!-- HTML Meta Tags -->
+        <title>${data.title}</title>
+        <meta name="description" content="${data.content}">
 
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="${data.title}">
+        <meta itemprop="description" content="${data.content}">
+        <meta itemprop="image" content="${data.img}">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://armor.alguientiene.com">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${data.title}">
+        <meta property="og:description" content="${data.content}">
+        <meta property="og:image" content="${data.img}">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+        <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
+        <meta name="twitter:title" content="${data.title}">
+        <meta name="twitter:description" content="${data.content}">
+        <meta name="twitter:image" content="${data.img}">
+    `;
   // res.setHeader('Content-Type', 'application/javascript');
 
   // Lee el archivo "index.html"
@@ -276,9 +299,9 @@ app.get('*', async (req, res) => {
 });
 
 // Ruta principal
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html');
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/dist/index.html');
+// });
 
 //enviar mensaje
 

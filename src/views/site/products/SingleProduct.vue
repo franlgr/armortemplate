@@ -155,7 +155,7 @@
               <button
                 class="ml-auto h-12 w-32 mt-4 uppercase text-white bg-red-500 border-0 px-6 focus:outline-none hover:bg-red-600 rounded"
               >
-                <span class="">Buy</span>
+                <span class="">Add to Cart</span>
               </button>
             </div>
           </div>
