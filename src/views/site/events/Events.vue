@@ -1,8 +1,58 @@
 <template>
-  <div class="text-white text-4xl">
+  <div class="text-white ">
     <SiteHeader></SiteHeader>
 
     <!-- This is an example component -->
+     <div class="flex flex-col ">
+      <div class="flex flex-col justify-center">
+        <div class="relative">
+          <div
+            class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container"
+          >
+            <!-- Aquí está el fondo de degradado -->
+            <img
+              class="h-64 w-64 m-auto pt-8"
+              src="@/assets/AuthLogo.svg"
+              alt="Logo"
+            />
+          </div>
+          <div
+            class="absolute sm:bottom-8 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start "
+          >
+            <p class="text-3xl sm:text-4xl font-semibold leading-9 text-white">
+              Events in the World
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+        <router-link
+          :to="{ name: 'home' }"
+          class="btn btn-outline btn-success m-4 ml-8"
+          >Go Back</router-link
+        >
+      </div>
+
+    <div class="pt-8 px-8" v-if="tag">
+      <div class="mb-2">
+        <router-link
+          to="/events"
+          class="focus:outline-none hover:underline text-gray-500 text-sm"
+          ><i class="mdi mdi-arrow-left text-gray-400"></i>All Events</router-link
+        >
+      </div>
+      <div class="mb-2">
+        <router-link :to="`/events?tag=${category._id}`" class="text-3xl md:text-5xl font-bold text-gray-600"> <span class="text-blue-500">Category {{ category.title }}.</span></router-link>
+      </div>
+      <div class="mb-5 text-gray-400">
+        <router-link :to="`/home`" class="focus:outline-none hover:underline text-gray-500 hover:text-blue-600">Home</router-link>
+        /
+        <router-link :to="`/events`" class="focus:outline-none hover:underline text-gray-500 hover:text-blue-600">Events</router-link>
+      </div>
+    </div>
+    
     <section class="grid grid-cols-1 sm:grid-cols-1 gap-4 mx-2 lg:mx-0 md:grid-cols-3 max-w-screen-xl p-2 d-block pt-8" style="margin:auto;">
       <!-- Card Component -->
       <div
@@ -26,9 +76,8 @@
           <div
             class="flex items-center justify-between px-4 py-2 overflow-hidden"
           >
-            <span class="text-xs font-medium text-blue-600 uppercase">
-              {{ event.category.title }}
-            </span>
+
+          <router-link :to="`/events?tag=${event.category._id}`" class="text-xs font-medium text-blue-600 uppercase">{{ event.category.title }}.</router-link>
             <div class="flex flex-row items-center">
               <div
                 class="text-xs font-medium text-gray-500 flex flex-row items-center mr-2"
@@ -160,17 +209,43 @@
     data() {
       return {
         events: [],
+        tag: null,
+        category: {},
       };
     },
-    async mounted() {
+  async mounted() {
+      const urlParams = new URLSearchParams(window.location.search);
+       this.tag = urlParams.get('tag');
       await this.fetchEvents();
+        
+     
+      console.log(this.tag);
     },
     methods: {
       ...mapActions(['loadingSet']),
       async fetchEvents() {
         this.loadingSet(true);
         try {
-          const events = await FeathersClient.service('events').find({
+          if (this.tag) {
+            const events = await FeathersClient.service('events').find({
+              query: {
+              "category._id": this.tag,
+              $sort: {
+                createdAt: -1,
+                
+              },
+            },
+          });
+          this.events = events.data;
+          console.log(this.events);
+            this.loadingSet(false);
+
+
+            //traer la categoria con get
+            const category = await FeathersClient.service('events-categories').get(this.tag);
+            this.category = category;
+          } else {
+            const events = await FeathersClient.service('events').find({
             query: {
               $sort: {
                 createdAt: -1,
@@ -180,6 +255,11 @@
           this.events = events.data;
           console.log(this.events);
           this.loadingSet(false);
+          }
+          
+
+
+
         } catch (error) {
           console.log(error);
           this.loadingSet(false);
@@ -204,6 +284,13 @@
         }
         // Si el array está vacío o no existe, puedes devolver un valor predeterminado o null
         return null; // Cambia esto según tus necesidades
+      },
+  },
+      watch: {
+      $route(to, from) {
+        const urlParams = new URLSearchParams(to.query);
+        this.tag = urlParams.get('tag');
+        this.fetchEvents();
       },
     },
   };

@@ -50,6 +50,10 @@
             <div class="mt-6">
               <h1>Last Products</h1>
               <MoreProductsByCategory></MoreProductsByCategory>
+              <h1>Last Events</h1>
+              <MoreEventsByCategory></MoreEventsByCategory>
+              <h1>Last Blog</h1>
+              <MoreBlogsByCategory></MoreBlogsByCategory>
             </div>
           </div>
           <div class="hidden w-4/12 -mx-8 lg:block">
@@ -142,112 +146,9 @@
                 </ul>
               </div>
             </div>
-            <div class="px-8 mt-10">
-              <h1 class="mb-4 text-xl font-bold text-gray-700">
-                Products Categories
-              </h1>
-              <div
-                class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
-              >
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- AWS</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Laravel</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Vue</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Design</a
-                    >
-                  </li>
-                  <li class="flex items-center mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Django</a
-                    >
-                  </li>
-                  <li class="flex items-center mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- PHP</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="px-8 mt-10">
-              <h1 class="mb-4 text-xl font-bold text-gray-700">
-                Events Categories
-              </h1>
-              <div
-                class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
-              >
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- AWS</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Laravel</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Vue</a
-                    >
-                  </li>
-                  <li class="mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Design</a
-                    >
-                  </li>
-                  <li class="flex items-center mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- Django</a
-                    >
-                  </li>
-                  <li class="flex items-center mt-2">
-                    <a
-                      href="#"
-                      class="mx-1 font-bold text-gray-700 hover:text-gray-600 hover:underline"
-                      >- PHP</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <ProductsCategories></ProductsCategories>
+            <EventsCategories></EventsCategories>
+
             <div class="px-8 mt-10">
               <h1 class="mb-4 text-xl font-bold text-gray-700">
                 Blogs Categories
@@ -378,6 +279,10 @@
   // import HelloWorld from '@/components/HelloWorld.vue';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
+  import MoreEventsByCategory from '@/components/site/market/MoreEventsByCategory.vue';
+  import MoreBlogsByCategory from '@/components/site/market/MoreBlogsByCategory.vue';
+  import ProductsCategories from '@/components/site/market/ProductsCategories.vue';
+  import EventsCategories from '@/components/site/events/EventsCategories.vue';
 
   export default {
     name: 'HomeView',
@@ -401,6 +306,10 @@
       // HelloWorld,
       SiteHeader,
       MoreProductsByCategory,
+      MoreEventsByCategory,
+      MoreBlogsByCategory,
+      ProductsCategories,
+      EventsCategories,
     },
     data() {
       return {

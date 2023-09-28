@@ -31,7 +31,7 @@
     <div class="pb-16 items-start container justify-between mx-auto mt-2">
       <div>
         <router-link
-          :to="{ name: 'site-events' }"
+          :to="{ name: 'home' }"
           class="btn btn-outline btn-success m-4 ml-8"
           >Go Back</router-link
         >

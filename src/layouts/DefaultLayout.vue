@@ -44,8 +44,7 @@
                 @click="cartMenuToggle()"
                 v-if="
                   $route.name == 'site-products' ||
-                  $route.name == 'site-product' ||
-                  $route.name == 'site-products-checkout'
+                  $route.name == 'site-product'
                 "
                 class="text-gray-600 focus:outline-none mx-4 sm:mx-0 flex items-center border-black bg-white"
               >
