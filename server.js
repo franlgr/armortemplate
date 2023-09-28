@@ -146,7 +146,6 @@ app.get('/products/:id_product', async (req, res) => {
   <meta name="twitter:title" content="${data.title}">
   <meta name="twitter:description" content="${data.content}">
   <meta name="twitter:image" content="${data.img}">
-
     `;
 
   // Lee el archivo "index.html"
@@ -226,6 +225,7 @@ app.get('/events/:id_event', async (req, res) => {
 });
 
 app.get('*', async (req, res) => {
+  console.log('SSR ALL');
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
   const data = {
@@ -257,7 +257,7 @@ app.get('*', async (req, res) => {
         <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
         <meta name="twitter:title" content="${data.title}">
         <meta name="twitter:description" content="${data.content}">
-        <meta name="twitter:image" content="https://i.ibb.co/VJrphSX/twLogo.jpg">
+        <meta name="twitter:image" content="${data.content}">
     `;
   // res.setHeader('Content-Type', 'application/javascript');
 
