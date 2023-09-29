@@ -237,16 +237,21 @@ app.get("/events/:id_event", async (req, res) => {
 });
 //ssr de site users
 app.get("/users/:id_user", async (req, res) => {
-  console.log("SSR EVENTS");
-  const content = textHTML(cadenaHTML);
+  console.log("SSR USERS", req.params.id_user);
+
   let data = {};
   try {
     const response = await axios.get(
       `https://armor-api.alguientiene.com/users/${req.params.id_user}`
     );
-    console.log("SSR USERS", response.data.metaData);
-    data = response.data.metaData;
-    data.content = content;
+
+    data = response.data;
+    if (!data.content) {
+      data.content = "not found";
+    } else {
+      const content = textHTML(response.data.content);
+      data.content = content;
+    }
   } catch (error) {}
 
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
