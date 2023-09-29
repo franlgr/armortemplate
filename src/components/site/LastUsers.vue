@@ -16,9 +16,11 @@
         <div class="flex-grow">
           <!-- Agregamos una clase flex-grow para que este div ocupe todo el espacio restante -->
           <p>
-            <a href="#" class="mx-1 font-bold text-gray-700 hover:underline">{{
-              user.name
-            }}</a>
+            <router-link
+              :to="{ name: 'site-user', params: { id: user._id } }"
+              class="mx-1 font-bold text-gray-700 hover:underline"
+              >{{ user.name }}</router-link
+            >
           </p>
           <p class="mx-1">{{ formatDate(user.createdAt) }}</p>
         </div>

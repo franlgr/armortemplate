@@ -11,6 +11,8 @@ import SiteEvents from '@/views/site/events/Events.vue';
 import SingleEvent from '@/views/site/events/SingleEvent.vue';
 import SingleBlog from '@/views/site/blogs/SingleBlog.vue';
 import Checkout from '@/views/site/products/Checkout.vue';
+import SiteUsers from '@/views/site/users/SiteUsers.vue';
+import SingleUser from '@/views/site/users/SingleUser.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -186,6 +188,8 @@ const routes = [
         name: 'site-products-checkout',
         component: Checkout,
       },
+      { path: '/users', name: 'site-users', component: SiteUsers },
+      { path: '/users/:id', name: 'site-user', component: SingleUser },
       // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',
