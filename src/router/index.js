@@ -37,11 +37,13 @@ import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import CreateProduct from '@/views/admin/products/CreateProduct.vue';
 // import ProductCategories from '@/views/admin/products/ProductCategories.vue';
-import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
+// import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
 // import PostBlog from '@/views/admin/blogs/PostBlog.vue';
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
-import EditCategories from '@/views/admin/products/categories/EditCategory.vue';
+import EditProductCategories from '@/views/admin/products/categories/EditCategory.vue';
 import AllProducts from '@/views/admin/products/AllProducts.vue';
+import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories.vue';
+import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -52,6 +54,7 @@ import EventsCategories from '@/views/admin/events/categories/EventsCategories.v
 import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
 import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
 import CreateBlog from '@/views/admin/blogs/CreateBlog.vue';
+import CreateBlogCategory from '@/views/admin/blogs/categories/CreateCategory.vue';
 
 import store from '../store/index.js';
 
@@ -129,11 +132,11 @@ const routes = [
         component: EditBlogs,
         name: 'admin-blogs-edit',
       },
-      {
-        path: '/admin/categories/edit/:id',
-        component: EditCategories,
-        name: 'admin-categories-edit',
-      },
+      // {
+      //   path: '/admin/categories/edit/:id',
+      //   component: EditProductCategories,
+      //   name: 'admin-categories-edit',
+      // },
       // {
       //   path: '/admin/categories/edit/:id',
       //   component: EditCategories,
@@ -151,8 +154,23 @@ const routes = [
       },
       {
         path: '/admin/products/categories/edit/:id',
-        component: EditCategories,
+        component: EditProductCategories,
         name: 'admin-products-categories-edit',
+      },
+      {
+        path: '/admin/blogs/categories',
+        component: AdminBlogsCategories,
+        name: 'admin-blogs-categories',
+      },
+      {
+        path: '/admin/blogs/categories/edit/:id',
+        component: EditBlogCategories,
+        name: 'admin-blogs-categories-edit',
+      },
+      {
+        path: '/admin/blogs/categories/create',
+        component: CreateBlogCategory,
+        name: 'admin-blogs-categories-create',
       },
     ],
   },
