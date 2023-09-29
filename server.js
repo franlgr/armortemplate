@@ -1,11 +1,11 @@
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
 
-const path = require('path');
-const fs = require('fs');
-const axios = require('axios');
-
+const path = require("path");
+const fs = require("fs");
+const axios = require("axios");
+const cheerio = require("cheerio");
 //userSocketMap
 const userSocketMap = new Map();
 
@@ -14,15 +14,15 @@ const server = http.createServer(app);
 
 const staticOptions = {
   etag: false,
-  maxAge: '1d',
+  maxAge: "1d",
   index: false,
   setHeaders: (res, path) => {
-    res.setHeader('Cache-Control', 'public, max-age=0');
-    res.setHeader('Expires', new Date(Date.now() + 86400000).toUTCString());
+    res.setHeader("Cache-Control", "public, max-age=0");
+    res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
   },
 };
 
-app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
+app.use(express.static(path.join(__dirname, "/dist"), staticOptions));
 
 // app.use((req, res, next) => {
 //   res.setHeader('Cache-Control', 'no-store');
@@ -31,40 +31,40 @@ app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
 
 const io = socketIo(server, {
   cors: {
-    origin: '*',
+    origin: "*",
   },
 });
 
-app.get('/message', (req, res) => {
+app.get("/message", (req, res) => {
   // const { message } = req.body;
-  console.log('Mensaje recibido:');
-  io.emit('message', 'hola');
-  res.send('Mensaje enviado');
+  console.log("Mensaje recibido:");
+  io.emit("message", "hola");
+  res.send("Mensaje enviado");
 });
 
 const messages = [];
 // Manejador de conexiones de Socket.io
-io.on('connection', (socket) => {
-  console.log('Un cliente se ha conectado.');
+io.on("connection", (socket) => {
+  console.log("Un cliente se ha conectado.");
 
   //enviar mensaje al recibirlo
 
   // Manejar eventos personalizados aquí
-  socket.on('MESSAGES_SERVER', () => {
+  socket.on("MESSAGES_SERVER", () => {
     // console.log('Mensaje recibido:', msg);
     // io.emit('MESSAGES_CLIENT', messages); // Enviar el mensaje a todos los clientes
     //broadcast
     // socket.broadcast.emit("hello", "world");
-    socket.emit('MESSAGES_CLIENT', messages);
+    socket.emit("MESSAGES_CLIENT", messages);
   });
 
-  socket.on('NEW_MESSAGE_SERVER', (data) => {
-    console.log('Mensaje recibido:', data);
+  socket.on("NEW_MESSAGE_SERVER", (data) => {
+    console.log("Mensaje recibido:", data);
     messages.push(data);
     // io.emit('NEW_MESSAGE_CLIENT', data); // Enviar el mensaje a todos los clientes
     //BROADCAST
     // socket.emit('NEW_MESSAGE_CLIENT', data);
-    socket.broadcast.emit('NEW_MESSAGE_CLIENT', data);
+    socket.broadcast.emit("NEW_MESSAGE_CLIENT", data);
   });
   //
 
@@ -75,21 +75,21 @@ io.on('connection', (socket) => {
   // });
 
   // Manejar evento para unirse a una sala privada
-  socket.on('unirse-a-sala-privada', (roomId) => {
+  socket.on("unirse-a-sala-privada", (roomId) => {
     socket.join(roomId);
     console.log(`Usuario ${socket.id} se unió a la sala privada ${roomId}`);
   });
 
   // Manejar evento de mensaje privado
-  socket.on('mensaje-privado', ({ roomId, mensaje }) => {
+  socket.on("mensaje-privado", ({ roomId, mensaje }) => {
     // Enviar el mensaje a todos los usuarios en la sala privada menos al remitente
-    socket.broadcast.to(roomId).emit('mensaje', mensaje);
+    socket.broadcast.to(roomId).emit("mensaje", mensaje);
     console.log(`Mensaje enviado a la sala privada ${roomId}: ${mensaje}`);
   });
 
   // Manejar evento de desconexión
-  socket.on('disconnect', () => {
-    console.log('Un cliente se ha desconectado.');
+  socket.on("disconnect", () => {
+    console.log("Un cliente se ha desconectado.");
     // Eliminar la asociación entre el ID de usuario y el ID de socket al desconectar
     // for (const [userId, socketId] of userSocketMap) {
     //   if (socketId === socket.id) {
@@ -101,14 +101,25 @@ io.on('connection', (socket) => {
   });
 });
 
+function textHTML(html) {
+  // Cargar la cadena HTML en Cheerio
+  const $ = cheerio.load(html);
+
+  // Utilizar la función text() para obtener el texto sin formato
+  const texto = $("body").text();
+
+  // Devolver el texto extraído
+  return texto;
+}
+
 //ssr de site products
-app.get('/products/:id_product', async (req, res) => {
+app.get("/products/:id_product", async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://armor-api.alguientiene.com/products/${req.params.id_product}`,
+      `https://armor-api.alguientiene.com/products/${req.params.id_product}`
     );
-    console.log('SSR PRODUCTS', response.data.metaData);
+    console.log("SSR PRODUCTS", response.data.metaData);
     data = response.data.metaData;
   } catch (error) {
     console.error(error);
@@ -149,11 +160,11 @@ app.get('/products/:id_product', async (req, res) => {
     `;
 
   // Lee el archivo "index.html"
-  const indexPath = path.join(__dirname, '/dist', 'index.html');
-  fs.readFile(indexPath, 'utf-8', (err, html) => {
-    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+  const indexPath = path.join(__dirname, "/dist", "index.html");
+  fs.readFile(indexPath, "utf-8", (err, html) => {
+    const modifiedHtml = html.replace("<title></title>", `${metaTags}`);
     if (err) {
-      console.error('Error al leer el archivo index.html', err);
+      console.error("Error al leer el archivo index.html", err);
       res.send(modifiedHtml);
       // return res.status(500).send('Error interno del servidor');
     }
@@ -166,14 +177,14 @@ app.get('/products/:id_product', async (req, res) => {
 });
 
 //ssr de site events
-app.get('/events/:id_event', async (req, res) => {
-  console.log('SSR EVENTS');
+app.get("/events/:id_event", async (req, res) => {
+  console.log("SSR EVENTS");
   let data = {};
   try {
     const response = await axios.get(
-      `https://armor-api.alguientiene.com/events/${req.params.id_event}`,
+      `https://armor-api.alguientiene.com/events/${req.params.id_event}`
     );
-    console.log('SSR EVENTOS', response.data.metaData);
+    console.log("SSR EVENTOS", response.data.metaData);
     data = response.data.metaData;
   } catch (error) {}
 
@@ -209,31 +220,97 @@ app.get('/events/:id_event', async (req, res) => {
     `;
 
   // Lee el archivo "index.html"
-  const indexPath = path.join(__dirname, '/dist', 'index.html');
-  fs.readFile(indexPath, 'utf-8', (err, html) => {
+  const indexPath = path.join(__dirname, "/dist", "index.html");
+  fs.readFile(indexPath, "utf-8", (err, html) => {
     if (err) {
-      console.error('Error al leer el archivo index.html', err);
+      console.error("Error al leer el archivo index.html", err);
       res.send(modifiedHtml);
       // return res.status(500).send('Error interno del servidor');
     }
 
     // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
-    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+    const modifiedHtml = html.replace("<title></title>", `${metaTags}`);
+
+    // Envía el archivo "index.html" modificado con las metaetiquetas
+    res.send(modifiedHtml);
+  });
+});
+//ssr de site users
+app.get("/users/:id_user", async (req, res) => {
+  console.log("SSR USERS", req.params.id_user);
+
+  let data = {};
+  try {
+    const response = await axios.get(
+      `https://armor-api.alguientiene.com/users/${req.params.id_user}`
+    );
+
+    data = response.data;
+    if (!data.content) {
+      data.content = "not found";
+    } else {
+      const content = textHTML(response.data.content);
+      data.content = content;
+    }
+  } catch (error) {}
+
+  // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
+  // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
+  // <meta itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  //       <meta property="og:image" itemprop="image" content="https://i.ibb.co/BNRGXxY/140x140.png">
+  // console.log(response.data.metaData);
+  const metaTags = `
+        <!-- HTML Meta Tags -->
+        <title>Armor CMS / User ${data.name} ${data.lastname}</title>
+        <meta name="description" content="${data.content}">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="${data.title}">
+        <meta itemprop="description" content="${data.content}">
+        <meta itemprop="image" content="${data.image}">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://armor.alguientiene.com/users/${req.params.id_user}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Armor CMS / User ${data.name} ${data.lastname}">
+        <meta property="og:description" content="${data.content}">
+        <meta property="og:image" content="${data.image}">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@nombre_de_usuario_del_sitio">
+        <meta name="twitter:site:id" content="ID_de_Twitter_del_sitio">
+        <meta name="twitter:title" content="Armor CMS / User ${data.name} ${data.lastname}">
+        <meta name="twitter:description" content="${data.content}">
+        <meta name="twitter:image" content="${data.image}">
+    `;
+
+  // Lee el archivo "index.html"
+  const indexPath = path.join(__dirname, "/dist", "index.html");
+  fs.readFile(indexPath, "utf-8", (err, html) => {
+    if (err) {
+      console.error("Error al leer el archivo index.html", err);
+      res.send(modifiedHtml);
+      // return res.status(500).send('Error interno del servidor');
+    }
+
+    // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
+    const modifiedHtml = html.replace("<title></title>", `${metaTags}`);
 
     // Envía el archivo "index.html" modificado con las metaetiquetas
     res.send(modifiedHtml);
   });
 });
 
-app.get('*', async (req, res) => {
-  console.log('SSR ALL');
+app.get("*", async (req, res) => {
+  console.log("SSR ALL");
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
   const data = {
-    title: 'Armor CMS + API: Your All-in-One Solution for Web Development',
+    title: "Armor CMS + API: Your All-in-One Solution for Web Development",
     content:
-      'Unlock the full potential of web development with Armor CMS + API. Our powerful all-in-one solution combines a robust Content Management System (CMS) with a flexible Application Programming Interface (API). Build, customize, and manage web applications with ease. Try our beta version and be part of the future of web development.',
-    img: 'https://i.ibb.co/Wn33HgY/meta.jpg',
+      "Unlock the full potential of web development with Armor CMS + API. Our powerful all-in-one solution combines a robust Content Management System (CMS) with a flexible Application Programming Interface (API). Build, customize, and manage web applications with ease. Try our beta version and be part of the future of web development.",
+    img: "https://i.ibb.co/Wn33HgY/meta.jpg",
   };
   const metaTags = `
         <!-- HTML Meta Tags -->
@@ -284,15 +361,15 @@ app.get('*', async (req, res) => {
   //   res.end('Recurso no encontrado');
   // }
 
-  const indexPath = path.join(__dirname, '/dist', 'index.html');
-  fs.readFile(indexPath, 'utf-8', (err, html) => {
+  const indexPath = path.join(__dirname, "/dist", "index.html");
+  fs.readFile(indexPath, "utf-8", (err, html) => {
     if (err) {
-      console.error('Error al leer el archivo index.html', err);
-      return res.status(500).send('Error interno del servidor');
+      console.error("Error al leer el archivo index.html", err);
+      return res.status(500).send("Error interno del servidor");
     }
 
     // Inserta las metaetiquetas dinámicas en el archivo "index.html" creadas en ej objeto metaTags
-    const modifiedHtml = html.replace('<title></title>', `${metaTags}`);
+    const modifiedHtml = html.replace("<title></title>", `${metaTags}`);
 
     // Envía el archivo "index.html" modificado con las metaetiquetas
     res.send(modifiedHtml);
@@ -307,10 +384,10 @@ app.get('*', async (req, res) => {
 //enviar mensaje
 
 app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader("Cache-Control", "no-store");
   next();
 });
-app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
+app.use(express.static(path.join(__dirname, "/dist"), staticOptions));
 
 // Iniciar el servidor
 const port = process.env.PORT || 2222;
