@@ -60,6 +60,7 @@
                 </div>
               </div>
             </div>
+            {{ user }}
             <div class="text-center mt-12">
               <!-- img redounde full -->
               <img

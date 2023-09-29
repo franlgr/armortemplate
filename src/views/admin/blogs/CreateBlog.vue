@@ -1,254 +1,313 @@
 <!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
+  <div>
     <div>
-        <div>
-            <AdminHeader title="Create Blog"></AdminHeader>
-            <!-- {{getUser}} -->
-            <div class="mt-6">
-                <router-link to="/admin/blogs"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded ">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18">
-                        </path>
-                    </svg>
-                    Go back
-                </router-link>
-            </div>
-            <div class="carousel carousel-end rounded-box fix">
-                <div class="carousel-item m-auto" v-for="image in images" :key="image.index">
-                    <div>
-                        <img class="w-24 m-auto" :src="image" alt="Drink" />
-                        <button class="bg-white m-auto mt-2 text-sm" @click="deleteImage(image.index)">X</button>
-                    </div>
-
-                </div>
-
-                <!-- {{options}} -->
-
-            </div>
-            <div class="2xl:container md:w-2/3 m-auto px-8 ">
-                <div class="">
-                    <UploadImages title="Upload Blogs Images" class="my-4" v-on:links="links"></UploadImages>
-                    <FormKit type="form" id="guardar-example" :form-class="submitted ? 'hide' : 'show'"
-                        submit-label="Register" @submit="submitHandler" :actions="false" #default="{ value }"
-                        v-model="formData">
-                        <FormKit class="mt-4" type="text" name="title" label="Title Blog"
-                            placeholder="Leather jacket like new" help="What is your title Blog ?" validation="required" />
-                        <ckeditor class="my-4" :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
-                        <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                              help="What is your name?" validation="required" /> -->
-                        <br>
-                        <!-- <label for="price">USD PRICE</label> -->
-                        <FormKit class="mt-4" type="text" name="ubication" label="Ubication"
-                            placeholder="Capilla Del Monte, Córdoba, Argentina." help="What is your ubication ?"
-                            validation="" />
-                        <br>
-                        <ProductSelectCategory v-if="options.length > 0" :options="options" />
-                        <br>
-                        <p class="text-lg font-bold">Meta Data Description</p>
-
-                        <br>
-                        <!-- {{value}} -->
-
-                        <br>
-                        <FormKit :value="metaData.title" class="mt-4" type="text" name="title" label="title for meta"
-                            placeholder="red jacket like new" help="product title for meta seo" validation="required" />
-                        <FormKit :value="metaData.content" class="mt-4" type="text" name="content" label="content for meta"
-                            placeholder="It is very well cared for, I used it very little." help="Describe your blog ?"
-                            validation="required" />
-                        <FormKit type="submit" label="Create Blog" />
-                    </FormKit>
-                    <div name="metaData" style="padding-bottom:50px">
-                        <p>Image for Meta Data Seo</p>
-                        <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
-                        <UploadImg title="Upload Meta Image" class="my-4" v-on:links="linkImgMeta"></UploadImg>
-                    </div>
-                </div>
-            </div>
+      <AdminHeader title="Create Blog"></AdminHeader>
+      <!-- {{getUser}} -->
+      <div class="mt-6">
+        <router-link
+          to="/admin/blogs"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 inline-block -ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            ></path>
+          </svg>
+          Go back
+        </router-link>
+      </div>
+      <div class="carousel carousel-end rounded-box fix">
+        <div
+          class="carousel-item m-auto"
+          v-for="image in images"
+          :key="image.index"
+        >
+          <div>
+            <img class="w-24 m-auto" :src="image" alt="Drink" />
+            <button
+              class="bg-white m-auto mt-2 text-sm"
+              @click="deleteImage(image.index)"
+            >
+              X
+            </button>
+          </div>
         </div>
+
+        <!-- {{options}} -->
+      </div>
+      <div class="2xl:container md:w-2/3 m-auto px-8">
+        <div class="">
+          <UploadImages
+            title="Upload Blogs Images"
+            class="my-4"
+            v-on:links="links"
+          ></UploadImages>
+          <FormKit
+            type="form"
+            id="guardar-example"
+            :form-class="submitted ? 'hide' : 'show'"
+            submit-label="Register"
+            @submit="submitHandler"
+            :actions="false"
+            #default="{ value }"
+            v-model="formData"
+          >
+            <FormKit
+              class="mt-4"
+              type="text"
+              name="title"
+              label="Title Blog"
+              placeholder="Leather jacket like new"
+              help="What is your title Blog ?"
+              validation="required"
+            />
+            <ckeditor
+              class="my-4"
+              :editor="editor"
+              v-model="editorData"
+              :config="editorConfig"
+            ></ckeditor>
+            <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
+                                              help="What is your name?" validation="required" /> -->
+            <br />
+            <!-- <label for="price">USD PRICE</label> -->
+            <FormKit
+              class="mt-4"
+              type="text"
+              name="ubication"
+              label="Ubication"
+              placeholder="Capilla Del Monte, Córdoba, Argentina."
+              help="What is your ubication ?"
+              validation=""
+            />
+            <br />
+            <ProductSelectCategory
+              v-if="options.length > 0"
+              :options="options"
+            />
+            <br />
+            <p class="text-lg font-bold">Meta Data Description</p>
+
+            <br />
+            <!-- {{value}} -->
+
+            <br />
+            <FormKit
+              :value="metaData.title"
+              class="mt-4"
+              type="text"
+              name="title"
+              label="title for meta"
+              placeholder="red jacket like new"
+              help="product title for meta seo"
+              validation="required"
+            />
+            <FormKit
+              :value="metaData.content"
+              class="mt-4"
+              type="text"
+              name="content"
+              label="content for meta"
+              placeholder="It is very well cared for, I used it very little."
+              help="Describe your blog ?"
+              validation="required"
+            />
+            <FormKit type="submit" label="Create Blog" />
+          </FormKit>
+          <div name="metaData" style="padding-bottom: 50px">
+            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+            <UploadImg
+              title="Upload Meta Image"
+              class="my-4"
+              v-on:links="linkImgMeta"
+            ></UploadImg>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-// import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
-import AdminHeader from '@/components/admin/AdminHeader.vue';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import UploadImages from '@/components/admin/UploadImages.vue';
-import UploadImg from '@/components/admin/UploadImg.vue';
-import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
-import FeathersClient from '@/FeathersClient';
-export default {
+  import { mapActions, mapGetters } from 'vuex';
+  // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
+  import AdminHeader from '@/components/admin/AdminHeader.vue';
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import UploadImages from '@/components/admin/UploadImages.vue';
+  import UploadImg from '@/components/admin/UploadImg.vue';
+  import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
+  import FeathersClient from '@/FeathersClient';
+  export default {
     //logout
     // name: "AdminDashboard",
     data() {
-        return {
-            editor: ClassicEditor,
-            editorData: '<p>Content of the editor.</p>',
-            editorConfig: {
-                // The configuration of the editor.
-                toolbar: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'link',
-                    '|',
-                    'bulletedList',
-                    'numberedList',
-                    '|',
-                    // 'imageUpload', 
-                ],
-            },
-            options: [],
-            formData: {},
-            fechaActual: '',
-            images: [],
-            metaData: {
-                // "title": "Meta Título",
-                // "content": "Meta Descripción",
-                // "img": "URL de la imagen de meta"
-                title: "",
-                content: "",
-                img: ""
-            },
-            //hay que ordenar la data en este objeto
-            newBlog: {
-                // "title": "Título del blog",
-                // "content": "Descripción del blog",
-                // "ubication": "Precio del blog",
-                // "th": "Fecha de creación"
-                // "images": "URL de las imágenes del blog",
-                // "imgUser": "URL image user"
-                // "user": "Name of user"
-                // "category": "ID de la categoría del blog",
-                // "metaData": "Objeto con los datos de meta"
+      return {
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+          // The configuration of the editor.
+          toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'bulletedList',
+            'numberedList',
+            '|',
+            // 'imageUpload',
+          ],
+        },
+        options: [],
+        formData: {},
+        fechaActual: '',
+        images: [],
+        metaData: {
+          // "title": "Meta Título",
+          // "content": "Meta Descripción",
+          // "img": "URL de la imagen de meta"
+          title: '',
+          content: '',
+          img: '',
+        },
+        //hay que ordenar la data en este objeto
+        newBlog: {
+          // "title": "Título del blog",
+          // "content": "Descripción del blog",
+          // "ubication": "Precio del blog",
+          // "th": "Fecha de creación"
+          // "images": "URL de las imágenes del blog",
+          // "imgUser": "URL image user"
+          // "user": "Name of user"
+          // "category": "ID de la categoría del blog",
+          // "metaData": "Objeto con los datos de meta"
 
-
-                category: {},
-            },
-
-        }
+          category: {},
+        },
+      };
     },
     components: {
-        // BreadCrumbs,
-        AdminHeader,
-        UploadImages,
-        UploadImg,
-        ProductSelectCategory
-
+      // BreadCrumbs,
+      AdminHeader,
+      UploadImages,
+      UploadImg,
+      ProductSelectCategory,
     },
     mounted() {
-        this.fetchCategories();
+      this.fetchCategories();
     },
     created() {
-        this.obtenerFechaActual();
+      this.obtenerFechaActual();
     },
 
     methods: {
-        ...mapActions(['loadingSet']),
-        async submitHandler() {
-            // Simulate an AJAX request (replace with actual AJAX call)
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            console.log('Submitted!');
-            this.createBlog();
-        },
-        async fetchCategories() {
-            this.loadingSet(true);
-            //con await
-            try {
-                const res = await FeathersClient.service('blogs-categories').find();
-                this.categories = res.data;
-                console.log('fetchCategories', res);
-                this.setCategories();
-                this.loadingSet(false);
-            } catch (error) {
-                console.error(error);
-                this.loadingSet(false);
-            }
+      ...mapActions(['loadingSet']),
+      async submitHandler() {
+        // Simulate an AJAX request (replace with actual AJAX call)
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        console.log('Submitted!');
+        this.createBlog();
+      },
+      async fetchCategories() {
+        this.loadingSet(true);
+        //con await
+        try {
+          const res = await FeathersClient.service('blogs-categories').find();
+          this.categories = res.data;
+          console.log('fetchCategories', res);
+          this.setCategories();
+          this.loadingSet(false);
+        } catch (error) {
+          console.error(error);
+          this.loadingSet(false);
+        }
+      },
+      setCategories() {
+        this.categories.forEach((category) => {
+          this.options.push({
+            value: category._id,
+            label: category.title,
+          });
+        });
+      },
+      links(links) {
+        console.log('links', links);
+        this.images.push(links);
+      },
+      linkImgMeta(link) {
+        console.log('linkImgMeta', link);
+        this.metaData.img = link;
+      },
+      deleteImage(id) {
+        this.images.splice(id, 1);
+      },
+      obtenerFechaActual() {
+        const fechaActual = new Date();
+        const day = fechaActual.getDate(); //1,2,3...
+        const month = fechaActual.getMonth() + 1; // 0,1,2...
+        const year = fechaActual.getFullYear();
 
-        },
-        setCategories() {
-            this.categories.forEach((category) => {
-                this.options.push({
-                    value: category._id,
-                    label: category.title,
-                });
-            });
-        },
-        links(links) {
-            console.log('links', links);
-            this.images.push(links);
-        },
-        linkImgMeta(link) {
-            console.log('linkImgMeta', link);
-            this.metaData.img = link;
-        },
-        deleteImage(id) {
-            this.images.splice(id, 1);
-        },
-        obtenerFechaActual() {
-            const fechaActual = new Date();
-            const day = fechaActual.getDate();         //1,2,3...
-            const month = fechaActual.getMonth() + 1; // 0,1,2...
-            const year = fechaActual.getFullYear();
+        this.fechaActual = `${day}/${month}/${year}`;
+      },
+      async createBlog() {
+        try {
+          const res = await FeathersClient.service('blogs').create({
+            title: this.formData.title,
+            content: this.editorData,
+            ubication: this.formData.ubication,
+            th: this.fechaActual,
+            images: this.images,
+            imgUser: this.getUser.image,
+            user: this.getUser.name + ' ' + this.getUser.lastname,
+            category: this.formData.category,
+            metaData: {
+              title: this.metaData.title,
+              content: this.metaData.content,
+              img: this.metaData.img,
+            },
+          });
+          this.$snotify.success('Blog Created', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+          this.$router.push({ name: 'admin-blogs' });
+        } catch (error) {
+          console.error(error);
+          this.$snotify.error(error, 'Error', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+        }
+      },
 
-            this.fechaActual = `${day}/${month}/${year}`;
-        },
-        async createBlog() {
-            try {
-                const res = await FeathersClient.service('blogs').create({
-                    title: this.formData.title,
-                    content: this.editorData,
-                    ubication: this.formData.ubication,
-                    th: this.fechaActual,
-                    images: this.images,
-                    imgUser: this.getUser.image,
-                    user: this.getUser.name + ' ' + this.getUser.lastname,
-                    category: this.formData.category,
-                    metaData: {
-                        title: this.metaData.title,
-                        content: this.metaData.content,
-                        img: this.metaData.img,
-                    }
-                });
-                this.$snotify.success('Blog Created', 'Success', {
-                    timeout: 2000,
-                    showProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                });
-                this.$router.push({ name: 'admin-blogs' });
-            } catch (error) {
-                console.error(error);
-                this.$snotify.error(error, 'Error', {
-                    timeout: 2000,
-                    showProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                });
-            }
-        },
-
-
-        setCategory(category) {
-            this.newProduct.category = category;
-        },
-
-
-
+      setCategory(category) {
+        this.newProduct.category = category;
+      },
     },
 
     computed: {
-        ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+      ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
     },
-}
+  };
 </script>
 
-<style >
-.fix {
+<style>
+  .fix {
     margin: auto;
     margin-top: auto;
     margin-bottom: auto;
@@ -256,4 +315,5 @@ export default {
 
     justify-content: center;
     right: 10px;
-}</style>
+  }
+</style>

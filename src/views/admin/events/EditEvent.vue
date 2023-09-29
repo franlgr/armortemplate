@@ -160,7 +160,6 @@
             ></div>
           </div>
           <div name="metaData" style="padding-bottom: 50px">
-            <p>Image for Meta Data Seo</p>
             <!-- <img class="w-24 m-auto" :src="metaData.img" alt="IMG" /> -->
             <!-- componente para subir una imagen -->
 
