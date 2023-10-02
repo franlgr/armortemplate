@@ -1,163 +1,306 @@
+<!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
+  <div>
     <div>
       <AdminHeader title="Edit Blog"></AdminHeader>
-      <div class="p-4">
-        <!-- {{ blogs }} -->
+      <!-- {{getUser}} -->
+      <div class="mt-6">
+        <router-link
+          to="/admin/blogs"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 inline-block -ml-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            ></path>
+          </svg>
+          Go back
+        </router-link>
       </div>
-      <div class="m-4 2xl:container">
-        <div>
-          <!-- FORM EDIT -->
-          <div class="flex flex-col-reverse md:flex-row justify-center items-center h-full w-full">
-            <div class="md:w-1/2 p-4">
-              <!-- {{ formData }} -->
-              <FormKit
-                type="form"
-                id="edit-blog-form"
-                :form-class="submitted ? 'hide' : 'show'"
-                submit-label="Edit Blog"
-                @submit="editBlog"
-                :actions="false"
-                #default="{ value }"
-                v-model="formData"
-              >
-                <h1 class="mb-5">Edit Blog</h1>
-                <hr />
-                <FormKit 
-                  type="text"
-                  name="title"
-                  label="Title *"
-                  :value="blogs.title"
-                  placeholder="Title of blog"
-                  help="Put a title blog"
-                  validation="required"
-                />
-                <FormKit
-                  type="text"
-                  name="content"
-                  label="Description *"
-                  :value="blogs.content"
-                  placeholder="Description of blog"
-                  help="Put a content blog"
-                  validation="required"
-                />
-                <FormKit
-                  type="text"
-                  name="ubication"
-                  label="Ubication (Optional)"
-                  :value="blogs.ubication"
-                  validation=""
-                />
-                <FormKit
-                  type="submit"
-                  label="Edit Blog"
-                />
-                <!-- <pre wrap>{{ value }}</pre> -->
-              </FormKit>
-            </div>
-            <div class="md:w-1/2">
-              <!-- EDIT END -->
-              <br>
-              <div class="max-w-md mx-auto mb-4">
-                <div class="bg-white rounded-lg shadow-lg">
-                  <!-- Título y Descripción -->
-                  <div class="p-4">
-                    <h2 class="text-xl font-semibold">{{ blogs.title }}</h2>
-                    <p style="word-wrap: break-word;" class="text-gray-600">{{ blogs.content }}</p>
-                  </div>
-                  <!-- Carousel Blog -->
-                  <div v-for="blog in blogs.images" :key="blog.index">
-                    <!-- {{ blog }} -->
-                  </div>
-                  <div class="carousel w-full max-w-md max-h-auto mx-auto">
-                    <div class="carousel-container">
-                      <div class="carousel w-full max-w-md max-h-auto mx-auto">
-                        <div
-                          v-for="(blog, index) in blogs.images"
-                          :key="index"
-                          :id="'slide' + (index + 1)"
-                          class="carousel-item relative w-full"
-                        >
-                          <img :src="blog" class="w-full" />
-                          <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a :href="'#slide' + (index === 0 ? blogs.images.length : index)" class="btn btn-circle">❮</a>
-                            <a :href="'#slide' + (index === blogs.images.length - 1 ? 1 : index + 2)" class="btn btn-circle">❯</a>
-                          </div>
-                          <div  class="absolute bottom-0 left-0 right-0 bg-white p-4">
+      <div class="carousel carousel-end rounded-box fix">
+        <div
+          class="carousel-item m-auto"
+          v-for="image in images"
+          :key="image.index"
+        >
+          <div>
+            <img class="w-24 m-auto" :src="image" alt="Drink" />
+            <button
+              class="bg-white m-auto mt-2 text-sm"
+              @click="deleteImage(image.index)"
+            >
+              X
+            </button>
+          </div>
+        </div>
 
-                            <!-- Información adicional debajo de la imagen -->
-                            <button class="flex flex-row items-center bg-white rounded-xl p-2 text-gray-500">
-                            <div class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full">
-                                <img v-if="blogs.imgUser" :src="blogs.imgUser" alt="User Image" class="h-8 w-8 rounded-full">
-                                <img v-if="!blogs.imgUser" src="https://picsum.photos/200/300" alt="User Image" class="h-8 w-8 rounded-full">
-                            </div>
-                            <div class="ml-2 text-sm font-semibold">{{ blogs.user }}</div>
-                            </button>
-                            <p class="text-gray-500"> {{ blogs.th }}</p>
-                            <p class="text-gray-500">Ubication: {{ blogs.ubication }}</p>
-                            <!-- Agrega más datos de usuario u otra información aquí -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <!-- {{options}} -->
+      </div>
+      <div class="2xl:container md:w-2/3 m-auto px-8">
+        <div class="">
+          <UploadImages
+            title="Upload Blogs Images"
+            class="my-4"
+            v-on:links="links"
+          ></UploadImages>
+          <FormKit
+            type="form"
+            id="guardar-example"
+            :form-class="submitted ? 'hide' : 'show'"
+            submit-label="Register"
+            @submit="submitHandler"
+            :actions="false"
+            #default="{ value }"
+            v-model="formData"
+          >
+            <FormKit
+              class="mt-4"
+              type="text"
+              name="title"
+              label="Title Blog"
+              placeholder="Leather jacket like new"
+              help="What is your title Blog ?"
+              validation="required"
+            />
+            <ckeditor
+              class="my-4"
+              :editor="editor"
+              v-model="editorData"
+              :config="editorConfig"
+            ></ckeditor>
+            <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
+                                              help="What is your name?" validation="required" /> -->
+            <br />
+            <!-- <label for="price">USD PRICE</label> -->
+            <FormKit
+              class="mt-4"
+              type="text"
+              name="ubication"
+              label="Ubication"
+              placeholder="Capilla Del Monte, Córdoba, Argentina."
+              help="What is your ubication ?"
+              validation=""
+            />
+            <br />
+            <BlogSelectCategory
+              v-if="options.length > 0"
+              :options="options"
+            />
+            <br />
+            <p class="text-lg font-bold">Meta Data Description</p>
+
+            <br />
+            <!-- {{value}} -->
+
+            <br />
+            <FormKit
+              :value="metaData.title"
+              class="mt-4"
+              type="text"
+              name="title"
+              label="title for meta"
+              placeholder="red jacket like new"
+              help="product title for meta seo"
+              validation="required"
+            />
+            <FormKit
+              :value="metaData.content"
+              class="mt-4"
+              type="text"
+              name="content"
+              label="content for meta"
+              placeholder="It is very well cared for, I used it very little."
+              help="Describe your blog ?"
+              validation="required"
+            />
+            <FormKit type="submit" label="Create Blog" />
+          </FormKit>
+          <div name="metaData" style="padding-bottom: 50px">
+            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+            <UploadImg
+              title="Upload Meta Image"
+              class="my-4"
+              v-on:links="linkImgMeta"
+            ></UploadImg>
           </div>
         </div>
       </div>
     </div>
-  </template>
-  
-  
-  <script>
+  </div>
+</template>
+
+<script>
   import { mapActions, mapGetters } from 'vuex';
-  import FeathersClient from '@/FeathersClient';
+  // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
-  
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import UploadImages from '@/components/admin/UploadImages.vue';
+  import UploadImg from '@/components/admin/UploadImg.vue';
+  import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
+  import FeathersClient from '@/FeathersClient';
   export default {
-    layout: "AdminLayout",
+    //logout
+    // name: "AdminDashboard",
     data() {
       return {
-        fechaActual: "",
-        blogs: {},
+        editor: ClassicEditor,
+        editorData: '<p>Content of the editor.</p>',
+        editorConfig: {
+          // The configuration of the editor.
+          toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'bulletedList',
+            'numberedList',
+            '|',
+            // 'imageUpload',
+          ],
+        },
+        options: [],
         formData: {},
-        submitted: false,
+        fechaActual: '',
+        images: [],
+        metaData: {
+          // "title": "Meta Título",
+          // "content": "Meta Descripción",
+          // "img": "URL de la imagen de meta"
+          title: '',
+          content: '',
+          img: '',
+        },
+        //hay que ordenar la data en este objeto
+        newBlog: {
+          // "title": "Título del blog",
+          // "content": "Descripción del blog",
+          // "ubication": "Precio del blog",
+          // "th": "Fecha de creación"
+          // "images": "URL de las imágenes del blog",
+          // "imgUser": "URL image user"
+          // "user": "Name of user"
+          // "category": "ID de la categoría del blog",
+          // "metaData": "Objeto con los datos de meta"
+          category: {
+            _id: '6504a738c0eb3e6684d12b30',
+            title: "Men's Clothing ",
+            description:
+              '<p>A wide selection of fashionable clothing for men.&nbsp;</p>',
+            image:
+              'https://res.cloudinary.com/doznjtpmk/image/upload/v1694807104/admin-web/qlvmqmwni5iye6iy3xqq.webp',
+            slug: 'mens-clothing',
+            createdAt: '2023-09-15T18:49:28.188Z',
+            updatedAt: '2023-09-16T11:31:52.308Z',
+            __v: 0,
+          },
+
+          category: {},
+          // categories: []
+        },
       };
     },
     components: {
+      // BreadCrumbs,
       AdminHeader,
+      UploadImages,
+      UploadImg,
+      BlogSelectCategory,
     },
-    computed: {
-      ...mapGetters(["getUser"]),
-    },
-  
     mounted() {
-      const id = this.$route.params.id;
-      if (id) {
-        this.fetchBlog(id);
-      }
+      this.fetchCategories();
+    },
+    created() {
       this.obtenerFechaActual();
     },
+
     methods: {
-      ...mapActions(["loadingSet"]),
-      obtenerFechaActual() {
-        const fecha = new Date();
-        const fechaFormateada = fecha.toISOString().split("T")[0];
-        this.fechaActual = fechaFormateada;
+      ...mapActions(['loadingSet']),
+      async submitHandler() {
+        // Simulate an AJAX request (replace with actual AJAX call)
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        console.log('Submitted!');
+        this.createBlog();
       },
-      async fetchBlog(id) {
+      async fetchCategories() {
         this.loadingSet(true);
+        //con await
         try {
-          const res = await FeathersClient.service("blogs").get(id);
-          this.blogs = res;
-          this.formData=res;
-          console.log("fetchBlog", res);
+          const res = await FeathersClient.service('blogs-categories').find();
+          this.categories = res.data;
+          console.log('fetchCategories', res);
+          this.setCategories();
           this.loadingSet(false);
         } catch (error) {
           console.error(error);
           this.loadingSet(false);
-          this.$snotify.error(error, "Error", {
+        }
+      },
+      setCategories() {
+        this.categories.forEach((category) => {
+          this.options.push({
+            value: category._id,
+            label: category.title,
+          });
+        });
+      },
+      links(links) {
+        console.log('links', links);
+        this.images.push(links);
+      },
+      linkImgMeta(link) {
+        console.log('linkImgMeta', link);
+        this.metaData.img = link;
+      },
+      deleteImage(id) {
+        this.images.splice(id, 1);
+      },
+      obtenerFechaActual() {
+        const fechaActual = new Date();
+        const day = fechaActual.getDate(); //1,2,3...
+        const month = fechaActual.getMonth() + 1; // 0,1,2...
+        const year = fechaActual.getFullYear();
+
+        this.fechaActual = `${day}/${month}/${year}`;
+      },
+      async createBlog() {
+        try {
+          const res = await FeathersClient.service('blogs').patch({
+            title: this.formData.title,
+            content: this.editorData,
+            ubication: this.formData.ubication,
+            th: this.fechaActual,
+            images: this.images,
+            imgUser: this.getUser.image,
+            user: this.getUser.name + ' ' + this.getUser.lastname,
+            category: this.newBlog.category,
+            category_id: this.newBlog.category._id,
+            metaData: {
+              title: this.metaData.title,
+              content: this.metaData.content,
+              img: this.metaData.img,
+            },
+          });
+          this.$snotify.success('Blog Created', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+          this.$router.push({ name: 'admin-blogs' });
+        } catch (error) {
+          console.error(error);
+          this.$snotify.error(error, 'Error', {
             timeout: 2000,
             showProgressBar: false,
             closeOnClick: false,
@@ -165,35 +308,26 @@
           });
         }
       },
-      async editBlog() {
-        this.submitted = true;
-        try {
-          // Incluye los campos th, ubication y user en la solicitud PATCH
-          const updatedBlog = await FeathersClient.service("blogs").patch(this.blogs._id, {
-            ...this.formData,
-            // th: this.fechaActual,
-            // user: this.getUser.name +' '+this.getUser.lastname,
-          });
-          console.log("editBlog", updatedBlog);
-          // Actualiza los datos del blog con los datos editados
-          this.blogs = updatedBlog;
-          this.$snotify.success("Blog edited successfully", "Success", {
-            timeout: 2000,
-            showProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-          });
-        } catch (error) {
-          console.error(error);
-          this.$snotify.error("Error editing blog", "Error", {
-            timeout: 2000,
-            showProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-          });
-        }
+
+      setCategory(category) {
+        this.newBlog.category = category;
       },
     },
+
+    computed: {
+      ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+    },
   };
-  </script>
-  
+</script>
+
+<style>
+  .fix {
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+
+    justify-content: center;
+    right: 10px;
+  }
+</style>

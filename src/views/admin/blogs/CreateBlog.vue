@@ -91,7 +91,7 @@
               validation=""
             />
             <br />
-            <ProductSelectCategory
+            <BlogSelectCategory
               v-if="options.length > 0"
               :options="options"
             />
@@ -145,7 +145,7 @@
   import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
-  import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
+  import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
   export default {
     //logout
@@ -192,8 +192,21 @@
           // "user": "Name of user"
           // "category": "ID de la categoría del blog",
           // "metaData": "Objeto con los datos de meta"
+          category: {
+            _id: '6504a738c0eb3e6684d12b30',
+            title: "Men's Clothing ",
+            description:
+              '<p>A wide selection of fashionable clothing for men.&nbsp;</p>',
+            image:
+              'https://res.cloudinary.com/doznjtpmk/image/upload/v1694807104/admin-web/qlvmqmwni5iye6iy3xqq.webp',
+            slug: 'mens-clothing',
+            createdAt: '2023-09-15T18:49:28.188Z',
+            updatedAt: '2023-09-16T11:31:52.308Z',
+            __v: 0,
+          },
 
           category: {},
+          // categories: []
         },
       };
     },
@@ -202,7 +215,7 @@
       AdminHeader,
       UploadImages,
       UploadImg,
-      ProductSelectCategory,
+      BlogSelectCategory,
     },
     mounted() {
       this.fetchCategories();
@@ -270,7 +283,8 @@
             images: this.images,
             imgUser: this.getUser.image,
             user: this.getUser.name + ' ' + this.getUser.lastname,
-            category: this.formData.category,
+            category: this.newBlog.category,
+            category_id: this.newBlog.category._id,
             metaData: {
               title: this.metaData.title,
               content: this.metaData.content,
@@ -296,7 +310,7 @@
       },
 
       setCategory(category) {
-        this.newProduct.category = category;
+        this.newBlog.category = category;
       },
     },
 
