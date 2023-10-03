@@ -6,6 +6,7 @@
       <!-- {{getUser}} -->
       <div class="mt-6">
         <router-link
+          v-if="!edit"
           to="/admin/"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
         >
@@ -26,6 +27,7 @@
           Go back
         </router-link>
       </div>
+
       <div class="2xl:container md:w-1/2 m-auto px-8">
         <div class=" ">
           <div>
@@ -72,9 +74,15 @@
               <p class="text-sm p-1">{{ getUser.city }}</p>
               <p class="text-sm p-1">{{ getUser.country }}</p>
               <p class="mb-4" v-html="getUser.content"></p>
-              <!-- Boton editar profile -->
               <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 mt-2 rounded"
+                class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 py-3 mt-2 rounded"
+                @click="edit = !edit"
+                v-if="!edit"
+              >
+                Cancel
+              </button>
+              <button
+                class="bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold px-4 py-3 mt-2 rounded"
                 @click="edit = !edit"
               >
                 Edit Profile
@@ -189,7 +197,7 @@
           />
         </div> -->
 
-                <FormKit type="submit" label="Guardar" />
+                <FormKit type="submit" label="Save" style="margin-top: 10px" />
                 <!-- <pre wrap>{{ value }}</pre> -->
               </FormKit>
             </div>

@@ -91,10 +91,7 @@
               validation=""
             />
             <br />
-            <BlogSelectCategory
-              v-if="options.length > 0"
-              :options="options"
-            />
+            <BlogSelectCategory v-if="options.length > 0" :options="options" />
             <br />
             <p class="text-lg font-bold">Meta Data Description</p>
 
@@ -125,7 +122,12 @@
             <FormKit type="submit" label="Create Blog" />
           </FormKit>
           <div name="metaData" style="padding-bottom: 50px">
-            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+            <img
+              class="w-24 m-auto"
+              v-if="metaData.img"
+              :src="metaData.img"
+              alt="IMG"
+            />
             <UploadImg
               title="Upload Meta Image"
               class="my-4"

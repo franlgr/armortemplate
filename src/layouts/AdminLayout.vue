@@ -326,6 +326,7 @@
             </li>
             <li>
               <router-link
+                v-if="admin == true"
                 @click="hiddenMenu()"
                 to="/admin/users"
                 v-bind:class="{
@@ -334,7 +335,7 @@
                 class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r"
               >
                 <i class="fa-solid fa-users w-4"></i>
-                <span class="group-hover:text-gray-700">Users</span>
+                <span class="group-hover:text-gray-700">Users (ADMIN)</span>
               </router-link>
               <router-link
                 @click="hiddenMenu()"

@@ -126,7 +126,12 @@
             <FormKit type="submit" label="Create Product" />
           </FormKit>
           <div name="metaData" style="padding-bottom: 50px">
-            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+            <img
+              class="w-24 m-auto"
+              v-if="metaData.img"
+              :src="metaData.img"
+              alt="IMG"
+            />
             <!-- componente para subir una imagen -->
             <UploadImg
               title="Upload Meta Image"
