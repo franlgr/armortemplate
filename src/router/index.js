@@ -36,14 +36,12 @@ import Chat from '@/views/admin/Chat.vue';
 import EditProduct from '@/views/admin/products/EditProduct.vue';
 import EditBlogs from '@/views/admin/blogs/EditBlogs.vue';
 import CreateProduct from '@/views/admin/products/CreateProduct.vue';
-// import ProductCategories from '@/views/admin/products/ProductCategories.vue';
-// import BlogsCategories from '@/views/admin/blogs/BlogsCategories.vue';
-// import PostBlog from '@/views/admin/blogs/PostBlog.vue';
 import AdminProductsCategories from '@/views/admin/products/categories/ProductsCategories.vue';
 import EditProductCategories from '@/views/admin/products/categories/EditCategory.vue';
 import AllProducts from '@/views/admin/products/AllProducts.vue';
 import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories.vue';
 import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
+import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -83,7 +81,8 @@ const routes = [
         name: 'admin-products-all',
       },
       { path: '/admin/categories', component: Categories },
-      { path: '/admin/blogs', component: Blogs },
+      { path: '/admin/blogs', component: Blogs, name: 'admin-blogs' },
+      { path: '/admin/blogs/allblogs', component: AllBlogs, name: 'admin-allblogs' },
       { path: '/admin/components', component: Components },
       { path: '/admin/profile', component: Profile, name: 'admin-profile' },
       { path: '/admin/users', component: Users },

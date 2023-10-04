@@ -1,9 +1,7 @@
-<!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
   <div>
     <div>
-      <AdminHeader title="Create Blog"></AdminHeader>
-      <!-- {{getUser}} -->
+      <AdminHeader title="Create Blog"    icon="fa-solid fa-blog fa-beat"></AdminHeader>
       <div class="mt-6">
         <router-link
           to="/admin/blogs"
@@ -42,8 +40,6 @@
             </button>
           </div>
         </div>
-
-        <!-- {{options}} -->
       </div>
       <div class="2xl:container md:w-2/3 m-auto px-8">
         <div class="">
@@ -76,11 +72,14 @@
               :editor="editor"
               v-model="editorData"
               :config="editorConfig"
+<<<<<<< HEAD
             ></ckeditor> -->
             <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
                                               help="What is your name?" validation="required" /> -->
+=======
+            ></ckeditor>
+>>>>>>> 40779997aa9bff71da71d49f203211ffd64f1bf6
             <br />
-            <!-- <label for="price">USD PRICE</label> -->
             <FormKit
               class="mt-4"
               type="text"
@@ -91,34 +90,47 @@
               validation=""
             />
             <br />
-            <BlogSelectCategory v-if="options.length > 0" :options="options" />
+            <BlogSelectCategory
+              v-if="options.length > 0"
+              :options="options"
+              v-on:category="setCategory"
+            />
             <br />
             <p class="text-lg font-bold">Meta Data Description</p>
-
-            <br />
-            <!-- {{value}} -->
-
             <br />
             <FormKit
               :value="metaData.title"
               class="mt-4"
               type="text"
-              name="title"
+              name="metaTitle"
               label="title for meta"
               placeholder="red jacket like new"
               help="product title for meta seo"
               validation="required"
+              v-on:input="updateMetaTitle"
             />
             <FormKit
               :value="metaData.content"
               class="mt-4"
               type="text"
-              name="content"
+              name="metaContent"
               label="content for meta"
               placeholder="It is very well cared for, I used it very little."
               help="Describe your blog ?"
               validation="required"
+              v-on:input="updateMetaContent"
             />
+            <!-- <FormKit
+              :value="metaData.img"
+              class="mt-4"
+              type="text"
+              name="metaImg"
+              label="image for meta"
+              placeholder="Meta Image URL"
+              help="URL of the image for meta seo"
+              validation="required"
+              v-on:input="updateMetaImg"
+            /> -->
             <FormKit type="submit" label="Create Blog" />
           </FormKit>
           <div name="metaData" style="padding-bottom: 50px">
@@ -131,7 +143,7 @@
             <UploadImg
               title="Upload Meta Image"
               class="my-4"
-              v-on:links="linkImgMeta"
+              v-on:link="linkImgMeta"
             ></UploadImg>
           </div>
         </div>
@@ -142,22 +154,19 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
+
   export default {
-    //logout
-    // name: "AdminDashboard",
     data() {
       return {
         // editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {
-          // The configuration of the editor.
           toolbar: [
             'heading',
             '|',
@@ -168,7 +177,6 @@
             'bulletedList',
             'numberedList',
             '|',
-            // 'imageUpload',
           ],
         },
         options: [],
@@ -176,29 +184,16 @@
         fechaActual: '',
         images: [],
         metaData: {
-          // "title": "Meta Título",
-          // "content": "Meta Descripción",
-          // "img": "URL de la imagen de meta"
           title: '',
           content: '',
           img: '',
         },
-        //hay que ordenar la data en este objeto
         newBlog: {
-          // "title": "Título del blog",
-          // "content": "Descripción del blog",
-          // "ubication": "Precio del blog",
-          // "th": "Fecha de creación"
-          // "images": "URL de las imágenes del blog",
-          // "imgUser": "URL image user"
-          // "user": "Name of user"
-          // "category": "ID de la categoría del blog",
-          // "metaData": "Objeto con los datos de meta"
           category: {
             _id: '6504a738c0eb3e6684d12b30',
-            title: "Men's Clothing ",
+            title: "Men's Clothing",
             description:
-              '<p>A wide selection of fashionable clothing for men.&nbsp;</p>',
+              '<p>A wide selection of fashionable clothing for men.</p>',
             image:
               'https://res.cloudinary.com/doznjtpmk/image/upload/v1694807104/admin-web/qlvmqmwni5iye6iy3xqq.webp',
             slug: 'mens-clothing',
@@ -206,14 +201,10 @@
             updatedAt: '2023-09-16T11:31:52.308Z',
             __v: 0,
           },
-
-          category: {},
-          // categories: []
         },
       };
     },
     components: {
-      // BreadCrumbs,
       AdminHeader,
       UploadImages,
       UploadImg,
@@ -225,18 +216,15 @@
     created() {
       this.obtenerFechaActual();
     },
-
     methods: {
       ...mapActions(['loadingSet']),
       async submitHandler() {
-        // Simulate an AJAX request (replace with actual AJAX call)
         await new Promise((resolve) => setTimeout(resolve, 1000));
         console.log('Submitted!');
         this.createBlog();
       },
       async fetchCategories() {
         this.loadingSet(true);
-        //con await
         try {
           const res = await FeathersClient.service('blogs-categories').find();
           this.categories = res.data;
@@ -269,15 +257,15 @@
       },
       obtenerFechaActual() {
         const fechaActual = new Date();
-        const day = fechaActual.getDate(); //1,2,3...
-        const month = fechaActual.getMonth() + 1; // 0,1,2...
+        const day = fechaActual.getDate();
+        const month = fechaActual.getMonth() + 1;
         const year = fechaActual.getFullYear();
 
         this.fechaActual = `${day}/${month}/${year}`;
       },
-      async createBlog() {
+      createBlog() {
         try {
-          const res = await FeathersClient.service('blogs').create({
+          FeathersClient.service('blogs').create({
             title: this.formData.title,
             content: this.editorData,
             ubication: this.formData.ubication,
@@ -285,21 +273,29 @@
             images: this.images,
             imgUser: this.getUser.image,
             user: this.getUser.name + ' ' + this.getUser.lastname,
+            user_id: this.getUser._id,
             category: this.newBlog.category,
             category_id: this.newBlog.category._id,
-            metaData: {
-              title: this.metaData.title,
-              content: this.metaData.content,
-              img: this.metaData.img,
-            },
+            metaData: this.metaData,
+          })
+          .then(() => {
+            this.$snotify.success('Blog Created', 'Success', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+            this.$router.push({ name: 'admin-blogs' });
+          })
+          .catch((error) => {
+            console.error(error);
+            this.$snotify.error(error, 'Error', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
           });
-          this.$snotify.success('Blog Created', 'Success', {
-            timeout: 2000,
-            showProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-          });
-          this.$router.push({ name: 'admin-blogs' });
         } catch (error) {
           console.error(error);
           this.$snotify.error(error, 'Error', {
@@ -310,14 +306,21 @@
           });
         }
       },
-
       setCategory(category) {
         this.newBlog.category = category;
       },
+      updateMetaTitle(value) {
+        this.metaData.title = value;
+      },
+      updateMetaContent(value) {
+        this.metaData.content = value;
+      },
+      updateMetaImg(value) {
+        this.metaData.img = value;
+      },
     },
-
     computed: {
-      ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+      ...mapGetters(['isLoading', 'getUser']),
     },
   };
 </script>
@@ -328,7 +331,6 @@
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
-
     justify-content: center;
     right: 10px;
   }

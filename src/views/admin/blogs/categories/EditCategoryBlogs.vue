@@ -2,7 +2,7 @@
 <template>
     <div>
       <div>
-        <AdminHeader title="Edit Category Blogs" class="mb-8"></AdminHeader>
+        <AdminHeader title="Edit Category Blogs" class="mb-8"     icon="fa-solid fa-blog fa-beat"></AdminHeader>
         <router-link to="/admin/blogs/categories"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded mt-24 ">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block -ml-1" fill="none" viewBox="0 0 24 24"
@@ -14,7 +14,7 @@
         </router-link>
         <div class="my-4">
           <label for="image" class="font-bold p-4">Image</label>
-          <UploadImg :ignore="true" class="my-4" v-on:links="links"></UploadImg>
+          <UploadImg :ignore="true" class="my-4" v-on:link="link"></UploadImg>
           <img class="px-24 m-auto" :src="category.image" alt="Avatar Tailwind CSS Component" />
         </div>
   
@@ -51,7 +51,11 @@
   export default {
     data() {
       return {
-        category: {},
+        category: {
+          "image": "",
+          "title": "",
+          "slug": ""
+        },
         editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {
@@ -112,9 +116,9 @@
         // After the request is complete, set submitted to true
         // this.submitted = true;
       },
-      links(links) {
-        this.category.image = links;
-        console.log('links', links);
+      link(link) {
+        this.category.image = link;
+        console.log('linkIMG', link);
       },
     },
     components: {
