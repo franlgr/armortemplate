@@ -135,7 +135,7 @@
       <div class="container mx-auto">
         <div class="flex justify-between items-center">
           <div>
-            <p>&copy; 2023 Mi Sitio Web</p>
+            <p>&copy; 2023 Armor Template</p>
           </div>
           <div>
             <a href="#">Política de Privacidad</a>
@@ -177,5 +177,16 @@
 <style>
   .button-cart {
     z-index: 100;
+  }
+
+  .parallax {
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 </style>

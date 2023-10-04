@@ -1,10 +1,17 @@
+<!--
+The SiteHome.vue file contains the main view of the website's home page. It includes a header, a hero section with a background image and a call to action button, and sections for displaying the latest products, events, and blog posts. It also includes a sidebar for displaying additional content and a footer with links to social media profiles.
+
+The template section contains the HTML structure of the page, including the SiteHeader component, the hero section with a background image, and the sections for displaying the latest products, events, and blog posts. It also includes a call to action button that links to the registration page.
+
+The script section imports various components used in the template section, including SiteHeader, MoreProductsByCategory, MoreEventsByCategory, MoreBlogsByCategory, ProductsCategories, EventsCategories, LastUsers, and Sidebar. It also defines the HomeView component, which is the main component for the home page. The component includes a layout property that specifies the default layout for the page and a data property that defines the category object used in the template section.
+-->
 <template>
   <div>
-    <div class="overflow-x-hidden bg-gray-100">
+    <div>
       <SiteHeader></SiteHeader>
 
       <div
-        class="hero min-h-screen"
+        class="hero min-h-screen paralax"
         :style="{
           'background-image': `url('https://i.ibb.co/DkB7fzb/background.jpg')`,
         }"
@@ -54,7 +61,7 @@
           class="container flex flex-col items-center justify-between mx-auto md:flex-row"
         >
           <a href="#" class="text-2xl font-bold">Armor</a>
-          <p class="mt-2 md:mt-0">All rights reserved 2020.</p>
+          <p class="mt-2 md:mt-0">All rights reserved 2023.</p>
           <div class="flex mt-4 mb-2 -mx-2 md:mt-0 md:mb-0">
             <a href="#" class="mx-2 text-gray-100 hover:text-gray-400"
               ><svg viewBox="0 0 512 512" class="w-4 h-4 fill-current">
@@ -80,8 +87,6 @@
 </template>
 
 <script>
-  // @ is an alias to /src
-  // import HelloWorld from '@/components/HelloWorld.vue';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
   import MoreEventsByCategory from '@/components/site/MoreEventsByCategory.vue';
@@ -136,3 +141,15 @@
     },
   };
 </script>
+<style>
+  .paralax {
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

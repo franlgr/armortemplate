@@ -51,7 +51,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3490pc !important', // Cambia esto al color primario que desees
-        primaryHover: '#2779bd', // Cambia esto al color hover que desees
+        primaryHover: 'red !important', // Cambia esto al color hover que desees
       },
     },
   },
@@ -59,7 +59,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#3490pc !important', // Cambia esto al color primario que desees
-        primaryHover: '#2779bd', // Cambia esto al color hover que desees
+        primaryHover: 'red !important', // Cambia esto al color hover que desees
       },
     },
   },

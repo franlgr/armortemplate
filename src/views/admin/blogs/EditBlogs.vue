@@ -104,7 +104,6 @@
           />
           <FormKit type="submit" label="Save Blog" />
         </FormKit>
-
         <div name="metaData" style="padding-bottom: 50px">
           <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
         </div>

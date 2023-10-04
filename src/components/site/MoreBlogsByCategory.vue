@@ -1,5 +1,5 @@
 <template>
-  <div class="m-4 rounded-md">
+  <div x-data="{ cartOpen: false , isOpen: false }" class="m-4 rounded-md">
     <main class="my-8 py-8">
       <div class="container mx-auto px-6">
         <div class="">
@@ -49,7 +49,10 @@
                   >
                     {{ blog.title }}
                   </h3>
-                  <h3 class="text-xs font-medium text-blue-600 uppercase mt-2">
+                  <h3
+                    v-if="blog.category"
+                    class="text-xs font-medium text-blue-600 uppercase mt-2"
+                  >
                     {{ blog.category.title }}
                   </h3>
                   <span class="text-gray-500 mt-2">u$s {{ blog.price }}</span>

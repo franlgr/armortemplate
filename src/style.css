@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.parallax {
+  /* Set a specific height */
+  min-height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 :root {
-  
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -90,5 +100,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-

@@ -75,12 +75,19 @@
               help="What is your title product ?"
               validation="required"
             />
-            <ckeditor
+            <!-- <ckeditor
               class="my-4"
+              id="editor"
+              :editor="editor"
+              v-model="editorData"
+              :config="editorConfig"
+            ></ckeditor> -->
+            <ckeditor
               :editor="editor"
               v-model="editorData"
               :config="editorConfig"
             ></ckeditor>
+            <CkeditorTest></CkeditorTest>
 
             <br />
             <FormKit
@@ -126,7 +133,12 @@
             <FormKit type="submit" label="Create Product" />
           </FormKit>
           <div name="metaData" style="padding-bottom: 50px">
-            <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+            <img
+              class="w-24 m-auto"
+              v-if="metaData.img"
+              :src="metaData.img"
+              alt="IMG"
+            />
             <!-- componente para subir una imagen -->
             <UploadImg
               title="Upload Meta Image"
@@ -145,11 +157,15 @@
   import { mapActions, mapGetters } from 'vuex';
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  import { ClassicEditor, htmlembed } from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
+  // import { ClassicEditor as ClassicEditorBase } from '@ckeditor/ckeditor5-editor-classic';
+  // import html from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
+  // import CkeditorTest from '@/components/CkeditorTest.vue';ckeditor5-media-embed
+
   export default {
     data() {
       return {
@@ -195,6 +211,39 @@
       UploadImages,
       UploadImg,
       ProductSelectCategory,
+      // CkeditorTest,
+    },
+    mounted() {
+      // ClassicEditor.create(document.querySelector('#editor'), {
+      //   plugins: [this.MediaEmbed /* ... */],
+      //   toolbar: ['mediaEmbed' /* ... */],
+      //   mediaEmbed: {
+      //     // Configuration
+      //     // ...
+      //   },
+      // })
+      //   .then(/* ... */)
+      //   .catch(/* ... */);
+      // this.editor;
+      // .create(document.querySelector('#editor'), {
+      //   plugins: [HtmlEmbed /* ... */],
+      //   toolbar: ['htmlEmbed' /* ... */],
+      //   htmlEmbed: {
+      //     showPreviews: true,
+      //     sanitizeHtml: (inputHtml) => {
+      //       // Strip unsafe elements and attributes, e.g.:
+      //       // the `<script>` elements and `on*` attributes.
+      //       const outputHtml = sanitize(inputHtml);
+      //       return {
+      //         html: outputHtml,
+      //         // true or false depending on whether the sanitizer stripped anything.
+      //         hasChanged: true,
+      //       };
+      //     },
+      //   },
+      // })
+      // .then(/* ... */)
+      // .catch(/* ... */);
     },
     methods: {
       ...mapActions(['loadingSet']),

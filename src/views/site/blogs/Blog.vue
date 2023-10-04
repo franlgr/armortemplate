@@ -6,15 +6,12 @@
         <div class="flex flex-col justify-center">
           <div class="relative">
             <div
-              class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container"
+              class="background-container parallax flex justify-center items-center"
             >
               <!-- Aquí está el fondo de degradado -->
-              <img
-                class="h-64 w-64 m-auto pt-8"
-                src="@/assets/AuthLogo.svg"
-                alt="Logo"
-              />
+              <img class="h-64 w-64" src="@/assets/AuthLogo.svg" alt="Logo" />
             </div>
+
             <div
               class="absolute sm:bottom-8 bottom-4 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start"
             >
@@ -148,8 +145,8 @@
         <div
           class="container flex flex-col items-center justify-between mx-auto md:flex-row"
         >
-          <a href="#" class="text-2xl font-bold">Warrior</a>
-          <p class="mt-2 md:mt-0">All rights reserved 2020.</p>
+          <a href="#" class="text-2xl font-bold">Armor Template</a>
+          <p class="mt-2 md:mt-0">All rights reserved 2023.</p>
           <div class="flex mt-4 mb-2 -mx-2 md:mt-0 md:mb-0">
             <a href="#" class="mx-2 text-gray-100 hover:text-gray-400"
               ><svg viewBox="0 0 512 512" class="w-4 h-4 fill-current">

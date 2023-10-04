@@ -101,16 +101,19 @@
                 </label>
                 <ul
                   tabindex="0"
-                  class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                  class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-green-500 rounded-box w-52"
                 >
                   <li>
-                    <a class="justify-between">
+                    <router-link
+                      :to="{ name: 'admin-profile' }"
+                      class="justify-between"
+                    >
                       Profile
-                      <span class="badge">New</span>
-                    </a>
+                      <!-- <span class="badge">New</span> -->
+                    </router-link>
                   </li>
-                  <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
+                  <li><a class="primaryHover">Settings</a></li>
+                  <li><div @click="logout()" class="">Logout</div></li>
                 </ul>
               </div>
             </div>
@@ -199,7 +202,7 @@
       },
     },
     methods: {
-      ...mapActions(['toggleMenu']),
+      ...mapActions(['toggleMenu', 'logout']),
       // activeMenu() {
       //     this.toggleMenu(true)
       // },
