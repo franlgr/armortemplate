@@ -5,7 +5,7 @@ import './style.css';
 import snotify from 'vue3-snotify';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import CKEditor from '@ckeditor/ckeditor5-vue';
+// import CKEditor from '@ckeditor/ckeditor5-vue';
 
 import { createThemePlugin } from '@formkit/themes';
 import { plugin, defaultConfig } from '@formkit/vue';
@@ -36,7 +36,7 @@ app.config.globalProperties.$socket = socket;
 app.use(router);
 app.use(store);
 app.use(snotify);
-app.use(CKEditor);
+// app.use(CKEditor);
 // app.use(plugin, {
 //   plugins: [
 //     createThemePlugin()

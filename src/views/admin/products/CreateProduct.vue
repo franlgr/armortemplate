@@ -82,12 +82,12 @@
               v-model="editorData"
               :config="editorConfig"
             ></ckeditor> -->
-            <ckeditor
+            <!-- <ckeditor
               :editor="editor"
               v-model="editorData"
               :config="editorConfig"
-            ></ckeditor>
-            <CkeditorTest></CkeditorTest>
+            ></ckeditor> -->
+            <MdEditor></MdEditor>
 
             <br />
             <FormKit
@@ -157,19 +157,19 @@
   import { mapActions, mapGetters } from 'vuex';
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
-  import { ClassicEditor, htmlembed } from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
   // import { ClassicEditor as ClassicEditorBase } from '@ckeditor/ckeditor5-editor-classic';
   // import html from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
-  // import CkeditorTest from '@/components/CkeditorTest.vue';ckeditor5-media-embed
+  import MdEditor from '@/components/MdEditor.vue';
 
   export default {
     data() {
       return {
-        editor: ClassicEditor,
+        // editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {
           // The configuration of the editor.
@@ -211,7 +211,7 @@
       UploadImages,
       UploadImg,
       ProductSelectCategory,
-      // CkeditorTest,
+      MdEditor,
     },
     mounted() {
       // ClassicEditor.create(document.querySelector('#editor'), {

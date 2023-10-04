@@ -59,12 +59,12 @@
             help="What is your title product ?"
             validation="required"
           />
-          <ckeditor
+          <!-- <ckeditor
             class="my-4"
             :editor="editor"
             v-model="editorData"
             :config="editorConfig"
-          ></ckeditor>
+          ></ckeditor> -->
           <br />
           <FormKit
             class="mt-4"
@@ -128,7 +128,7 @@
   import FeathersClient from '@/FeathersClient';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
 
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
@@ -136,7 +136,7 @@
   export default {
     data() {
       return {
-        editor: ClassicEditor,
+        // editor: ClassicEditor,
         editorData: '',
         editorConfig: {
           // The configuration of the editor.

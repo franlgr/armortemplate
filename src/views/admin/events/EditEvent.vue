@@ -70,7 +70,7 @@
               validation="required"
             />
             <p for="description" class="description">Description</p>
-            <ckeditor
+            <!-- <ckeditor
               id="ckeditor"
               class="my-4"
               v-model="formData.content"
@@ -78,7 +78,7 @@
               label="description"
               :editor="editor"
               :config="editorConfig"
-            ></ckeditor>
+            ></ckeditor> -->
             <br />
             <FormKit
               type="date"
@@ -184,7 +184,7 @@
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   import MapBox from '@/components/MapBox.vue';
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import EventSelectCategory from '@/components/admin/EventSelectCategory.vue';
@@ -193,7 +193,7 @@
     data() {
       return {
         //esto es para el editor de texto
-        editor: ClassicEditor,
+        // editor: ClassicEditor,
         editorData: '<p>Enter event details here...</p>',
         editorConfig: {
           height: '500px !important',

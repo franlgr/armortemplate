@@ -165,7 +165,7 @@
                 <label for="description"
                   >Describe something about yourself</label
                 >
-                <ckeditor
+                <!-- <ckeditor
                   id="ckeditor"
                   class="my-4"
                   v-model="formData.content"
@@ -173,7 +173,7 @@
                   label="description"
                   :editor="editor"
                   :config="editorConfig"
-                ></ckeditor>
+                ></ckeditor> -->
 
                 <!-- <div class="double">
           <FormKit
@@ -218,13 +218,13 @@
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   import FeathersClient from '@/FeathersClient';
   import UploadImg from '@/components/admin/UploadImg.vue';
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   export default {
     data: () => ({
       submitted: false,
       formData: {},
       edit: false,
-      editor: ClassicEditor,
+      // editor: ClassicEditor,
       editorData: '<p>Enter event details here...</p>',
       editorConfig: {
         height: '500px !important',
