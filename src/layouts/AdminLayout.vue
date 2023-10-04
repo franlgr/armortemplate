@@ -145,10 +145,14 @@
                     }"
                     class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
                   >
-                    <p>
-                      <i class="fa-solid fa-cart-shopping text-black"></i
-                      ><span class="ml-8 text-black"> All Products</span>
-                    </p>
+                  <p>
+                  <span class="text-black">
+                    <i class="fa-solid fa-cart-shopping text-black"></i>
+                    All Products
+                  </span>
+                  <i class="fa-solid fa-lock text-black ml-2"></i>
+                </p>
+
                   </router-link>
                   <router-link
                     @click="hiddenMenu()"
@@ -162,7 +166,8 @@
                   >
                     <p>
                       <i class="fa-regular fa-rectangle-list text-black"></i
-                      ><span class="ml-8 text-black">Categories (admin)</span>
+                      ><span class="ml-8 text-black">Categories</span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
                     </p>
                   </router-link>
                 </div>
@@ -233,7 +238,8 @@
                   >
                     <p>
                       <i class="fa-regular fa-rectangle-list text-black"></i
-                      ><span class="ml-8 text-black">Categories (admin)</span>
+                      ><span class="ml-8 text-black">Categories</span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
                     </p>
                   </router-link>
                 </div>
@@ -294,6 +300,22 @@
                   </router-link>
                   <router-link
                     @click="hiddenMenu()"
+                    to="/admin/blogs/allblogs"
+                    v-if="admin == true"
+                    v-bind:class="{
+                      'from-sky-600 to-cyan-400':
+                        $route.path === '/admin/blogs/allblogs',
+                    }"
+                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                  >
+                    <p>
+                      <i class="fa-solid fa-cart-shopping text-black"></i
+                      ><span class="ml-8 text-black"> All Blogs</span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
+                    </p>
+                  </router-link>
+                  <router-link
+                    @click="hiddenMenu()"
                     to="/admin/blogs/categories"
                     v-if="admin == true"
                     v-bind:class="{
@@ -304,7 +326,8 @@
                   >
                     <p>
                       <i class="fa-regular fa-rectangle-list text-black"></i
-                      ><span class="ml-8 text-black">Categories (admin)</span>
+                      ><span class="ml-8 text-black">Categories</span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
                     </p>
                   </router-link>
                 </div>

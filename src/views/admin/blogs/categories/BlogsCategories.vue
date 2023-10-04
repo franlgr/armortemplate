@@ -1,7 +1,7 @@
 <template>
     <div>
       <div>
-        <AdminHeader title="Blogs Categories"></AdminHeader>
+        <AdminHeader title="Blogs Categories" icon="fa-solid fa-blog fa-beat"></AdminHeader>
   
         <div class="m-4 2xl:container">
           <div class="">
@@ -76,6 +76,12 @@
                   </tr>
                 </tbody>
               </table>
+              <div class=" join grid grid-cols-2 pagination w-64 m-auto py-8">
+                            <button class="join-item btn btn-outline" @click="prevPage"
+                                :disabled="currentPage === 1">Previous</button>
+                            <button class="join-item btn btn-outline" @click="nextPage"
+                                :disabled="categories.length < perPage">Next</button>
+                        </div>
             </div>
           </div>
         </div>
@@ -135,7 +141,7 @@
       deleteSelectedCategories() {
         if (this.selectedCategories.length > 0) {
           const confirmationMessage = 'Are you sure you want to delete selected categories?';
-          const toastId = this.$snotify.info(confirmationMessage, 'Delete Categories', {
+          const toastId = this.$snotify.info(confirmationMessage, 'Delete Categories?', {
             timeout: 0,
             showProgressBar: true,
             closeOnClick: false,
@@ -170,7 +176,7 @@
         Promise.all(ids.map((id) => FeathersClient.service('blogs-categories').remove(id)))
           .then((res) => {
             console.log('deleteCategories', res);
-            this.$snotify.success('Categories deleted', 'Success', {
+            this.$snotify.success('Categories deleted', 'Success!', {
               timeout: 2000,
               showProgressBar: false,
               closeOnClick: false,
