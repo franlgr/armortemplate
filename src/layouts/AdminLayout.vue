@@ -3,7 +3,7 @@
     <div>
       <aside
         :class="[!getMenuState ? 'ml-[-100%]' : '']"
-        class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu"
+        class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu"
       >
         <div class="contenido menuAdmin">
           <button
@@ -12,20 +12,20 @@
           >
             Close
           </button>
-          <div class="-mx-6 px-6 py-4 mt-8 m-auto text-center">
+          <div class="-mx-6 px-6 mt-8 m-auto text-center">
             <router-link to="/" title="home" class="mb-4">
               <img
                 src="@/assets/AuthLogo.svg"
-                class="w-36 mx-12 mt-2 logo"
+                class="w-36 mx-12 mt-2 logo hover:animate-pulse"
                 alt="tailus logo"
               />
             </router-link>
             <div class="m-auto mt-4 text-center">
-              <router-link to="/" title="home">
+              <!-- <router-link to="/" title="home">
                 <button class="btn px-4 bg-green-500 text-center">
                   Go Site
                 </button>
-              </router-link>
+              </router-link> -->
             </div>
           </div>
           <div class="text-center p-4">
@@ -42,15 +42,13 @@
               class="w-32 h-32 m-auto rounded-full object-cover"
             />
 
-            <h5
-              class="hidden mt-4 text-1xl font-semibold text-gray-600 lg:block"
-            >
+            <h5 class="hidden mt-4 text-1xl font-semibold text-white lg:block">
               {{ getUser.name }} {{ getUser.lastname }}
             </h5>
-            <p class="text-1xl mt-2">{{ getUser.email }}</p>
-            <p class="hidden lg:block mt-4 font-bold">Permissions</p>
+            <p class="text-1xl mt-2 text-white">{{ getUser.email }}</p>
+            <p class="hidden lg:block mt-4 font-bold text-white">Permissions</p>
             <span
-              class="hidden text-gray-400 lg:block"
+              class="hiddenlg:block text-green-500"
               v-for="permission in getUser.permissions"
               >{{ permission }}</span
             >
@@ -63,7 +61,7 @@
                 href="#"
                 aria-label="dashboard"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400':
+                  '':
                     $route.path === '/admin/dashboard' ||
                     $route.path === '/admin',
                 }"
@@ -374,10 +372,10 @@
             </li>
           </ul>
           <div
-            class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-sky-600 to-cyan-400 bg-gradient-to-r"
+            class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-[#1ddd9c] to-black bg-gradient-to-r"
           >
             <button
-              class="px-4 py-3 flex items-center space-x-4 rounded-md text-black group"
+              class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group bg-[#1ddd881c] shadow-lg"
               @click="logout()"
             >
               <svg
@@ -463,7 +461,7 @@
         const desiredRoute = this.$router.currentRoute.path;
 
         // Define the Tailwind CSS class to apply when the route is active
-        const activeClass = 'from-sky-600 to-cyan-400'; // Adjust this based on your Tailwind CSS configuration
+        const activeClass = ''; // Adjust this based on your Tailwind CSS configuration
 
         // Compare the current route with the desired route and apply the class if they match
         return this.$route.path === desiredRoute ? activeClass : '';

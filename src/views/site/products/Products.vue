@@ -8,14 +8,10 @@
       <div class="flex flex-col justify-center">
         <div class="relative">
           <div
-            class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container"
+            class="background-container parallax flex justify-center items-center"
           >
             <!-- Aquí está el fondo de degradado -->
-            <img
-              class="h-64 w-64 m-auto pt-8"
-              src="@/assets/AuthLogo.svg"
-              alt="Logo"
-            />
+            <img class="h-64 w-64" src="@/assets/AuthLogo.svg" alt="Logo" />
           </div>
           <div
             class="absolute sm:bottom-8 bottom-4 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start"
