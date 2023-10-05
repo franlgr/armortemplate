@@ -3,6 +3,7 @@
     <!-- <span class="loading loading-spinner loading-lg"></span> -->
     <img
       src="@/assets/AuthLogo.svg"
+      style="margin-top: -200px"
       class="w-36 mx-12 mt-2 logo ease-in duration-300 animate-ping"
       alt="tailus logo"
     />
@@ -16,7 +17,7 @@
 <style scoped>
   .loading-overlay {
     position: fixed;
-    top: -100px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 100%;
