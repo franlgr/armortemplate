@@ -1,11 +1,7 @@
 <template>
-  <div class="bg-white rounded-lg shadow-xl p-8">
+  <div class="bg-white rounded-lg shadow-xl">
     
-            <router-link
-              :to="{ name: 'home' }"
-              class="btn btn-outline btn-success m-4 ml-8"
-              >Back</router-link
-            >
+            
              <div class="flex flex-col">
         <div class="flex flex-col justify-center">
           <div class="relative">
@@ -22,7 +18,7 @@
               <p
                 class="text-3xl sm:text-4xl font-semibold leading-9 text-white"
               >
-                Users
+                Blog
               </p>
             </div>
           </div>
