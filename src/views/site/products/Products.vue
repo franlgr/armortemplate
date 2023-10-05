@@ -340,7 +340,7 @@
                     </a>
                   </div>
                 </div>
-                <div class="pt-4 pb-3 px-4">
+                <div class="pt-4 pb-3 px-4" style="min-height: 240px">
                   <a href="#">
                     <!-- //aca -->
                     <router-link
