@@ -50,8 +50,9 @@
             <span
               class="hiddenlg:block text-green-500"
               v-for="permission in getUser.permissions"
-              >{{ permission }}</span
             >
+              #{{ permission }}
+            </span>
           </div>
           <ul class="space-y-2 tracking-wide bg-black p-4">
             <li>
@@ -327,7 +328,7 @@
                 v-bind:class="{
                   activeMenu: $route.path === '/admin/users',
                 }"
-                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
+                class="relative px-4 py-2 mb-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
               >
                 <i class="fa-solid fa-users w-4"></i>
                 <span class="group-hover:text-gray-700">Users (ADMIN)</span>
