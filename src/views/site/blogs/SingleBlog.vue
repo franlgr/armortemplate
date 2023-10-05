@@ -72,17 +72,16 @@
                 />
                 <div>
                   <p class="font-semibold text-gray-700 text-sm">
-                    {{ blog.user }}
+                    {{ blog.user.name }} {{ blog.user.lastname }}
                   </p>
                   <p class="font-semibold text-gray-600 text-xs">
-                    {{ blog.user.permissions }}
+                    <span v-for="perm in blog.user.permissions">{{
+                      perm
+                    }}</span>
                   </p>
                 </div>
               </div>
-              <p class="text-gray-700 py-3">
-                Mike writes about technology Yourself required no at thoughts
-                delicate landlord it be. Branched dashwood do is whatever it.
-              </p>
+              <p class="text-gray-700 py-3" v-html="blog.user.content"></p>
               <button
                 class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded"
               >

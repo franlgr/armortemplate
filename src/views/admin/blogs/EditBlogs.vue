@@ -293,6 +293,7 @@
             this.blog._id,
             {
               title: this.formData.title,
+              user: this.getUser,
               content: this.editorData,
               ubication: this.data.ubication,
               category: this.editBlog.category,
@@ -303,7 +304,7 @@
                 img: this.metaData.img,
               },
               user_id: this.getUser._id,
-              user: this.getUser,
+
               images: this.images,
             },
           );

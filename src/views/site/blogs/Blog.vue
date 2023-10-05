@@ -96,7 +96,7 @@
                         class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
                       />
                       <h4 class="font-bold text-gray-700 hover:underline">
-                        {{ blog.user }}
+                        {{ blog.user.name }}
                       </h4>
                     </a>
                   </div>

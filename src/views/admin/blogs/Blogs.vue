@@ -83,8 +83,8 @@
                           class="h-8 w-8 rounded-full"
                         />
                       </div>
-                      <div class="ml-1 text-sm font-semibold">
-                        {{ blog.user }}
+                      <div class="ml-4 text-sm font-semibold">
+                        {{ blog.user.name }} {{ blog.user.lastname }}
                       </div>
                     </button>
                     <br />
