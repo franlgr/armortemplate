@@ -182,7 +182,7 @@
           touchThreshold: 1,
         },
         currentPage: 1, // Página actual
-        perPage: 3, // Cantidad de elementos por página
+        perPage: 10, // Cantidad de elementos por página
         blogs: [],
       };
     },

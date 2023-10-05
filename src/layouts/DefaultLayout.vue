@@ -105,6 +105,13 @@
                 ><span class="ml-2">Support</span>
               </router-link>
               <router-link
+                to="/support"
+                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+              >
+                <i class="fa-solid fa-file"></i
+                ><span class="ml-2">Documentation</span>
+              </router-link>
+              <router-link
                 to="/admin"
                 class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
               >

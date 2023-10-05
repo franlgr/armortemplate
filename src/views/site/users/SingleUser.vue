@@ -6,14 +6,14 @@
         <div
           class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"
         >
-          <div>
+          <div class="bg-[#22c55e]">
             <router-link
               :to="{ name: 'site-users' }"
-              class="btn btn-outline btn-success m-4 ml-8"
+              class="btn btn-outline bg-white m-4 ml-8 hover:text-blackwhite"
               >Back</router-link
             >
           </div>
-          <div class="px-6">
+          <div class="px-6 pb-24">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                 <div class="relative">
@@ -42,19 +42,19 @@
                   <div class="mr-4 p-3 text-center">
                     <span
                       class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >22</span
+                      >{{ totalProducts }}</span
                     ><span class="text-sm text-blueGray-400">Products</span>
                   </div>
                   <div class="mr-4 p-3 text-center">
                     <span
                       class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >10</span
+                      >{{ totalEvents }}</span
                     ><span class="text-sm text-blueGray-400">Events</span>
                   </div>
                   <div class="lg:mr-4 p-3 text-center">
                     <span
                       class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                      >89</span
+                      >{{ totalBlogs }}</span
                     ><span class="text-sm text-blueGray-400">Blogs</span>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                 style="max-width: 120px"
               />
               <h3
-                class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
+                class="text-4xl font-semibold leading-normal text-blueGray-700 mb-2"
               >
                 {{ user.name + ' ' + user.lastname }}
               </h3>
@@ -103,6 +103,14 @@
                   ></p>
                 </div>
               </div>
+              <div class="flex">
+                <div class="flex pb-4 m-auto">
+                  <FacebookShareButton></FacebookShareButton>
+                  <TwitterShareButton></TwitterShareButton>
+                  <LinkedinShareButton></LinkedinShareButton>
+                  <WhatsappShareButton></WhatsappShareButton>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -113,14 +121,24 @@
 <script>
   import FeathersClient from '@/FeathersClient';
   import { mapActions } from 'vuex';
+  import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
+  import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
+  import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
+  import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
   export default {
     data() {
       return {
         user: {},
+        totalProducts: 0,
+        totalEvents: 0,
+        totalBlogs: 0,
       };
     },
     async mounted() {
       this.fetchUser();
+      this.fetchTotalProducts();
+      this.fetchTotalEvents();
+      this.fetchTotalBlogs();
     },
     methods: {
       ...mapActions(['loadingSet']),
@@ -141,6 +159,55 @@
         const mailtoLink = `mailto:${email}`;
         window.open(mailtoLink, '_blank');
       },
+      //traer cantidad de productos
+      //traer cantidad de eventos
+      //traer cantidad de blogs
+
+      async fetchTotalProducts() {
+        try {
+          const totalProducts = await FeathersClient.service('products').find({
+            query: {
+              user_id: this.$route.params.id,
+            },
+          });
+          console.log(totalProducts.total);
+          this.totalProducts = totalProducts.total;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      async fetchTotalEvents() {
+        try {
+          const totalEvents = await FeathersClient.service('events').find({
+            query: {
+              user_id: this.$route.params.id,
+            },
+          });
+          console.log(totalEvents.total);
+          this.totalEvents = totalEvents.total;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      async fetchTotalBlogs() {
+        try {
+          const totalBlogs = await FeathersClient.service('blogs').find({
+            query: {
+              user_id: this.$route.params.id,
+            },
+          });
+          console.log(totalBlogs.total);
+          this.totalBlogs = totalBlogs.total;
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    },
+    components: {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton,
+      WhatsappShareButton,
     },
   };
 </script>

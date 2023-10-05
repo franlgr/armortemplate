@@ -25,13 +25,13 @@
     </div>
 
     <div class="pb-16 items-start container justify-between mx-auto mt-2">
-      <div>
+      <!-- <div>
         <router-link
           :to="{ name: 'home' }"
           class="btn btn-outline btn-success m-4 ml-8"
           >Back</router-link
         >
-      </div>
+      </div> -->
       <div class="md:flex">
         <!-- Columna 1 (a pantalla completa en pantallas pequeñas) -->
         <div class="lg:w-1/4">
