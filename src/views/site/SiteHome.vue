@@ -44,11 +44,11 @@ The script section imports various components used in the template section, incl
         <div class="container flex justify-between mx-auto">
           <div class="w-full sm:w-12/12 lg:w-8/12">
             <div class="">
-              <h1>Last Products</h1>
+              <h1 class="text-xl font-bold">Last Products</h1>
               <MoreProductsByCategory></MoreProductsByCategory>
-              <h1>Last Events</h1>
+              <h1 class="text-xl font-bold">Last Events</h1>
               <MoreEventsByCategory></MoreEventsByCategory>
-              <h1>Last Blog</h1>
+              <h1 class="text-xl font-bold">Last Blog</h1>
               <MoreBlogsByCategory></MoreBlogsByCategory>
               <Sidebar class="md:hidden p-4"></Sidebar>
             </div>

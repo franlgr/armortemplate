@@ -65,6 +65,36 @@
             v-model="editorData"
             :config="editorConfig"
           ></ckeditor> -->
+          <MdEditor
+            htmlPreview
+            language="en-US"
+            :toggleHtmlPreview="true"
+            :toolbars="[
+              // 'code',
+              // 'link',
+              // 'image',
+              // 'table',
+              // 'mermaid',
+              // 'katex',
+              // '-',
+              // 'revoke',
+              // 'next',
+              // 'save',
+              // '=',
+              'pageFullscreen',
+              'fullscreen',
+              'preview',
+              'htmlPreview',
+              'catalog',
+              'github',
+            ]"
+            width="auto"
+            :tabWidth="1"
+            noMermaid
+            :sanitize="sanitize"
+            theme="white"
+            v-model="editorData"
+          />
           <br />
           <FormKit
             class="mt-4"
@@ -133,7 +163,23 @@
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
 
+  import { ref } from 'vue';
+  import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
+
   export default {
+    setup() {
+      const text = ref('# Hello Editor');
+
+      const updateText = (newText) => {
+        text.value = newText;
+      };
+
+      return {
+        text,
+        updateText,
+      };
+    },
     data() {
       return {
         // editor: ClassicEditor,
@@ -167,6 +213,7 @@
       ProductSelectCategory,
       UploadImages,
       UploadImg,
+      MdEditor,
     },
 
     methods: {

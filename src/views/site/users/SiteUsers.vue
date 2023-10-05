@@ -1,12 +1,34 @@
 <template>
-  <div class="bg-white rounded-lg shadow-xl p-8 h-screen">
+  <div class="bg-white rounded-lg shadow-xl p-8">
     
             <router-link
               :to="{ name: 'home' }"
               class="btn btn-outline btn-success m-4 ml-8"
               >Go Back</router-link
             >
-    <div class="flex items-center justify-between px-8">
+             <div class="flex flex-col">
+        <div class="flex flex-col justify-center">
+          <div class="relative">
+            <div
+              class="background-container parallax flex justify-center items-center"
+            >
+              <!-- Aquí está el fondo de degradado -->
+              <img class="h-64 w-64" src="@/assets/AuthLogo.svg" alt="Logo" />
+            </div>
+
+            <div
+              class="absolute sm:bottom-8 bottom-4 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start"
+            >
+              <p
+                class="text-3xl sm:text-4xl font-semibold leading-9 text-white"
+              >
+                Users
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="flex items-center justify-between px-8 mt-4">
       <h4 class="text-xl text-gray-900 font-bold">Users ({{ total }})</h4>
       
     </div>
