@@ -236,7 +236,7 @@ app.get('/events/:id_event', async (req, res) => {
   });
 });
 //ssr de site events
-app.get('/blogs/:id_blog', async (req, res) => {
+app.get('/blog/:id_blog', async (req, res) => {
   console.log('SSR EVENTS');
   let data = {};
   try {
