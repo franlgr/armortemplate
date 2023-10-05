@@ -263,7 +263,7 @@ app.get('/blog/:id_blog', async (req, res) => {
         <meta itemprop="image" content="${data.img}">
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armor.alguientiene.com/blogs/${req.params.id_blog}">
+        <meta property="og:url" content="https://armor.alguientiene.com/blog/${req.params.id_blog}">
         <meta property="og:type" content="website">
         <meta property="og:title" content="${data.title}">
         <meta property="og:description" content="${data.content}">

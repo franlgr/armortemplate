@@ -28,7 +28,7 @@
           Go back
         </router-link>
       </div>
-      <div class="2xl:container md:w-2/3 m-auto px-8">
+      <div class="2xl:container m-auto px-8">
         <div class="">
           <div class="carousel-item" v-for="image in images" :key="image.index">
             <div class="m-auto">

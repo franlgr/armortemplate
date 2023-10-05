@@ -43,7 +43,7 @@
 
       <!-- {{options}} -->
     </div>
-    <div class="2xl:container md:w-2/3 m-auto px-8">
+    <div class="2xl:container m-auto px-8">
       <div class="">
         <UploadImages
           title="Upload Blogs Images"
@@ -57,17 +57,47 @@
           submit-label="Register"
           @submit="submitHandler"
           :actions="false"
-          #default="{ value }"
           v-model="formData"
         >
           <FormKit
             class="mt-4"
             type="text"
+            v-model="formData.title"
             name="title"
             label="Title Blog"
             placeholder="Leather jacket like new"
             help="What is your title Blog ?"
             validation="required"
+          />
+          <MdEditor
+            htmlPreview
+            language="en-US"
+            :toggleHtmlPreview="true"
+            :toolbars="[
+              // 'code',
+              // 'link',
+              // 'image',
+              // 'table',
+              // 'mermaid',
+              // 'katex',
+              // '-',
+              // 'revoke',
+              // 'next',
+              // 'save',
+              // '=',
+              'pageFullscreen',
+              'fullscreen',
+              'preview',
+              'htmlPreview',
+              'catalog',
+              'github',
+            ]"
+            width="auto"
+            :tabWidth="1"
+            noMermaid
+            :sanitize="sanitize"
+            theme="white"
+            v-model="editorData"
           />
           <!-- <ckeditor
               class="my-4"
@@ -96,9 +126,12 @@
           <br />
           <!-- {{value}} -->
 
+          {{ metaData }}
+
           <br />
           <FormKit
             :value="metaData.title"
+            v-model="metaData.title"
             class="mt-4"
             type="text"
             name="title"
@@ -109,6 +142,7 @@
           />
           <FormKit
             :value="metaData.content"
+            v-model="metaData.content"
             class="mt-4"
             type="text"
             name="content"
@@ -117,7 +151,7 @@
             help="Describe your blog ?"
             validation="required"
           />
-          <FormKit type="submit" label="Create Blog" />
+          <FormKit type="submit" label="Save Blog" />
         </FormKit>
         <div name="metaData" style="padding-bottom: 50px">
           <img
@@ -129,17 +163,12 @@
           <UploadImg
             title="Upload Meta Image"
             class="my-4"
-            v-on:links="linkImgMeta"
+            v-on:link="linkImgMeta"
           ></UploadImg>
         </div>
       </div>
     </div>
   </div>
-  <UploadImages
-    title="Upload Blog Images"
-    class="my-4"
-    v-on:links="links"
-  ></UploadImages>
 </template>
 
 <script>
@@ -150,6 +179,8 @@
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
+  import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
 
   export default {
     data() {
@@ -173,6 +204,8 @@
         blog: {},
         metaData: {
           img: '',
+          title: '',
+          content: '',
         },
         options: [],
         images: [],
@@ -195,6 +228,7 @@
       BlogSelectCategory,
       UploadImages,
       UploadImg,
+      MdEditor,
     },
 
     methods: {
@@ -204,7 +238,7 @@
         console.log('links', links);
         this.images.push(links);
       },
-      async linkImgMeta(link) {
+      linkImgMeta(link) {
         console.log('linkImgMeta', link);
         this.metaData.img = link;
       },
@@ -234,6 +268,8 @@
             contentMeta: res.metaData.content,
           };
 
+          this.formData.title = res.title;
+
           this.loadingSet(false);
         } catch (error) {
           console.error(error);
@@ -256,7 +292,7 @@
           const res = await FeathersClient.service('blogs').patch(
             this.blog._id,
             {
-              title: this.data.title,
+              title: this.formData.title,
               content: this.editorData,
               ubication: this.data.ubication,
               category: this.editBlog.category,
@@ -266,6 +302,8 @@
                 content: this.data.contentMeta,
                 img: this.metaData.img,
               },
+              user_id: this.getUser._id,
+              user: this.getUser,
               images: this.images,
             },
           );
@@ -291,6 +329,9 @@
       setCategory(category) {
         this.editBlog.category = category;
       },
+    },
+    computed: {
+      ...mapGetters(['getUser']),
     },
   };
 </script>

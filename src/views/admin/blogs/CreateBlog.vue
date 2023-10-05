@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="2xl:container md:w-2/3 m-auto px-8">
+      <div class="2xl:container m-auto px-8">
         <div class="">
           <UploadImages
             title="Upload Blogs Images"
@@ -58,7 +58,6 @@
             submit-label="Register"
             @submit="submitHandler"
             :actions="false"
-            #default="{ value }"
             v-model="formData"
           >
             <FormKit
@@ -121,6 +120,7 @@
             <br />
             <FormKit
               :value="metaData.title"
+              v-model="metaData.title"
               class="mt-4"
               type="text"
               name="metaTitle"
@@ -132,6 +132,7 @@
             />
             <FormKit
               :value="metaData.content"
+              v-model="metaData.content"
               class="mt-4"
               type="text"
               name="metaContent"

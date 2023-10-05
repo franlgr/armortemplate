@@ -27,7 +27,7 @@
           Go back
         </router-link>
       </div>
-      <div class="2xl:container md:w-2/3 m-auto px-8">
+      <div class="2xl:container m-auto px-8">
         <div class="mt-8 m-auto">
           <!-- {{formData.images}} -->
           <div class="carousel-item" v-for="image in images" :key="image.index">
