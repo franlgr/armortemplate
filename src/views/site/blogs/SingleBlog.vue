@@ -59,7 +59,7 @@
           >
             <p class="pb-6" v-html="blog.content"></p>
           </div>
-
+          <!-- {{ blog }} -->
           <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
             <div
               class="p-4 border-t border-b md:border md:rounded"

@@ -298,7 +298,7 @@
               th: this.fechaActual,
               images: this.images,
               imgUser: this.getUser.image,
-              user: this.getUser.name + ' ' + this.getUser.lastname,
+              user: this.getUser,
               user_id: this.getUser._id,
               category: this.newBlog.category,
               category_id: this.newBlog.category._id,
