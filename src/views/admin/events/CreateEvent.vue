@@ -78,6 +78,36 @@
               :editor="editor"
               :config="editorConfig"
             ></ckeditor> -->
+            <MdEditor
+              htmlPreview
+              language="en-US"
+              :toggleHtmlPreview="true"
+              :toolbars="[
+                // 'code',
+                // 'link',
+                // 'image',
+                // 'table',
+                // 'mermaid',
+                // 'katex',
+                // '-',
+                // 'revoke',
+                // 'next',
+                // 'save',
+                // '=',
+                'pageFullscreen',
+                'fullscreen',
+                'preview',
+                'htmlPreview',
+                'catalog',
+                'github',
+              ]"
+              width="auto"
+              :tabWidth="1"
+              noMermaid
+              :sanitize="sanitize"
+              theme="white"
+              v-model="editorData"
+            />
             <br />
             <FormKit
               type="date"
@@ -180,6 +210,8 @@
   import UploadImg from '@/components/admin/UploadImg.vue';
   import EventSelectCategory from '@/components/admin/EventSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
+  import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
   export default {
     data() {
       return {
@@ -230,6 +262,7 @@
       UploadImg,
       UploadImages,
       EventSelectCategory,
+      MdEditor,
     },
     methods: {
       ...mapActions(['loadingSet']),

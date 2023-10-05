@@ -1,7 +1,7 @@
 atego
 <template>
   <div class="rounded-md">
-    <main class="my-8">
+    <main class="my-4">
       <div class="container mx-auto px-6">
         <div class="">
           <h3
@@ -12,7 +12,7 @@ atego
           </h3>
           <!--  -->
           <div
-            class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 mt-6"
+            class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3"
           >
             <div v-for="product in products" :key="product.index">
               <div

@@ -70,13 +70,17 @@
                   </a>
                 </div>
                 <div class="mt-2">
-                  <a
-                    href="#"
+                  <router-link
+                    :to="{ name: 'site-blog', params: { id: blog._id } }"
                     class="text-2xl font-bold text-gray-700 hover:underline"
                   >
-                    {{ blog.title }}.</a
+                    {{ blog.title }}.</router-link
                   >
-                  <p v-html="blog.content" class="mt-2 text-gray-600"></p>
+                  <!-- <p>{{ truncatedContent }}</p> -->
+                  <p
+                    v-html="truncatedContent(blog.content)"
+                    class="mt-2 text-gray-600"
+                  ></p>
                 </div>
                 <div class="flex items-center justify-between mt-4">
                   <router-link
@@ -100,41 +104,22 @@
               </div>
             </div>
             <div class="mt-8">
-              <div class="flex">
-                <a
-                  href="#"
-                  class="px-3 py-2 mx-1 font-medium text-gray-500 bg-white rounded-md cursor-not-allowed"
+              <!-- Paginación -->
+              <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+                <button
+                  class="join-item btn btn-outline"
+                  @click="prevPage()"
+                  :disabled="currentPage === 1"
                 >
-                  previous
-                </a>
-
-                <a
-                  href="#"
-                  class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white"
-                >
-                  1
-                </a>
-
-                <a
-                  href="#"
-                  class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white"
-                >
-                  2
-                </a>
-
-                <a
-                  href="#"
-                  class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white"
-                >
-                  3
-                </a>
-
-                <a
-                  href="#"
-                  class="px-3 py-2 mx-1 font-medium text-gray-700 bg-white rounded-md hover:bg-blue-500 hover:text-white"
+                  Previous
+                </button>
+                <button
+                  class="join-item btn btn-outline"
+                  @click="nextPage()"
+                  :disabled="blogs.length < perPage"
                 >
                   Next
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -196,16 +181,49 @@
           slidesToScroll: 1,
           touchThreshold: 1,
         },
+        currentPage: 1, // Página actual
+        perPage: 3, // Cantidad de elementos por página
         blogs: [],
       };
     },
     created() {
-      FeathersClient.service('blogs')
-        .find()
-        .then((res) => {
-          console.log(res.data);
-          this.blogs = res.data;
+      this.fetchBlogs();
+    },
+
+    methods: {
+      async fetchBlogs() {
+        const blogs = await FeathersClient.service('blogs').find({
+          query: {
+            $limit: this.perPage,
+            $skip: (this.currentPage - 1) * this.perPage,
+          },
         });
+        console.log(blogs);
+        this.blogs = blogs.data;
+      },
+      //pagination
+      nextPage() {
+        this.currentPage++;
+        this.fetchBlogs();
+      },
+      prevPage() {
+        if (this.currentPage > 1) {
+          this.currentPage--;
+          this.fetchBlogs();
+        }
+      },
+      goToPage(pageNumber) {
+        this.currentPage = pageNumber;
+        this.fetchBlogs();
+      },
+      //finish pagination
+      truncatedContent: function (content) {
+        if (content.length > 500) {
+          return content.slice(0, 300) + '...';
+        } else {
+          return content;
+        }
+      },
     },
   };
 </script>

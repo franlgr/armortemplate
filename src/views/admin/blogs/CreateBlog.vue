@@ -70,6 +70,36 @@
               help="What is your title Blog ?"
               validation="required"
             />
+            <MdEditor
+              htmlPreview
+              language="en-US"
+              :toggleHtmlPreview="true"
+              :toolbars="[
+                // 'code',
+                // 'link',
+                // 'image',
+                // 'table',
+                // 'mermaid',
+                // 'katex',
+                // '-',
+                // 'revoke',
+                // 'next',
+                // 'save',
+                // '=',
+                'pageFullscreen',
+                'fullscreen',
+                'preview',
+                'htmlPreview',
+                'catalog',
+                'github',
+              ]"
+              width="auto"
+              :tabWidth="1"
+              noMermaid
+              :sanitize="sanitize"
+              theme="white"
+              v-model="editorData"
+            />
             <br />
             <FormKit
               class="mt-4"
@@ -151,6 +181,8 @@
   import UploadImg from '@/components/admin/UploadImg.vue';
   import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
+  import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
 
   export default {
     data() {
@@ -200,6 +232,7 @@
       UploadImages,
       UploadImg,
       BlogSelectCategory,
+      MdEditor,
     },
     mounted() {
       this.fetchCategories();
