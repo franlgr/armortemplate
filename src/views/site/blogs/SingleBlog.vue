@@ -24,7 +24,7 @@
               <p
                 class="text-3xl sm:text-4xl font-semibold leading-9 text-white"
               >
-                Blogs
+                Blog
               </p>
             </div>
           </div>

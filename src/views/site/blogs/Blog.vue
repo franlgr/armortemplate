@@ -6,7 +6,7 @@
         <div class="flex flex-col justify-center">
           <div class="relative">
             <div
-              class="background-container parallax flex justify-center items-center"
+              class="background-container parallax flex justify-center items-center parallax"
             >
               <!-- Aquí está el fondo de degradado -->
               <img class="h-64 w-64" src="@/assets/AuthLogo.svg" alt="Logo" />
