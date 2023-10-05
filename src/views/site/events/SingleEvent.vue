@@ -13,7 +13,7 @@
     <router-link
       :to="{ name: 'site-events' }"
       class="btn btn-outline btn-success my-2 ml-4"
-      >Go Back</router-link
+      >Back</router-link
     >
     <!-- <MapBox></MapBox> -->
 

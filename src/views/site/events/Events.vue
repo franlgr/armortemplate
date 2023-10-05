@@ -20,7 +20,7 @@
       <div class="p-4">
         <div class="pb-4">
             <div class="mt-4">
-            <router-link :to="{ name: 'home' }" class="btn btn-outline btn-success  ml-8">Go Back</router-link>
+            <router-link :to="{ name: 'home' }" class="btn btn-outline btn-success  ml-8">Back</router-link>
           </div>
           <p class="text-3xl p-8 sm:text-4xl font-semibold leading-9 text-black" v-if="!tag">
             All Events in the World

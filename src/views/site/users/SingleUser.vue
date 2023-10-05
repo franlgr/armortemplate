@@ -10,7 +10,7 @@
             <router-link
               :to="{ name: 'site-users' }"
               class="btn btn-outline btn-success m-4 ml-8"
-              >Go Back</router-link
+              >Back</router-link
             >
           </div>
           <div class="px-6">

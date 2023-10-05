@@ -8,7 +8,7 @@
       <router-link
         :to="{ name: 'site-products' }"
         class="btn btn-outline btn-success m-4"
-        >Go Back</router-link
+        >Back</router-link
       >
       <div class="container px-5 mb-4 mx-auto mt-4">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">

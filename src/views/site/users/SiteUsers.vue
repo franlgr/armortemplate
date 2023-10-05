@@ -4,7 +4,7 @@
             <router-link
               :to="{ name: 'home' }"
               class="btn btn-outline btn-success m-4 ml-8"
-              >Go Back</router-link
+              >Back</router-link
             >
              <div class="flex flex-col">
         <div class="flex flex-col justify-center">
