@@ -9,7 +9,7 @@
         <div class="flex flex-col justify-center">
           <div class="relative">
             <div
-              class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container"
+              class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container parallax"
             >
               <!-- Aquí está el fondo de degradado -->
               <img
@@ -61,7 +61,10 @@
           </div>
 
           <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
-            <div class="p-4 border-t border-b md:border md:rounded">
+            <div
+              class="p-4 border-t border-b md:border md:rounded"
+              v-if="blog.user"
+            >
               <div class="flex py-2">
                 <img
                   :src="blog.user.image"
@@ -89,12 +92,25 @@
             </div>
           </div>
         </div>
+        <div class="flex border-b-2 border-gray-400 py-12">
+          <div class="flex pb-4">
+            <FacebookShareButton></FacebookShareButton>
+            <TwitterShareButton></TwitterShareButton>
+            <LinkedinShareButton></LinkedinShareButton>
+            <WhatsappShareButton></WhatsappShareButton>
+          </div>
+        </div>
       </main>
     </div>
   </div>
 </template>
 <script>
   import FeathersClient from '@/FeathersClient';
+  import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
+  import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
+  import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
+  import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
+
   export default {
     data() {
       return {
@@ -111,6 +127,12 @@
     },
     mounted() {
       this.getBlog();
+    },
+    components: {
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton,
+      WhatsappShareButton,
     },
   };
 </script>

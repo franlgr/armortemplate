@@ -6,7 +6,7 @@
       <div class="flex flex-col justify-center">
         <div class="relative">
           <div
-            class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container"
+            class="bg-gradient-to-b from-green-700 to-green-500 h-80 sm:h-85 background-container parallax"
           >
             <!-- Aquí está el fondo de degradado -->
             <img
