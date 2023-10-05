@@ -10,7 +10,7 @@
       <div class="mt-6">
         <router-link
           to="/admin/products"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+          class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,38 @@
               v-model="editorData"
               :config="editorConfig"
             ></ckeditor> -->
-            <MdEditor></MdEditor>
+            <div>
+              <MdEditor
+                htmlPreview
+                language="en-US"
+                :toggleHtmlPreview="true"
+                :toolbars="[
+                  // 'code',
+                  // 'link',
+                  // 'image',
+                  // 'table',
+                  // 'mermaid',
+                  // 'katex',
+                  // '-',
+                  // 'revoke',
+                  // 'next',
+                  // 'save',
+                  // '=',
+                  'pageFullscreen',
+                  'fullscreen',
+                  'preview',
+                  'htmlPreview',
+                  'catalog',
+                  'github',
+                ]"
+                width="auto"
+                :tabWidth="1"
+                noMermaid
+                :sanitize="sanitize"
+                theme="white"
+                v-model="editorData"
+              />
+            </div>
 
             <br />
             <FormKit
@@ -164,9 +195,24 @@
   import FeathersClient from '@/FeathersClient';
   // import { ClassicEditor as ClassicEditorBase } from '@ckeditor/ckeditor5-editor-classic';
   // import html from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
-  import MdEditor from '@/components/MdEditor.vue';
+
+  import { ref } from 'vue';
+  import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
 
   export default {
+    setup() {
+      const text = ref('# Hello Editor');
+
+      const updateText = (newText) => {
+        text.value = newText;
+      };
+
+      return {
+        text,
+        updateText,
+      };
+    },
     data() {
       return {
         // editor: ClassicEditor,

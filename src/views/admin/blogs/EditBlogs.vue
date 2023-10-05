@@ -4,7 +4,7 @@
     <div class="mt-6">
       <router-link
         to="/admin/blogs"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+        class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,244 +23,139 @@
         Go back
       </router-link>
     </div>
-    <div class="carousel carousel-end rounded-box fix p-8">
-      <div class="carousel-item" v-for="(image, index) in images" :key="index">
-        <div class="m-auto">
-          <img class="w-24" :src="image" alt="Image" />
+
+    <div class="carousel carousel-end rounded-box fix">
+      <div
+        class="carousel-item m-auto"
+        v-for="image in images"
+        :key="image.index"
+      >
+        <div>
+          <img class="w-24 m-auto" :src="image" alt="Drink" />
           <button
             class="bg-white m-auto mt-2 text-sm"
-            @click="deleteImage(index)"
+            @click="deleteImage(image.index)"
           >
-<<<<<<< HEAD
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M10 19l-7-7m0 0l7-7m-7 7h18"
-            ></path>
-          </svg>
-          Go back
-        </router-link>
-      </div>
-      <div class="carousel carousel-end rounded-box fix">
-        <div
-          class="carousel-item m-auto"
-          v-for="image in images"
-          :key="image.index"
-        >
-          <div>
-            <img class="w-24 m-auto" :src="image" alt="Drink" />
-            <button
-              class="bg-white m-auto mt-2 text-sm"
-              @click="deleteImage(image.index)"
-            >
-              X
-            </button>
-          </div>
-        </div>
-
-        <!-- {{options}} -->
-      </div>
-      <div class="2xl:container md:w-2/3 m-auto px-8">
-        <div class="">
-          <UploadImages
-            title="Upload Blogs Images"
-            class="my-4"
-            v-on:links="links"
-          ></UploadImages>
-          <FormKit
-            type="form"
-            id="guardar-example"
-            :form-class="submitted ? 'hide' : 'show'"
-            submit-label="Register"
-            @submit="submitHandler"
-            :actions="false"
-            #default="{ value }"
-            v-model="formData"
-          >
-            <FormKit
-              class="mt-4"
-              type="text"
-              name="title"
-              label="Title Blog"
-              placeholder="Leather jacket like new"
-              help="What is your title Blog ?"
-              validation="required"
-            />
-            <!-- <ckeditor
-              class="my-4"
-              :editor="editor"
-              v-model="editorData"
-              :config="editorConfig"
-            ></ckeditor> -->
-            <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                              help="What is your name?" validation="required" /> -->
-            <br />
-            <!-- <label for="price">USD PRICE</label> -->
-            <FormKit
-              class="mt-4"
-              type="text"
-              name="ubication"
-              label="Ubication"
-              placeholder="Capilla Del Monte, Córdoba, Argentina."
-              help="What is your ubication ?"
-              validation=""
-            />
-            <br />
-            <BlogSelectCategory v-if="options.length > 0" :options="options" />
-            <br />
-            <p class="text-lg font-bold">Meta Data Description</p>
-
-            <br />
-            <!-- {{value}} -->
-
-            <br />
-            <FormKit
-              :value="metaData.title"
-              class="mt-4"
-              type="text"
-              name="title"
-              label="title for meta"
-              placeholder="red jacket like new"
-              help="product title for meta seo"
-              validation="required"
-            />
-            <FormKit
-              :value="metaData.content"
-              class="mt-4"
-              type="text"
-              name="content"
-              label="content for meta"
-              placeholder="It is very well cared for, I used it very little."
-              help="Describe your blog ?"
-              validation="required"
-            />
-            <FormKit type="submit" label="Create Blog" />
-          </FormKit>
-          <div name="metaData" style="padding-bottom: 50px">
-            <img
-              class="w-24 m-auto"
-              v-if="metaData.img"
-              :src="metaData.img"
-              alt="IMG"
-            />
-            <UploadImg
-              title="Upload Meta Image"
-              class="my-4"
-              v-on:links="linkImgMeta"
-            ></UploadImg>
-          </div>
-=======
             X
           </button>
->>>>>>> 40779997aa9bff71da71d49f203211ffd64f1bf6
         </div>
       </div>
+
+      <!-- {{options}} -->
     </div>
-    <UploadImages
-      title="Upload Blog Images"
-      class="my-4"
-      v-on:links="links"
-    ></UploadImages>
-    <div class="m-4 2xl:container my-4">
-      <div>
+    <div class="2xl:container md:w-2/3 m-auto px-8">
+      <div class="">
+        <UploadImages
+          title="Upload Blogs Images"
+          class="my-4"
+          v-on:links="links"
+        ></UploadImages>
         <FormKit
           type="form"
-          :ignore="true"
+          id="guardar-example"
+          :form-class="submitted ? 'hide' : 'show'"
+          submit-label="Register"
           @submit="submitHandler"
-          v-model="data"
           :actions="false"
+          #default="{ value }"
+          v-model="formData"
         >
           <FormKit
             class="mt-4"
             type="text"
             name="title"
             label="Title Blog"
-            placeholder="Mark Zuckerberg confirms Facebook will release its long-awaited Ray-Ban 'smart glasses'"
-            help="What is your title blog ?"
+            placeholder="Leather jacket like new"
+            help="What is your title Blog ?"
             validation="required"
           />
-          <ckeditor
-            class="my-4"
-            :editor="editor"
-            v-model="editorData"
-            :config="editorConfig"
-          ></ckeditor>
+          <!-- <ckeditor
+              class="my-4"
+              :editor="editor"
+              v-model="editorData"
+              :config="editorConfig"
+            ></ckeditor> -->
+          <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
+                                              help="What is your name?" validation="required" /> -->
           <br />
+          <!-- <label for="price">USD PRICE</label> -->
           <FormKit
             class="mt-4"
             type="text"
             name="ubication"
             label="Ubication"
-            placeholder="New York"
-            help="Location of the blog"
-            validation="required"
+            placeholder="Capilla Del Monte, Córdoba, Argentina."
+            help="What is your ubication ?"
+            validation=""
           />
           <br />
-          <BlogSelectCategory
-            :category="editBlog.category"
-            v-on:category="setCategory"
-          />
+          <BlogSelectCategory v-if="options.length > 0" :options="options" />
           <br />
           <p class="text-lg font-bold">Meta Data Description</p>
 
           <br />
+          <!-- {{value}} -->
+
+          <br />
           <FormKit
+            :value="metaData.title"
             class="mt-4"
             type="text"
-            name="titleMeta"
+            name="title"
             label="title for meta"
-            placeholder="Meta Title"
-            help="Blog title for meta SEO"
+            placeholder="red jacket like new"
+            help="product title for meta seo"
             validation="required"
           />
           <FormKit
+            :value="metaData.content"
             class="mt-4"
             type="text"
-            name="contentMeta"
+            name="content"
             label="content for meta"
-            placeholder="Meta Description"
-            help="Describe your blog for SEO"
+            placeholder="It is very well cared for, I used it very little."
+            help="Describe your blog ?"
             validation="required"
           />
-          <FormKit type="submit" label="Save Blog" />
+          <FormKit type="submit" label="Create Blog" />
         </FormKit>
         <div name="metaData" style="padding-bottom: 50px">
-          <img class="w-24 m-auto" :src="metaData.img" alt="IMG" />
+          <img
+            class="w-24 m-auto"
+            v-if="metaData.img"
+            :src="metaData.img"
+            alt="IMG"
+          />
+          <UploadImg
+            title="Upload Meta Image"
+            class="my-4"
+            v-on:links="linkImgMeta"
+          ></UploadImg>
         </div>
       </div>
     </div>
-    <UploadImg
-      title="Upload Meta Image"
-      class="my-4"
-      v-on:link="linkImgMeta"
-    ></UploadImg>
   </div>
+  <UploadImages
+    title="Upload Blog Images"
+    class="my-4"
+    v-on:links="links"
+  ></UploadImages>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
   import FeathersClient from '@/FeathersClient';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
-<<<<<<< HEAD
   // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-=======
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-  import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
->>>>>>> 40779997aa9bff71da71d49f203211ffd64f1bf6
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
+  import BlogSelectCategory from '@/components/admin/BlogSelectCategory.vue';
 
   export default {
     data() {
       return {
-<<<<<<< HEAD
         // editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
-=======
-        editor: ClassicEditor,
-        editorData: '',
->>>>>>> 40779997aa9bff71da71d49f203211ffd64f1bf6
         editorConfig: {
           // The configuration of the editor.
           toolbar: [
@@ -290,7 +185,7 @@
     },
     mounted() {
       const id = this.$route.params.id;
-      console.log('_ID BLOG: ', id)
+      console.log('_ID BLOG: ', id);
       if (id) {
         this.fetchBlog(id);
       }

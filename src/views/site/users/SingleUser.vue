@@ -8,7 +8,7 @@
         >
           <div>
             <router-link
-              :to="{ name: 'home' }"
+              :to="{ name: 'site-users' }"
               class="btn btn-outline btn-success m-4 ml-8"
               >Go Back</router-link
             >
@@ -60,7 +60,7 @@
                 </div>
               </div>
             </div>
-            {{ user }}
+            <!-- {{ user }} -->
             <div class="text-center mt-12">
               <!-- img redounde full -->
               <img

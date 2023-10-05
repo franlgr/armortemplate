@@ -1,12 +1,20 @@
 <template>
   <div class="bg-white rounded-lg shadow-xl p-8 h-screen">
-    <div class="flex items-center justify-between">
+    
+            <router-link
+              :to="{ name: 'home' }"
+              class="btn btn-outline btn-success m-4 ml-8"
+              >Go Back</router-link
+            >
+    <div class="flex items-center justify-between px-8">
       <h4 class="text-xl text-gray-900 font-bold">Users ({{ total }})</h4>
       
     </div>
+    
     <div
       class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-8 mt-8"
     >
+    
       <router-link
         :to="{ name: 'site-user', params: { id: user._id } }"
         v-for="user in users"

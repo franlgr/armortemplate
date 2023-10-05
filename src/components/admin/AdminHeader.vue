@@ -13,11 +13,12 @@
 
       <button
         @click="toggleMenu()"
-        class="w-16 h-16 -mr-2 border-r lg:hidden text-black bg-green-300 mt-4"
+        class="w-16 h-16 -mr-2 border-r lg:hidden bg-black mt-4 shadow-md"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 my-auto"
+          class="h-6 w-6 my-auto text-white"
+          style="margin-left: 2px"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

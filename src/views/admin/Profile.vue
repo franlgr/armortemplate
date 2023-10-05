@@ -8,7 +8,7 @@
         <router-link
           v-if="!edit"
           to="/admin/"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+          class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

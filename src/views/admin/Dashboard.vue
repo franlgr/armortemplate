@@ -56,7 +56,7 @@
         >
           <div class="md:col-span-2 lg:col-span-1">
             <div
-              class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
                 <h1 class="text-5xl font-bold text-gray-800">ChartLine</h1>
@@ -81,10 +81,10 @@
           </div>
           <div>
             <div
-              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
-                <h1 class="text-5xl font-bold text-gray-800">Doughnut</h1>
+                <h1 class="text-5xl font-bold text-gray-800">General</h1>
                 <h1 class="text-5xl font-bold text-gray-800">64,5%</h1>
                 <span class="text-gray-500">Compared to last week $13,988</span>
               </div>
@@ -94,7 +94,7 @@
           </div>
           <div>
             <div
-              class="lg:h-full px-6 p-4 text-gray-600 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="lg:h-full px-6 p-4 text-gray-600 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
                 <h1 class="text-5xl font-bold text-gray-800">Bar</h1>
@@ -106,7 +106,7 @@
           </div>
           <div>
             <div
-              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
                 <h1 class="text-5xl font-bold text-gray-800">Polar</h1>
@@ -119,7 +119,7 @@
           </div>
           <div>
             <div
-              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
                 <h1 class="text-5xl font-bold text-gray-800">FloatingBars</h1>
@@ -132,7 +132,7 @@
           </div>
           <div>
             <div
-              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#1ddd881c] shadow-lg"
+              class="h-full p-4 px-6 rounded-xl border border-gray-200 bg-[#2c7b600d] shadow-lg"
             >
               <div class="mb-8">
                 <h1 class="text-5xl font-bold text-gray-800">Radar</h1>

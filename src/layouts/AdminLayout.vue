@@ -53,7 +53,7 @@
               >{{ permission }}</span
             >
           </div>
-          <ul class="space-y-2 mt-8 tracking-wide bg-white p-4">
+          <ul class="space-y-2 tracking-wide bg-black p-4">
             <li>
               <router-link
                 @click="hiddenMenu()"
@@ -61,11 +61,11 @@
                 href="#"
                 aria-label="dashboard"
                 v-bind:class="{
-                  '':
+                  'bg-[#2c7b60] text-white':
                     $route.path === '/admin/dashboard' ||
                     $route.path === '/admin',
                 }"
-                class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-gradient-to-r bg-white"
+                class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white hover:border-2"
               >
                 <i class="fa-solid fa-chart-line w-4"></i>
                 <span class="-mr-1 font-medium">Dashboard</span>
@@ -84,38 +84,28 @@
               <details class="collapse">
                 <summary
                   v-bind:class="{
-                    'from-sky-600 to-cyan-400 ':
+                    activeMenu:
                       $route.path === '/admin/products' ||
                       $route.path === '/admin/products/create' ||
                       $route.path === '/admin/products/categories',
                   }"
-                  class="py-3 text-md group-hover:text-cyan-600 m-0 bg-gradient-to-r"
+                  class="py-3 text-md bg-white hover:bg-[#2c7b60] hover:text-white"
                 >
                   <i class="fa-brands fa-product-hunt fa-beat"></i>
-                  <span
-                    class="px-6"
-                    v-bind:class="{
-                      'font-bold':
-                        $route.path === '/admin/products' ||
-                        '/admin/products/create' ||
-                        '/admin/products/categories',
-                    }"
-                    >Product</span
-                  >
+                  <span class="px-6">Product</span>
                 </summary>
                 <div>
                   <router-link
                     @click="hiddenMenu()"
                     to="/admin/products/create"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/products/create',
+                      activeMenu: $route.path === '/admin/products/create',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2"
                   >
                     <p>
-                      <i class="fa-solid fa-square-plus text-black"></i
-                      ><span class="ml-8 text-black">Create</span>
+                      <i class="fa-solid fa-square-plus"></i
+                      ><span class="ml-8">Create</span>
                     </p>
                   </router-link>
 
@@ -123,14 +113,13 @@
                     @click="hiddenMenu()"
                     to="/admin/products"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/products',
+                      activeMenu: $route.path === '/admin/products',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                    class="collapse-content w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                   >
                     <p>
-                      <i class="fa-solid fa-cart-shopping text-black"></i
-                      ><span class="ml-8 text-black"> My Products</span>
+                      <i class="fa-solid fa-cart-shopping"></i
+                      ><span class="ml-8"> My Products</span>
                     </p>
                   </router-link>
                   <router-link
@@ -143,14 +132,13 @@
                     }"
                     class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
                   >
-                  <p>
-                  <span class="text-black">
-                    <i class="fa-solid fa-cart-shopping text-black"></i>
-                    All Products
-                  </span>
-                  <i class="fa-solid fa-lock text-black ml-2"></i>
-                </p>
-
+                    <p>
+                      <span class="text-black">
+                        <i class="fa-solid fa-cart-shopping text-black"></i>
+                        All Products
+                      </span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
+                    </p>
                   </router-link>
                   <router-link
                     @click="hiddenMenu()"
@@ -175,38 +163,28 @@
               <details class="collapse">
                 <summary
                   v-bind:class="{
-                    'from-sky-600 to-cyan-400 ':
+                    activeMenu:
                       $route.path === '/admin/events' ||
                       $route.path === '/admin/events/create' ||
                       $route.path === '/admin/events/events',
                   }"
-                  class="py-3 text-md group-hover:text-cyan-600 m-0 bg-gradient-to-r"
+                  class="py-3 text-md bg-white hover:bg-[#2c7b60] hover:text-white"
                 >
                   <i class="fa-solid fa-calendar-days fa-beat"></i>
-                  <span
-                    class="px-6"
-                    v-bind:class="{
-                      'font-bold':
-                        $route.path === '/admin/events' ||
-                        '/admin/events/create' ||
-                        '/admin/events/categories',
-                    }"
-                    >Events</span
-                  >
+                  <span class="px-6">Events</span>
                 </summary>
                 <div>
                   <router-link
                     @click="hiddenMenu()"
                     to="/admin/events/create"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/events/create',
+                      activeMenu: $route.path === '/admin/events/create',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                   >
                     <p>
-                      <i class="fa-solid fa-square-plus text-black"></i
-                      ><span class="ml-8 text-black">Create</span>
+                      <i class="fa-solid fa-square-plus"></i
+                      ><span class="ml-8">Create</span>
                     </p>
                   </router-link>
 
@@ -214,14 +192,13 @@
                     @click="hiddenMenu()"
                     to="/admin/events"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/events',
+                      activeMenu: $route.path === '/admin/events',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                   >
                     <p>
-                      <i class="fa-solid fa-calendar-days text-black"></i
-                      ><span class="ml-8 text-black"> My Events</span>
+                      <i class="fa-solid fa-calendar-days"></i
+                      ><span class="ml-8"> My Events</span>
                     </p>
                   </router-link>
                   <router-link
@@ -247,12 +224,12 @@
               <details class="collapse">
                 <summary
                   v-bind:class="{
-                    'from-sky-600 to-cyan-400 ':
+                    activeMenu:
                       $route.path === '/admin/blogs' ||
                       $route.path === '/admin/blogs/create' ||
                       $route.path === '/admin/blogs/categories',
                   }"
-                  class="py-3 text-md group-hover:text-cyan-600 m-0 bg-gradient-to-r"
+                  class="py-3 text-md bg-white hover:bg-[#2c7b60] hover:text-white"
                 >
                   <i class="fa-solid fa-blog fa-beat"></i>
                   <span
@@ -271,14 +248,13 @@
                     @click="hiddenMenu()"
                     to="/admin/blogs/create"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/blogs/create',
+                      activeMenu: $route.path === '/admin/blogs/create',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200 mt-2"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                   >
                     <p>
-                      <i class="fa-solid fa-square-plus text-black"></i
-                      ><span class="ml-8 text-black">Create</span>
+                      <i class="fa-solid fa-square-plus"></i
+                      ><span class="ml-8">Create</span>
                     </p>
                   </router-link>
 
@@ -286,14 +262,13 @@
                     @click="hiddenMenu()"
                     to="/admin/blogs"
                     v-bind:class="{
-                      'from-sky-600 to-cyan-400':
-                        $route.path === '/admin/blogs',
+                      activeMenu: $route.path === '/admin/blogs',
                     }"
-                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black"
                   >
                     <p>
-                      <i class="fa-solid fa-cart-shopping text-black"></i
-                      ><span class="ml-8 text-black"> My Blogs</span>
+                      <i class="fa-solid fa-cart-shopping"></i
+                      ><span class="ml-8"> My Blogs</span>
                     </p>
                   </router-link>
                   <router-link
@@ -336,13 +311,12 @@
                 @click="hiddenMenu()"
                 to="/admin/components"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400':
-                    $route.path === '/admin/components',
+                  activeMenu: $route.path === '/admin/components',
                 }"
-                class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
               >
                 <i class="fa-solid fa-screwdriver-wrench w-4"></i>
-                <span class="group-hover:text-gray-700">Components</span>
+                <span class="ml-4">Components</span>
               </router-link>
             </li>
             <li>
@@ -351,9 +325,9 @@
                 @click="hiddenMenu()"
                 to="/admin/users"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400': $route.path === '/admin/users',
+                  activeMenu: $route.path === '/admin/users',
                 }"
-                class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
               >
                 <i class="fa-solid fa-users w-4"></i>
                 <span class="group-hover:text-gray-700">Users (ADMIN)</span>
@@ -362,9 +336,9 @@
                 @click="hiddenMenu()"
                 to="/admin/profile"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400': $route.path === '/admin/profile',
+                  activeMenu: $route.path === '/admin/profile',
                 }"
-                class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
               >
                 <i class="fa-solid fa-user w-4"></i>
                 <span class="group-hover:text-gray-700">Profile</span>
@@ -373,9 +347,9 @@
                 @click="hiddenMenu()"
                 to="/admin/default"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400': $route.path === '/admin/default',
+                  activeMenu: $route.path === '/admin/default',
                 }"
-                class="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group bg-gradient-to-r"
+                class="relative px-4 py-2 mt-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
               >
                 <i class="fa-solid fa-star w-4"></i>
                 <span class="group-hover:text-gray-700">Default</span>
@@ -385,8 +359,9 @@
               <router-link
                 @click="hiddenMenu()"
                 to="/admin/chat"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
                 v-bind:class="{
-                  'from-sky-600 to-cyan-400': $route.path === '/admin/chat',
+                  activeMenu: $route.path === '/admin/chat',
                 }"
               >
                 <i class="fa-solid fa-comments w-5"></i>
@@ -398,7 +373,7 @@
             class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-[#1ddd9c] to-black bg-gradient-to-r"
           >
             <button
-              class="px-4 py-3 flex items-center space-x-4 rounded-md text-white group bg-[#1ddd881c] shadow-lg"
+              class="px-4 py-3 flex items-center space-x-4 rounded-md bg-black text-white"
               @click="logout()"
             >
               <svg
@@ -520,14 +495,16 @@
   .menu :where(li > details[open] > summary)::after {
     /* display: none; */
     float: right;
-    margin-top: 4px;
+    margin-top: 7px;
+
     transform: rotate(225deg);
   }
 
   .menu :where(li > details > summary)::after {
     /* display: none; */
     float: right;
-    margin-top: 4px;
+
+    margin-top: 7px;
     /* transform: rotate(180deg) */
   }
 
@@ -553,5 +530,29 @@
 
   .logo {
     margin: auto;
+  }
+
+  .collapse {
+    border-radius: 10px 20px;
+  }
+
+  .menuDefault {
+    border-radius: 10px 20px;
+  }
+
+  .collapseActive {
+    border-radius: 20px 20px;
+  }
+
+  .collapse summary {
+    border-radius: 0px;
+  }
+
+  .activeMenu {
+    background-color: #2c7b60 !important;
+    color: white !important;
+  }
+  .menuHover {
+    background-color: #16b27e !important;
   }
 </style>

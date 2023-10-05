@@ -1,11 +1,14 @@
 <template>
   <div>
     <div>
-      <AdminHeader title="Create Blog"    icon="fa-solid fa-blog fa-beat"></AdminHeader>
+      <AdminHeader
+        title="Create Blog"
+        icon="fa-solid fa-blog fa-beat"
+      ></AdminHeader>
       <div class="mt-6">
         <router-link
           to="/admin/blogs"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-3 ml-4 rounded"
+          class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,18 +70,6 @@
               help="What is your title Blog ?"
               validation="required"
             />
-            <!-- <ckeditor
-              class="my-4"
-              :editor="editor"
-              v-model="editorData"
-              :config="editorConfig"
-<<<<<<< HEAD
-            ></ckeditor> -->
-            <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
-                                              help="What is your name?" validation="required" /> -->
-=======
-            ></ckeditor>
->>>>>>> 40779997aa9bff71da71d49f203211ffd64f1bf6
             <br />
             <FormKit
               class="mt-4"
@@ -265,37 +256,38 @@
       },
       createBlog() {
         try {
-          FeathersClient.service('blogs').create({
-            title: this.formData.title,
-            content: this.editorData,
-            ubication: this.formData.ubication,
-            th: this.fechaActual,
-            images: this.images,
-            imgUser: this.getUser.image,
-            user: this.getUser.name + ' ' + this.getUser.lastname,
-            user_id: this.getUser._id,
-            category: this.newBlog.category,
-            category_id: this.newBlog.category._id,
-            metaData: this.metaData,
-          })
-          .then(() => {
-            this.$snotify.success('Blog Created', 'Success', {
-              timeout: 2000,
-              showProgressBar: false,
-              closeOnClick: false,
-              pauseOnHover: true,
+          FeathersClient.service('blogs')
+            .create({
+              title: this.formData.title,
+              content: this.editorData,
+              ubication: this.formData.ubication,
+              th: this.fechaActual,
+              images: this.images,
+              imgUser: this.getUser.image,
+              user: this.getUser.name + ' ' + this.getUser.lastname,
+              user_id: this.getUser._id,
+              category: this.newBlog.category,
+              category_id: this.newBlog.category._id,
+              metaData: this.metaData,
+            })
+            .then(() => {
+              this.$snotify.success('Blog Created', 'Success', {
+                timeout: 2000,
+                showProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+              });
+              this.$router.push({ name: 'admin-blogs' });
+            })
+            .catch((error) => {
+              console.error(error);
+              this.$snotify.error(error, 'Error', {
+                timeout: 2000,
+                showProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+              });
             });
-            this.$router.push({ name: 'admin-blogs' });
-          })
-          .catch((error) => {
-            console.error(error);
-            this.$snotify.error(error, 'Error', {
-              timeout: 2000,
-              showProgressBar: false,
-              closeOnClick: false,
-              pauseOnHover: true,
-            });
-          });
         } catch (error) {
           console.error(error);
           this.$snotify.error(error, 'Error', {
