@@ -364,7 +364,27 @@ app.get('/users/:id_user', async (req, res) => {
   });
 });
 
+//cuando la ruta es /notification post 
+app.post('/notification', async (req, res) => {
+  // console.log('SSR NOTIFICATION', req.body);
+  const { password, message } = req.body;
 
+
+  //retornar error si no esta mal la password
+  if (password !== 'stuart') {
+    return res.status(401).json({ message: "Contraseña incorrecta" });
+  }
+  if (!message) {
+    return res.status(401).json({ message: "No hay mensaje" });
+  }
+  console.log('SSR NOTIFICATION', message);
+  //pasword
+
+  // // console.log('SSR NOTIFICATION', req.body);
+  io.emit('notificationSocket', message);
+  res.status(200).json({ message: "Notificacion enviada" });
+  // res.send('notification enviada', message);
+});
 
 app.get('*', async (req, res) => {
   console.log('SSR ALL');
@@ -440,27 +460,7 @@ app.get('*', async (req, res) => {
   });
 });
 
-//cuando la ruta es /notification post 
-app.post('/notification', async (req, res) => {
-  // console.log('SSR NOTIFICATION', req.body);
-  const { password, message } = req.body;
 
-
-  //retornar error si no esta mal la password
-  if (password !== 'stuart') {
-    return res.status(401).json({ message: "Contraseña incorrecta" });
-  }
-  if (!message) {
-    return res.status(401).json({ message: "No hay mensaje" });
-  }
-  console.log('SSR NOTIFICATION', message);
-  //pasword
-
-  // // console.log('SSR NOTIFICATION', req.body);
-  io.emit('notificationSocket', message);
-  res.status(200).json({ message: "Notificacion enviada" });
-  // res.send('notification enviada', message);
-});
 
 // Ruta principal
 // app.get('/', (req, res) => {
