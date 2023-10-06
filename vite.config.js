@@ -7,24 +7,16 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      srcDir: './',
-      filename: 'sw.js',
-      // injectManifest: {
-      //   // swSrc: './sw.js',
-      //   // swDest: './dist/site.webmanifest.js',
-      // },
+      srcDir: "/",
+      filename: "sw.js",
       registerType: 'autoUpdate',
-      workbox: {
-        clientsClaim: true,
-        skipWaiting: true,
-      },
       devOptions: {
-        enabled: false,
+        enabled: true,
         type: 'module',
       },
-      strategies: 'injectManifest',
-      injectRegister: 'auto',
-      manifest: true,
+      strategies: "injectManifest",
+      injectRegister: false,
+      manifest: false,
       injectManifest: {
         injectionPoint: null,
       },

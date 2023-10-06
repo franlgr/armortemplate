@@ -10,6 +10,7 @@ const cheerio = require('cheerio');
 const userSocketMap = new Map();
 
 const app = express();
+app.use(express.json());
 const server = http.createServer(app);
 
 const staticOptions = {
@@ -47,6 +48,7 @@ const messages = [];
 io.on('connection', (socket) => {
   console.log('Un cliente se ha conectado.');
 
+  // io.emit('notificationSocket');
   //enviar mensaje al recibirlo
 
   // Manejar eventos personalizados aquí
@@ -99,6 +101,28 @@ io.on('connection', (socket) => {
     //   }
     // }
   });
+});
+
+//cuando la ruta es /notification post 
+app.post('/notification', async (req, res) => {
+  // console.log('SSR NOTIFICATION', req.body);
+  const { password, message } = req.body;
+
+
+  //retornar error si no esta mal la password
+  if (password !== 'stuart') {
+    return res.status(401).json({ message: "Contraseña incorrecta" });
+  }
+  if (!message) {
+    return res.status(401).json({ message: "No hay mensaje" });
+  }
+  console.log('SSR NOTIFICATION', message);
+  //pasword
+
+  // // console.log('SSR NOTIFICATION', req.body);
+  io.emit('notificationSocket', message);
+  res.status(200).json({ message: "Notificacion enviada" });
+  // res.send('notification enviada', message);
 });
 
 function textHTML(html) {

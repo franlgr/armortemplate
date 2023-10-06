@@ -4,18 +4,12 @@ self.addEventListener("notificationclick", function (event) {
 
 self.addEventListener("notificationclick", function (event) {
   const channel = new BroadcastChannel("sw-mensajes");
-  
   if (event.action == "aceptar") {
     channel.postMessage({ title: "aceptar" });
-    //cerrar notificación
-    event.notification.close();
-
   }
 
   if (event.action == "rechazar") {
     channel.postMessage({ title: "rechazar" });
-    //cerrar notificación
-    event.notification.close();
   }
 });
 
@@ -29,4 +23,3 @@ self.addEventListener("activate", event => {
 self.addEventListener('fetch', function(event) {
   event.respondWith(fetch(event.request));
 });
-
