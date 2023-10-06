@@ -1,6 +1,6 @@
 <template>
     <div data-theme="retro" class="body">
-        <button @click="showNotification()">Notificacion</button>
+        <!-- <button @click="showNotification()">Notificacion</button> -->
         <vue-snotify></vue-snotify>
         <router-view />
     </div>
