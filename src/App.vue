@@ -86,7 +86,7 @@ export default {
             navigator.serviceWorker.ready.then((registration) => {
                 registration.showNotification(title, {
                     body: body,
-                    icon: "../public/android-chrome-512x512.png",
+                    icon: "../public/android-chrome-192x192.png",
                     actions: [
                         { action: "aceptar", title: "Aceptar" },
                         { action: "rechazar", title: "Rechazar" },
