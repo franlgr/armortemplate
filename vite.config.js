@@ -1,13 +1,34 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import ckeditor5 from '@ckeditor/vite-plugin-ckeditor5';
-
+import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 import { fileURLToPath, URL } from 'url';
 export default defineConfig({
   plugins: [
     vue(),
-    ckeditor5({ theme: require.resolve('@ckeditor/ckeditor5-theme-lark') }),
+    VitePWA({
+      srcDir: './',
+      filename: 'sw.js',
+      injectManifest: {
+        // swSrc: './sw.js',
+        // swDest: './dist/site.webmanifest.js',
+      },
+      registerType: 'autoUpdate',
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+      },
+      devOptions: {
+        enabled: false,
+        type: 'module',
+      },
+      strategies: 'injectManifest',
+      injectRegister: 'auto',
+      manifest: true,
+      injectManifest: {
+        injectionPoint: null,
+      },
+    }),
   ],
   resolve: {
     alias: [
