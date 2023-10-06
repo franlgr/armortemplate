@@ -1,5 +1,6 @@
 <template>
     <div data-theme="retro" class="body">
+        <install-prompt v-if="showInstallPrompt" :prompt-event="promptEvent" />
         <!-- <button @click="showNotificyarn uation()">Notificacion</button> -->
         <vue-snotify></vue-snotify>
         <router-view />
@@ -49,9 +50,18 @@ channel.addEventListener("message", (event) => {
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import InstallPrompt from '@/components/InstallPrompt.vue';
 export default {
     layout: 'default',
-    components: {},
+    data() {
+        return {
+            showInstallPrompt: false,
+            promptEvent: null,
+        };
+    },
+    components: {
+        InstallPrompt,
+    },
     created() {
         if ("serviceWorker" in navigator) {
             // navigator.serviceWorker.register("/sw.js");
@@ -60,6 +70,16 @@ export default {
                 Notification.requestPermission();
             }
         }
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Prevenir que el navegador muestre el mensaje de instalación por defecto
+            event.preventDefault();
+            // Mostrar el mensaje de instalación personalizado
+            this.$emit('show-install-promotion', event);
+        });
+        this.$on('show-install-promotion', (event) => {
+            this.showInstallPrompt = true;
+            this.promptEvent = event;
+        });
         // Check for and authenticate with the stored token
         this.authenticateWithStoredToken();
         this.socketStart();
@@ -79,23 +99,23 @@ export default {
     methods: {
         ...mapActions(['authenticateWithStoredToken', 'socketStart']),
 
- showNotification(message) {
-    const { title, body } = message;
-    Notification.requestPermission((result) => {
-        if (result === "granted") {
-            navigator.serviceWorker.ready.then((registration) => {
-                registration.showNotification(title, {
-                    body: body,
-                    icon: "../public/android-chrome-192x192.png",
-                    actions: [
-                        { action: "aceptar", title: "Aceptar" },
-                        { action: "rechazar", title: "Rechazar" },
-                    ],
-                });
+        showNotification(message) {
+            const { title, body } = message;
+            Notification.requestPermission((result) => {
+                if (result === "granted") {
+                    navigator.serviceWorker.ready.then((registration) => {
+                        registration.showNotification(title, {
+                            body: body,
+                            icon: "../public/android-chrome-192x192.png",
+                            actions: [
+                                { action: "aceptar", title: "Aceptar" },
+                                { action: "rechazar", title: "Rechazar" },
+                            ],
+                        });
+                    });
+                }
             });
         }
-    });
-}
     },
     computed: {
         ...mapGetters(['isAuthenticated', 'isLoading']),
