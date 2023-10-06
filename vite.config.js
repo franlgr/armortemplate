@@ -9,10 +9,10 @@ export default defineConfig({
     VitePWA({
       srcDir: './',
       filename: 'sw.js',
-      injectManifest: {
-        // swSrc: './sw.js',
-        // swDest: './dist/site.webmanifest.js',
-      },
+      // injectManifest: {
+      //   // swSrc: './sw.js',
+      //   // swDest: './dist/site.webmanifest.js',
+      // },
       registerType: 'autoUpdate',
       workbox: {
         clientsClaim: true,
