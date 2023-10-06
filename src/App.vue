@@ -18,6 +18,12 @@
       // Set the snotify instance on the store
       this.$store.$snotify = this.$snotify;
       this.$router = this.$router;
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        });
+      }
     },
     methods: {
       ...mapActions(['authenticateWithStoredToken', 'socketStart']),
