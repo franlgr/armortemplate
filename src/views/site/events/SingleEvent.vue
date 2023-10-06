@@ -1,152 +1,78 @@
 <template>
-  <div
-    :style="getImageStyle"
-    style="
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position-y: 0;
-    "
-  >
-    <SiteHeader />
-    <!-- boton volver atras hay que disenarlo bien para ponerlo en varios sectores -->
-    <router-link
-      :to="{ name: 'site-events' }"
-      class="btn btn-outline btn-success my-2 ml-4"
-      >Back</router-link
-    >
-    <!-- <MapBox></MapBox> -->
-
-    <div class="mx-auto py-8 flex items-center justify-center px-8 pt-24">
-      <div
-        class="flex flex-col w-full bg-white rounded shadow-lg sm:w-3/4 md:w-2/2 lg:w-3/5"
-      >
-        <!-- <div class="w-full  bg-top bg-cover rounded-t image" >
-                        </div> -->
-        <!-- <swiper :spaceBetween="30" :centeredSlides="true" :slides-per-view="2"
-                            :autoplay="{ delay: 2500, disableOnInteraction: false }" :pagination="{ clickable: true }"
-                            :navigation="true" :modules="modules" class="swiper">
-                            <swiper-slide :loop="true" v-for="(image, index) in event.images" :key="index"
-                                class="swiper-slider w-full" :style="{ maxHeight: '200px' }">
-                                <img :src="image" alt="Event Image">
-                            </swiper-slide>
-                        </swiper> -->
-        <div class="flex flex-col w-full md:flex-row p-8 pt-4">
+  <div>
+    <div class="flex flex-col">
+      <div class="flex flex-col justify-center">
+        <div class="relative">
           <div
-            id="background"
-            class="flex flex-row justify-around p-4 font-bold leading-none text-gray-800 uppercase my-4 mx-2 rounded md:flex-col md:items-center md:justify-center md:w-2/4"
+            class="background-container parallax flex justify-center items-center"
           >
-            <h1
-              class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800"
-            >
-              {{ event.title }}
-            </h1>
-            <p class="leading-normal" v-html="event.content"></p>
+            <!-- Aquí está el fondo de degradado -->
+            <img class="h-64 w-64" src="@/assets/AuthLogo.svg" alt="Logo" />
           </div>
-          <div class="p-4 font-normal text-gray-800 md:w-3/5">
-            <div class="flex flex-row items-center mt-4 text-gray-700">
-              <div
-                class="bg-white p-4 rounded-lg shadow-md m-auto"
-                v-if="event.user"
-              >
-                <div class="flex items-center">
-                  <img
-                    class="w-12 h-12 rounded-full mr-4"
-                    :src="event.user.image"
-                    :alt="event.user.name"
-                  />
-                  <div>
-                    <h2 class="text-xl font-semibold">
-                      {{ event.user.name }} {{ event.user.lastname }}
-                    </h2>
-                    <p class="text-gray-600">{{ event.user.email }}</p>
-                  </div>
-                </div>
-                <div class="mt-4 m-auto">
-                  <p class="text-gray-700">
-                    <!-- <strong>Address:</strong> {{ event.user.address }} -->
-                  </p>
-                  <p class="text-gray-700">
-                    <strong>City:</strong> {{ event.user.city }}
-                  </p>
-                  <p class="text-gray-700" v-if="false">
-                    <strong>Telephone:</strong> {{ event.user.telephone }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <MapBoxEventMarker
-          class="pt-0 px-8 rounded-md"
-          :event="event"
-        ></MapBoxEventMarker>
-        <div class="p-4 border rounded-lg shadow-lg m-8">
-          <!-- Contenedor del comentario -->
           <div
-            class="flex p-4 border-solid"
-            v-if="event.user"
-            style="margin: 10px !important"
+            class="absolute sm:bottom-8 bottom-4 pr-10 sm:pr-0 left-4 sm:left-8 flex justify-start items-start"
           >
-            <!-- Avatar del usuario -->
-            <div class="mr-4">
-              <img
-                :src="event.user.image"
-                alt="Avatar"
-                class="w-12 h-12 mt-3 rounded-full"
-              />
-            </div>
-            <!-- Contenido del comentario -->
-            <div>
-              <!-- Nombre del usuario -->
-              <h3 class="font-semibold text-lg">Nombre del Usuario</h3>
-              <!-- Comentario -->
-              <p class="text-gray-700">
-                Este es un comentario de ejemplo utilizando Tailwind CSS y Font
-                Awesome.
-              </p>
-              <!-- Icono de Font Awesome (por ejemplo, un corazón) -->
-              <i class="fas fa-heart text-red-500"></i>
-              <!-- Cantidad de Me gusta -->
-              <span class="text-gray-500">123 Me gusta</span>
-            </div>
+            <p class="text-3xl sm:text-4xl font-semibold leading-9 text-white">
+              Event: "{{ event.title }}"
+            </p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="container mx-auto p-4 mt-8">
+      <!-- This is an example component -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img
+            v-if="event.images"
+            :src="event.images[0]"
+            alt="Evento"
+            class="w-full h-auto md:h-96 rounded-lg"
+          />
+        </div>
+        <div>
+          <h1 class="text-2xl font-semibold">{{ event.title }}</h1>
+          <p class="text-gray-600">{{ event.date }}</p>
+          <p class="text-gray-700 mt-4" v-html="event.content"></p>
+          <div class="mt-4">
+            <p class="text-gray-600">Lugar: {{ event.placeName }}</p>
+            <p class="text-gray-600">Precio: ${{ event.price }}</p>
+            <p class="text-gray-600" v-if="event.category">
+              Categoría: {{ event.category.title }}
+            </p>
+          </div>
+          <!-- Puedes agregar más detalles del evento aquí -->
+        </div>
+      </div>
+      <div class="flex mt-4">
+        <div class="flex pb-4 m-auto mt-8">
+          <FacebookShareButton></FacebookShareButton>
+          <TwitterShareButton></TwitterShareButton>
+          <LinkedinShareButton></LinkedinShareButton>
+          <WhatsappShareButton></WhatsappShareButton>
+        </div>
+      </div>
+      <MapBoxEventMarker
+        class="pt-0 rounded-md mt-12 mb-12"
+        :event="event"
+      ></MapBoxEventMarker>
     </div>
   </div>
 </template>
 
 <script>
-  import SiteHeader from '@/components/site/SiteHeader.vue';
-  import FeathersClient from '@/FeathersClient.js';
-  // Import Swiper Vue.js components
-  import { Swiper, SwiperSlide } from 'swiper/vue';
-
-  import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-  import MapBox from '@/components/MapBox.vue';
+  import FeathersClient from '@/FeathersClient';
   import MapBoxEventMarker from '@/components/MapBoxEventMarker.vue';
-  // Import Swiper styles
-  import 'swiper/css';
+  import FacebookShareButton from '@/components/site/social/FacebookShareButton.vue';
+  import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
+  import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
+  import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
   export default {
+    name: 'EventDetail',
     data() {
       return {
         event: {},
-        currentPage: 1, // Página actual
-        perPage: 10, // Cantidad de elementos por página
-      };
-    },
-    components: {
-      SiteHeader,
-      FeathersClient,
-      Swiper,
-      SwiperSlide,
-      MapBox,
-      MapBoxEventMarker,
-    },
-    setup() {
-      return {
-        modules: [Autoplay, Pagination, Navigation],
       };
     },
     created() {
@@ -164,34 +90,16 @@
         }
       },
     },
-    computed: {
-      getImageStyle() {
-        if (this.event.images && this.event.images.length > 0) {
-          // Obtén el enlace de la primera imagen del array
-          const firstImageLink = this.event.images[0];
-
-          // Crea el estilo en línea para la imagen de fondo
-          return {
-            backgroundImage: `url(${firstImageLink})`,
-          };
-        } else {
-          // Si no hay imágenes, puedes establecer un fondo predeterminado o un color de fondo aquí
-          return {
-            backgroundColor: 'gray', // Color de fondo predeterminado
-          };
-        }
-      },
+    components: {
+      MapBoxEventMarker,
+      FacebookShareButton,
+      TwitterShareButton,
+      LinkedinShareButton,
+      WhatsappShareButton,
     },
   };
 </script>
 
-<style>
-  #background {
-    background-size: cover !important;
-    background-position: center !important;
-  }
-
-  .image {
-    height: 200px;
-  }
+<style scoped>
+  /* Estilos específicos de este componente utilizando Tailwind CSS */
 </style>

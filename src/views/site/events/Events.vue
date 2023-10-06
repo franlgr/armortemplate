@@ -56,7 +56,7 @@
 
 
     <section
-      class="grid grid-cols-1 sm:grid-cols-1 gap-4 mx-2 lg:mx-0 md:grid-cols-2 lg:grid-cols-4 max-w-screen-xl p-2 d-block pt-8 px-12"
+      class="grid grid-cols-1 sm:grid-cols-1 gap-4 mx-2 lg:mx-0 md:grid-cols-2 lg:grid-cols-2 max-w-screen-xl p-2 d-block pt-8 px-12"
       style="margin:auto;">
       <!-- Card Component -->
       <div class="transition-all duration-150 flex w-full px-4 md:px-2" v-for="event in events">
