@@ -103,27 +103,7 @@ io.on('connection', (socket) => {
   });
 });
 
-//cuando la ruta es /notification post 
-app.post('/notification', async (req, res) => {
-  // console.log('SSR NOTIFICATION', req.body);
-  const { password, message } = req.body;
 
-
-  //retornar error si no esta mal la password
-  if (password !== 'stuart') {
-    return res.status(401).json({ message: "Contraseña incorrecta" });
-  }
-  if (!message) {
-    return res.status(401).json({ message: "No hay mensaje" });
-  }
-  console.log('SSR NOTIFICATION', message);
-  //pasword
-
-  // // console.log('SSR NOTIFICATION', req.body);
-  io.emit('notificationSocket', message);
-  res.status(200).json({ message: "Notificacion enviada" });
-  // res.send('notification enviada', message);
-});
 
 function textHTML(html) {
   // Cargar la cadena HTML en Cheerio
@@ -384,6 +364,8 @@ app.get('/users/:id_user', async (req, res) => {
   });
 });
 
+
+
 app.get('*', async (req, res) => {
   console.log('SSR ALL');
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
@@ -456,6 +438,28 @@ app.get('*', async (req, res) => {
     // Envía el archivo "index.html" modificado con las metaetiquetas
     res.send(modifiedHtml);
   });
+});
+
+//cuando la ruta es /notification post 
+app.post('/notification', async (req, res) => {
+  // console.log('SSR NOTIFICATION', req.body);
+  const { password, message } = req.body;
+
+
+  //retornar error si no esta mal la password
+  if (password !== 'stuart') {
+    return res.status(401).json({ message: "Contraseña incorrecta" });
+  }
+  if (!message) {
+    return res.status(401).json({ message: "No hay mensaje" });
+  }
+  console.log('SSR NOTIFICATION', message);
+  //pasword
+
+  // // console.log('SSR NOTIFICATION', req.body);
+  io.emit('notificationSocket', message);
+  res.status(200).json({ message: "Notificacion enviada" });
+  // res.send('notification enviada', message);
 });
 
 // Ruta principal
