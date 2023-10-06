@@ -1,6 +1,6 @@
 <template>
     <div data-theme="retro" class="body">
-        <!-- <button @click="showNotification()">Notificacion</button> -->
+        <!-- <button @click="showNotificyarn uation()">Notificacion</button> -->
         <vue-snotify></vue-snotify>
         <router-view />
     </div>
@@ -83,8 +83,8 @@ export default {
     Notification.requestPermission((result) => {
         if (result === "granted") {
             navigator.serviceWorker.ready.then((registration) => {
-                registration.showNotification("Armor Notification", {
-                    body: message,
+                registration.showNotification(message.title, {
+                    body: message.body,
                     icon: "../public/android-chrome-512x512.png",
                     actions: [
                         { action: "aceptar", title: "Aceptar" },
