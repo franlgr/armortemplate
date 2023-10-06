@@ -10,16 +10,20 @@ export default defineConfig({
       srcDir: "/",
       filename: "sw.js",
       registerType: 'autoUpdate',
+      display: 'fullscreen',
+      background_color: '#ffffff',
+      theme_color: '#007bff',
       devOptions: {
         enabled: true,
         type: 'module',
       },
       strategies: "injectManifest",
       injectRegister: false,
-      manifest: false,
+      manifest: true,
       injectManifest: {
         injectionPoint: null,
       },
+
     }),
   ],
   resolve: {
