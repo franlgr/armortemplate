@@ -1,6 +1,6 @@
 <template>
     <div data-theme="retro" class="body">
-        <install-prompt v-if="showInstallPrompt" :prompt-event="promptEvent" />
+        <!-- <install-prompt v-if="showInstallPrompt" :prompt-event="promptEvent" /> -->
         <!-- <button @click="showNotificyarn uation()">Notificacion</button> -->
         <vue-snotify></vue-snotify>
         <router-view />
@@ -49,37 +49,11 @@ channel.addEventListener("message", (event) => {
 </script>
 
 <script>
-import { onBeforeMount, ref } from 'vue'
+
 import { mapActions, mapGetters } from 'vuex';
-import InstallPrompt from '@/components/InstallPrompt.vue';
+// import InstallPrompt from '@/components/InstallPrompt.vue';
 export default {
     layout: 'default',
-     setup() {
-    const needRefresh = ref(false)
-
-    let updateServiceWorker
-
-    const onNeedRefresh = () => {
-      needRefresh.value = true
-    }
-
-    const close = async () => {
-      needRefresh.value = false
-    }
-
-    onBeforeMount(async () => {
-      const { registerSW } = await import('virtual:pwa-register')
-      updateServiceWorker = registerSW({
-        immediate: true,
-        onNeedRefresh,
-      })
-    })
-
-    return {
-      needRefresh,
-      close,
-    }
-  },
     data() {
         return {
             showInstallPrompt: false,
@@ -98,15 +72,16 @@ export default {
             }
         }
         window.addEventListener('beforeinstallprompt', (event) => {
+          console.log('beforeinstallprompt');
             // Prevenir que el navegador muestre el mensaje de instalación por defecto
             event.preventDefault();
             // Mostrar el mensaje de instalación personalizado
             this.$emit('show-install-promotion', event);
         });
-        this.$on('show-install-promotion', (event) => {
-            this.showInstallPrompt = true;
-            this.promptEvent = event;
-        });
+        // this.$on('show-install-promotion', (event) => {
+        //     this.showInstallPrompt = true;
+        //     this.promptEvent = event;
+        // });
         // Check for and authenticate with the stored token
         this.authenticateWithStoredToken();
         this.socketStart();
