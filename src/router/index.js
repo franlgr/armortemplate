@@ -13,6 +13,7 @@ import SingleBlog from '@/views/site/blogs/SingleBlog.vue';
 import Checkout from '@/views/site/products/Checkout.vue';
 import SiteUsers from '@/views/site/users/SiteUsers.vue';
 import SingleUser from '@/views/site/users/SingleUser.vue';
+import Pricing from '@/views/site/Pricing.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -82,7 +83,11 @@ const routes = [
       },
       { path: '/admin/categories', component: Categories },
       { path: '/admin/blogs', component: Blogs, name: 'admin-blogs' },
-      { path: '/admin/blogs/allblogs', component: AllBlogs, name: 'admin-allblogs' },
+      {
+        path: '/admin/blogs/allblogs',
+        component: AllBlogs,
+        name: 'admin-allblogs',
+      },
       { path: '/admin/components', component: Components },
       { path: '/admin/profile', component: Profile, name: 'admin-profile' },
       { path: '/admin/users', component: Users },
@@ -207,6 +212,7 @@ const routes = [
       },
       { path: '/users', name: 'site-users', component: SiteUsers },
       { path: '/users/:id', name: 'site-user', component: SingleUser },
+      { path: '/pricing', name: 'site-pricing', component: Pricing },
       // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',

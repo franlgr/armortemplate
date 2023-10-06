@@ -103,12 +103,19 @@
                 <i class="fa-solid fa-circle-info px-4"></i
                 ><span class="">Support</span>
               </router-link>
-              <router-link
-                to="/support"
+              <a
+                href="https://doc.armortemplate.site/"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
                 <i class="fa-solid fa-file px-4"></i
                 ><span class="">Documentation</span>
+              </a>
+              <router-link
+                to="/pricing"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
+              >
+                <i class="fa-solid fa-handshake-angle"></i
+                ><span class="ml-2">Pricing</span>
               </router-link>
               <router-link
                 to="/admin"
