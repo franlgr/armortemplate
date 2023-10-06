@@ -49,10 +49,37 @@ channel.addEventListener("message", (event) => {
 </script>
 
 <script>
+import { onBeforeMount, ref } from 'vue'
 import { mapActions, mapGetters } from 'vuex';
 import InstallPrompt from '@/components/InstallPrompt.vue';
 export default {
     layout: 'default',
+     setup() {
+    const needRefresh = ref(false)
+
+    let updateServiceWorker
+
+    const onNeedRefresh = () => {
+      needRefresh.value = true
+    }
+
+    const close = async () => {
+      needRefresh.value = false
+    }
+
+    onBeforeMount(async () => {
+      const { registerSW } = await import('virtual:pwa-register')
+      updateServiceWorker = registerSW({
+        immediate: true,
+        onNeedRefresh,
+      })
+    })
+
+    return {
+      needRefresh,
+      close,
+    }
+  },
     data() {
         return {
             showInstallPrompt: false,

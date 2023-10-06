@@ -15,6 +15,7 @@ import router from './router';
 import store from '@/store';
 import 'vue3-snotify/style';
 // import './assets/tailwind.css';
+import { registerSW } from 'virtual:pwa-register'
 
 // Importa el socket desde el archivo socket.js
 import socket from './plugins/socket.js';
@@ -24,6 +25,10 @@ import MapboxGLWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker?worker';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 mapboxgl.workerClass = MapboxGLWorker;
+
+const updateSW = registerSW({
+    onRegisterError(error) {}
+  })
 
 // Usa el plugin Snotify
 

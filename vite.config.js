@@ -21,6 +21,7 @@ export default defineConfig({
       injectRegister: false,
       manifest: true,
       injectManifest: {
+        rollupFormat: 'iife',
         injectionPoint: null,
       },
 
