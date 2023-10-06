@@ -65,57 +65,57 @@
             <div class="flex flex-col sm:flex-row text-white">
               <router-link
                 to="/"
-                class="my-1hover:text-blue-500 sm:mx-4 md:my-0 text-white"
-                ><i class="fa-solid fa-house"></i
-                ><span class="ml-2">Home</span></router-link
+                class="my-1 hover:text-blue-500 p-2 text-center m-auto md:my-0 text-white"
+                ><i class="fa-solid fa-house px-4"></i
+                ><span class="">Home</span></router-link
               >
               <router-link
                 to="/blogs"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-blog w-4"></i
-                ><span class="ml-2">Blogs</span>
+                <i class="fa-solid fa-blog px-4"></i><span class="">Blogs</span>
               </router-link>
               <router-link
                 to="/products"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-cart-shopping"></i
-                ><span class="ml-2">Market</span>
+                <i class="fa-solid fa-cart-shopping px-4"></i
+                ><span class="">Market</span>
               </router-link>
               <router-link
                 to="/events"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-calendar-days"></i
-                ><span class="ml-2">Events</span>
+                <i class="fa-solid fa-calendar-days px-4"></i
+                ><span class="">Events</span>
               </router-link>
 
               <router-link
                 to="/users"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-user"></i><span class="ml-2">Users</span>
+                <i class="fa-solid fa-user px-4"></i><span class="">Users</span>
               </router-link>
               <router-link
                 to="/support"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-circle-info"></i
-                ><span class="ml-2">Support</span>
+                <i class="fa-solid fa-circle-info px-4"></i
+                ><span class="">Support</span>
               </router-link>
               <router-link
                 to="/support"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-file"></i
-                ><span class="ml-2">Documentation</span>
+                <i class="fa-solid fa-file px-4"></i
+                ><span class="">Documentation</span>
               </router-link>
               <router-link
                 to="/admin"
-                class="my-1 text-white hover:text-blue-500 sm:mx-4 md:my-0"
+                class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-lock"></i><span class="ml-2">Admin</span>
+                <i class="fa-solid fa-lock px-4"></i
+                ><span class="ml-2">Admin</span>
               </router-link>
             </div>
             <!-- Menú de dispositivos móviles (sin cambios) -->
