@@ -80,11 +80,12 @@ export default {
         ...mapActions(['authenticateWithStoredToken', 'socketStart']),
 
  showNotification(message) {
+    const { title, body } = message;
     Notification.requestPermission((result) => {
         if (result === "granted") {
             navigator.serviceWorker.ready.then((registration) => {
-                registration.showNotification(message.title, {
-                    body: message.body,
+                registration.showNotification(title, {
+                    body: body,
                     icon: "../public/android-chrome-512x512.png",
                     actions: [
                         { action: "aceptar", title: "Aceptar" },
