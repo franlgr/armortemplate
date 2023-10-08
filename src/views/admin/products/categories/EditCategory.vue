@@ -54,12 +54,12 @@
               help="What is your title Category ?"
               validation="required"
             />
-            <ckeditor
+            <!-- <ckeditor
               class="my-4"
               :editor="editor"
               v-model="editorData"
               :config="editorConfig"
-            ></ckeditor>
+            ></ckeditor> -->
             <!-- <FormKit class="mt-4" type="text" name="name" label="Your name" placeholder="Jane"
                         help="What is your name?" validation="required" /> -->
 
@@ -86,7 +86,7 @@
   import { mapActions, mapGetters } from 'vuex';
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
-  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+  // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import FeathersClient from '@/FeathersClient';
 
@@ -94,7 +94,7 @@
     data() {
       return {
         category: {},
-        editor: ClassicEditor,
+        // editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {
           // The configuration of the editor.
