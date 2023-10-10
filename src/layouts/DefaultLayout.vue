@@ -2,12 +2,12 @@
     <div>
         <header>
             <!-- Coloca aquí tu encabezado común a todas las páginas -->
-            <!-- {{settings}} -->
+            <!-- {{settings.logo}} -->
             <header class="bg-black">
                 <div class="container mx-auto px-6 py-3">
                     <div class="flex items-center justify-between">
                         <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                            <img v-if="settings.logo" :src="setting.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
+                            <img :src="settings.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
                             <!-- <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
                         </div>
                         <div class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden">
@@ -162,14 +162,14 @@ export default {
                     query: {
                         $limit: 10,
                         // subdomain: "doctor-ferry",
-                        subdomain: this.subdomain,
+                        subdomain: "tesla",
                         // subdomain: 'guillermoferry',
                         // subdomain: 'guillermoferry',
                     }
 
                 })
                 console.log(settings.data)
-                this.settings = settings.data;
+                this.settings = settings.data[0];
             } catch (error) {
                 console.log(error)
                 alert("no se encontro el subdominio")
