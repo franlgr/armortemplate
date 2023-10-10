@@ -9,7 +9,7 @@ The script section imports various components used in the template section, incl
   <div>
     <div>
       <SiteHeader></SiteHeader>
-
+    <!-- {{templateSettings}} -->
       <div
         class="hero min-h-screen paralax"
         :style="{
@@ -20,15 +20,10 @@ The script section imports various components used in the template section, incl
         <div class="hero-content text-center text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              Vue3 E-commerce, Event's and Blogging Theme
+              {{templateSettings.title}}
             </h1>
             <p class="mb-5">
-              Introducing Armor Template, a robust and feature-rich web theme
-              that combines the power of modern technologies to kickstart your
-              next online project. Crafted with Vue3, Vuex, Tailwind CSS,
-              Express.js (SSR), Node.js, and Socket.io, Feathers.js (rest) this
-              versatile template offers everything you need to create a dynamic
-              web presence.
+              {{templateSettings.description}}
             </p>
             <!-- <button class="btn btn-primary">Get Started</button> -->
             <!-- registrate -->
@@ -95,6 +90,7 @@ The script section imports various components used in the template section, incl
   import EventsCategories from '@/components/site/events/EventsCategories.vue';
   import LastUsers from '@/components/site/LastUsers.vue';
   import Sidebar from '@/components/site/Sidebar.vue';
+  import FeathersClient from '@/FeathersClient';
 
   export default {
     name: 'HomeView',
@@ -112,6 +108,18 @@ The script section imports various components used in the template section, incl
           updatedAt: '2023-09-15T18:51:33.347Z',
           __v: 0,
         },
+        templateSettings: {},
+        settings: {
+          dots: true,
+          focusOnSelect: false,
+          autoplay: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          touchThreshold: 1,
+          subdomain: 'doctor-ferry',
+        },
       };
     },
     components: {
@@ -125,19 +133,58 @@ The script section imports various components used in the template section, incl
       LastUsers,
       Sidebar,
     },
-    data() {
-      return {
-        settings: {
-          dots: true,
-          focusOnSelect: false,
-          autoplay: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          touchThreshold: 1,
+    // data() {
+    //   return {
+    //     templateSettings: {},
+    //     settings: {
+    //       dots: true,
+    //       focusOnSelect: false,
+    //       autoplay: true,
+    //       infinite: true,
+    //       speed: 300,
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //       touchThreshold: 1,
+    //       subdomain: '',
+    //     },
+    //   };
+    // },
+    created() {
+      this.FetchTemplateSettings();
+    },
+    methods: {
+        async FetchTemplateSettings() {
+            // Obtener la URL actual
+            const currentURL = window.location.hostname;
+
+            // Dividir la URL en partes usando el punto como separador
+            const parts = currentURL.split(".");
+
+            // Comprobar si hay al menos dos partes (el subdominio y el dominio)
+            if (parts.length >= 2) {
+                // El primer elemento en la matriz es el subdominio
+                this.subdomain = parts[0];
+            }
+
+            try {
+                const settings = await FeathersClient.service('applications').find({
+                    query: {
+                        $limit: 10,
+                        subdomain: "doctor-ferry",
+                        // subdomain: this.subdomain,
+                        // subdomain: 'guillermoferry',
+                        // subdomain: 'guillermoferry',
+                    }
+
+                })
+                // console.log(settings.data)
+                this.templateSettings = settings.data[0];
+            } catch (error) {
+                console.log(error)
+                alert("no se encontro el subdominio")
+            }
+
         },
-      };
     },
   };
 </script>
