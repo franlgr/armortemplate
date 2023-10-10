@@ -50,7 +50,7 @@ atego
                   >
                     {{ product.title }}
                   </h3>
-                  <h3 class="text-xs font-medium text-blue-600 uppercase mt-2">
+                  <h3 v-if="product.category" class="text-xs font-medium text-blue-600 uppercase mt-2">
                     {{ product.category.title }}
                   </h3>
                   <span class="text-gray-500 mt-2"

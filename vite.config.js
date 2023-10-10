@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      srcDir: "/",
+      srcDir: "./",
       filename: "sw.js",
       registerType: 'autoUpdate',
       display: 'fullscreen',
