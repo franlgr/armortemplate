@@ -161,8 +161,8 @@ export default {
                 const settings = await FeathersClient.service('applications').find({
                     query: {
                         $limit: 10,
-                        subdomain: "doctor-ferry",
-                        // subdomain: this.subdomain,
+                        // subdomain: "doctor-ferry",
+                        subdomain: this.subdomain,
                         // subdomain: 'guillermoferry',
                         // subdomain: 'guillermoferry',
                     }

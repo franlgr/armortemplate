@@ -118,7 +118,7 @@ The script section imports various components used in the template section, incl
           slidesToShow: 1,
           slidesToScroll: 1,
           touchThreshold: 1,
-          subdomain: 'doctor-ferry',
+          subdomain: '',
         },
       };
     },
@@ -170,8 +170,8 @@ The script section imports various components used in the template section, incl
                 const settings = await FeathersClient.service('applications').find({
                     query: {
                         $limit: 10,
-                        subdomain: "doctor-ferry",
-                        // subdomain: this.subdomain,
+                        // subdomain: "doctor-ferry",
+                        subdomain: this.subdomain,
                         // subdomain: 'guillermoferry',
                         // subdomain: 'guillermoferry',
                     }
