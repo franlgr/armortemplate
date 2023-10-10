@@ -162,7 +162,7 @@ export default {
                     query: {
                         $limit: 10,
                         // subdomain: "doctor-ferry",
-                        subdomain: "tesla",
+                        subdomain: this.subdomain,
                         // subdomain: 'guillermoferry',
                         // subdomain: 'guillermoferry',
                     }
