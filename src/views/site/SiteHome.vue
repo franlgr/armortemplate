@@ -20,10 +20,10 @@ The script section imports various components used in the template section, incl
         <div class="hero-content text-center text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              {{templateSettings.title}}
+              titulo
             </h1>
             <p class="mb-5">
-              {{templateSettings.description}}
+              descripcion
             </p>
             <!-- <button class="btn btn-primary">Get Started</button> -->
             <!-- registrate -->
@@ -150,41 +150,41 @@ The script section imports various components used in the template section, incl
     //   };
     // },
     created() {
-      this.FetchTemplateSettings();
+      // this.FetchTemplateSettings();
     },
     methods: {
-        async FetchTemplateSettings() {
-            // Obtener la URL actual
-            const currentURL = window.location.hostname;
+        // async FetchTemplateSettings() {
+        //     // Obtener la URL actual
+        //     const currentURL = window.location.hostname;
 
-            // Dividir la URL en partes usando el punto como separador
-            const parts = currentURL.split(".");
+        //     // Dividir la URL en partes usando el punto como separador
+        //     const parts = currentURL.split(".");
 
-            // Comprobar si hay al menos dos partes (el subdominio y el dominio)
-            if (parts.length >= 2) {
-                // El primer elemento en la matriz es el subdominio
-                this.subdomain = parts[0];
-            }
+        //     // Comprobar si hay al menos dos partes (el subdominio y el dominio)
+        //     if (parts.length >= 2) {
+        //         // El primer elemento en la matriz es el subdominio
+        //         this.subdomain = parts[0];
+        //     }
 
-            try {
-                const settings = await FeathersClient.service('applications').find({
-                    query: {
-                        $limit: 10,
-                        // subdomain: "doctor-ferry",
-                        subdomain: this.subdomain,
-                        // subdomain: 'guillermoferry',
-                        // subdomain: 'guillermoferry',
-                    }
+        //     try {
+        //         const settings = await FeathersClient.service('applications').find({
+        //             query: {
+        //                 $limit: 10,
+        //                 // subdomain: "doctor-ferry",
+        //                 subdomain: this.subdomain,
+        //                 // subdomain: 'guillermoferry',
+        //                 // subdomain: 'guillermoferry',
+        //             }
 
-                })
-                // console.log(settings.data)
-                this.templateSettings = settings.data[0];
-            } catch (error) {
-                console.log(error)
-                alert("no se encontro el subdominio")
-            }
+        //         })
+        //         // console.log(settings.data)
+        //         this.templateSettings = settings.data[0];
+        //     } catch (error) {
+        //         console.log(error)
+        //         alert("no se encontro el subdominio")
+        //     }
 
-        },
+        // },
     },
   };
 </script>

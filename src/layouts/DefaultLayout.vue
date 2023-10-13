@@ -7,8 +7,8 @@
                 <div class="container mx-auto px-6 py-3">
                     <div class="flex items-center justify-between">
                         <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                            <img :src="settings.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
-                            <!-- <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
+                            <!-- <img :src="settings.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
+                            <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
                         </div>
                         <div class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden">
                             <!-- {{ $route.name site-product }} -->
@@ -140,42 +140,42 @@ export default {
         };
     },
     created() {
-        this.FetchSettings();
+        // this.FetchSettings();
     },
     methods: {
         ...mapActions(['logout', 'cartMenuToggle']), // Map Vuex actions to methods
-        async FetchSettings() {
-            // Obtener la URL actual
-            const currentURL = window.location.hostname;
+        // async FetchSettings() {
+        //     // Obtener la URL actual
+        //     const currentURL = window.location.hostname;
 
-            // Dividir la URL en partes usando el punto como separador
-            const parts = currentURL.split(".");
+        //     // Dividir la URL en partes usando el punto como separador
+        //     const parts = currentURL.split(".");
 
-            // Comprobar si hay al menos dos partes (el subdominio y el dominio)
-            if (parts.length >= 2) {
-                // El primer elemento en la matriz es el subdominio
-                this.subdomain = parts[0];
-            }
+        //     // Comprobar si hay al menos dos partes (el subdominio y el dominio)
+        //     if (parts.length >= 2) {
+        //         // El primer elemento en la matriz es el subdominio
+        //         this.subdomain = parts[0];
+        //     }
 
-            try {
-                const settings = await FeathersClient.service('applications').find({
-                    query: {
-                        $limit: 10,
-                        // subdomain: "doctor-ferry",
-                        subdomain: this.subdomain,
-                        // subdomain: 'guillermoferry',
-                        // subdomain: 'guillermoferry',
-                    }
+        //     try {
+        //         const settings = await FeathersClient.service('applications').find({
+        //             query: {
+        //                 $limit: 10,
+        //                 // subdomain: "doctor-ferry",
+        //                 // subdomain: 'ferrary',
+        //                 // subdomain: 'guillermoferry',
+        //                 // subdomain: 'guillermoferry',
+        //             }
 
-                })
-                console.log(settings.data)
-                this.settings = settings.data[0];
-            } catch (error) {
-                console.log(error)
-                alert("no se encontro el subdominio")
-            }
+        //         })
+        //         console.log(settings.data)
+        //         this.settings = {}
+        //     } catch (error) {
+        //         console.log(error)
+        //         alert("no se encontro el subdominio")
+        //     }
 
-        },
+        // },
     },
     components: {
         Loading,

@@ -24,7 +24,7 @@ COPY . .
 RUN yarn  build
 
 # Exponemos el puerto en el que se ejecutará la aplicación
-EXPOSE 8787
+# EXPOSE 8787
 
 CMD ["node", "server.js"]
 # CMD ["node", "./src/index.js"]
