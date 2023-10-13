@@ -1,8 +1,8 @@
 <template>
     <div>{{ settings }}
-      <div :style="{ color: pageTextColor, background: backgroundColor }">
-        <button @click="toggleColorMenu">Editar Colores de Página</button>
-        <div v-if="showColorMenu" class="color-menu">
+      <div >
+        <button @click="toggleColorMenu" style="color:white">Editar Colores de Página</button>
+        <div v-if="showColorMenu" class="color-menu" >
           <div>
             <div>
               <button class="btn" @click="openColorPicker('backgroundColor')" :style="{ color: pageTextColor, background: backgroundColor }">

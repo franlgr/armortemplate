@@ -5,7 +5,7 @@
     <!-- ...otros elementos del selector de color... -->
     <button style="color:white" class="m-2" @click="selectColor">Seleccionar</button>
   </div>
-      <ColorPicker
+      <ColorPicker style="  width: 219px;"
         theme="light"
         :color="color"
         :sucker-hide="false"
