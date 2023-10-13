@@ -369,7 +369,7 @@
                                             type="text"
                                             class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                                           />
-                                          <button
+                                          <button @click="openEmojis =!openEmojis"
                                             class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
                                           >
                                             <svg
@@ -434,10 +434,14 @@
                                             </svg>
                                           </span>
                                             </button> -->
+                                         
                         </div>
+                        
                     </div>
+                    <emoji-picker v-if="openEmojis" style="width: 342px; height: 264px;" class="m-2"/>
                 </div>
             </div>
+            
         </div>
     </div>
     </div>
@@ -448,6 +452,7 @@
 import { mapActions, mapGetters } from 'vuex';
 import FeathersClient from '@/FeathersClient.js';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
+import EmojiPicker from '../../components/EmojiPicker.vue';
 
 export default {
     data() {
@@ -455,10 +460,11 @@ export default {
             users: [],
             message: '',
             // messages: [],
-            roomId: 'miSalaPrivada'
+            roomId: 'miSalaPrivada',
+            openEmojis: false
         };
     },
-    components: {},
+    components: {EmojiPicker},
     computed: {
         ...mapGetters(['getUser']),
         // Agrega getters de module2

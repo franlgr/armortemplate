@@ -48,7 +48,13 @@ module.exports = {
   ],
   darkMode: false, // Puedes cambiar esto a 'media' o 'class' si deseas activar el modo oscuro basado en preferencias del sistema o clases.
   theme: {
-    extend: {
+    extend: {  
+      width: {
+      '342': '342px',
+    },
+    height: {
+      '264': '264px',
+    },
       colors: {
         primary: '#3490pc !important', // Cambia esto al color primario que desees
         primaryHover: 'red !important', // Cambia esto al color hover que desees

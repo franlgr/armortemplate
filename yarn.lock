@@ -3418,6 +3418,11 @@ element-ui@^2.15.14:
     resize-observer-polyfill "^1.5.0"
     throttle-debounce "^1.0.1"
 
+emoji-picker-element@^1.18.3:
+  version "1.18.4"
+  resolved "https://registry.yarnpkg.com/emoji-picker-element/-/emoji-picker-element-1.18.4.tgz#0d1136af09c1989661559e99dbaa2a9e163c0974"
+  integrity sha512-Jo+HyHIPSqrHTyLnw+SJn0KWCd1WhA38Iqcz6wKxfqkevK9V8ECJELgFyxXUCRmgQkVmPrTVGLpB1mqIb8/iSQ==
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -7003,6 +7008,11 @@ vue-color@^2.8.1:
     material-colors "^1.0.0"
     tinycolor2 "^1.1.2"
 
+vue-demi@^0.14.5:
+  version "0.14.6"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.6.tgz#dc706582851dc1cdc17a0054f4fec2eb6df74c92"
+  integrity sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==
+
 vue-eslint-parser@^9.1.1, vue-eslint-parser@^9.3.1:
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-9.3.1.tgz#429955e041ae5371df5f9e37ebc29ba046496182"
@@ -7058,6 +7068,14 @@ vue@^3.0.0, vue@^3.2.13, vue@^3.3.4:
     "@vue/runtime-dom" "3.3.4"
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
+
+vuemoji-picker@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/vuemoji-picker/-/vuemoji-picker-0.2.0.tgz#29edb9c00b3571b51941ccec7b968b3198ac7122"
+  integrity sha512-qmLwWnhql31VfBufoenKm5O98VxjldYe8b04DkQulcrpUNyA2SZ92XMrfSySX5/hFwpLi2hcM3PHTd6/9uQ8mg==
+  dependencies:
+    emoji-picker-element "^1.18.3"
+    vue-demi "^0.14.5"
 
 vuex-persistedstate@^4.1.0:
   version "4.1.0"
