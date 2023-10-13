@@ -43,6 +43,7 @@ import AllProducts from '@/views/admin/products/AllProducts.vue';
 import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories.vue';
 import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
 import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
+import SettingsPro from '@/views/admin/settings/SettingsPro.vue'
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -75,6 +76,11 @@ const routes = [
         path: '/admin/products',
         name: 'admin-products',
         component: AdminProducts,
+      },
+      {
+        path: '/admin/settings',
+        name: 'settings-pro',
+        component: SettingsPro,
       },
       {
         path: '/admin/products/all',
