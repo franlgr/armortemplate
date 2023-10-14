@@ -2,6 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import './style.css';
 
+
+
 import snotify from 'vue3-snotify';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -41,6 +43,7 @@ app.config.globalProperties.$socket = socket;
 app.use(router);
 app.use(store);
 app.use(snotify);
+
 // app.use(CKEditor);
 // app.use(plugin, {
 //   plugins: [

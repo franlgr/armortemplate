@@ -152,7 +152,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://www.figma.com/@frankuxui"
+                href="https://www.figma.com/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -171,7 +171,7 @@
                     fill="currentColor"
                   ></circle></svg></a
               ><a
-                href="https://dribbble.com/frankuxui"
+                href="https://dribbble.com/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -184,7 +184,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://codesandbox.io/u/frankuxui"
+                href="https://codesandbox.io/u/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -197,7 +197,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://codepen.io/frankuxui"
+                href="https://codepen.io/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -210,7 +210,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://tailwindcomponents.com/u/frankuxui"
+                href="https://tailwindcomponents.com/u/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -223,7 +223,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://github.com/frankuxui"
+                href="https://github.com/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -236,7 +236,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://www.instagram.com/frankuxui/"
+                href="https://www.instagram.com/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"
@@ -249,7 +249,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://dev.to/frankuxui"
+                href="https://dev.to/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="28"
@@ -262,7 +262,7 @@
                     fill="currentColor"
                   ></path></svg></a
               ><a
-                href="https://twitter.com/frankuxui"
+                href="https://twitter.com/"
                 class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
                 ><svg
                   width="24"

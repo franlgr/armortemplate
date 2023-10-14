@@ -369,6 +369,19 @@
                 <span class="group-hover:text-gray-700 ml-3">Chat</span>
               </router-link>
             </li>
+            <li>
+              <router-link
+                @click="hiddenMenu()"
+                to="/admin/settings"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
+                v-bind:class="{
+                  activeMenu: $route.path === '/admin/settings',
+                }"
+              >
+                <i class="fa-solid fa-gear w-5"></i>
+                <span class="group-hover:text-gray-700 ml-3">Settings (adm)</span>
+              </router-link>
+            </li>
           </ul>
           <div
             class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-[#1ddd9c] to-black bg-gradient-to-r"
