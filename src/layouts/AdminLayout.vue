@@ -49,7 +49,7 @@
             <p class="hidden lg:block mt-4 font-bold text-white">Permissions</p>
             <span
               class="hiddenlg:block text-green-500"
-              v-for="permission in getUser.permissions"
+              v-for="permission in getUser.permissions" :key="permission.index"
             >
               #{{ permission }}
             </span>
@@ -62,11 +62,11 @@
                 href="#"
                 aria-label="dashboard"
                 v-bind:class="{
-                  'bg-[#2c7b60] text-white':
+                  'bg-[#2c7b60] text-white fix-dashboard-active':
                     $route.path === '/admin/dashboard' ||
                     $route.path === '/admin',
                 }"
-                class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white hover:border-2"
+                class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white hover:border-2 fix-dashboard"
               >
                 <i class="fa-solid fa-chart-line w-4"></i>
                 <span class="-mr-1 font-medium">Dashboard</span>
@@ -572,5 +572,16 @@
   }
   .menuHover {
     background-color: #16b27e !important;
+  }
+
+  .fix-dashboard {
+    color: black;
+  }
+  .fix-dashboard:hover {
+    color: white;
+  }
+  .fix-dashboard-active {
+    background:#2c7b60;
+    color:white
   }
 </style>
