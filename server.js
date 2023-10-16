@@ -400,7 +400,7 @@ app.get('*', async (req, res) => {
     img: 'https://i.ibb.co/Wn33HgY/meta.jpg',
   };
   try {
-    const metaData = await axios.get('https://api-tesla.armortemplate.site/settings',{
+    const metaData = await axios.get('https://api.armortemplate.site/settings',{
       query: {
         $limit: 1,
       },
