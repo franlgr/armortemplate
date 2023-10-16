@@ -390,21 +390,23 @@ app.get('*', async (req, res) => {
   console.log('SSR ALL');
   // Aquí puedes generar dinámicamente las metaetiquetas según el ID del producto
   // Aca se puede agregar meta tags dinamicos para el caso de productos tambien se puede hacer para categorias o con cualquier ruta
-
-  try {
-    const metaData = await axios.find({
-      query: {
-        $limit: 1,
-      },
-    });
-    console.log('SSR ALL', metaData);
-  } catch (error) {
-  const data = {
+  let data = {
     title: 'Armor CMS + API: Your All-in-One Solution for Web Development',
     content:
       'Unlock the full potential of web development with Armor CMS + API. Our powerful all-in-one solution combines a robust Content Management System (CMS) with a flexible Application Programming Interface (API). Build, customize, and manage web applications with ease. Try our beta version and be part of the future of web development.',
     img: 'https://i.ibb.co/Wn33HgY/meta.jpg',
   };
+  try {
+    const metaData = await axios.get('https://api-armortemplate.site/settings',{
+      query: {
+        $limit: 1,
+      },
+    });
+    // console.log('SSR ALL', metaData[0]);
+    // console.log('SSR ALL', metaData.data);
+    data.title = metaData.data[0].title;
+    data.content = metaData.data[0].content;
+    data.img = metaData.data[0].img;
   }
   const metaTags = `
         <!-- HTML Meta Tags -->
