@@ -2,6 +2,10 @@
   <div>
     <div>
       <AdminHeader title="Blogs" icon="fa-solid fa-blog fa-beat"></AdminHeader>
+<div class="bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
+    <p class="font-bold">My Blogs</p>
+    <p>Here, you can manage and view your published blog posts.</p>
+</div>
 
       <div class="m-4 2xl:container">
         <div class="">

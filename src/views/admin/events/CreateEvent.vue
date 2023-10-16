@@ -5,8 +5,12 @@
         title="Create Event"
         icon="fa-solid fa-square-plus"
       ></AdminHeader>
-
+  <div class=" bg-purple-100 border-t border-b border-purple-500 text-purple-700 px-4 py-3" role="alert">
+    <p class="font-bold">Events Create</p>
+    <p>Here, you can create new events and manage their details.</p>
+</div>
       <div class="mt-6">
+      
         <router-link
           to="/admin/events"
           class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
@@ -28,7 +32,9 @@
           Back
         </router-link>
       </div>
+      
       <div class="2xl:container m-auto px-8">
+      
         <div class="">
           <div class="carousel-item" v-for="image in images" :key="image.index">
             <div class="m-auto">
@@ -42,6 +48,8 @@
             </div>
           </div>
           <!-- componente para subir muchas imagenes  -->
+        
+
           <UploadImages
             title="Upload Event Images/Flayers"
             class="my-4"

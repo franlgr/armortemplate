@@ -6,6 +6,7 @@
         icon="fa-brands fa-product-hunt"
         :count="products.length"
       ></AdminHeader>
+      
       <div class="2xl:container">
         <div class="">
           <div class="overflow-x-auto">

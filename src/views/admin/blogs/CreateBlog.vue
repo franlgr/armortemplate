@@ -5,6 +5,11 @@
         title="Create Blog"
         icon="fa-solid fa-blog fa-beat"
       ></AdminHeader>
+      <div class="bg-indigo-100 border-t border-b border-indigo-500 text-indigo-700 px-4 py-3" role="alert">
+    <p class="font-bold">Create Blog</p>
+    <p>Here, you can write and publish new blog posts.</p>
+</div>
+
       <div class="mt-6">
         <router-link
           to="/admin/blogs"

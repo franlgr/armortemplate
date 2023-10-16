@@ -2,12 +2,19 @@
 <template>
   <div>
     <div>
+    
       <AdminHeader
         title="Create Product"
         icon="fa-solid fa-square-plus"
       ></AdminHeader>
       <!-- {{getUser}} -->
+      
+        <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+    <p class="font-bold">Create Product</p>
+    <p>Here, you can easily upload a new product to the app's e-commerce platform.</p>
+</div>
       <div class="mt-6">
+      
         <router-link
           to="/admin/products"
           class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
@@ -29,7 +36,9 @@
           Back
         </router-link>
       </div>
+      
       <div class="carousel carousel-end rounded-box fix">
+      
         <div
           class="carousel-item m-auto"
           v-for="image in images"
@@ -49,6 +58,8 @@
       <div class="2xl:container m-auto px-8">
         <div class="">
           <!-- componente para subir muchas imagenes  -->
+      
+
           <UploadImages
             title="Upload Product Images"
             class="my-4"

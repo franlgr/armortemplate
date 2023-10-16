@@ -6,28 +6,30 @@
         class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu"
       >
         <div class="contenido menuAdmin">
-          <button
-            class="text-white bg-black lg:hidden m-4"
+         
+          <div class="grid grid-cols-2 gap-4 ">
+  <div class="p-4"> <button
+            class="text-white bg-black lg:hidden m-4 mt-10 border-green-500"
             @click="toggleMenu()"
           >
             Close
-          </button>
-          <div class="-mx-6 px-6 mt-8 m-auto text-center">
+          </button></div>
+  <div class=" p-4"> <div class="-mx-6 px-6 m-auto text-center ">
             <router-link to="/" title="home" class="mb-4">
               <img
                 src="@/assets/AuthLogo.svg"
-                class="w-36 mx-12 mt-2 logo hover:animate-pulse"
+                class="w-17 mx-12 mt-2 logo hover:animate-pulse"
                 alt="tailus logo"
               />
             </router-link>
             <div class="m-auto mt-4 text-center">
-              <!-- <router-link to="/" title="home">
-                <button class="btn px-4 bg-green-500 text-center">
-                  Go Site
-                </button>
-              </router-link> -->
             </div>
-          </div>
+          </div></div>
+</div>
+
+         
+
+
           <div class="text-center p-4">
             <img
               v-if="getUser.image"
@@ -66,7 +68,7 @@
                     $route.path === '/admin/dashboard' ||
                     $route.path === '/admin',
                 }"
-                class="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white hover:border-2 fix-dashboard"
+                class="relative px-4 py-1 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white hover:border-2 fix-dashboard"
               >
                 <i class="fa-solid fa-chart-line w-4"></i>
                 <span class="-mr-1 font-medium">Dashboard</span>
@@ -369,7 +371,7 @@
                 }"
               >
                 <i class="fa-solid fa-laptop"></i>
-                <span class="group-hover:text-gray-700 ml-3">Applications (adm)</span>
+                <span class="group-hover:text-gray-700">Applications (adm)</span>
               </router-link>
             </li>
             <li>

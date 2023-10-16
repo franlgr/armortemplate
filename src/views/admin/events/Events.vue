@@ -4,6 +4,11 @@
     
         <AdminHeader title="My Events"></AdminHeader>
         <div class="overflow-x-auto">
+        <div class="bg-pink-100 border-t border-b border-pink-500 text-pink-700 px-4 py-3" role="alert">
+    <p class="font-bold">My Events</p>
+    <p>Here, you can view and manage your events.</p>
+</div>
+
             <table class="table">
                 <!-- head -->
                 <thead>
