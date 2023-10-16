@@ -24,7 +24,7 @@
      v-if="isEditing"
         title="Upload Logo"
         class="my-4"
-        v-on:link="linkImgMeta"
+        v-on:link="linkLogo"
     ></UploadImg>
 </div>
 
@@ -96,11 +96,54 @@
                         
                     </div>
                       <div class="p-6 mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4 mt-4">
+                      <!-- <img src="" alt=""> -->
                         <div class="text-gray-500 text-black" style="color:black">Plugins:
                                 <ul class="list-disc list-inside">
                                     <li v-for="(plugin, index) in data.plugins" :key="index">{{ plugin }}</li>
                                 </ul>
                             </div>
+                      </div>
+                      <div class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4">
+                      <p class="font-bold py-2">Meta Tags General</p>
+                       
+    <p v-if="!isEditing"> <span class="font-bold">Title:</span> {{data.meta.title}}</p>
+    <p v-if="!isEditing"> <span class="font-bold">Description:</span> {{data.meta.description}}</p>
+    <p v-if="!isEditing"> <span class="font-bold">IMG:</span></p>
+    <UploadImg
+     v-if="isEditing"
+        title="Upload Meta Img"
+        class="my-4"
+        v-on:link="linkImgMeta"
+    ></UploadImg>   
+    <div > 
+    <img :src="data.meta.img" alt="">
+    </div>
+                      <FormKit
+                      
+                      v-if="isEditing"
+                                v-model="data.meta.description"
+                                style="color:black"
+                                class="mt-2"
+                                type="text"
+                                name="name"
+                                label="Description"
+                                placeholder="Description"
+                                help="What is the site description ?"
+                                validation="required"
+                              />
+
+                      <FormKit  
+                      v-if="isEditing"
+                                v-model="data.meta.description"
+                                style="color:black"
+                                class="mt-2"
+                                type="textarea"
+                                name="name"
+                                label="Description"
+                                placeholder="Description"
+                                help="What is the site description ?"
+                                validation="required"
+                              />
                       </div>
                     <div class="ml-auto m-4 ">
                             <button v-if="!isEditing" @click="toggleEdit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
@@ -134,7 +177,23 @@ export default {
         return {
             isEditing: false,
 
-            data: {},
+            data: {
+                title: '',
+                description: '',
+                logo: '',
+                theme: '',
+                products: false,
+                events: false,
+                blog: false,
+                users: false,
+                admin: false,
+                plugins: [],
+                meta: {
+                    title: '',
+                    description: '',
+                    img: '',
+                },
+            },
         }
     },
     async mounted(){
@@ -167,11 +226,13 @@ export default {
         },
         async saveSettings() {
             // Implement logic to save the settings here
-            this.isEditing = false;
+             this.loadingSet(true);
+            // this.isEditing = false;
             try {
-                this.loadingSet(true);
+               
                 const response = await FeathersClient.service('settings').patch(this.data._id, this.data);
                 this.loadingSet(false);
+                this.isEditing = false;
                  this.$snotify.success('Settings Save', 'Success', {
               timeout: 2000,
               showProgressBar: false,
@@ -181,6 +242,7 @@ export default {
             } catch (error) {
                 console.log('error', error);
                 this.loadingSet(false);
+                this.isEditing = false;
                  this.$snotify.error('Error', 'Error', {
               timeout: 2000,
               showProgressBar: false,
@@ -188,13 +250,18 @@ export default {
               pauseOnHover: true,
             });
             }
+            this.isEditing = false;
 
 
         },
           //esta funcion recibe el link de la imagen que se sube al componente UploadImg
+      linkLogo(link) {
+        console.log('LinkLogo', link);
+        this.data.logo = link;
+      },
       linkImgMeta(link) {
         console.log('linkImgMeta', link);
-        this.data.logo = link;
+        this.data.meta.img = link;
       },
     },
 }
