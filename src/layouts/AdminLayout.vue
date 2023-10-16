@@ -6,29 +6,28 @@
         class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu"
       >
         <div class="contenido menuAdmin">
-         
-          <div class="grid grid-cols-2 gap-4 ">
-  <div class="p-4"> <button
-            class="text-white bg-black lg:hidden m-4 mt-10 border-green-500"
-            @click="toggleMenu()"
-          >
-            Close
-          </button></div>
-  <div class=" p-4"> <div class="-mx-6 px-6 m-auto text-center ">
-            <router-link to="/" title="home" class="mb-4">
-              <img
-                src="@/assets/AuthLogo.svg"
-                class="w-17 mx-12 mt-2 logo hover:animate-pulse"
-                alt="tailus logo"
-              />
-            </router-link>
-            <div class="m-auto mt-4 text-center">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4">
+              <button
+                class="text-white bg-black lg:hidden m-4 mt-10 border-green-500"
+                @click="toggleMenu()"
+              >
+                Close
+              </button>
             </div>
-          </div></div>
-</div>
-
-         
-
+            <div class="p-4">
+              <div class="-mx-6 px-6 m-auto text-center">
+                <router-link to="/" title="home" class="mb-4">
+                  <img
+                    src="@/assets/AuthLogo.svg"
+                    class="w-17 mx-12 mt-2 logo hover:animate-pulse"
+                    alt="tailus logo"
+                  />
+                </router-link>
+                <div class="m-auto mt-4 text-center"></div>
+              </div>
+            </div>
+          </div>
 
           <div class="text-center p-4">
             <img
@@ -51,7 +50,8 @@
             <p class="hidden lg:block mt-4 font-bold text-white">Permissions</p>
             <span
               class="hiddenlg:block text-green-500"
-              v-for="permission in getUser.permissions" :key="permission.index"
+              v-for="permission in getUser.permissions"
+              :key="permission.index"
             >
               #{{ permission }}
             </span>
@@ -83,7 +83,7 @@
                                 <span class="group-hover:text-gray-700">Categories</span>
                             </router-link>
                         </li> -->
-            <li>
+            <li v-if="templateSettings.products">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -98,31 +98,33 @@
                   <span class="px-6">Product</span>
                 </summary>
                 <div>
-              <router-link
-  @click="hiddenMenu()"
-  to="/admin/products/create"
-  class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
-  v-bind:class="{
-    activeMenu: $route.path === '/admin/products/create',
-  }"
->
-  <p class="col-span-1">Create</p>
-  <i class="fa-solid fa-square-plus col-span-1 justify-self-end"></i>
-</router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/products/create"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                    v-bind:class="{
+                      activeMenu: $route.path === '/admin/products/create',
+                    }"
+                  >
+                    <p class="col-span-1">Create</p>
+                    <i
+                      class="fa-solid fa-square-plus col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
 
-
-
-                <router-link
-  @click="hiddenMenu()"
-  to="/admin/products"
-  v-bind:class="{
-    activeMenu: $route.path === '/admin/products',
-  }"
-  class="collapse-content w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
->
-  <p class="col-span-1">My Products</p>
-  <i class="fa-solid fa-cart-shopping col-span-1 justify-self-end"></i>
-</router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/products"
+                    v-bind:class="{
+                      activeMenu: $route.path === '/admin/products',
+                    }"
+                    class="collapse-content w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                  >
+                    <p class="col-span-1">My Products</p>
+                    <i
+                      class="fa-solid fa-cart-shopping col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
 
                   <router-link
                     @click="hiddenMenu()"
@@ -161,7 +163,7 @@
                 </div>
               </details>
             </li>
-            <li>
+            <li v-if="templateSettings.events">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -176,29 +178,32 @@
                   <span class="px-6">Events</span>
                 </summary>
                 <div>
-                
-                 <router-link
-  @click="hiddenMenu()"
-  to="/admin/events/create"
-  class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
-  :class="{
-    activeMenu: $route.path === '/admin/events/create'
-  }"
->
-  <p class="col-span-1">Create</p>
-  <i class="fa-solid fa-square-plus col-span-1 justify-self-end"></i>
-</router-link>
-<router-link
-  @click="hiddenMenu()"
-  to="/admin/events"
-  class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
-  :class="{
-    activeMenu: $route.path === '/admin/events',
-  }"
->
-  <p class="col-span-1">My Events</p>
-  <i class="fa-solid fa-calendar-days col-span-1 justify-self-end"></i>
-</router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/events/create"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                    :class="{
+                      activeMenu: $route.path === '/admin/events/create',
+                    }"
+                  >
+                    <p class="col-span-1">Create</p>
+                    <i
+                      class="fa-solid fa-square-plus col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/events"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                    :class="{
+                      activeMenu: $route.path === '/admin/events',
+                    }"
+                  >
+                    <p class="col-span-1">My Events</p>
+                    <i
+                      class="fa-solid fa-calendar-days col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
 
                   <router-link
                     @click="hiddenMenu()"
@@ -219,7 +224,7 @@
                 </div>
               </details>
             </li>
-            <li>
+            <li v-if="templateSettings.blogs">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -243,42 +248,48 @@
                   >
                 </summary>
                 <div>
-                 <router-link
-  @click="hiddenMenu()"
-  to="/admin/blogs/create"
-  :class="{'activeMenu': $route.path === '/admin/blogs/create'}"
-  class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
->
-  <p class="col-span-1">Create</p>
-  <i class="fa-solid fa-square-plus col-span-1 justify-self-end"></i>
-</router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/blogs/create"
+                    :class="{
+                      activeMenu: $route.path === '/admin/blogs/create',
+                    }"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                  >
+                    <p class="col-span-1">Create</p>
+                    <i
+                      class="fa-solid fa-square-plus col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
 
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/blogs"
+                    :class="{ activeMenu: $route.path === '/admin/blogs' }"
+                    class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center"
+                  >
+                    <p class="col-span-1">My Blogs</p>
+                    <i
+                      class="fa-solid fa-cart-shopping col-span-1 justify-self-end"
+                    ></i>
+                  </router-link>
 
-                 <router-link
-  @click="hiddenMenu()"
-  to="/admin/blogs"
-  :class="{'activeMenu': $route.path === '/admin/blogs'}"
-  class="w-full p-4 float-left cursor-pointer hover:bg-[#2c7b60] bg-white hover:text-white text-black grid grid-cols-2 items-center "
->
-  <p class="col-span-1">My Blogs</p>
-  <i class="fa-solid fa-cart-shopping col-span-1 justify-self-end"></i>
-</router-link>
-
-                 <router-link
-  @click="hiddenMenu()"
-  to="/admin/blogs/allblogs"
-  v-if="admin == true"
-  :class="{
-    'from-sky-600 to-cyan-400': $route.path === '/admin/blogs/allblogs',
-  }"
-  class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
->
-  <p>
-    <i class="fa-solid fa-cart-shopping text-black"></i>
-    <span class="ml-8 text-black"> All Blogs</span>
-    <i class="fa-solid fa-lock text-black ml-2"></i>
-  </p>
-</router-link>
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/blogs/allblogs"
+                    v-if="admin == true"
+                    :class="{
+                      'from-sky-600 to-cyan-400':
+                        $route.path === '/admin/blogs/allblogs',
+                    }"
+                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                  >
+                    <p>
+                      <i class="fa-solid fa-cart-shopping text-black"></i>
+                      <span class="ml-8 text-black"> All Blogs</span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
+                    </p>
+                  </router-link>
 
                   <router-link
                     @click="hiddenMenu()"
@@ -312,7 +323,7 @@
                 <span class="ml-4">Components</span>
               </router-link>
             </li>
-            <li>
+            <li v-if="templateSettings.users">
               <router-link
                 v-if="admin == true"
                 @click="hiddenMenu()"
@@ -371,7 +382,9 @@
                 }"
               >
                 <i class="fa-solid fa-laptop"></i>
-                <span class="group-hover:text-gray-700">Applications (adm)</span>
+                <span class="group-hover:text-gray-700"
+                  >Applications (adm)</span
+                >
               </router-link>
             </li>
             <li>
@@ -384,10 +397,11 @@
                 }"
               >
                 <i class="fa-solid fa-gear w-5"></i>
-                <span class="group-hover:text-gray-700 ml-3">Settings (adm)</span>
+                <span class="group-hover:text-gray-700 ml-3"
+                  >Settings (adm)</span
+                >
               </router-link>
             </li>
-            
           </ul>
           <div
             class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-[#1ddd9c] to-black bg-gradient-to-r"
@@ -427,7 +441,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
   // import BreadCrumbs from '/components/admin/Breadcrumbs.vue';
-
+  import FeathersClient from '@/FeathersClient';
   import Loading from '@/components/Loading.vue';
 
   export default {
@@ -435,6 +449,7 @@
     data() {
       return {
         admin: false,
+        templateSettings: {},
       };
     },
     components: {
@@ -445,6 +460,7 @@
       // Check for and authenticate with the stored token
       this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
       this.isAdmin();
+      this.FetchTemplateSettings();
     },
     methods: {
       ...mapActions([
@@ -453,6 +469,22 @@
         'toggleMenu',
         'hiddenMenu',
       ]), // Map Vuex actions to component methods
+      async FetchTemplateSettings() {
+        // Obtener la URL actual
+        // const currentURL = window.location.hostname;
+
+        try {
+          const settings = await FeathersClient.service('settings').find({
+            query: {
+              $limit: 1,
+            },
+          });
+          // console.log(settings.data)
+          this.templateSettings = settings.data[0];
+        } catch (error) {
+          console.log(error);
+        }
+      },
       selectMenu() {
         this.hiddenMenu();
       },
@@ -583,7 +615,7 @@
     color: white;
   }
   .fix-dashboard-active {
-    background:#2c7b60;
-    color:white
+    background: #2c7b60;
+    color: white;
   }
 </style>

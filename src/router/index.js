@@ -44,7 +44,8 @@ import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories
 import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
 import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue'
-import Applications from '@/views/admin/Applications.vue'
+import Applications from '@/views/admin/applications/Applications.vue'
+import CreateApplication from '@/views/admin/applications/CreateApplication.vue'
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -187,6 +188,11 @@ const routes = [
         path: '/admin/applications',
         component: Applications,
         name: 'admin-applications',
+      },
+      {
+        path: '/admin/applications/create',
+        component: CreateApplication,
+        name: 'admin-applications-create',
       },
     ],
   },

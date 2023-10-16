@@ -7,8 +7,8 @@
                 <div class="container mx-auto px-6 py-3">
                     <div class="flex items-center justify-between">
                         <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
-                            <!-- <img :src="settings.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
-                            <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
+                            <img :src="templateSettings.logo" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" />
+                            <!-- <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
                         </div>
                         <div class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden">
                             <!-- {{ $route.name site-product }} -->
@@ -49,6 +49,7 @@
                         ><span class="">Home</span></router-link
                       >
                       <router-link
+                      v-if="templateSettings.products"
                         to="/blogs"
                         class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
                       >
@@ -59,6 +60,7 @@
                         ><span class="">Market</span>
                       </router-link>
                       <router-link
+                      v-if="templateSettings.events"
                         to="/events"
                         class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
                       >
@@ -67,6 +69,7 @@
                       </router-link>
         
                       <router-link
+                      v-if="templateSettings.users"
                         to="/users"
                         class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
                       >
@@ -91,6 +94,7 @@
                         ><span class="ml-2">Pricing</span>
                       </router-link>
                       <router-link
+                      v-if="templateSettings.admin"
                         to="/admin"
                         class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
                       >
@@ -135,15 +139,36 @@ export default {
         return {
             cartOpen: false,
             isOpen: false,
-            settings: {},
+
             subdomain: '',
+            templateSettings: {},
         };
     },
     created() {
         // this.FetchSettings();
+        this.FetchTemplateSettings();
     },
     methods: {
         ...mapActions(['logout', 'cartMenuToggle']), // Map Vuex actions to methods
+          async FetchTemplateSettings() {
+            // Obtener la URL actual
+            // const currentURL = window.location.hostname;
+
+
+            try {
+                const settings = await FeathersClient.service('settings').find({
+                    query: {
+                        $limit: 1,
+                    }
+
+                })
+                // console.log(settings.data)
+                this.templateSettings = settings.data[0];
+            } catch (error) {
+                console.log(error)
+            }
+
+        },
         // async FetchSettings() {
         //     // Obtener la URL actual
         //     const currentURL = window.location.hostname;
