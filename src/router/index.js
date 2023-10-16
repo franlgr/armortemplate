@@ -44,6 +44,7 @@ import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories
 import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
 import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue'
+import Applications from '@/views/admin/Applications.vue'
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -181,6 +182,11 @@ const routes = [
         path: '/admin/blogs/categories/create',
         component: CreateBlogCategory,
         name: 'admin-blogs-categories-create',
+      },
+      {
+        path: '/admin/applications',
+        component: Applications,
+        name: 'admin-applications',
       },
     ],
   },
