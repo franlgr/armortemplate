@@ -3,7 +3,6 @@
   <div>
     <div>
     <AdminHeader title="Create App" icon="fa-solid fa-star"></AdminHeader>
-    
     <div class=" m-4 2xl:container ">
         <div class=" pb-24 " >
           <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -102,7 +101,7 @@ export default {
 
     },
     methods: {
-        ...mapActions(['loadingSet', 'getUser']),
+        ...mapActions(['loadingSet']),
         async createApp(){
              event.preventDefault();
             // if(this.subdomain == '' || this.logo == '' || this.title == '' || this.description == ''){
@@ -129,6 +128,9 @@ export default {
                 this.loadingSet(false)
             }
         }
+    },
+    computed: {
+        ...mapGetters(['getUser'])
     },
 }
 </script>
