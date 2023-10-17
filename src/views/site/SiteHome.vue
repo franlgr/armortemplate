@@ -16,6 +16,7 @@ The script section imports various components used in the template section, incl
         :style="{
           'background-color': getSettings.siteViews.backNav,
           'background-image': `url('${getSettings.logo}')`,
+          'font-family': getSettings.siteViews.fontStyle,
         }"
       >
         <!-- <div
@@ -49,7 +50,12 @@ The script section imports various components used in the template section, incl
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
           <div class="w-full sm:w-12/12 lg:w-8/12">
-            <div class="">
+            <div
+              class=""
+              :style="{
+                'font-family': getSettings.siteViews.fontStyle,
+              }"
+            >
               <h1 class="text-xl font-bold">Last Products</h1>
               <MoreProductsByCategory></MoreProductsByCategory>
               <h1 class="text-xl font-bold">Last Events</h1>
