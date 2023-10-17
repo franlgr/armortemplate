@@ -1,10 +1,12 @@
 <template>
-  <div
+  <div class="">
+    {{ getSettings.adminViews }}
+    <!-- <div
     class=""
     :style="{
       'font-family': getSettings.adminViews.fontStyle,
     }"
-  >
+  > -->
     <div>
       <aside
         :class="[!getMenuState ? 'ml-[-100%]' : '']"
