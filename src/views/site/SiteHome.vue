@@ -9,7 +9,7 @@ The script section imports various components used in the template section, incl
   <div>
     <div>
       <SiteHeader></SiteHeader>
-      <p>{{ $t('message.hello') }}</p>
+      <!-- <p>{{ $t('message.hello') }}</p> -->
       <!-- <button @click="changeLocale">Cambiar idioma</button> -->
       <div
         class="hero min-h-screen paralax"

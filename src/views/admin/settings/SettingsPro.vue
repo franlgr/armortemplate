@@ -243,6 +243,7 @@
           </div>
           <div
             class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4"
+            v-if="isEditing"
           >
             <label for="font" class="block text-gray-700 text-sm font-bold mb-2"
               >Select site font:</label
