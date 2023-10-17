@@ -14,6 +14,9 @@ import Checkout from '@/views/site/products/Checkout.vue';
 import SiteUsers from '@/views/site/users/SiteUsers.vue';
 import SingleUser from '@/views/site/users/SingleUser.vue';
 import Pricing from '@/views/site/Pricing.vue';
+import Sites from '@/views/site/sites/Sites.vue';
+import SiteSingle from '@/views/site/sites/SingleSite.vue';
+import Offer from '@/views/site/Offer.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -43,9 +46,9 @@ import AllProducts from '@/views/admin/products/AllProducts.vue';
 import AdminBlogsCategories from '@/views/admin/blogs/categories/BlogsCategories.vue';
 import EditBlogCategories from '@/views/admin/blogs/categories/EditCategoryBlogs.vue';
 import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
-import SettingsPro from '@/views/admin/settings/SettingsPro.vue'
-import Applications from '@/views/admin/applications/Applications.vue'
-import CreateApplication from '@/views/admin/applications/CreateApplication.vue'
+import SettingsPro from '@/views/admin/settings/SettingsPro.vue';
+import Applications from '@/views/admin/applications/Applications.vue';
+import CreateApplication from '@/views/admin/applications/CreateApplication.vue';
 
 //events CreateEvent.vue, EditEvent.vue, Events.vue
 // Import your store
@@ -231,6 +234,9 @@ const routes = [
       { path: '/users', name: 'site-users', component: SiteUsers },
       { path: '/users/:id', name: 'site-user', component: SingleUser },
       { path: '/pricing', name: 'site-pricing', component: Pricing },
+      { path: '/sites', name: 'site-sites', component: Sites },
+      { path: '/sites/:id', name: 'site-site', component: SiteSingle },
+
       // { path: '/products/categories', name: 'site-products-categories', component: SiteProductsCategories },
       // {
       //   path: '/products/categories/:id',
@@ -239,6 +245,7 @@ const routes = [
       // },
     ],
   },
+  { path: '/offer', name: 'site-offer', component: Offer },
   // Catch-all route for not found
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
 ];

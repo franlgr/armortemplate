@@ -137,7 +137,7 @@
             >
               <a
                 href="https://www.linkedin.com/in/carlo-gammarota-23493b24/"
-                class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all dark:hover:bg-slate-700"
+                class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all bg-white mt-6 rounded-lg dark:hover:bg-slate-700"
                 ><svg
                   width="24"
                   height="24"
@@ -155,6 +155,57 @@
                     fill="currentColor"
                   ></path></svg
               ></a>
+              <div class="mt-6 justify-between gap-1 md:flex grid">
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/vue-js-1.svg"
+                  loading="lazy"
+                  alt="airbnb"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/vitejs.svg"
+                  loading="lazy"
+                  alt="bissell"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg"
+                  loading="lazy"
+                  alt="ge"
+                />
+                <img
+                  class="w-14 lg:w-14 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/express-109.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <br />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/feathersjs.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/nginx-1.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/docker.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+              </div>
             </div>
           </div>
         </div>
