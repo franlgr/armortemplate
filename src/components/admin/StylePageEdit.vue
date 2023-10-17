@@ -216,16 +216,8 @@
     },
     methods: {
       openColorPicker(colorKey) {
-  // Asigna el color correspondiente a la variable data.siteViews.backNav
-  this.data.siteViews.backNav = this.colors[colorKey];
-  
-  // Abre el ColorPicker
-  this.open[colorKey] = true;
-  
-  // Emite el color actual al componente ColorPicker
-  this.$emit('color-selected', { [colorKey]: this.data.siteViews.backNav });
-},
-
+        this.open[colorKey] = true;
+      },
       updateColor(colorKey, selectedColor) {
         this[colorKey] = selectedColor;
         this.open[colorKey] = false;
