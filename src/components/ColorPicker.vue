@@ -6,7 +6,7 @@
     <button style="color:white" class="m-2" @click="selectColor">Seleccionar</button>
   </div>
       <ColorPicker style="  width: 219px;"
-        theme="light"
+        theme="dark"
         :color="color"
         :sucker-hide="false"
         :sucker-canvas="suckerCanvas"
@@ -33,7 +33,7 @@
     },
     data() {
       return {
-        color: '#59c7f9',
+        color: 'rgba(85, 88, 89, 1)',
         suckerCanvas: null,
         suckerArea: [],
         selectedColor:null

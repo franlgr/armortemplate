@@ -3,7 +3,7 @@
     <div>
       <AdminHeader title="Settings" icon="fa-solid fa-gear"></AdminHeader>
       <div class="m-4 2xl:container">
-        {{ data }}
+        <!-- {{ data }} -->
         <div
           class="bg-gray-100 border-t border-b border-gray-500 text-gray-700 px-4 py-3"
           role="alert"
@@ -362,11 +362,38 @@
               :colors="colors"
               @color-selected="handleColorSelected"
             />
-            <div></div>
-            ADMINVIEWS: {{ data.adminViews }}
-            <div></div>
-            SITEVIEWS: {{ data.siteViews }}
+            
           </div>
+          <div class="overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name of view</th>
+          <th>Color background</th>
+          <th>Color font</th>
+          <th>Font style</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr :style="{color: data.adminViews.colorFont, background: data.adminViews.backMenu, fontFamily: data.adminViews.fontStyle}">
+          <th >1</th>
+          <td >ADMINVIEWS</td>
+          <td >
+              {{ data.adminViews.backMenu }}</td>
+          <td>{{ data.adminViews.colorFont }}</td>
+          <td>{{ data.adminViews.fontStyle }}</td>
+        </tr>
+        <tr :style="{color: data.siteViews.colorFont, background: data.siteViews.backNav, fontFamily: data.siteViews.fontStyle}">
+          <th>2</th>
+          <td>SITEVIEWS</td>
+          <td>{{ data.siteViews.backNav }}</td>
+          <td>{{ data.siteViews.colorFont }}</td>
+          <td>{{ data.siteViews.fontStyle }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
           <div class="ml-auto m-4">
             <button
               v-if="!isEditing"
@@ -381,6 +408,13 @@
               class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
             >
               Save Settings
+            </button>
+            <button
+              v-if="isEditing"
+              @click="isEditing=!isEditing"
+              class=" hover:bg-red-700 text-white font-bold py-2 px-4 rounded m-2"
+            >
+              Cancel
             </button>
           </div>
         </div>

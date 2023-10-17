@@ -27,6 +27,8 @@
               X
             </button>
             <ColorPicker
+          
+              :color="data.siteViews.backNav"
               v-if="open.backgroundColor"
               @color-selected="(color) => updateColor('backgroundColor', color)"
             />
@@ -146,6 +148,40 @@
     },
     data() {
       return {
+        data: {
+          title: '',
+          description: '',
+          logo: '',
+          theme: '',
+          products: false,
+          events: false,
+          blog: false,
+          users: false,
+          admin: false,
+          pricing: false,
+          support: false,
+          documentation: false,
+          plugins: [],
+          meta: {
+            title: '',
+            description: '',
+            img: '',
+          },
+          siteViews: {
+            coverImg: '',
+            colorCoverImg: '',
+            backNav: '',
+            colorFont: '',
+            fontStyle: '',
+            headerFontSize: 25,
+            lang: 'EN',
+          },
+          adminViews: {
+            backMenu: '',
+            colorFont: '',
+            fontStyle: '',
+          },
+        },
         colors: {
           coverSiteColor: '',
           backgroundColor: '',
@@ -165,10 +201,31 @@
         settings: {},
       };
     },
+    async mounted() {
+      // console.log('mounted');
+
+      try {
+        // this.loadingSet(true);
+        const response = await FeathersClient.service('settings').find();
+        this.data = response.data[0];
+        // this.loadingSet(false);
+      } catch (error) {
+        console.log('error', error);
+        // this.loadingSet(false);
+      }
+    },
     methods: {
       openColorPicker(colorKey) {
-        this.open[colorKey] = true;
-      },
+  // Asigna el color correspondiente a la variable data.siteViews.backNav
+  this.data.siteViews.backNav = this.colors[colorKey];
+  
+  // Abre el ColorPicker
+  this.open[colorKey] = true;
+  
+  // Emite el color actual al componente ColorPicker
+  this.$emit('color-selected', { [colorKey]: this.data.siteViews.backNav });
+},
+
       updateColor(colorKey, selectedColor) {
         this[colorKey] = selectedColor;
         this.open[colorKey] = false;
