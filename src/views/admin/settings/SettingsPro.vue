@@ -121,14 +121,14 @@
                       <FormKit
                       
                       v-if="isEditing"
-                                v-model="data.meta.description"
+                                v-model="data.meta.title"
                                 style="color:black"
                                 class="mt-2"
                                 type="text"
                                 name="name"
-                                label="Description"
-                                placeholder="Description"
-                                help="What is the site description ?"
+                                label="Title"
+                                placeholder="Title"
+                                help="What is the site title ?"
                                 validation="required"
                               />
 

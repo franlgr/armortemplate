@@ -164,6 +164,7 @@ The script section imports various components used in the template section, incl
                     }
 
                 })
+                
                 // console.log(settings.data)
                 this.templateSettings = settings.data[0];
             } catch (error) {
