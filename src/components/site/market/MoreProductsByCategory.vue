@@ -12,17 +12,18 @@ atego
           </h3>
           <!--  -->
           <div
-            class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3"
+            class="grid flex gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
           >
             <div v-for="product in products" :key="product.index">
               <div
                 @click="single(product._id)"
-                class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden"
+                class="w-full mx-auto rounded-md shadow-md overflow-hidden"
               >
                 <div
-                  class="flex items-end justify-end h-56 w-full bg-cover"
+                  class="flex items-end justify-end w-full bg-cover"
                   :style="{
                     'background-image': 'url(' + product.images[0] + ')',
+                    'min-height': '200px',
                   }"
                 >
                   <button
@@ -43,14 +44,17 @@ atego
                     </svg>
                   </button>
                 </div>
-                <div class="px-5 py-3 mt-2">
+                <div class="px-5 py-3 mt-2" style="min-height: 150px">
                   <h3
                     class="text-gray-700 uppercase hover:text-blue-600 cursor-pointer"
                     @click="single(product._id)"
                   >
                     {{ product.title }}
                   </h3>
-                  <h3 v-if="product.category" class="text-xs font-medium text-blue-600 uppercase mt-2">
+                  <h3
+                    v-if="product.category"
+                    class="text-xs font-medium text-blue-600 uppercase mt-2"
+                  >
                     {{ product.category.title }}
                   </h3>
                   <span class="text-gray-500 mt-2"

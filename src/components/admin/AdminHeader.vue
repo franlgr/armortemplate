@@ -11,6 +11,14 @@
         <BreadCrumbs></BreadCrumbs>
       </h5>
 
+      <router-link to="/" title="home">
+        <img
+          src="@/assets/AuthLogo.svg"
+          class="h-16 py-0 logo hover:animate-pulse cursor-pointer"
+          alt="tailus logo"
+        />
+      </router-link>
+
       <button
         @click="toggleMenu()"
         class="w-16 h-16 -mr-2 border-r lg:hidden bg-black mt-4 shadow-md"
@@ -209,7 +217,7 @@
       // },
     },
     computed: {
-      ...mapGetters(['getMenuState', 'getUser']),
+      ...mapGetters(['getMenuState', 'getUser', 'getSettings']),
     },
   };
 </script>

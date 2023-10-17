@@ -4,12 +4,14 @@ import createPersistedState from 'vuex-persistedstate';
 import socketModule from './modules/chat';
 import cartModule from './modules/cart';
 import settModule from './modules/sett'; // Import the new settings Vuex module
+import FeathersClient from '@/FeathersClient'; // Import FeathersClient
 
 export default createStore({
   state: {
     userData: 'USER!', // Placeholder for user data
     loading: false, // Loading state
-    menu: false, // Menu state
+    menu: false, // Menu state,
+    settings: {},
   },
   mutations: {
     // Mutation to toggle the menu state
@@ -23,8 +25,30 @@ export default createStore({
     setLoading(state, payload) {
       state.loading = payload;
     },
+    setSettings(state, payload) {
+      state.settings = payload;
+    },
   },
   actions: {
+    async fetchSettings({ commit }) {
+      console.log('fetchSettings');
+      // setLoading(true);
+      try {
+        const response = await FeathersClient.service('settings').find({
+          query: {
+            $limit: 1,
+          },
+        });
+        // setLoading(false);
+        console.log('getSettings', response);
+        commit('setSettings', response.data[0]);
+        this.$i18n.locale = response.data[0].leng;
+      } catch (error) {
+        console.log('getSettings error', error);
+        // setLoading(false);
+      }
+    },
+
     // Example action to log user data
     testAction({ state }) {
       console.log(state.userData);
@@ -51,6 +75,9 @@ export default createStore({
     // Getter to retrieve the menu state
     getMenuState(state) {
       return state.menu;
+    },
+    getSettings(state) {
+      return state.settings;
     },
   },
   modules: {

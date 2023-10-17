@@ -1,15 +1,21 @@
 <template>
-  <div class="">
+  <div
+    class=""
+    :style="{
+      'background-color': getSettings.adminViews.backNav,
+      'font-family': getSettings.adminViews.fontStyle,
+    }"
+  >
     <div>
       <aside
         :class="[!getMenuState ? 'ml-[-100%]' : '']"
         class="fixed top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-black transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] menu"
       >
         <div class="contenido menuAdmin">
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid lg:flex grid-cols-2 gap-4">
             <div class="p-4">
               <button
-                class="text-white bg-black lg:hidden m-4 mt-10 border-green-500"
+                class="text-white bg-black m-4 mt-10 lg:hidden border-green-500"
                 @click="toggleMenu()"
               >
                 Close
@@ -24,7 +30,6 @@
                     alt="tailus logo"
                   />
                 </router-link>
-                <div class="m-auto mt-4 text-center"></div>
               </div>
             </div>
           </div>
@@ -83,7 +88,7 @@
                                 <span class="group-hover:text-gray-700">Categories</span>
                             </router-link>
                         </li> -->
-            <li v-if="templateSettings.products">
+            <li v-if="getSettings.products">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -163,7 +168,7 @@
                 </div>
               </details>
             </li>
-            <li v-if="templateSettings.events">
+            <li v-if="getSettings.events">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -224,7 +229,7 @@
                 </div>
               </details>
             </li>
-            <li v-if="templateSettings.blogs">
+            <li v-if="getSettings.blog">
               <details class="collapse">
                 <summary
                   v-bind:class="{
@@ -323,7 +328,7 @@
                 <span class="ml-4">Components</span>
               </router-link>
             </li>
-            <li v-if="templateSettings.users">
+            <li v-if="getSettings.users">
               <router-link
                 v-if="admin == true"
                 @click="hiddenMenu()"
@@ -449,7 +454,6 @@
     data() {
       return {
         admin: false,
-        templateSettings: {},
       };
     },
     components: {
@@ -460,7 +464,7 @@
       // Check for and authenticate with the stored token
       this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
       this.isAdmin();
-      this.FetchTemplateSettings();
+      // this.FetchgetSettings();
     },
     methods: {
       ...mapActions([
@@ -468,23 +472,7 @@
         'authenticateWithStoredToken',
         'toggleMenu',
         'hiddenMenu',
-      ]), // Map Vuex actions to component methods
-      async FetchTemplateSettings() {
-        // Obtener la URL actual
-        // const currentURL = window.location.hostname;
-
-        try {
-          const settings = await FeathersClient.service('settings').find({
-            query: {
-              $limit: 1,
-            },
-          });
-          // console.log(settings.data)
-          this.templateSettings = settings.data[0];
-        } catch (error) {
-          console.log(error);
-        }
-      },
+      ]),
       selectMenu() {
         this.hiddenMenu();
       },
@@ -505,6 +493,7 @@
         'getMenuState',
         'isLoading',
         'getUser',
+        'getSettings',
       ]), // Map Vuex getters to computed properties
       getClassForActiveRoute() {
         // Get the desired route from the router
@@ -521,9 +510,9 @@
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,700;1,300&display=swap');
+  /* @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,700;1,300&display=swap'); */
   .menuAdmin {
-    font-family: 'Bebas Neue', sans-serif;
+    /* font-family: 'Bebas Neue', sans-serif; */
     font-size: 20px;
   }
 

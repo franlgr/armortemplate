@@ -9,20 +9,31 @@ The script section imports various components used in the template section, incl
   <div>
     <div>
       <SiteHeader></SiteHeader>
+      <p>{{ $t('message.hello') }}</p>
+      <!-- <button @click="changeLocale">Cambiar idioma</button> -->
       <div
         class="hero min-h-screen paralax"
         :style="{
-          'background-image': `url('https://i.ibb.co/DkB7fzb/background.jpg')`,
+          'background-color': getSettings.siteViews.backNav,
+          'background-image': `url('${getSettings.logo}')`,
         }"
       >
+        <!-- <div
+        class="hero min-h-screen paralax"
+        :style="{
+          'background-color': getSettings.siteViews.backNav,
+          'background-image': `url('${getSettings.logo}')`,
+        }"
+      > -->
+        <!-- <div -->
         <div class="hero-overlay bg-opacity-60"></div>
         <div class="hero-content text-center text-neutral-content">
           <div class="max-w-md">
             <h1 class="mb-5 text-5xl font-bold">
-              {{templateSettings.title}}
+              {{ getSettings.title }}
             </h1>
             <p class="mb-5">
-              {{templateSettings.description}}
+              {{ getSettings.description }}
             </p>
             <!-- <button class="btn btn-primary">Get Started</button> -->
             <!-- registrate -->
@@ -34,6 +45,7 @@ The script section imports various components used in the template section, incl
           </div>
         </div>
       </div>
+      <!-- <div v-html="externalHtml"></div> -->
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
           <div class="w-full sm:w-12/12 lg:w-8/12">
@@ -50,6 +62,7 @@ The script section imports various components used in the template section, incl
           <Sidebar class="hidden md:w-12/12 lg:w-5/12 -mx-8 lg:block"></Sidebar>
         </div>
       </div>
+
       <footer class="px-6 py-2 text-gray-100 bg-gray-800">
         <div
           class="container flex flex-col items-center justify-between mx-auto md:flex-row"
@@ -81,6 +94,7 @@ The script section imports various components used in the template section, incl
 </template>
 
 <script>
+  import axios from 'axios'; // Importa axios si no lo has hecho ya
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MoreProductsByCategory from '@/components/site/market/MoreProductsByCategory.vue';
   import MoreEventsByCategory from '@/components/site/MoreEventsByCategory.vue';
@@ -90,12 +104,15 @@ The script section imports various components used in the template section, incl
   import LastUsers from '@/components/site/LastUsers.vue';
   import Sidebar from '@/components/site/Sidebar.vue';
   import FeathersClient from '@/FeathersClient';
+  import { mapGetters, mapActions } from 'vuex';
+  import modelText from './themes/ModelStandar.txt';
 
   export default {
     name: 'HomeView',
     layout: 'DefaultLayout',
     data() {
       return {
+        externalHtml: '',
         imagenDeFondo: '@/assets/background.jpg',
         category: {
           _id: '6504a7b5c0eb3e6684d12b39',
@@ -107,7 +124,6 @@ The script section imports various components used in the template section, incl
           updatedAt: '2023-09-15T18:51:33.347Z',
           __v: 0,
         },
-        templateSettings: {},
         settings: {
           dots: true,
           focusOnSelect: false,
@@ -134,7 +150,7 @@ The script section imports various components used in the template section, incl
     },
     // data() {
     //   return {
-    //     templateSettings: {},
+    //     getSettings: {},
     //     settings: {
     //       dots: true,
     //       focusOnSelect: false,
@@ -149,29 +165,15 @@ The script section imports various components used in the template section, incl
     //   };
     // },
     created() {
-      this.FetchTemplateSettings();
+      this.externalText = modelText;
     },
     methods: {
-        async FetchTemplateSettings() {
-            // Obtener la URL actual
-            // const currentURL = window.location.hostname;
-
-
-            try {
-                const settings = await FeathersClient.service('settings').find({
-                    query: {
-                        $limit: 1,
-                    }
-
-                })
-                
-                // console.log(settings.data)
-                this.templateSettings = settings.data[0];
-            } catch (error) {
-                console.log(error)
-            }
-
-        },
+      changeLocale() {
+        this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en';
+      },
+    },
+    computed: {
+      ...mapGetters(['getSettings', 'setLoading']), // Map Vuex getters to computed properties
     },
   };
 </script>
