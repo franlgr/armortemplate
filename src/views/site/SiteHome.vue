@@ -105,7 +105,6 @@ The script section imports various components used in the template section, incl
   import Sidebar from '@/components/site/Sidebar.vue';
   import FeathersClient from '@/FeathersClient';
   import { mapGetters, mapActions } from 'vuex';
-  import modelText from './themes/ModelStandar.txt';
 
   export default {
     name: 'HomeView',
@@ -164,9 +163,7 @@ The script section imports various components used in the template section, incl
     //     },
     //   };
     // },
-    created() {
-      this.externalText = modelText;
-    },
+    created() {},
     methods: {
       changeLocale() {
         this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en';
