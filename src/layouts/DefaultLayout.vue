@@ -2,7 +2,7 @@
   <div>
     <header>
       <!-- Coloca aquí tu encabezado común a todas las páginas -->
-      <!-- {{settings.logo}} -->
+      <!-- {{ getSettings }} -->
       <!-- {{ getSettings.siteViews }} -->
       <header
         v-if="getSettings"
@@ -84,13 +84,14 @@
                 ><span class="">Home</span></router-link
               >
               <router-link
-                v-if="getSettings.products"
+                v-if="getSettings.blog"
                 to="/blogs"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
                 <i class="fa-solid fa-blog px-4"></i><span class="">Blogs</span>
               </router-link>
               <router-link
+                v-if="getSettings.products"
                 to="/products"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
@@ -121,6 +122,7 @@
                 ><span class="">Support</span>
               </router-link>
               <a
+                v-if="getSettings.documentation"
                 href="https://doc.armortemplate.site/"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
@@ -128,6 +130,7 @@
                 ><span class="">Documentation</span>
               </a>
               <router-link
+                v-if="getSettings.pricing"
                 to="/pricing"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
