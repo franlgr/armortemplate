@@ -42,7 +42,7 @@ export default createStore({
         // setLoading(false);
         console.log('getSettings', response);
         commit('setSettings', response.data[0]);
-        this.$i18n.locale = response.data[0].leng;
+        // this.$i18n.locale = response.data[0].leng;
       } catch (error) {
         console.log('getSettings error', error);
         // setLoading(false);
