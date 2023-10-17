@@ -2,7 +2,6 @@
   <div
     class=""
     :style="{
-      'background-color': getSettings.adminViews.backNav,
       'font-family': getSettings.adminViews.fontStyle,
     }"
   >

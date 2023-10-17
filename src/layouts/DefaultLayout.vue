@@ -3,7 +3,7 @@
     <header>
       <!-- Coloca aquí tu encabezado común a todas las páginas -->
       <!-- {{settings.logo}} -->
-      {{ getSettings.siteViews.fontStyle }}
+      {{ getSettings.siteViews }}
       <header
         v-if="getSettings"
         :style="{
