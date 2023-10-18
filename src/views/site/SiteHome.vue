@@ -56,12 +56,19 @@ The script section imports various components used in the template section, incl
                 'font-family': getSettings.siteViews.fontStyle,
               }"
             >
-              <h1 class="text-xl font-bold">Last Products</h1>
-              <MoreProductsByCategory></MoreProductsByCategory>
+            <div v-if="getSettings.siteViews.product">
+            <h1 class="text-xl font-bold">Last Products</h1>
+              <MoreProductsByCategory ></MoreProductsByCategory>
+            </div>
+              
+             <div v-if="getSettings.siteViews.event">
               <h1 class="text-xl font-bold">Last Events</h1>
               <MoreEventsByCategory></MoreEventsByCategory>
-              <h1 class="text-xl font-bold">Last Blog</h1>
+             </div>
+              <div v-if="getSettings.siteViews.blog">
+                <h1 class="text-xl font-bold">Last Blog</h1>
               <MoreBlogsByCategory></MoreBlogsByCategory>
+              </div>
               <Sidebar class="md:hidden p-4"></Sidebar>
             </div>
           </div>
@@ -156,7 +163,7 @@ The script section imports various components used in the template section, incl
     },
     // data() {
     //   return {
-    //     getSettings: {},
+    //     getSettings.products: {},
     //     settings: {
     //       dots: true,
     //       focusOnSelect: false,

@@ -193,6 +193,38 @@
               </ul>
             </div>
           </div>
+          <div class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4">
+           <MdEditor
+            htmlPreview
+            language="en-US"
+            :toggleHtmlPreview="true"
+            :toolbars="[
+              // 'code',
+              // 'link',
+              // 'image',
+              // 'table',
+              // 'mermaid',
+              // 'katex',
+              // '-',
+              // 'revoke',
+              // 'next',
+              // 'save',
+              // '=',
+              'pageFullscreen',
+              'fullscreen',
+              'preview',
+              'htmlPreview',
+              'catalog',
+              'github',
+            ]"
+            width="auto"
+            :tabWidth="1"
+            noMermaid
+            :sanitize="sanitize"
+            theme="white"
+            v-model="data.siteViews.htmlContent"
+          /></div>
+          {{htmlContent}}
           <div
             class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4"
           >
@@ -424,6 +456,8 @@
 </template>
 
 <script>
+import { MdEditor } from 'md-editor-v3';
+  import 'md-editor-v3/lib/style.css';
   import StylePageEdit from '../../../components/admin/StylePageEdit.vue';
   import EmojiPicker from '../../../components/EmojiPicker.vue';
   import { mapActions, mapGetters } from 'vuex';
@@ -431,8 +465,21 @@
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import FeathersClient from '@/FeathersClient';
+  import { ref } from 'vue';
 
   export default {
+     setup() {
+      const text = ref('# Hello Editor');
+
+      const updateText = (newText) => {
+        text.value = newText;
+      };
+
+      return {
+        text,
+        updateText,
+      };
+    },
     //logout
     // name: "AdminDashboard",
     data() {
@@ -472,6 +519,7 @@
             fontStyle: '',
             headerFontSize: 25,
             lang: 'EN',
+            htmlContent: '',
           },
           adminViews: {
             backMenu: '',
@@ -500,6 +548,7 @@
       StylePageEdit,
       EmojiPicker,
       UploadImg,
+      MdEditor
     },
     methods: {
       ...mapActions(['loadingSet', 'fetchSettings']),

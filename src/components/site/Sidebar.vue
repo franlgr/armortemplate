@@ -2,13 +2,15 @@
   <div>
     <div class="">
       <div class="px-8">
-        <h1 class="mb-4 text-xl font-bold text-gray-700">Last Users</h1>
-        <LastUsers></LastUsers>
+      <div v-if="getSettings.siteViews.users">
+          <h1 class="mb-4 text-xl font-bold text-gray-700">Last Users</h1>
+        <LastUsers ></LastUsers>
       </div>
-      <ProductsCategories></ProductsCategories>
-      <EventsCategories></EventsCategories>
+      </div>
+      <ProductsCategories v-if="getSettings.siteViews.product"></ProductsCategories>
+      <EventsCategories v-if="getSettings.siteViews.event"></EventsCategories>
 
-      <div class="px-8 mt-10">
+      <div class="px-8 mt-10" v-if="getSettings.siteViews.blog">
         <h1 class="mb-4 text-xl font-bold text-gray-700">Blogs Categories</h1>
         <div
           class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-white rounded-lg shadow-md"
@@ -66,11 +68,15 @@
   import LastUsers from '@/components/site/LastUsers.vue';
   import ProductsCategories from '@/components/site/market/ProductsCategories.vue';
   import EventsCategories from '@/components/site/events/EventsCategories.vue';
+  import { mapGetters } from 'vuex';
   export default {
     components: {
       LastUsers,
       ProductsCategories,
       EventsCategories,
+    },
+    computed: {
+      ...mapGetters(['getSettings']),
     },
   };
 </script>

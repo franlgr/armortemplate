@@ -198,12 +198,13 @@ const routes = [
         component: CreateApplication,
         name: 'admin-applications-create',
       },
-      {
-        path: '/admin/html-editor',
-        component: HtmlEditor,
-        name: 'admin-html-editor',
-      },
+     
     ],
+  },
+  {
+    path: '/admin/html-editor',
+    component: HtmlEditor,
+    name: 'admin-html-editor',
   },
   // Auth routes
   {

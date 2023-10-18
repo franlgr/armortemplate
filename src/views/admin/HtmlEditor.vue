@@ -2,7 +2,7 @@
   <div>
     <textarea name="" id="" cols="30" rows="10" v-model="html"></textarea>
     <div v-html="html"></div>
-    <Test></Test>
+    <!-- <Test></Test> -->
   </div>
 </template>
 <script>
