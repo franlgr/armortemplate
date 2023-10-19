@@ -49,12 +49,12 @@ The script section imports various components used in the template section, incl
       <!-- <div v-html="externalHtml"></div> -->
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
-          <script
+          <!-- <script
             src="https://alwingulla.com/88/tag.min.js"
             data-zone="16293"
             async
             data-cfasync="false"
-          ></script>
+          ></script> -->
           <div class="w-full sm:w-12/12 lg:w-8/12">
             <div
               class=""
