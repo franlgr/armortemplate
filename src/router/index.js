@@ -49,9 +49,10 @@ import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue';
 import Applications from '@/views/admin/applications/Applications.vue';
 import CreateApplication from '@/views/admin/applications/CreateApplication.vue';
+import Scraping from '@/views/admin/scraping/ScrapingConfigs.vue'
 
-//events CreateEvent.vue, EditEvent.vue, Events.vue
-// Import your store
+
+//// IImport your store
 import CreateEvent from '@/views/admin/events/CreateEvent.vue';
 import EditEvent from '@/views/admin/events/EditEvent.vue';
 import Events from '@/views/admin/events/Events.vue';
@@ -86,6 +87,11 @@ const routes = [
         path: '/admin/settings',
         name: 'settings-pro',
         component: SettingsPro,
+      },
+      {
+        path: '/admin/scraping',
+        name: 'admin-scraping',
+        component: Scraping,
       },
       {
         path: '/admin/products/all',
