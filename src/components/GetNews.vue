@@ -7,6 +7,14 @@
 <div class="flex items-center justify-center">
     <PriceBtc />
   </div>
+  <div class="flex items-center justify-center m-2"> 
+    <select v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-bordered w-full max-w-xs ">
+        <option disabled selected>What country do you want see?</option>
+        <option value="1">Argentina (AR)</option>
+        <option value="0">Estados Unidos (US)</option>
+      </select>
+  </div>
+
       <main class="mt-10 max-w-screen-lg m-auto">
         <div v-if="latestNews && latestNews.length > 0">
           <div v-for="(news, index) in latestNews" :key="index" class="mt-10 max-w-screen-lg m-auto" >
@@ -61,6 +69,34 @@ export default {
     },
   methods: {
     ...mapActions(['loadingSet']),
+    fetchLatestNewsForSelectedCountry() {
+      // Obtener el país seleccionado según el índice
+      const selectedCountry = this.countries[this.currentCountryIndex];
+      // Limpiar las noticias actuales
+      this.latestNews = [];
+      // Cargar las noticias del país seleccionado
+      this.fetchLatestNewsForCountry(selectedCountry);
+    },
+
+    async fetchLatestNewsForCountry(country) {
+      this.loadingSet(true);
+      try {
+        const response = await axios.get('https://newsapi.org/v2/top-headlines', {
+          params: {
+            country: country,
+            apiKey: 'aa39167d1dd44071a9d9345cfaa3e05b',
+          },
+        });
+
+        if (response.data.articles.length > 0) {
+          this.latestNews.push(...response.data.articles);
+          console.log('News for', country, ':', response.data.articles);
+        }
+        this.loadingSet(false);
+      } catch (error) {
+        console.error('Error al obtener noticias para', country, ':', error);
+      }
+    },
     async fetchLatestNewsForAllCountries() {
       this.loadingSet(true);
       for (let i = 0; i < this.countries.length; i++) {
@@ -104,7 +140,6 @@ export default {
                           ${news.content}
                         </div>`,
               images: news.urlToImage,
-              ubication: news.url,
               th: this.fechaActual,
               images: news.urlToImage,
               imgUser: this.getUser.image,
