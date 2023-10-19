@@ -58,7 +58,7 @@ export default {
   },
   async mounted() {
     
-    this.fetchLatestNewsForAllCountries();
+    // this.fetchLatestNewsForAllCountries();
     this.fetchCategories();
   },
   created() {
