@@ -4,16 +4,17 @@
       <!-- header -->
       <!-- header ends here -->
       <div class="flex items-center justify-center">{{ fechaActual }}</div>
-<div class="flex items-center justify-center">
-    <PriceBtc />
-  </div>
-  <div class="flex items-center justify-center m-2"> 
-    <select v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-bordered w-full max-w-xs ">
-        <option disabled selected>What country do you want see?</option>
-        <option value="1">Argentina (AR)</option>
-        <option value="0">Estados Unidos (US)</option>
-      </select>
-  </div>
+      <div class="flex items-center justify-center">
+          <PriceBtc />
+        </div>
+
+    <div class="flex items-center justify-center m-2"> 
+      <select  v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-ghost w-full max-w-xs">
+        <option value="0" disabled selected >What country do you want see?</option>
+        <option value="2">Argentina (AR)</option>
+        <option value="1">Estados Unidos (US)</option>
+    </select>
+    </div>
 
       <main class="mt-10 max-w-screen-lg m-auto">
         <div v-if="latestNews && latestNews.length > 0">
@@ -50,10 +51,11 @@ export default {
   data() {
     return {
       latestNews: [],
-      countries: ['us', 'ar'],
+      countries: ['0','us', 'ar'],
       currentCountryIndex: 0,
       fechaActual:'',
       category: {},
+
     };
   },
   async mounted() {
