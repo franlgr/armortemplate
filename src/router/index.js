@@ -17,6 +17,7 @@ import Pricing from '@/views/site/Pricing.vue';
 import Sites from '@/views/site/sites/Sites.vue';
 import SiteSingle from '@/views/site/sites/SingleSite.vue';
 import Offer from '@/views/site/Offer.vue';
+import Support from '@/views/site/support/SupportContact.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -230,6 +231,7 @@ const routes = [
       { path: '/blogs', name: 'site-blogs', component: SiteBlog },
       { path: '/blog/:id', name: 'site-blog', component: SingleBlog },
       { path: '/events', name: 'site-events', component: SiteEvents },
+      { path: '/support', name: 'support', component: Support },
       //single
       { path: '/events/:id', name: 'site-event', component: SingleEvent },
       {
