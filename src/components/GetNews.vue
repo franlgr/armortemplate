@@ -14,10 +14,10 @@
     </select>
     </div>
     <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
-      <button  @click="postAllBlogs()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post All Blogs</button>
+      <button  @click="postAllBlogs()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post All Blogs (Individual)</button>
     </div>
     <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
-      <button  @click="createLongBlog()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post A long Blog</button>
+      <button  @click="createLongBlog()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post A long Blog (All in one)</button>
     </div>
       <main class="mt-10 max-w-screen-lg m-auto">
         <div v-if="latestNews && latestNews.length > 0">
@@ -34,7 +34,9 @@
             <div class="text-gray-700 mt-4">
               {{ news.content }}
             </div>
-            <button @click="createBlog(news)" ref="createBlogButton" style="color:white" class="mt-1 max-w-screen-lg m-auto">Crear este Blog</button>
+            <button @click="createBlog(news)" ref="createBlogButton" style="color:white" class="mt-1 max-w-screen-lg m-auto">
+              Create this blog
+            </button>
 
           </div>
         </div>
