@@ -3,7 +3,9 @@
       <div>
       <AdminHeader title="Scraping" icon="fa-solid fa-business-time"></AdminHeader>
       <div class="m-4 2xl:container">
-        
+        <div class="flex items-center justify-center">
+          <PriceBtc />
+        </div>
               <!-- <p>Este componente es el modelo para crear una nueva vista en el admin</p> -->
               <div>
                 <GetNews/>
@@ -18,6 +20,7 @@
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   import GetNews from '../../../components/GetNews.vue';
+  import PriceBtc from '../../../components/PriceBtc.vue';
   
   export default {
       //logout
@@ -25,7 +28,7 @@
       layout: "AdminLayout",
       components: {
           // BreadCrumbs,
-          AdminHeader, GetNews
+          AdminHeader, GetNews, PriceBtc
   
       },
       methods: {

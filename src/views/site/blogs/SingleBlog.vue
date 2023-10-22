@@ -109,6 +109,7 @@
   import TwitterShareButton from '@/components/site/social/TwitterShareButton.vue';
   import LinkedinShareButton from '@/components/site/social/LinkedinShareButton.vue';
   import WhatsappShareButton from '@/components/site/social/WhatsappShareButton.vue';
+  import PriceBtc from '../../../components/PriceBtc.vue';
 
   export default {
     data() {
@@ -132,6 +133,7 @@
       TwitterShareButton,
       LinkedinShareButton,
       WhatsappShareButton,
+      PriceBtc
     },
   };
 </script>

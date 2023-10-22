@@ -4,9 +4,7 @@
       <!-- header -->
       <!-- header ends here -->
       <div class="flex items-center justify-center">{{ fechaActual }}</div>
-      <div class="flex items-center justify-center">
-          <PriceBtc />
-        </div>
+
 
     <div class="flex items-center justify-center m-2"> 
       <select  v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-ghost w-full max-w-xs">
@@ -15,7 +13,12 @@
         <option value="1">Estados Unidos (US)</option>
     </select>
     </div>
-
+    <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
+      <button  @click="postAllBlogs()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post All Blogs</button>
+    </div>
+    <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
+      <button  @click="createLongBlog()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post A long Blog</button>
+    </div>
       <main class="mt-10 max-w-screen-lg m-auto">
         <div v-if="latestNews && latestNews.length > 0">
           <div v-for="(news, index) in latestNews" :key="index" class="mt-10 max-w-screen-lg m-auto" >
@@ -31,7 +34,8 @@
             <div class="text-gray-700 mt-4">
               {{ news.content }}
             </div>
-            <button @click="createBlog(news)" style="color:white" class="mt-1 max-w-screen-lg m-auto">Crear este Blog</button>
+            <button @click="createBlog(news)" ref="createBlogButton" style="color:white" class="mt-1 max-w-screen-lg m-auto">Crear este Blog</button>
+
           </div>
         </div>
       </main>
@@ -71,6 +75,90 @@ export default {
     },
   methods: {
     ...mapActions(['loadingSet']),
+
+    async createLongBlog(news) {
+      if (this.latestNews.length > 0) {
+      try {
+        let htmlContent = ''; // Variable para almacenar el HTML de todas las noticias
+
+        // Itera sobre todas las noticias y agrega su HTML al contenido
+        for (const newsItem of this.latestNews) {
+          // Genera el HTML para cada noticia y agrégalo a la variable htmlContent
+          htmlContent += `
+            <h2 class="text-4xl font-semibold text-gray-800 leading-tight">${newsItem.title}</h2>
+            <p class="text-gray-700 text-lg leading-relaxed pb-6">${newsItem.description}</p>
+            <p class="text-gray-700">Published by ${newsItem.source.name}</p>
+            <a href="${newsItem.url}" class="py-2 text-green-700 inline-flex items-center justify-center mb-2 break-all">
+              ${newsItem.url}
+            </a>
+            <img src="${newsItem.urlToImage}" alt="News Image" class="mt-4 max-w-full" />
+            <p class="text-gray-700 mt-4">Author: ${newsItem.author}</p>
+            <p class="text-gray-700">Published at: ${newsItem.publishedAt}</p>
+            <div class="text-gray-700 mt-4">
+              ${newsItem.content}
+            </div>
+          `;
+        }
+
+        // Realiza la solicitud POST usando Axios o tu cliente de servicios.
+        // Agrega el HTML de todas las noticias a la variable content
+        FeathersClient.service('blogs').create({
+          title: 'International News', // Personaliza el título según tus necesidades
+          content: htmlContent, // Agrega el HTML de todas las noticias al campo content
+          images: this.latestNews.map(newsItem => newsItem.urlToImage).join(', '), // Concatena las URL de las imágenes
+          th: this.fechaActual,
+          images: this.latestNews.map(newsItem => newsItem.urlToImage).join(', '), // Concatena las URL de las imágenes
+          imgUser: this.getUser.image,
+          user: this.getUser,
+          user_id: this.getUser._id,
+          category: this.category,
+          category_id: this.category._id,
+          metaData: {
+            title: 'International News', // Concatena los títulos de las noticias
+            content: 'Armortemplate News', // Concatena las descripciones de las noticias
+            img: 'https://i.ibb.co/Wn33HgY/meta.jpg', // Concatena las URL de las imágenes
+          }
+        });
+
+        console.log('Blog Created');
+        this.$snotify.success('Blog Created', 'Success', {
+          timeout: 2000,
+          showProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
+      } catch (error) {
+        console.error(error);
+        this.$snotify.error(error, 'Error', {
+          timeout: 2000,
+          showProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+        });
+      }
+    } else {
+      this.$snotify.warning('No news available for creating a blog.', 'Warning', {
+        timeout: 2000,
+        showProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+      });
+    }
+  
+},
+    async postAllBlogs() {
+    this.loadingSet(true);
+
+    for (let i = 0; i < this.latestNews.length; i++) {
+      const buttonRef = this.$refs.createBlogButton[i];
+      if (buttonRef) {
+        buttonRef.click();
+        await new Promise((resolve) => setTimeout(resolve, 7000));
+      }
+    }
+
+    this.loadingSet(false);
+  },
     fetchLatestNewsForSelectedCountry() {
       // Obtener el país seleccionado según el índice
       const selectedCountry = this.countries[this.currentCountryIndex];
@@ -170,7 +258,7 @@ export default {
               //   img:'',
               // }
        });
-
+        console.log('Blog Created')
         this.$snotify.success('Blog Created', 'Success', {
           timeout: 2000,
           showProgressBar: false,

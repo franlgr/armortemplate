@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <AdminHeader title="Blogs" icon="fa-solid fa-blog fa-beat"></AdminHeader>
+      <AdminHeader title="Blogs" icon="fa-solid fa-blog fa-beat" :count="blogs.length"></AdminHeader>
 <div class="bg-red-100 border-t border-b border-red-500 text-red-700 px-4 py-3" role="alert">
     <p class="font-bold">My Blogs</p>
     <p>Here, you can manage and view your published blog posts.</p>
@@ -189,7 +189,7 @@
             closeOnClick: false,
             pauseOnHover: true,
           });
-          this.hideDeleteConfirmationModal();
+
         } catch (error) {
           console.error('Error al eliminar el blog:', error);
           this.$snotify.error('Error al eliminar el blog', 'Error', {
@@ -208,7 +208,7 @@
             'Are you sure you want to delete selected blogs?';
           const toastId = this.$snotify.info(
             confirmationMessage,
-            'Delete Blogs',
+            'Deleted Blogs',
             {
               timeout: 0,
               showProgressBar: true,

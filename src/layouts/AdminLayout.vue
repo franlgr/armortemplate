@@ -1,9 +1,12 @@
 <template>
-  <div
+  <!-- <div
     class=""
     :style="{
       'font-family': getSettings.adminViews.fontStyle,
     }"
+  > -->
+  <div
+    class=""
   >
     <div>
       <aside
@@ -474,10 +477,14 @@
       // BreadCrumbs, // Import and include the BreadCrumbs component
       Loading,
     },
+    mounted(){
+// this.getSettings()
+    },
     created() {
       // Check for and authenticate with the stored token
       this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
       this.isAdmin();
+      // this.getSettings()
       // this.FetchgetSettings();
     },
     methods: {
