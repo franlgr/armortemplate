@@ -4,20 +4,46 @@
       <!-- header -->
       <!-- header ends here -->
       <div class="flex items-center justify-center">{{ fechaActual }}</div>
-
-
-    <div class="flex items-center justify-center m-2"> 
-      <select  v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-ghost w-full max-w-xs">
+      <!-- <select  v-model="currentCountryIndex" @change="fetchLatestNewsForSelectedCountry" class="select select-ghost w-full max-w-xs">
         <option value="0" disabled selected >What country do you want see?</option>
         <option value="2">Argentina (AR)</option>
         <option value="1">Estados Unidos (US)</option>
-    </select>
+    </select> -->
+
+    <div class="flex items-center justify-center m-2"> 
+    <div>
+      <input v-model="countrySearch" @input="filterCountries" placeholder="Buscar país...">
+    <div class="custom-dropdown" v-if="showDropdown">
+      <div v-if="countrySearch !=''">
+        <button  class="flex items-center justify-center m-2" style="color:white" v-for="country in filteredCountries" :key="country.code" @click="selectCountry(country.code)">
+        {{ country.name }}
+      </button>
+      </div>
+
     </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-center m-2"> 
+    <select  v-model="selectedCountry" @change="fetchLatestNewsForSelectedCountry" class="select select-ghost w-full max-w-xs">
+      <option value="0" disabled selected >What country do you want see?</option>
+      <option
+        v-for="country in filteredCountries"
+        :key="country.code"
+        :value="country.code"  
+      >
+        {{ country.name }}
+      </option>
+
+    </select>
+  </div>
     <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
       <button  @click="postAllBlogs()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post All Blogs (Individual)</button>
     </div>
     <div v-if="latestNews && latestNews.length > 0" class="flex items-center justify-center m-2">
       <button  @click="createLongBlog()" style="color: white" class="mt-1 max-w-screen-lg m-auto">Post A long Blog (All in one)</button>
+    </div>
+    <div class="flex items-center justify-center m-2">
+      <h2>{{  }}</h2>
     </div>
       <main class="mt-10 max-w-screen-lg m-auto">
         <div v-if="latestNews && latestNews.length > 0">
@@ -50,17 +76,21 @@ import axios from 'axios';
 import FeathersClient from '@/FeathersClient';
 import { mapActions, mapGetters } from 'vuex';
 import PriceBtc from './PriceBtc.vue';
+import countries from './countries'
 export default {
   components:{
       PriceBtc
     },
   data() {
     return {
+      countrySearch: '',
       latestNews: [],
-      countries: ['0','us', 'ar'],
+      countries:countries,
       currentCountryIndex: 0,
       fechaActual:'',
       category: {},
+      showDropdown: false,
+      selectedCountry: "0",
 
     };
   },
@@ -74,10 +104,27 @@ export default {
     },
     computed: {
       ...mapGetters(['isLoading', 'getUser']),
+
+      filteredCountries() {
+      return this.countries.filter(country => {
+        return country.name.toLowerCase().includes(this.countrySearch.toLowerCase())  
+      })
+    }
+  
     },
   methods: {
     ...mapActions(['loadingSet']),
 
+     filterCountries() {
+      this.showDropdown = true;
+    },
+    selectCountry(country) {
+      this.selectedCountry = country;
+      this.showDropdown = false;
+      this.fetchLatestNewsForCountry(country)
+      // También puedes emitir un evento o realizar otras acciones aquí
+    },
+  
     async createLongBlog(news) {
       if (this.latestNews.length > 0) {
       try {
@@ -173,12 +220,7 @@ export default {
     async fetchLatestNewsForCountry(country) {
       this.loadingSet(true);
       try {
-        const response = await axios.get('https://newsapi.org/v2/top-headlines', {
-          params: {
-            country: country,
-            apiKey: 'aa39167d1dd44071a9d9345cfaa3e05b',
-          },
-        });
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=${this.selectedCountry}&apiKey=129308da04db484cadd57e3517685e7d`);
 
         if (response.data.articles.length > 0) {
           this.latestNews.push(...response.data.articles);
