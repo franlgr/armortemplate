@@ -50,7 +50,11 @@ import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue';
 import Applications from '@/views/admin/applications/Applications.vue';
 import CreateApplication from '@/views/admin/applications/CreateApplication.vue';
+
+import HtmlEditor from '@/views/admin/HtmlEditor.vue';
+
 import Scraping from '@/views/admin/scraping/ScrapingConfigs.vue'
+
 
 
 //// IImport your store
@@ -204,7 +208,13 @@ const routes = [
         component: CreateApplication,
         name: 'admin-applications-create',
       },
+     
     ],
+  },
+  {
+    path: '/admin/html-editor',
+    component: HtmlEditor,
+    name: 'admin-html-editor',
   },
   // Auth routes
   {

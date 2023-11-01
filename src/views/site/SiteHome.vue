@@ -46,15 +46,18 @@ The script section imports various components used in the template section, incl
           </div>
         </div>
       </div>
-      <!-- <div v-html="externalHtml"></div> -->
+      <div v-html="contentHtml"></div>
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
+
+
           <!-- <script
             src="https://alwingulla.com/88/tag.min.js"
             data-zone="16293"
             async
             data-cfasync="false"
           ></script> -->
+
           <div class="w-full sm:w-12/12 lg:w-8/12">
             <div
               class=""
@@ -62,12 +65,19 @@ The script section imports various components used in the template section, incl
                 'font-family': getSettings.siteViews.fontStyle,
               }"
             >
-              <h1 class="text-xl font-bold">Last Products</h1>
-              <MoreProductsByCategory></MoreProductsByCategory>
+            <div v-if="getSettings.siteViews.product">
+            <h1 class="text-xl font-bold">Last Products</h1>
+              <MoreProductsByCategory ></MoreProductsByCategory>
+            </div>
+              
+             <div v-if="getSettings.siteViews.event">
               <h1 class="text-xl font-bold">Last Events</h1>
               <MoreEventsByCategory></MoreEventsByCategory>
-              <h1 class="text-xl font-bold">Last Blog</h1>
+             </div>
+              <div v-if="getSettings.siteViews.blog">
+                <h1 class="text-xl font-bold">Last Blog</h1>
               <MoreBlogsByCategory></MoreBlogsByCategory>
+              </div>
               <Sidebar class="md:hidden p-4"></Sidebar>
             </div>
           </div>
@@ -146,6 +156,7 @@ The script section imports various components used in the template section, incl
           touchThreshold: 1,
           subdomain: '',
         },
+        contentHtml: `<div class="flex flex-col justify-center items-center h-[100vh]"> <div class="flex w-full flex-col rounded-md bg-cover px-[30px] py-[30px] md:px-[64px] md:py-[56px] max-w-[95%] xl:max-w-[800px] w-[95%]" style='background-image: url("https://raw.githubusercontent.com/horizon-ui/horizon-tailwind-react-ts-corporate/main/src/assets/img/nfts/NftBanner1.png");'> <div class="w-full"> <h4 class="mb-[14px] max-w-full text-xl font-bold text-white md:w-[64%] md:text-3xl md:leading-[42px] lg:w-[46%] xl:w-[85%] 2xl:w-[75%] 3xl:w-[52%]"> Hola </h4> <p class="mb-[40px] max-w-full text-base font-medium text-[#E3DAFF] md:w-[64%] lg:w-[40%] xl:w-[72%] 2xl:w-[60%] 3xl:w-[45%]"> Enter in this creative world. Discover now the latest NFTs or start creating your own! </p> <div class="mt-[36px] flex items-center justify-between gap-4 sm:justify-start 2xl:gap-10"> <button class="text-black linear rounded-md bg-white px-4 py-2 text-center text-base font-medium transition duration-200 hover:!bg-white/80 active:!bg-white/70"> Discover now </button> <button class="text-base font-medium text-lightPrimary hover:text-lightPrimary 2xl:ml-2"> Watch Video </button> </div> </div> </div> <p class="font-normal text-navy-700 mt-20 mx-auto w-max">Profile Card component from <a href="https://horizon-ui.com?ref=tailwindcomponents.com" target="_blank" class="text-brand-500 font-bold">Horizon UI Tailwind React</a></p> </div>`,
       };
     },
     components: {
@@ -161,7 +172,7 @@ The script section imports various components used in the template section, incl
     },
     // data() {
     //   return {
-    //     getSettings: {},
+    //     getSettings.products: {},
     //     settings: {
     //       dots: true,
     //       focusOnSelect: false,

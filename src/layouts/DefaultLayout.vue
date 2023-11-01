@@ -77,7 +77,10 @@
                 'font-size': getSettings.siteViews.headerFontSize + 'px',
               }"
             >
+            
               <router-link
+              v-if="$route.path != '/'"
+              
                 to="/"
                 class="my-1 hover:text-blue-500 p-2 text-center m-auto md:my-0 text-white"
                 ><i class="fa-solid fa-house px-4"></i
@@ -115,6 +118,7 @@
                 <i class="fa-solid fa-user px-4"></i><span class="">Users</span>
               </router-link>
               <router-link
+              v-if="getSettings.support"
                 to="/support"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >

@@ -1,11 +1,17 @@
 <template>
   <div>
     <div class="bg-gradient-to-b from-pink-100 to-green-200 py-24">
+      <img
+        class="w-20 lg:w-28 m-auto"
+        src="https://res.cloudinary.com/doznjtpmk/image/upload/v1697505969/admin-web/r29rjankqp82kqd8lhqe.svg"
+        loading="lazy"
+        alt="microsoft"
+      />
       <div class="container m-auto px-6 py-20 md:px-12 lg:px-20">
         <div class="m-auto text-center lg:w-8/12 xl:w-7/12">
           <h2 class="text-2xl text-green-900 font-bold md:text-4xl">
-            create your site and start publishing or selling on our using our
-            CMS Model
+            Create your site and start publishing or selling on our using our
+            <span class="text-[#1ddd86]">Armor</span> CMS Model
           </h2>
         </div>
         <div
@@ -40,24 +46,26 @@
 
               <ul role="list" class="w-max space-y-4 py-6 m-auto text-gray-600">
                 <li class="space-x-2">
-                  <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>First premium advantage</span>
+                  <span class="text-green-500 font-semibold">&check;</span>
+                  <span>1 Subdomain</span>
                 </li>
                 <li class="space-x-2">
-                  <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>Second advantage weekly</span>
+                  <span class="text-green-500 font-semibold">&check;</span>
+                  <span>Personalization</span>
                 </li>
                 <li class="space-x-2">
-                  <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>Third advantage donate to project</span>
+                  <span class="text-green-500 font-semibold">&check;</span>
+                  <span>Third Advantage: Donate to Project</span>
                 </li>
               </ul>
+
               <p
                 class="flex items-center justify-center space-x-4 text-lg text-gray-600 text-center"
               >
-                <span>Call us at</span>
+                <span>Support</span>
+
                 <a
-                  href="tel:+24300"
+                  href="wa.link/3k1b7m"
                   class="flex space-x-2 items-center text-purple-600"
                 >
                   <svg
@@ -70,16 +78,17 @@
                       d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
                     />
                   </svg>
-                  <span class="font-semibold">+1 000 000</span>
+                  <span class="font-semibold">message</span>
                 </a>
-                <span>or</span>
               </p>
               <button
                 type="submit"
                 title="Submit"
                 class="block w-full py-3 px-6 text-center rounded-xl transition bg-purple-600 hover:bg-purple-700 active:bg-purple-800 focus:bg-indigo-600"
               >
-                <span class="text-white font-semibold">Get offer </span>
+                <span class="text-white font-semibold text-xl"
+                  >Subscribe to Beta
+                </span>
               </button>
             </div>
           </div>
@@ -92,33 +101,38 @@
             <div
               class="relative p-6 pt-16 md:p-8 md:pl-12 md:rounded-r-2xl lg:pl-20 lg:p-16"
             >
-              <img
+              <!-- <img
                 class="w-20 lg:w-28 m-auto"
                 src="https://res.cloudinary.com/doznjtpmk/image/upload/v1697505969/admin-web/r29rjankqp82kqd8lhqe.svg"
                 loading="lazy"
                 alt="microsoft"
-              />
+              /> -->
               <ul role="list" class="space-y-4 py-6 text-gray-600">
                 <li class="space-x-2">
                   <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>First premium advantage</span>
+                  <span>E-commerce Solution</span>
                 </li>
                 <li class="space-x-2">
                   <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>Second advantage weekly</span>
+                  <span>Admin Events & Blog Management</span>
                 </li>
                 <li class="space-x-2">
                   <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>Third advantage donate to project</span>
+                  <span>User Management System</span>
                 </li>
                 <li class="space-x-2">
                   <span class="text-purple-500 font-semibold">&check;</span>
-                  <span>Fourth, access to all components weekly</span>
+                  <span>Dedicated Support & Customization</span>
+                </li>
+                <li class="space-x-2">
+                  <span class="text-purple-500 font-semibold">&check;</span>
+                  <span>Dinamic Meta Data Solutions</span>
                 </li>
               </ul>
               <p class="text-gray-700">
-                Team can be any size, and you can add or switch members as
-                needed. Companies using our platform include:
+                Our platform caters to teams of any size, enabling seamless
+                addition or replacement of members as required. Some of the
+                prominent companies leveraging our services include:
               </p>
               <!-- <div class="mt-6 justify-between gap-1 md:flex grid">
                 <img

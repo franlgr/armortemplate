@@ -7047,6 +7047,11 @@ vue-eslint-parser@^9.1.1, vue-eslint-parser@^9.3.1:
     lodash "^4.17.21"
     semver "^7.3.6"
 
+vue-html-editor@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-html-editor/-/vue-html-editor-0.2.1.tgz#d8c41178a2f66264ffcb45b9b137903b52d718b5"
+  integrity sha512-QXk3MsBEwShRIny0fhqWn31coiJ4p85Y3mVuMFOkU/BoSS+0IBiOHvmJeulowMGNtKwrPN84Mnm+XlwOSNmBWA==
+
 vue-i18n@^9.5.0:
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.5.0.tgz#361a820f591f6d9689435a42763fd1dae224833b"
@@ -7055,6 +7060,11 @@ vue-i18n@^9.5.0:
     "@intlify/core-base" "9.5.0"
     "@intlify/shared" "9.5.0"
     "@vue/devtools-api" "^6.5.0"
+
+vue-js-toggle-button@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/vue-js-toggle-button/-/vue-js-toggle-button-1.3.3.tgz#d603089039e41d45e607355ad2e0478c6a52aceb"
+  integrity sha512-0b920oztgK+1SqlYF26MPiT28hAieL5aAQE7u21XEym5ryfzD4EMer4hLkgDC/1sWsCHb22GvV+t1Kb4AI6QFw==
 
 vue-router@4:
   version "4.2.4"
