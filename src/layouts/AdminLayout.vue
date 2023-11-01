@@ -1,12 +1,13 @@
 <template>
-  <div class="">
-    {{ getSettings.adminViews }}
-    <!-- <div
+  <!-- <div
     class=""
     :style="{
       'font-family': getSettings.adminViews.fontStyle,
     }"
   > -->
+  <div
+    class=""
+  >
     <div>
       <aside
         :class="[!getMenuState ? 'ml-[-100%]' : '']"
@@ -408,6 +409,21 @@
                 >
               </router-link>
             </li>
+            <li>
+              <router-link
+                @click="hiddenMenu()"
+                to="/admin/scraping"
+                class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
+                v-bind:class="{
+                  activeMenu: $route.path === '/admin/scraping',
+                }"
+              >
+              <i class="fa-solid fa-business-time w-5"></i>
+                <span class="group-hover:text-gray-700 ml-3"
+                  >Scraping </span
+                >
+              </router-link>
+            </li>
           </ul>
           <div
             class="px-6 pt-4 flex justify-between items-center border-t pb-4 from-[#1ddd9c] to-black bg-gradient-to-r"
@@ -461,10 +477,14 @@
       // BreadCrumbs, // Import and include the BreadCrumbs component
       Loading,
     },
+    mounted(){
+// this.getSettings()
+    },
     created() {
       // Check for and authenticate with the stored token
       this.authenticateWithStoredToken(); // Calls the method to authenticate with a stored token
       this.isAdmin();
+      // this.getSettings()
       // this.FetchgetSettings();
     },
     methods: {

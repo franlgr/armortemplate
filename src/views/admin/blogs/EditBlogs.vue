@@ -23,7 +23,6 @@
         Back
       </router-link>
     </div>
-
     <div class="carousel carousel-end rounded-box fix">
       <div
         class="carousel-item m-auto"
@@ -214,6 +213,7 @@
         editBlog: {
           category: {},
         },
+
       };
     },
     mounted() {
@@ -230,6 +230,7 @@
       UploadImg,
       MdEditor,
     },
+    
 
     methods: {
       ...mapActions(['loadingSet']),
@@ -262,7 +263,6 @@
           this.images = res.images;
           this.data = {
             title: res.title,
-            ubication: res.ubication,
             category: res.category._id,
             titleMeta: res.metaData.title,
             contentMeta: res.metaData.content,

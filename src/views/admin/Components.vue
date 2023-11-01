@@ -8,17 +8,52 @@
       ></AdminHeader>
 
       <div class="m-4 2xl:container">
+        Text Editor
+        <div class="h-1 bg-black w-full"></div>
         <vue-awesome-swiper class="my-24"> </vue-awesome-swiper>
         <div class="">
-          Text Editor
+          
           <br />
+          <div class="h-1 bg-black w-full"></div>
           <!-- <Ckeditor></Ckeditor> -->
           <br />
-          Tabla Default
+          <div class="h-1 bg-black w-full"></div>
+          <div class="flex items-center justify-center m-2">
+            Tabla Default
+          </div>
+          
           <TableDefault></TableDefault>
           <br />
-          Card Modelo Example
+          <div class="h-1 bg-black w-full"></div>
+          <div class="flex items-center justify-center m-2">
+            Card Modelo Example
+          </div>
+         
+          <br>
+          <div class="h-1 bg-black w-full"></div>
+          <div class="flex items-center justify-center m-2">
+            Show & Get News
+          </div>
+          
+          <GetNews />
+          <br>
+          <div class="h-1 bg-black w-full"></div>
+          <div class="flex items-center justify-center m-2">
+            Price BTC/USDT
+          </div>
+         
+          <PriceBtc />
 
+          <br>
+          <div class="h-1 bg-black w-full"></div>
+          Emoji Picker 
+          <EmojiPicker />
+          <div class="h-1 bg-black w-full"></div>
+          <br>
+          <div class="h-1 bg-black w-full"></div>
+          Color Picker
+          <ColorPicker />
+          <div class="h-1 bg-black w-full"></div>
           <div class="card w-100 bg-base-100 shadow-xl my-8 p-4">
             <figure>
               <img
@@ -38,10 +73,11 @@
               </div>
             </div>
           </div>
+          <div class="h-1 bg-black w-full"></div>
           <br />
           <Mapbox class="m-8"></Mapbox>
           <br />
-
+          <div class="h-1 bg-black w-full"></div>
           <div class="m-4 2xl:container">
             <div
               class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 pb-24"
@@ -171,6 +207,10 @@
   import FloatingBars from '@/components/admin/charts/FloatingBars.vue';
   import Radar from '@/components/admin/charts/Radar.vue';
   import VueAwesomeSwiper from '@/components/VueAwesomeSwiper.vue';
+  import ColorPicker from '../../components/ColorPicker.vue';
+  import EmojiPicker from '../../components/EmojiPicker.vue';
+  import GetNews from '../../components/GetNews.vue';
+  import PriceBtc from '../../components/PriceBtc.vue';
 
   // import Ckeditor from '@/components/Ckeditor.vue';
   import TableDefault from '@/components/TableDefault.vue';
@@ -195,6 +235,10 @@
       FloatingBars,
       Radar,
       VueAwesomeSwiper,
+      ColorPicker,
+      EmojiPicker,
+      GetNews,
+      PriceBtc
     },
     methods: {},
   };

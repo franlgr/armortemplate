@@ -22,6 +22,11 @@
               >Armor Template</a
             >
           </div>
+          <div class="flex items-center justify-center">
+    <PriceBtc />
+  </div>
+ 
+        
           <div class="space-y-5">
             <h1
               class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold text-white p-4"
@@ -180,10 +185,23 @@
                   loading="lazy"
                   alt="microsoft"
                 />
+           
                 <br />
                 <img
                   class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/socket.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
                   src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://res-1.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1422872537/tiiifcjiquop4k2jf2yf.png"
                   loading="lazy"
                   alt="microsoft"
                 />
@@ -216,7 +234,13 @@
 </template>
 <script>
   import { mapActions } from 'vuex';
+import PriceBtc from '../../../components/PriceBtc.vue';
+import GetNews from '../../../components/GetNews.vue';
+  
   export default {
+    components:{
+      PriceBtc,GetNews
+    },
     data() {
       return {
         //

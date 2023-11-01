@@ -17,6 +17,7 @@ import Pricing from '@/views/site/Pricing.vue';
 import Sites from '@/views/site/sites/Sites.vue';
 import SiteSingle from '@/views/site/sites/SingleSite.vue';
 import Offer from '@/views/site/Offer.vue';
+import Support from '@/views/site/support/SupportContact.vue';
 
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
 // import SiteProductsCategories from '@/views/site/products/Categories.vue';
@@ -49,10 +50,14 @@ import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue';
 import Applications from '@/views/admin/applications/Applications.vue';
 import CreateApplication from '@/views/admin/applications/CreateApplication.vue';
+
 import HtmlEditor from '@/views/admin/HtmlEditor.vue';
 
-//events CreateEvent.vue, EditEvent.vue, Events.vue
-// Import your store
+import Scraping from '@/views/admin/scraping/ScrapingConfigs.vue'
+
+
+
+//// IImport your store
 import CreateEvent from '@/views/admin/events/CreateEvent.vue';
 import EditEvent from '@/views/admin/events/EditEvent.vue';
 import Events from '@/views/admin/events/Events.vue';
@@ -87,6 +92,11 @@ const routes = [
         path: '/admin/settings',
         name: 'settings-pro',
         component: SettingsPro,
+      },
+      {
+        path: '/admin/scraping',
+        name: 'admin-scraping',
+        component: Scraping,
       },
       {
         path: '/admin/products/all',
@@ -231,6 +241,7 @@ const routes = [
       { path: '/blogs', name: 'site-blogs', component: SiteBlog },
       { path: '/blog/:id', name: 'site-blog', component: SingleBlog },
       { path: '/events', name: 'site-events', component: SiteEvents },
+      { path: '/support', name: 'support', component: Support },
       //single
       { path: '/events/:id', name: 'site-event', component: SingleEvent },
       {
