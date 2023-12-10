@@ -13,6 +13,11 @@
             <table class="table">
               <!-- head -->
               <thead>
+                <div class="flex items-center">
+                  <button @click="deleteSelectedBlogs()" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
+                      <i class="fas fa-trash-alt text-red-500"></i>
+                     </button>
+                  </div>
                 <tr>
                   <th>
                     <div><span>Select All</span></div>
@@ -34,8 +39,10 @@
               </thead>
 
               <tbody>
+
                 <!-- row 1 -->
                 <tr v-for="blog in blogs" :key="blog.index">
+
                   <th>
                     <label>
                       <input

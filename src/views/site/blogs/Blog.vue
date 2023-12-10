@@ -96,7 +96,7 @@
                         class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block"
                       />
                       <h4 class="font-bold text-gray-700 hover:underline">
-                        {{ blog.user.name }}
+                        <!-- {{ blog.user.name }} -->
                       </h4>
                     </a>
                   </div>
@@ -183,9 +183,11 @@
         },
         currentPage: 1, // Página actual
         perPage: 10, // Cantidad de elementos por página
-        blogs: [],
+        blogs: {},
       };
     },
+ 
+
     created() {
       this.fetchBlogs();
     },
@@ -198,7 +200,7 @@
             $skip: (this.currentPage - 1) * this.perPage,
           },
         });
-        console.log(blogs);
+        console.log("FIND BLOGS: "+blogs.data);
         this.blogs = blogs.data;
       },
       //pagination

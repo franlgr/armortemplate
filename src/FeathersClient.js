@@ -9,8 +9,8 @@ let restClient = rest('http://192.168.1.3:1313');
 
 //Produccion
 // restClient = rest('http://64.227.76.217:1313');
-// restClient = rest('http://localhost:1313');
-restClient = rest('https://api.armortemplate.site');
+restClient = rest('http://localhost:6103');
+// restClient = rest('https://api.armortemplate.site');
 
 // Configure an AJAX library (see below) with that client
 appRest.configure(restClient.fetch(window.fetch.bind(window)));

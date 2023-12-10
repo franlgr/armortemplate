@@ -189,7 +189,7 @@
             closeOnClick: false,
             pauseOnHover: true,
           });
-          this.hideDeleteConfirmationModal();
+          // this.hideDeleteConfirmationModal();
         } catch (error) {
           console.error('Error al eliminar el blog:', error);
           this.$snotify.error('Error al eliminar el blog', 'Error', {
