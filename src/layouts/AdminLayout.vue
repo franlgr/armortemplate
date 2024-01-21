@@ -350,7 +350,8 @@
                 <span class="ml-4">Components</span>
               </router-link>
             </li>
-            <li v-if="getSettings.users">
+            <!-- {{ getSettings }} -->
+            <li>
               <router-link
                 v-if="admin == true"
                 @click="hiddenMenu()"

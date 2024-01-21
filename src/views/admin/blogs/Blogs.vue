@@ -82,8 +82,8 @@
                         class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full"
                       >
                         <img
-                          v-if="blog.imgUser"
-                          :src="blog.imgUser"
+                          v-if="blog.user.image"
+                          :src="blog.user.image"
                           alt="User Image"
                           class="h-8 w-8 rounded-full"
                         />

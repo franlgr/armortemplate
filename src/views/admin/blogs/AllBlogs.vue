@@ -62,7 +62,7 @@
                       <div>
                         <div class="font-bold">{{ blog.title }}</div>
                         <div class="text-sm opacity-50" v-if="blog.user">
-                          {{ blog.user }}
+                          {{ blog.user.name }}
                         </div>
                       </div>
                     </div>

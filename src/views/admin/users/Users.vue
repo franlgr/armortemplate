@@ -89,16 +89,16 @@
                                     </td>
                                     <th>
                                         <div class="flex justify-between">
-                                <!-- <router-link :to="{ name: 'site-user', params: { id: user._id } }" class="flex items-center"> -->
+                                <router-link :to="{ name: 'site-user', params: { id: user._id } }" class="flex items-center">
                                     <button class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
                                             <i class="fas fa-eye text-blue-500"></i>
                                         </button>
-                                <!-- </router-link> -->
-                                <!-- <router-link :to="{ name: 'admin-users-edit', params: { id: user._id } }" class="flex items-center"> -->
+                                </router-link>
+                                <router-link :to="{ name: 'admin-users-edit', params: { id: user._id } }" class="flex items-center">
                                     <button class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
                                             <i class="fas fa-edit text-yellow-500"></i>
                                         </button>
-                                <!-- </router-link> -->
+                                </router-link>
                                 <div class="flex items-center">
                                 </div>
                             </div>

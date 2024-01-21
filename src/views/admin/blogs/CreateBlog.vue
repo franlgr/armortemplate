@@ -9,7 +9,7 @@
     <p class="font-bold">Create Blog</p>
     <p>Here, you can write and publish new blog posts.</p>
 </div>
-
+{{ getUser.image }}
       <div class="mt-6">
         <router-link
           to="/admin/blogs"

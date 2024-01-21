@@ -19,22 +19,27 @@
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
               <div class="md:col-span-5">
                 <label for="full_name">Full Name</label>
-                <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
+                <input type="text" name="full_name" id="full_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="getUser.name+' '+ getUser.lastname" />
               </div>
 
               <div class="md:col-span-5">
                 <label for="email">Email Address</label>
-                <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="email@domain.com" />
+                <input type="text" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="getUser.email" placeholder="email@domain.com" />
+              </div>
+
+              <div class="md:col-span-5">
+                <label for="email">Telephone</label>
+                <input type="text" name="telephone" id="telephone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="getUser.telephone" placeholder="+1 23489237492" />
               </div>
 
               <div class="md:col-span-3">
                 <label for="address">Address / Street</label>
-                <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="text" name="address" id="address" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="getUser.address" placeholder="" />
               </div>
 
               <div class="md:col-span-2">
                 <label for="city">City</label>
-                <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" placeholder="" />
+                <input type="text" name="city" id="city" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" :value="getUser.city" placeholder="" />
               </div>
 
               <div class="md:col-span-2">
@@ -53,7 +58,7 @@
 
               <div class="md:col-span-1">
                 <label for="zipcode">Zipcode</label>
-                <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" value="" />
+                <input type="text" name="zipcode" id="zipcode" class="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" :value="getUser.zipcode" />
               </div>
 
               <div class="md:col-span-5">
@@ -89,3 +94,18 @@
 </div>
     </div>
 </template>
+
+
+<script>
+  import { mapActions, mapGetters } from 'vuex';
+
+  export default {
+    data: () => ({ }),
+    methods: {
+      ...mapActions(['setUser', 'loadingSet']),
+    },
+    computed: {
+      ...mapGetters(['getUser']),
+    },
+  };
+</script>

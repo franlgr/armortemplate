@@ -64,6 +64,7 @@ import CreateBlogCategory from '@/views/admin/blogs/categories/CreateCategory.vu
 import CreateProductCategory from '@/views/admin/products/categories/CreateCategory.vue';
 import Cart from '@/views/admin/cart/Cart.vue';
 import Shipping from '@/views/admin/cart/Shipping.vue';
+import EditUser from '@/views/admin/users/EditUser.vue';
 
 
 ////Import your Store
@@ -131,6 +132,11 @@ const routes = [
         path: '/admin/events/edit/:id',
         component: EditEvent,
         name: 'admin-events-edit',
+      },
+      {
+        path: '/admin/users/edit/:id',
+        component: EditUser,
+        name: 'admin-users-edit',
       },
       {
         path: '/admin/events/categories',
