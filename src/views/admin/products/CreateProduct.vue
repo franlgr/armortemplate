@@ -1,20 +1,16 @@
-<!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
   <div>
     <div>
-    
       <AdminHeader
         title="Create Product"
-        icon="fa-solid fa-square-plus"
+        icon="fa-brands fa-product-hunt"
       ></AdminHeader>
-      <!-- {{getUser}} -->
-      
-        <div class="bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+      <div class="bg-indigo-100 border-t border-b border-indigo-500 text-indigo-700 px-4 py-3" role="alert">
     <p class="font-bold">Create Product</p>
-    <p>Here, you can easily upload a new product to the app's e-commerce platform.</p>
+    <p>Here, you can write and publish new product posts.</p>
 </div>
+
       <div class="mt-6">
-      
         <router-link
           to="/admin/products"
           class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
@@ -36,9 +32,7 @@
           Back
         </router-link>
       </div>
-      
       <div class="carousel carousel-end rounded-box fix">
-      
         <div
           class="carousel-item m-auto"
           v-for="image in images"
@@ -57,17 +51,11 @@
       </div>
       <div class="2xl:container m-auto px-8">
         <div class="">
-          <!-- componente para subir muchas imagenes  -->
-      
-
           <UploadImages
-            title="Upload Product Images"
+            title="Upload Products Images"
             class="my-4"
             v-on:links="links"
           ></UploadImages>
-
-          <!-- Este es el framework formkit fijate que hay otros adentro de uno pero este es el 
-                        importante porque es el que tiene la funcion a disparar cuando se le da al boton. -->
           <FormKit
             type="form"
             id="guardar-example"
@@ -80,98 +68,96 @@
             <FormKit
               class="mt-4"
               type="text"
-              name="name"
+              name="title"
               label="Title Product"
               placeholder="Leather jacket like new"
               help="What is your title product ?"
               validation="required"
             />
-            <!-- <ckeditor
-              class="my-4"
-              id="editor"
-              :editor="editor"
+            <MdEditor
+              htmlPreview
+              language="en-US"
+              :toggleHtmlPreview="true"
+              :toolbars="[
+                // 'code',
+                // 'link',
+                // 'image',
+                // 'table',
+                // 'mermaid',
+                // 'katex',
+                // '-',
+                // 'revoke',
+                // 'next',
+                // 'save',
+                // '=',
+                'pageFullscreen',
+                'fullscreen',
+                'preview',
+                'htmlPreview',
+                'catalog',
+                'github',
+              ]"
+              width="auto"
+              :tabWidth="1"
+              noMermaid
+              :sanitize="sanitize"
+              theme="white"
               v-model="editorData"
-              :config="editorConfig"
-            ></ckeditor> -->
-            <!-- <ckeditor
-              :editor="editor"
-              v-model="editorData"
-              :config="editorConfig"
-            ></ckeditor> -->
-            <div>
-              <MdEditor
-                htmlPreview
-                language="en-US"
-                :toggleHtmlPreview="true"
-                :toolbars="[
-                  // 'code',
-                  // 'link',
-                  // 'image',
-                  // 'table',
-                  // 'mermaid',
-                  // 'katex',
-                  // '-',
-                  // 'revoke',
-                  // 'next',
-                  // 'save',
-                  // '=',
-                  'pageFullscreen',
-                  'fullscreen',
-                  'preview',
-                  'htmlPreview',
-                  'catalog',
-                  'github',
-                ]"
-                width="auto"
-                :tabWidth="1"
-                noMermaid
-                :sanitize="sanitize"
-                theme="white"
-                v-model="editorData"
-              />
-            </div>
-
+            />
             <br />
             <FormKit
               class="mt-4"
               type="number"
               name="price"
-              label="USD PRICE"
-              placeholder="800"
-              help="What is your price for this product ?"
-              validation="required"
+              label="price"
+              placeholder="Price: $0.00"
+              help="What is your price ?"
+              validation=""
             />
             <br />
-
-            <!-- {{ newProduct }} -->
-            <ProductSelectCategory
-              label="What is your product category ?"
+            <BlogSelectCategory
+              v-if="options.length > 0"
+              :options="options"
               v-on:category="setCategory"
             />
             <br />
             <p class="text-lg font-bold">Meta Data Description</p>
-
-            <br />
-
             <br />
             <FormKit
+              :value="metaData.title"
+              v-model="metaData.title"
               class="mt-4"
               type="text"
-              name="title"
+              name="metaTitle"
               label="title for meta"
               placeholder="red jacket like new"
               help="product title for meta seo"
               validation="required"
+              v-on:input="updateMetaTitle"
             />
             <FormKit
+              :value="metaData.content"
+              v-model="metaData.content"
               class="mt-4"
               type="text"
-              name="content"
+              name="metaContent"
               label="content for meta"
               placeholder="It is very well cared for, I used it very little."
-              help="Describe your product ?"
+              help="Describe your blog ?"
               validation="required"
+              v-on:input="updateMetaContent"
             />
+            <!-- <FormKit
+              :value="metaData.img"
+              class="mt-4"
+              type="text"
+              name="metaImg"
+              label="image for meta"
+              placeholder="Meta Image URL"
+              help="URL of the image for meta seo"
+              validation="required"
+              v-on:input="updateMetaImg"
+            /> -->
             <FormKit type="submit" label="Create Product" />
           </FormKit>
           <div name="metaData" style="padding-bottom: 50px">
@@ -181,14 +167,12 @@
               :src="metaData.img"
               alt="IMG"
             />
-            <!-- componente para subir una imagen -->
             <UploadImg
               title="Upload Meta Image"
               class="my-4"
               v-on:link="linkImgMeta"
             ></UploadImg>
           </div>
-          <!-- {{ newProduct.category }} -->
         </div>
       </div>
     </div>
@@ -197,61 +181,48 @@
 
 <script>
   import { mapActions, mapGetters } from 'vuex';
-  // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   import UploadImages from '@/components/admin/UploadImages.vue';
   import UploadImg from '@/components/admin/UploadImg.vue';
   import ProductSelectCategory from '@/components/admin/ProductSelectCategory.vue';
   import FeathersClient from '@/FeathersClient';
-  // import { ClassicEditor as ClassicEditorBase } from '@ckeditor/ckeditor5-editor-classic';
-  // import html from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
-
-  import { ref } from 'vue';
   import { MdEditor } from 'md-editor-v3';
   import 'md-editor-v3/lib/style.css';
 
   export default {
-    setup() {
-      const text = ref('# Hello Editor');
-
-      const updateText = (newText) => {
-        text.value = newText;
-      };
-
-      return {
-        text,
-        updateText,
-      };
-    },
     data() {
       return {
         // editor: ClassicEditor,
         editorData: '<p>Content of the editor.</p>',
         editorConfig: {
-          // The configuration of the editor.
+          toolbar: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'link',
+            '|',
+            'bulletedList',
+            'numberedList',
+            '|',
+          ],
         },
         options: [],
-
+        formData: {},
+        fechaActual: '',
         images: [],
         metaData: {
-          title: 'Meta Título',
-          content: 'Meta Descripción',
-          img: 'URL de la imagen de meta',
+          title: '',
+          content: '',
+          img: '',
         },
-        //hay que ordenar la data en este objeto
-        newProduct: {
-          // "title": "Título del producto",
-          // "content": "Descripción del producto",
-          // "price": "Precio del producto",
-          // "images": "URL de las imágenes del producto",
-          // "category": "ID de la categoría del producto",
-          // "metaData": "Objeto con los datos de meta"
+        newBlog: {
           category: {
             _id: '6504a738c0eb3e6684d12b30',
-            title: "Men's Clothing ",
+            title: "Men's Clothing",
             description:
-              '<p>A wide selection of fashionable clothing for men.&nbsp;</p>',
+              '<p>A wide selection of fashionable clothing for men.</p>',
             image:
               'https://res.cloudinary.com/doznjtpmk/image/upload/v1694807104/admin-web/qlvmqmwni5iye6iy3xqq.webp',
             slug: 'mens-clothing',
@@ -263,7 +234,6 @@
       };
     },
     components: {
-      // BreadCrumbs,
       AdminHeader,
       UploadImages,
       UploadImg,
@@ -271,89 +241,103 @@
       MdEditor,
     },
     mounted() {
-      // ClassicEditor.create(document.querySelector('#editor'), {
-      //   plugins: [this.MediaEmbed /* ... */],
-      //   toolbar: ['mediaEmbed' /* ... */],
-      //   mediaEmbed: {
-      //     // Configuration
-      //     // ...
-      //   },
-      // })
-      //   .then(/* ... */)
-      //   .catch(/* ... */);
-      // this.editor;
-      // .create(document.querySelector('#editor'), {
-      //   plugins: [HtmlEmbed /* ... */],
-      //   toolbar: ['htmlEmbed' /* ... */],
-      //   htmlEmbed: {
-      //     showPreviews: true,
-      //     sanitizeHtml: (inputHtml) => {
-      //       // Strip unsafe elements and attributes, e.g.:
-      //       // the `<script>` elements and `on*` attributes.
-      //       const outputHtml = sanitize(inputHtml);
-      //       return {
-      //         html: outputHtml,
-      //         // true or false depending on whether the sanitizer stripped anything.
-      //         hasChanged: true,
-      //       };
-      //     },
-      //   },
-      // })
-      // .then(/* ... */)
-      // .catch(/* ... */);
+      this.fetchCategories();
+    },
+    created() {
+      this.obtenerFechaActual();
     },
     methods: {
       ...mapActions(['loadingSet']),
       async submitHandler() {
-        //esta funcion se dispara cuando se hace click en el boton del form y todos los datos estan validados
-
-        //esto hace que haga un loader al lado del boton por 1 segundo
         await new Promise((resolve) => setTimeout(resolve, 1000));
-
         console.log('Submitted!');
-
-        //llamamos a la funcion para crear el producto
-        this.createProduct();
+        this.createBlog();
       },
-      //esta funcion recibe los links de las imagenes que se suben al componente UploadImages
+      async fetchCategories() {
+        this.loadingSet(true);
+        try {
+          const res = await FeathersClient.service('products-categories').find();
+          this.categories = res.data;
+          console.log('fetchCategories', res);
+          this.setCategories();
+          this.loadingSet(false);
+        } catch (error) {
+          console.error(error);
+          this.loadingSet(false);
+        }
+      },
+      setCategories() {
+        this.categories.forEach((category) => {
+          this.options.push({
+            value: category._id,
+            label: category.title,
+          });
+        });
+      },
       links(links) {
         console.log('links', links);
         this.images.push(links);
       },
-      //esta funcion recibe el link de la imagen que se sube al componente UploadImg
       linkImgMeta(link) {
         console.log('linkImgMeta', link);
         this.metaData.img = link;
       },
-      //eliminar imagen del array de imagenes
       deleteImage(id) {
         this.images.splice(id, 1);
       },
-      async createProduct() {
-        try {
-          //creamos el producto en feathers
-          const res = await FeathersClient.service('products').create({
-            title: this.formData.name,
-            content: this.editorData,
-            price: this.formData.price,
-            images: this.images,
-            category: this.newProduct.category,
-            category_id: this.newProduct.category._id,
-            metaData: this.metaData,
-            user_id: this.getUser._id,
-            user: this.getUser,
-          });
+      obtenerFechaActual() {
+        const fechaActual = new Date();
+        const day = fechaActual.getDate();
+        const month = fechaActual.getMonth() + 1;
+        const year = fechaActual.getFullYear();
 
-          //notificacion de exito
-          this.$snotify.success('Product Created', 'Success', {
-            timeout: 2000,
-            showProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-          });
-          this.$router.push({ name: 'admin-products' });
+        this.fechaActual = `${day}/${month}/${year}`;
+      },
+      createBlog() {
+        try {
+          FeathersClient.service('products')
+            .create({
+              // title: { type: String, required: true },
+              // content: { type: String, required: true },
+              // price: { type: Number, required: true },
+              // images: { type: Array, required: true },
+              // metaData: { type: Object, required: true },
+              // category: { type: Object, required: true },
+              // user_id: { type: String, required: true },
+              // user: { type: Object, required: true },
+              title: this.formData.title,
+              content: this.editorData,
+              price: this.formData.price,
+              // th: this.fechaActual,
+              images: this.images,
+              // imgUser: this.getUser.image,
+              metaData: this.metaData,
+              category: this.newBlog.category,
+              user_id: this.getUser._id,
+              user: this.getUser,
+
+              // category_id: this.newBlog.category._id,
+
+            })
+            .then(() => {
+              this.$snotify.success('Product Created', 'Success', {
+                timeout: 2000,
+                showProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+              });
+              this.$router.push({ name: 'admin-products' });
+            })
+            .catch((error) => {
+              console.error(error);
+              this.$snotify.error(error, 'Error', {
+                timeout: 2000,
+                showProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+              });
+            });
         } catch (error) {
-          //imprimimos y notificamos si hay error
           console.error(error);
           this.$snotify.error(error, 'Error', {
             timeout: 2000,
@@ -363,15 +347,21 @@
           });
         }
       },
-      //funcion que se dispara cuando el componente ProductSelectCategory emite el evento category (hay que hacer otro para blog y para events)
       setCategory(category) {
-        this.newProduct.category = category;
+        this.newBlog.category = category;
+      },
+      updateMetaTitle(value) {
+        this.metaData.title = value;
+      },
+      updateMetaContent(value) {
+        this.metaData.content = value;
+      },
+      updateMetaImg(value) {
+        this.metaData.img = value;
       },
     },
-
     computed: {
-      //traemos del store el usuario logueado y el estado de loading ya lo tenemos automaticamente en el componente
-      ...mapGetters(['isLoading', 'getUser']), // Map Vuex getters to computed properties
+      ...mapGetters(['isLoading', 'getUser']),
     },
   };
 </script>
@@ -382,7 +372,6 @@
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
-
     justify-content: center;
     right: 10px;
   }

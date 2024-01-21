@@ -310,7 +310,7 @@
           //creamos el producto en feathers
           const res = await FeathersClient.service('events').create({
             title: this.formData.title,
-            content: this.formData.content,
+            content: this.editorData,
             price: this.formData.price,
             date: this.formData.date,
             location: this.formData.location,

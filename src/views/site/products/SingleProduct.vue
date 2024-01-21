@@ -20,12 +20,12 @@
           />
           <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 class="text-sm title-font text-gray-500 tracking-widest">
-              Warrior NAME
+              <!-- {{ product.category.title }} -->
             </h2>
             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
               {{ product.title }}
             </h1>
-            <div class="flex mb-4">
+            <!-- <div class="flex mb-4">
               <span class="flex items-center">
                 <svg
                   fill="currentColor"
@@ -94,7 +94,7 @@
                 </svg>
                 <span class="text-gray-600 ml-3">4 Reviews</span>
               </span>
-            </div>
+            </div> -->
             <div class="leading-relaxed" v-html="product.content"></div>
             <div
               class="flex mt-6 items-center pb-5 border-b-2 border-gray-400 mb-5"

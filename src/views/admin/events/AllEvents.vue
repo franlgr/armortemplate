@@ -2,7 +2,7 @@
 <template>
     <div>
     
-        <AdminHeader title="My Events"></AdminHeader>
+        <AdminHeader title="All Events"></AdminHeader>
         <div class="overflow-x-auto">
         <div class="bg-pink-100 border-t border-b border-pink-500 text-pink-700 px-4 py-3" role="alert">
     <p class="font-bold">My Events</p>
@@ -13,8 +13,7 @@
                 <!-- head -->
                 <thead>
                     <tr>
-                        
-                            <th>
+                        <th>
                             <button
                   :disabled="!showDeleteButton"
                   @click="deleteSelectedEvents()"
@@ -34,6 +33,7 @@
                     </label>
                   </th>
                         </th>
+                        
                         <th>Name</th>
                         <th>Price</th>
                         <th>Category</th>
@@ -152,7 +152,7 @@ export default {
             try {
                 const events = await FeathersClient.service('events').find({
                     query: {
-                        user_id: this.getUser._id,
+                        // user_id: this.getUser._id,
                         $limit: this.perPage,
                         $skip: (this.currentPage - 1) * this.perPage,
                         $sort: {
@@ -167,6 +167,7 @@ export default {
                 this.loadingSet(false)
             }
         },
+
         async deleteEvent(eventId) {
         try {
           await FeathersClient.service('events').remove(eventId);

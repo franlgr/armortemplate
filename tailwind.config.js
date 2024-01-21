@@ -71,3 +71,10 @@ module.exports = {
   },
   // plugins: [],
 };
+const myObject = { key: 'value' };
+
+if (myObject.hasOwnProperty('key')) {
+    console.log('myObject tiene la propiedad "key"');
+} else {
+    console.log('myObject no tiene la propiedad "key"');
+}

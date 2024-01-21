@@ -4,7 +4,7 @@
     <div>
       <AdminHeader title="Edit Category" class="mb-8"></AdminHeader>
       <router-link
-        to="/admin/products"
+        to="/admin/products/categories"
         class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded mt-24"
       >
         <svg

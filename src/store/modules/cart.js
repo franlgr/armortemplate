@@ -36,6 +36,7 @@ const mutations = {
       existingProduct.quantity = quantity;
     }
   },
+  
   CART_MENU_TOGGLE(state) {
     state.cartMenu = !state.cartMenu;
   },
@@ -55,10 +56,11 @@ const actions = {
   clearCart({ commit }) {
     commit('CLEAR_CART');
   },
-  updateCartItem({ commit }, payload) {
+  updateCartItemQuantity({ commit }, payload) {
     console.log('updateCartItem');
     commit('UPDATE_CART_ITEM', payload);
   },
+  
   cartMenuToggle({ commit }) {
     console.log('cartMenuToggle');
     commit('CART_MENU_TOGGLE');

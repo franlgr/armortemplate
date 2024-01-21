@@ -3,12 +3,12 @@
     <div>
       <div>
         <AdminHeader
-          title="Create Category Events"
+          title="Create Category Products"
           class="mb-8"
-          icon="fa-solid fa- fa-beat"
+          icon="fa-solid fa-blog fa-beat"
         ></AdminHeader>
         <router-link
-          to="/admin/events/categories"
+          to="/admin/products/categories"
           class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded mt-24"
         >
           <svg
@@ -129,7 +129,7 @@
       },
       methods: {
         fetchCategory(id) {
-          FeathersClient.service('events-categories')
+          FeathersClient.service('products-categories')
             .get(id)
             .then((res) => {
               this.category = res;
@@ -141,7 +141,7 @@
           await new Promise((resolve) => setTimeout(resolve, 1000));
           console.log('Submitted!');
   
-          FeathersClient.service('events-categories')
+          FeathersClient.service('products-categories')
             .create({
               title: this.category.title,
               description: this.editorData,
@@ -155,7 +155,7 @@
                 closeOnClick: false,
                 pauseOnHover: true,
               });
-              this.$router.push({ name: 'admin-events-categories' });
+              this.$router.push({ name: 'admin-products-categories' });
               console.log('res', res);
             });
   

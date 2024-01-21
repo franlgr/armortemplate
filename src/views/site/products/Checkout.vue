@@ -4,7 +4,7 @@
     <div class="px-5">
       <div class="mb-2">
         <router-link
-          to="/products"
+          to="/products/cart"
           href="#"
           class="focus:outline-none hover:underline text-gray-500 text-sm"
           ><i class="mdi mdi-arrow-left text-gray-400"></i>Back</router-link
@@ -58,8 +58,8 @@
                 </div>
                 <div>
                   <span class="font-semibold text-gray-600 text-xl"
-                    >${{ item.product.price }}</span
-                  ><span class="font-semibold text-gray-600 text-sm">.00</span>
+                    >${{ calculateTotalItemPrice(item) }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -92,7 +92,7 @@
                   <span class="text-gray-600">Subtotal</span>
                 </div>
                 <div class="pl-3">
-                  <span class="font-semibold">$190.91</span>
+                  <span class="font-semibold">${{ calculateTotalPrice(item) }}</span>
                 </div>
               </div>
               <div class="w-full flex items-center">
@@ -100,7 +100,15 @@
                   <span class="text-gray-600">Taxes (GST)</span>
                 </div>
                 <div class="pl-3">
-                  <span class="font-semibold">$19.09</span>
+                  <span class="font-semibold">${{taxes}}</span>
+                </div>
+              </div>
+              <div class="w-full flex items-center">
+                <div class="flex-grow">
+                  <span class="text-gray-600">Shipping</span>
+                </div>
+                <div class="pl-3">
+                  <span class="font-semibold">${{shipping}}</span>
                 </div>
               </div>
             </div>
@@ -112,8 +120,8 @@
                   <span class="text-gray-600">Total</span>
                 </div>
                 <div class="pl-3">
-                  <span class="font-semibold text-gray-400 text-sm">AUD</span>
-                  <span class="font-semibold">$210.00</span>
+                  <span class="font-semibold text-gray-400 text-sm">U$D</span>
+                  <span class="font-semibold">${{ calculateTotalPrice(item) + shipping+ taxes}}</span>
                 </div>
               </div>
             </div>
@@ -286,9 +294,74 @@
 <script>
   import { mapGetters, mapActions } from 'vuex';
   export default {
-    data() {},
+    data() {
+      return{
+        shipping: 4.99,
+        taxes: 12.55
+      }
+    },
+    methods: {
+        ...mapActions(['removeFromCart', 'addToCart', 'updateCartItemQuantity']),
+    //   calculateTotalPrice(item) {
+    //   return item.product.price * item.quantity;
+    // },
+    calculateTotalItemPrice(item) {
+      return item ? item.product.price * item.quantity : 0;
+    },
+    calculateTotalPrice() {
+      return this.cartItems.reduce((total, item) => {
+        return total + this.calculateTotalItemPrice(item);
+      }, 0);
+    },
+    updateQuantity(item) {
+      this.updateCartItemQuantity({
+        product: item.product,
+        quantity: item.quantity,
+      });
+    },
+    calculateTotalQuantity() {
+      return this.cartItems.reduce((total, item) => {
+        return total + item.quantity;
+      }, 0);
+    },
+  
+      handleCartAction(product) {
+        if (this.isInCart(product._id)) {
+          this.$snotify.error('Product removed from cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+          this.removeFromCart(product);
+          product.isInCart = this.isInCart(product._id);
+        } else {
+          this.addToCart(product);
+          product.isInCart = this.isInCart(product._id);
+          this.$snotify.success('Product added to cart', 'Success', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+        }
+      },
+      removeFromCart(product) {
+        if (this.isInCart(product._id)) {
+          this.$store.dispatch('removeFromCart', product); // Llama a la acción Vuex
+          product.isInCart = false; // Actualiza el estado de isInCart
+          this.isInCart(product._id);
+        }
+      },
+      isInCart(productId) {
+        return this.$store.getters.isInCart(productId);
+      },
+    },
     computed: {
       ...mapGetters(['cartItems', 'cartMenu']),
+      cartItems() {
+        return this.$store.getters.cartItems;
+      },
     },
   };
 </script>

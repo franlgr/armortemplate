@@ -167,6 +167,7 @@
                       <i class="fa-solid fa-lock text-black ml-2"></i>
                     </p>
                   </router-link>
+                  
                 </div>
               </details>
             </li>
@@ -210,6 +211,25 @@
                     <i
                       class="fa-solid fa-calendar-days col-span-1 justify-self-end"
                     ></i>
+                  </router-link>
+
+                  <router-link
+                    @click="hiddenMenu()"
+                    to="/admin/events/all"
+                    v-if="admin == true"
+                    v-bind:class="{
+                      'from-sky-600 to-cyan-400':
+                        $route.path === '/admin/events/all',
+                    }"
+                    class="collapse-content w-full p-4 float-left group-hover:text-cyan-600 bg-gradient-to-r cursor-pointer bg-gray-200"
+                  >
+                    <p>
+                      <span class="text-black">
+                        <i class="fa-solid fa-calendar-days col-span-1 justify-self-end"></i>
+                        All Events
+                      </span>
+                      <i class="fa-solid fa-lock text-black ml-2"></i>
+                    </p>
                   </router-link>
 
                   <router-link

@@ -16,9 +16,24 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        <label>
-                                            <input type="checkbox" class="checkbox" />
-                                        </label>
+                                        <button
+                                        :disabled="!showDeleteButton"
+                                        @click="deleteSelectedUsers()"
+                                        class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2"
+                                        >
+                                        <i class="fas fa-trash-alt text-red-500"></i>
+                                        </button>
+                                        <th>
+                                            <div><span>Select All</span></div>
+                                            <label>
+                                            <input
+                                                type="checkbox"
+                                                class="checkbox"
+                                                v-model="selectAll"
+                                                @change="selectAllUsers"
+                                            />
+                                            </label>
+                                        </th>
                                     </th>
                                     <th>Full Name</th>
                                     <th>City</th>
@@ -32,7 +47,12 @@
                                 <tr v-for="user in users" :key="user.index">
                                     <th>
                                         <label>
-                                            <input type="checkbox" class="checkbox" />
+                                        <input
+                                            type="checkbox"
+                                            class="checkbox"
+                                            v-model="user.selected"
+                                            @change="checkDeleteButtonState"
+                                        />
                                         </label>
                                     </th>
                                     <td>
@@ -68,10 +88,20 @@
                                         </ul>
                                     </td>
                                     <th>
-                                        <button class="btn btn-sm border-solid border-black bg-green-400">view</button>
-                                        <button class="btn btn-sm border-solid border-black bg-blue-400 mx-2">edit</button>
-                                        <button @click="deleteUserConfirm(user._id)"
-                                            class="btn btn-sm border-solid border-black bg-red-400">delete</button>
+                                        <div class="flex justify-between">
+                                <!-- <router-link :to="{ name: 'site-user', params: { id: user._id } }" class="flex items-center"> -->
+                                    <button class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
+                                            <i class="fas fa-eye text-blue-500"></i>
+                                        </button>
+                                <!-- </router-link> -->
+                                <!-- <router-link :to="{ name: 'admin-users-edit', params: { id: user._id } }" class="flex items-center"> -->
+                                    <button class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
+                                            <i class="fas fa-edit text-yellow-500"></i>
+                                        </button>
+                                <!-- </router-link> -->
+                                <div class="flex items-center">
+                                </div>
+                            </div>
                                     </th>
                                 </tr>
                             </tbody>
@@ -102,6 +132,8 @@ export default {
         users: [],
         currentPage: 1, // Página actual
         perPage: 10,   // Cantidad de elementos por página
+        selectAll: false,
+        showDeleteButton: false,
     }),
     components: {
         BreadCrumbs,
@@ -128,43 +160,77 @@ export default {
                 this.loadingSet(false);
             }
         },
-        deleteUserConfirm(id) {
-            this.$snotify.confirm('Are you sure you want to delete this user ?', 'Delete User', {
-                timeout: 5000,
-                showProgressBar: true,
-                closeOnClick: false,
-                pauseOnHover: true,
-                buttons: [
-                    { text: 'Yes', action: (toast) => this.deleteUser(id, toast.id), bold: false },
-                    { text: 'Close', action: (toast) => { console.log('Clicked: No'); this.$snotify.remove(toast.id); }, bold: true },
-                ]
-            });
-        },
-        deleteUser(id, toastId) {
-            console.log('deleteUser', id);
-            this.$snotify.remove(toastId);
-            FeathersClient.service('users').remove(id)
-                .then(res => {
-                    console.log('deleteUser', res);
-                    this.$snotify.success('User deleted', 'Success', {
-                        timeout: 2000,
-                        showProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true
-                    });
-                    this.fetchUsers();
-                })
-                .catch(err => {
-                    console.error(err);
+        async deleteUser(userId) {
+        try {
+          await FeathersClient.service('users').remove(userId);
+          this.users = this.users.filter((user) => user._id !== userId);
+          console.log('Usuario/s eliminado con éxito.');
+          this.$snotify.success('usuario/s eliminado/s con éxito', 'Éxito', {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
 
-                    this.$snotify.error(err, 'Error', {
-                        timeout: 2000,
-                        showProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true
+        } catch (error) {
+          console.error('Error al eliminar el usuario:', error);
+          this.$snotify.error('Error al eliminar el/los usuario/s', 'Error: ', error, {
+            timeout: 2000,
+            showProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+          });
+        }
+      },
+
+      deleteSelectedUsers() {
+        const selectedUsers = this.users.filter((user) => user.selected);
+        if (selectedUsers.length > 0) {
+          const confirmationMessage =
+            'Are you sure you want to delete selected users?';
+          const toastId = this.$snotify.info(
+            confirmationMessage,
+            'Deleted Users!',
+            {
+              timeout: 0,
+              showProgressBar: true,
+              closeOnClick: false,
+              pauseOnHover: true,
+              buttons: [
+                {
+                  text: 'Yes',
+                  action: (toast) => {
+                    selectedUsers.forEach((user) => {
+                      this.deleteUser(user._id);
                     });
-                });
-        },
+                    this.$snotify.remove(toast.id);
+                  },
+                  bold: false,
+                },
+                {
+                  text: 'Close',
+                  action: (toast) => {
+                    console.log('Clicked: No');
+                    this.$snotify.remove(toast.id);
+                  },
+                  bold: true,
+                },
+              ],
+            },
+          );
+        }
+      },
+
+      selectAllUsers() {
+        this.users.forEach((user) => {
+            user.selected = this.selectAll;
+        });
+        this.checkDeleteButtonState();
+      },
+
+      checkDeleteButtonState() {
+        this.showDeleteButton = this.users.some((user) => user.selected);
+      },
         nextPage() {
             this.currentPage++;
             this.fetchUsers();

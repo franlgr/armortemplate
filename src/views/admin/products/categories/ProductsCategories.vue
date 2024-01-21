@@ -13,16 +13,27 @@
             <table class="table">
               <!-- head -->
               <thead>
+                <button :disabled="!showDeleteButton" @click="deleteSelectedCategories()"  class="m-3 border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2" >
+                        <i class="fas fa-trash-alt text-red-500"></i>
+                    </button>
                 <tr>
                   <th>
-                    <label>
-                      <input type="checkbox" class="checkbox" />
-                    </label>
+                    <div><span>Select All</span></div>
+                      <label>
+                        <input type="checkbox" class="checkbox" v-model="selectAll" @change="selectAllCategories" />
+                      </label>
                   </th>
                   <th>Title & Description</th>
                   <th>Slug</th>
                   <th>Actions</th>
                   <th></th>
+                  <th> <!-- Add this new th for the additional button -->
+                        <router-link  :to="{ name: 'admin-products-categories-create'}">
+                    <button class="m-3 border w-12 h-12 border-green-500 hover:border-green-700 rounded-full p-2">
+                      <i class="fas fa-plus text-green-500"></i>
+                    </button>
+                </router-link>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -30,8 +41,8 @@
                 <tr v-for="category in categories" :key="category.index">
                   <th>
                     <label>
-                      <input type="checkbox" class="checkbox" />
-                    </label>
+                        <input type="checkbox" class="checkbox" v-model="category.selected" @change="checkDeleteButtonState" />
+                      </label>
                   </th>
                   <td>
                     <div class="flex items-center space-x-3">
@@ -76,14 +87,14 @@
                           <i class="fas fa-edit text-yellow-500"></i>
                         </button>
                       </router-link>
-                      <div to="/" class="flex items-center">
+                      <!-- <div to="/" class="flex items-center">
                         <button
                           @click="deleteCategoryConfirm(category._id)"
                           class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2"
                         >
                           <i class="fas fa-trash-alt text-red-500"></i>
                         </button>
-                      </div>
+                      </div> -->
                     </div>
                   </th>
                 </tr>
@@ -126,6 +137,9 @@
         currentPage: 1, // Página actual
         perPage: 10, // Cantidad de elementos por página
         // title: 'Product Categories',
+        selectAll: false,
+        showDeleteButton: false,
+        selectedCategories: [], // Nueva propiedad para almacenar las categorías seleccionadas por ID
       };
     },
     components: {
@@ -137,6 +151,77 @@
     },
     methods: {
       ...mapActions(['loadingSet']),
+
+      selectAllCategories() {
+        this.categories.forEach((category) => {
+          category.selected = this.selectAll;
+        });
+        this.checkDeleteButtonState();
+      },
+
+      checkDeleteButtonState() {
+        this.selectedCategories = this.categories.filter((category) => category.selected).map((category) => category._id);
+        this.showDeleteButton = this.selectedCategories.length > 0;
+      },
+      deleteSelectedCategories() {
+        if (this.selectedCategories.length > 0) {
+          const confirmationMessage = 'Are you sure you want to delete selected categories?';
+          const toastId = this.$snotify.info(confirmationMessage, 'Delete Categories?', {
+            timeout: 0,
+            showProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            buttons: [
+              {
+                text: 'Yes',
+                action: (toast) => {
+                  this.deleteCategories(this.selectedCategories, toast.id);
+                  this.$snotify.remove(toast.id); // Remove the confirmation toast
+                },
+                bold: false,
+              },
+              {
+                text: 'Close',
+                action: (toast) => {
+                  console.log('Clicked: No');
+                  this.$snotify.remove(toast.id);
+                },
+                bold: true,
+              },
+            ],
+          });
+        }
+      },
+  
+      deleteCategories(ids, toastId) {
+        console.log('deleteCategories', ids);
+        this.loadingSet(true);
+  
+        // Elimina cada categoría seleccionada en un bucle
+        Promise.all(ids.map((id) => FeathersClient.service('products-categories').remove(id)))
+          .then((res) => {
+            console.log('deleteCategories', res);
+            this.$snotify.success('Categories deleted', 'Success!', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+            this.loadingSet(false);
+            this.fetchCategories();
+          })
+          .catch((err) => {
+            console.error(err);
+            this.loadingSet(false);
+            this.$snotify.error(err, 'Error', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+          });
+      },
+
       fetchCategories() {
         this.loadingSet(true);
         FeathersClient.service('products-categories')

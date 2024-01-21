@@ -73,6 +73,7 @@
               <p class="text-sm p-1">{{ getUser.address }}</p>
               <p class="text-sm p-1">{{ getUser.city }}</p>
               <p class="text-sm p-1">{{ getUser.country }}</p>
+              <p class="text-sm p-1">{{ getUser.zipcode }}</p>
               <p class="mb-4" v-html="getUser.content"></p>
               <button
                 class="bg-red-500 hover:bg-red-700 text-white font-bold px-4 py-3 mt-2 rounded"
@@ -159,6 +160,14 @@
                   name="city"
                   label="Your City"
                   placeholder="Las Vegas, EEUU"
+                  help="What is your City?"
+                  validation="required"
+                />
+                <FormKit
+                  type="text"
+                  name="zipcode"
+                  label="zipcode"
+                  placeholder="ZIP-CODE"
                   help="What is your City?"
                   validation="required"
                 />

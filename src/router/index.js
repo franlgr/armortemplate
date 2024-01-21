@@ -50,23 +50,23 @@ import AllBlogs from '@/views/admin/blogs/AllBlogs.vue';
 import SettingsPro from '@/views/admin/settings/SettingsPro.vue';
 import Applications from '@/views/admin/applications/Applications.vue';
 import CreateApplication from '@/views/admin/applications/CreateApplication.vue';
-
 import HtmlEditor from '@/views/admin/HtmlEditor.vue';
-
 import Scraping from '@/views/admin/scraping/ScrapingConfigs.vue'
-
-
-
-//// IImport your store
 import CreateEvent from '@/views/admin/events/CreateEvent.vue';
 import EditEvent from '@/views/admin/events/EditEvent.vue';
 import Events from '@/views/admin/events/Events.vue';
+import AllEvents from '@/views/admin/events/AllEvents.vue';
 import EventsCategories from '@/views/admin/events/categories/EventsCategories.vue';
 import EditEventsCategories from '@/views/admin/events/categories/EditCategory.vue';
 import CreateEventsCategories from '@/views/admin/events/categories/CreateCategory.vue';
 import CreateBlog from '@/views/admin/blogs/CreateBlog.vue';
 import CreateBlogCategory from '@/views/admin/blogs/categories/CreateCategory.vue';
+import CreateProductCategory from '@/views/admin/products/categories/CreateCategory.vue';
+import Cart from '@/views/admin/cart/Cart.vue';
+import Shipping from '@/views/admin/cart/Shipping.vue';
 
+
+////Import your Store
 import store from '../store/index.js';
 
 // Define your routes
@@ -88,6 +88,11 @@ const routes = [
         name: 'admin-products',
         component: AdminProducts,
       },
+      // {
+      //   path: '/admin/cart',
+      //   name: 'admin-cart',
+      //   component: Cart,
+      // },
       {
         path: '/admin/settings',
         name: 'settings-pro',
@@ -131,6 +136,11 @@ const routes = [
         path: '/admin/events/categories',
         component: EventsCategories,
         name: 'admin-events-categories',
+      },
+      {
+        path: '/admin/events/all',
+        component: AllEvents,
+        name: 'admin-events-all',
       },
       {
         path: '/admin/events/categories/edit/:id',
@@ -177,6 +187,11 @@ const routes = [
         path: '/admin/products/categories',
         component: AdminProductsCategories,
         name: 'admin-products-categories',
+      },
+      {
+        path: '/admin/products/categories/create',
+        component: CreateProductCategory,
+        name: 'admin-products-categories-create',
       },
       {
         path: '/admin/products/categories/edit/:id',
@@ -248,6 +263,19 @@ const routes = [
         path: '/products/checkout',
         name: 'site-products-checkout',
         component: Checkout,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: '/products/cart',
+        name: 'site-products-cart',
+        component: Cart,
+        meta: { requiresAuth: true }
+      },
+      {
+        path: '/products/shipping',
+        name: 'site-products-shipping',
+        component: Shipping,
+        meta: { requiresAuth: true }
       },
       { path: '/users', name: 'site-users', component: SiteUsers },
       { path: '/users/:id', name: 'site-user', component: SingleUser },

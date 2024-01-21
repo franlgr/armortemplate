@@ -1,133 +1,322 @@
 <!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
   <div>
-    <AdminHeader title="Events Categories"></AdminHeader>
+    <div>
+      <AdminHeader title="Events Categories"></AdminHeader>
 
-    <div class="my-6">
-      {{ categories }}
-      <router-link
-        to="/admin/events"
-        class="bg-[#2c7b60] text-white font-bold px-4 py-3 ml-4 rounded"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 inline-block -ml-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          ></path>
-        </svg>
-        Back
-      </router-link>
-    </div>
+      <!-- {{categories}} -->
+      <br />
 
-    <div class="overflow-x-auto">
-      <table class="table">
-        <!-- head -->
-        <thead>
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" class="checkbox" />
-              </label>
-            </th>
-            <th>Name</th>
-            <th>Job</th>
-            <th>Favorite Color</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- row 1 -->
-          <tr>
-            <th>
-              <label>
-                <input type="checkbox" class="checkbox" />
-              </label>
-            </th>
-            <td>
-              <div class="flex items-center space-x-3">
-                <div class="avatar">
-                  <div class="mask mask-squircle w-12 h-12">
-                    <img
-                      src="https://picsum.photos/300/300"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div class="font-bold">Hart Hagerty</div>
-                  <div class="text-sm opacity-50">United States</div>
-                </div>
-              </div>
-            </td>
-            <td>
-              Zemlak, Daniel and Leannon
-              <br />
-            </td>
-            <td>Purple</td>
-            <th>
-              <button class="btn btn-sm border-solid border-black bg-green-400">
-                show
+      <div class="m-4 2xl:container">
+        <div class="">
+          <div class="overflow-x-auto">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <button :disabled="!showDeleteButton" @click="deleteSelectedCategories()"  class="m-3 border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2" >
+                        <i class="fas fa-trash-alt text-red-500"></i>
+                    </button>
+                <tr>
+                  <th>
+                    <div><span>Select All</span></div>
+                      <label>
+                        <input type="checkbox" class="checkbox" v-model="selectAll" @change="selectAllCategories" />
+                      </label>
+                  </th>
+                  <th>Title & Description</th>
+                  <th>Slug</th>
+                  <th>Actions</th>
+                  <th></th>
+                  <th> <!-- Add this new th for the additional button -->
+                        <router-link  :to="{ name: 'admin-events-categories-create'}">
+                    <button class="m-3 border w-12 h-12 border-green-500 hover:border-green-700 rounded-full p-2">
+                      <i class="fas fa-plus text-green-500"></i>
+                    </button>
+                </router-link>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                <tr v-for="category in categories" :key="category.index">
+                  <th>
+                    <label>
+                        <input type="checkbox" class="checkbox" v-model="category.selected" @change="checkDeleteButtonState" />
+                      </label>
+                  </th>
+                  <td>
+                    <div class="flex items-center space-x-3">
+                      <div class="avatar">
+                        <div class="mask mask-squircle w-12 h-12">
+                          <img
+                            :src="category.image"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div class="font-bold">{{ category.title }}</div>
+                        <!-- <div class="text-sm opacity-50">{{category.description}}</div> -->
+                        <div
+                          class="text-sm opacity-50"
+                          v-html="category.description"
+                        ></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ category.slug }}</td>
+                  <th>
+                    <div class="flex justify-between">
+                      <router-link to="/" class="flex items-center">
+                        <button
+                          class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-eye text-blue-500"></i>
+                        </button>
+                      </router-link>
+                      <router-link
+                        :to="{
+                          name: 'admin-events-categories-edit',
+                          params: { id: category._id },
+                        }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-edit text-yellow-500"></i>
+                        </button>
+                      </router-link>
+                      <!-- <div to="/" class="flex items-center">
+                        <button
+                          @click="deleteCategoryConfirm(category._id)"
+                          class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-trash-alt text-red-500"></i>
+                        </button>
+                      </div> -->
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Paginación -->
+            <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+              <button
+                class="join-item btn btn-outline"
+                @click="prevPage"
+                :disabled="currentPage === 1"
+              >
+                Previous
               </button>
               <button
-                class="btn btn-sm border-solid border-black bg-blue-400 mx-2"
+                class="join-item btn btn-outline"
+                @click="nextPage"
+                :disabled="categories.length < perPage"
               >
-                edit
+                Next
               </button>
-              <button class="btn btn-sm border-solid border-black bg-red-400">
-                delete
-              </button>
-            </th>
-          </tr>
-        </tbody>
-        <!-- foot -->
-        <!-- <tfoot>
-                                    <tr>
-                                        <th></th>
-                                        <th>Name</th>
-                                        <th>Job</th>
-                                        <th>Favorite Color</th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot> -->
-      </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
 <script>
   import { mapActions, mapGetters } from 'vuex';
   // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
   import AdminHeader from '@/components/admin/AdminHeader.vue';
   import FeathersClient from '@/FeathersClient';
+
   export default {
     data() {
       return {
         categories: [],
+        currentPage: 1, // Página actual
+        perPage: 10, // Cantidad de elementos por página
+        // title: 'Product Categories',
+        selectAll: false,
+        showDeleteButton: false,
+        selectedCategories: [], // Nueva propiedad para almacenar las categorías seleccionadas por ID
       };
     },
     components: {
       // BreadCrumbs,
       AdminHeader,
     },
-
+    mounted() {
+      this.fetchCategories();
+    },
     methods: {
-      async getEvents() {
-        const categories = await FeathersClient.service(
-          'events-categories',
-        ).find();
-        this.categories = categories.data;
+      ...mapActions(['loadingSet']),
+
+      selectAllCategories() {
+        this.categories.forEach((category) => {
+          category.selected = this.selectAll;
+        });
+        this.checkDeleteButtonState();
+      },
+
+      checkDeleteButtonState() {
+        this.selectedCategories = this.categories.filter((category) => category.selected).map((category) => category._id);
+        this.showDeleteButton = this.selectedCategories.length > 0;
+      },
+      deleteSelectedCategories() {
+        if (this.selectedCategories.length > 0) {
+          const confirmationMessage = 'Are you sure you want to delete selected categories?';
+          const toastId = this.$snotify.info(confirmationMessage, 'Delete Categories?', {
+            timeout: 0,
+            showProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            buttons: [
+              {
+                text: 'Yes',
+                action: (toast) => {
+                  this.deleteCategories(this.selectedCategories, toast.id);
+                  this.$snotify.remove(toast.id); // Remove the confirmation toast
+                },
+                bold: false,
+              },
+              {
+                text: 'Close',
+                action: (toast) => {
+                  console.log('Clicked: No');
+                  this.$snotify.remove(toast.id);
+                },
+                bold: true,
+              },
+            ],
+          });
+        }
+      },
+  
+      deleteCategories(ids, toastId) {
+        console.log('deleteCategories', ids);
+        this.loadingSet(true);
+  
+        // Elimina cada categoría seleccionada en un bucle
+        Promise.all(ids.map((id) => FeathersClient.service('events-categories').remove(id)))
+          .then((res) => {
+            console.log('deleteCategories', res);
+            this.$snotify.success('Categories deleted', 'Success!', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+            this.loadingSet(false);
+            this.fetchCategories();
+          })
+          .catch((err) => {
+            console.error(err);
+            this.loadingSet(false);
+            this.$snotify.error(err, 'Error', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+          });
+      },
+
+      fetchCategories() {
+        this.loadingSet(true);
+        FeathersClient.service('events-categories')
+          .find({
+            query: {
+              $limit: this.perPage,
+              $skip: (this.currentPage - 1) * this.perPage,
+            },
+          })
+          .then((res) => {
+            this.loadingSet(false);
+            this.categories = res.data;
+          })
+          .catch((err) => {
+            console.error(err);
+            this.loadingSet(false);
+          });
+      },
+      deleteCategoryConfirm(id) {
+        this.$snotify.confirm(
+          'Are you sure you want to delete this category ?',
+          'Delete Category',
+          {
+            timeout: 5000,
+            showProgressBar: true,
+            closeOnClick: false,
+            pauseOnHover: true,
+            buttons: [
+              {
+                text: 'Yes',
+                action: (toast) => this.deleteCategory(id, toast.id),
+                bold: false,
+              },
+              {
+                text: 'Close',
+                action: (toast) => {
+                  console.log('Clicked: No');
+                  this.$snotify.remove(toast.id);
+                },
+                bold: true,
+              },
+            ],
+          },
+        );
+      },
+      deleteCategory(id, toastId) {
+        console.log('deleteCategory', id);
+        this.$snotify.remove(toastId);
+        this.loadingSet(true);
+        FeathersClient.service('events-categories')
+          .remove(id)
+          .then((res) => {
+            console.log('deleteCategory', res);
+            this.$snotify.success('Category deleted', 'Success', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+            this.loadingSet(false);
+            this.fetchCategories();
+          })
+          .catch((err) => {
+            console.error(err);
+            this.loadingSet(false);
+            this.$snotify.error(err, 'Error', {
+              timeout: 2000,
+              showProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+            });
+          });
+      },
+      nextPage() {
+        this.currentPage++;
+        this.fetchCategories();
+      },
+      prevPage() {
+        if (this.currentPage > 1) {
+          this.currentPage--;
+          this.fetchCategories();
+        }
+      },
+      goToPage(pageNumber) {
+        this.currentPage = pageNumber;
+        this.fetchCategories();
       },
     },
-    mounted() {
-      this.getEvents();
+    computed: {
+      ...mapGetters(['getUser']),
+      totalPages() {
+        return Math.ceil(this.categories / this.perPage);
+      },
     },
   };
 </script>
+
 <style></style>
