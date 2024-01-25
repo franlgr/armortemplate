@@ -33,7 +33,7 @@
             <router-link
               to="/login"
               class="inline-block text-lg flex w-full px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
-              >Authenticate</router-link
+              >Log-In</router-link
             >
           </div>
           <p class="font-medium">© 2023 Company</p>
@@ -137,6 +137,11 @@
                 <FormKit type="submit" id="register" label="Register" />
                 <!-- <pre wrap>{{ value }}</pre> -->
               </FormKit>
+              Already account?
+              <router-link
+              to="/login"
+              class="inline-block text-lg flex w-full px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white"
+              >Log-In</router-link>
 
               <div v-if="submitted">
                 <h2>Submission successful!</h2>

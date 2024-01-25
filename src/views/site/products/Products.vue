@@ -2,7 +2,7 @@
   <div class="bg-white">
     <SiteHeader></SiteHeader>
 
-    <Cart></Cart>
+
     <div class="flex flex-col">
       <div class="flex flex-col justify-center">
         <div class="relative">
@@ -40,10 +40,10 @@
             </div>
           </div>
         </div>
-
+      
         <!-- Columna 2 (a pantalla completa en pantallas pequeñas) -->
         <div class="lg:w-3/4">
-          <div>
+          <!-- <div>
     <h2>Carrito de compras</h2>
     <ul>
       <li v-for="item in cartItems" :key="item.product._id">
@@ -53,9 +53,12 @@
         Total price: ${{ calculateTotalPrice() }}
       </li>
     </ul>
-  </div>
+  </div> -->
    
           <div class="">
+            <div class="float-right">
+                <CartNoty />
+              </div>
             <div class="flex items-center mb-4 p-4">
               <select
                 v-model="sortOption"
@@ -69,6 +72,7 @@
                 <option value="latest">Latest product</option>
               </select>
 
+             
               <div class="flex gap-2 ml-auto">
                 <div
                   class="border border-primary w-10 h-9 flex items-center justify-center text-white bg-primary rounded cursor-pointer"
@@ -88,6 +92,7 @@
             >
               No hay productos en esta categoría
             </div>
+  
             <div
               class="grid md:grid-cols-1 sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4"
             >
@@ -211,7 +216,7 @@
   import FeathersClient from '@/FeathersClient';
   import SiteHeader from '@/components/site/SiteHeader.vue';
   import MarketCategories from '@/components/site/market/MarketCategories.vue';
-  import Cart from '@/components/site/market/Cart.vue';
+  import CartNoty from '@/components/CartNoty.vue';
 
   export default {
     data() {
@@ -227,7 +232,7 @@
     components: {
       SiteHeader,
       MarketCategories,
-      Cart,
+      CartNoty,
     },
     created() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -376,7 +381,7 @@
           return this.products;
         }
       },
-      ...mapGetters(['cartProducts', 'isInCart']),
+      ...mapGetters(['cartProducts', 'isInCart', 'isAuthenticated']),
     },
     watch: {
       $route(to, from) {

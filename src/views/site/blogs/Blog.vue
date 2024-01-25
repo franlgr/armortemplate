@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+
       <!-- {{ blogs }} -->
       <div class="px-6 py-8">
         <div class="container flex justify-between mx-auto">
@@ -38,6 +39,12 @@
                   <option>Last Week</option>
                 </select>
               </div>
+            </div>
+            <div
+              class="bg-gray-300 p-4 text-center p-4"
+              v-if="blogs.length < 1"
+            >
+              No hay blogs en esta categoría
             </div>
             <div class="mt-6" v-for="blog in blogs" :key="blog.index">
               <div
@@ -170,6 +177,7 @@
             ></a>
           </div>
         </div>
+        
       </footer>
     </div>
   </div>
@@ -251,7 +259,7 @@
               },
             });
             this.blogs = response.data;
-            this.loadingSet(false);
+            // this.loadingSet(false);
             return;
           } else {
             const response = await FeathersClient.service('blogs').find({
@@ -261,7 +269,7 @@
               },
             });
             this.blogs = response.data;
-            this.loadingSet(false);
+            // this.loadingSet(false);
             return;
           }
 
@@ -283,29 +291,7 @@
             this.categories = categories.data;
           });
       },
-      // fetchCategories() {
-      //   FeathersClient.service('blogs-categories')
-      //     .find({
-      //       query: {
-      //         $limit: 100,
-      //       },
-      //     })
-      //     .then((categories) => {
-      //       console.log(categories);
-      //       this.categories = categories.data;
-      //     });
-      // },
-      // async fetchBlogs() {
-      //   const blogs = await FeathersClient.service('blogs').find({
-      //     query: {
-      //       $limit: this.perPage,
-      //       $skip: (this.currentPage - 1) * this.perPage,
-      //     },
-      //   });
-      //   console.log("FIND BLOGS: "+blogs.data);
-      //   this.blogs = blogs.data;
-      // },
-      //pagination
+      
       nextPage() {
         this.currentPage++;
         this.fetchBlogs();

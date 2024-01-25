@@ -18,7 +18,7 @@
               />
             </div>
 
-            <a href="#" class="font-medium text-xl text-black"
+            <a href="/" class="font-medium text-xl text-black"
               >Armor Template</a
             >
           </div>
@@ -244,7 +244,7 @@ import GetNews from '../../../components/GetNews.vue';
     data() {
       return {
         //
-        email: 'carlo.gammarota@gmail.com',
+        email: 'admin@gmail.com',
         password: 'my-password',
       };
     },

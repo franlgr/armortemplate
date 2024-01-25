@@ -98,8 +98,11 @@
         shipping: 4.99,
       };
     },
+    mounted(){
+      this.fetchCart()
+    },
     methods: {
-        ...mapActions(['removeFromCart', 'addToCart', 'updateCartItemQuantity']),
+        ...mapActions(['removeFromCart', 'addToCart', 'updateCartItemQuantity', 'fetchCart']),
     //   calculateTotalPrice(item) {
     //   return item.product.price * item.quantity;
     // },

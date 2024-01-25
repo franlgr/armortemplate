@@ -17,7 +17,8 @@
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
-                    <span class="badge badge-sm indicator-item">{{ calculateTotalQuantity() }}</span>
+                    <span v-if="isAuthenticated" class="badge badge-sm indicator-item">{{ calculateTotalQuantity() }}</span>
+                    <span v-else class="badge badge-sm indicator-item">0</span>
                   </div>
                 </label>
                 <div
@@ -25,10 +26,12 @@
                   class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow"
                 >
                   <div class="card-body">
-                    <span class="font-bold text-lg">{{ calculateTotalQuantity() }} Items</span>
-                    <span class="text-info">Subtotal: ${{ calculateTotalPrice() }}</span>
+                    <span v-if="isAuthenticated" class="font-bold text-lg">{{ calculateTotalQuantity() }} Items</span>
+                    <span v-else class="font-bold text-lg">0 Items</span>
+                    <span v-if="isAuthenticated" class="text-info">Subtotal: ${{ calculateTotalPrice() }}</span>
+                    <span v-else class="text-info">Subtotal: $0</span>
                     <div class="card-actions">
-                      <router-link
+                      <!-- <router-link
                     to="/products/cart"
                     class="w-full btn btn-primary btn-block p-4 float-left cursor-pointer rounded hover:text-white text-black grid grid-cols-2 items-center"
                   >
@@ -36,7 +39,16 @@
                     <i 
                       class="fa-solid fa-cart-shopping col-span-1 justify-self-end"
                     ></i>
-                  </router-link>
+                  </router-link> -->
+                  <router-link
+                :to="authLink"
+                class="w-full btn btn-primary btn-block p-4 float-left cursor-pointer rounded hover:text-white text-black grid grid-cols-2 items-center"
+              >
+              <i class="fa-solid col-span-1 justify-self-end" :class="{ 'fa-cart-shopping': isAuthenticated, 'fa-sign-in': !isAuthenticated, 'px-4': true }"></i>
+
+
+                <p class="col-span-1">{{ authText }}</p>
+              </router-link>
                     </div>
                   </div>
                 </div>
@@ -46,7 +58,7 @@
 </template>
 
 <script>
-
+import { mapGetters, mapActions } from 'vuex';
 
 export default{
   data(){
@@ -70,6 +82,20 @@ export default{
     cartItems() {
       return this.$store.getters.cartItems;
     },
+    authLink() {
+      return this.isAuthenticated ? '/products/cart' : '/login';
+    },
+    authText() {
+      return this.isAuthenticated ? 'View Cart' : 'Auth';
+    },
+    ...mapGetters([
+        'isAuthenticated',
+        'isLoading',
+        'getUser',
+        'cartMenu',
+        'cartCount',
+        'getSettings',
+      ]), // Map Vuex getters to computed properties
   }
 }
 

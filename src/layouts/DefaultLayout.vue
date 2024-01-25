@@ -23,6 +23,7 @@
               />
               <!-- <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
             </div>
+            
             <div
               class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden"
             >
@@ -66,6 +67,7 @@
                 </button>
               </div>
             </div>
+
           </div>
           <nav
             :class="isOpen ? '' : 'hidden'"
@@ -142,12 +144,13 @@
                 ><span class="ml-2">Pricing</span>
               </router-link>
               <router-link
-                v-if="getSettings.admin"
-                to="/admin"
+                :to="authLink"
                 class="my-1 text-white hover:text-blue-500 p-2 text-center m-auto md:my-0"
               >
-                <i class="fa-solid fa-lock px-4"></i
-                ><span class="ml-2">Admin</span>
+              <i class="fa-solid" :class="{ 'fa-lock': isAuthenticated, 'fa-sign-in': !isAuthenticated, 'px-4': true }"></i>
+
+
+                <span class="ml-2">{{ authText }}</span>
               </router-link>
             </div>
             <!-- Menú de dispositivos móviles (sin cambios) -->
@@ -174,6 +177,109 @@
           </div>
         </div>
       </div>
+      <div
+            class="flex justify-center flex-col m-auto mb-16 text-center text-lg dark:text-slate-200"
+          >
+            <p class="font-bold mb-1 text-white">
+              Built by
+              <a
+                href="https://www.linkedin.com/in/carlo-gammarota-23493b24/"
+                class="underline hover:text-slate-300 transition-all dark:hover:text-slate-700"
+                >CG 2023</a
+              >
+            </p>
+            <!-- <p class="text-white">
+              Contact me on the different platforms and social networks
+            </p> -->
+            <div
+              class="flex items-center justify-center space-x-2 mt-4 flex-wrap"
+            >
+              <a
+                href="https://www.linkedin.com/in/carlo-gammarota-23493b24/"
+                class="flex flex-none items-center justify-center rounded-full w-12 h-12 hover:bg-slate-200 transition-all bg-white mt-6 rounded-lg dark:hover:bg-slate-700"
+                ><svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="4.983"
+                    cy="5.009"
+                    r="2.188"
+                    fill="currentColor"
+                  ></circle>
+                  <path
+                    d="M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z"
+                    fill="currentColor"
+                  ></path></svg
+              ></a>
+              <div class="mt-6 justify-between gap-1 md:flex grid">
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/vue-js-1.svg"
+                  loading="lazy"
+                  alt="airbnb"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/vitejs.svg"
+                  loading="lazy"
+                  alt="bissell"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/tailwindcss.svg"
+                  loading="lazy"
+                  alt="ge"
+                />
+                <img
+                  class="w-14 lg:w-14 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/express-109.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+           
+                <br />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/socket.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/cloudflare-1.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://res-1.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1422872537/tiiifcjiquop4k2jf2yf.png"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/feathersjs.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/nginx-1.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+                <img
+                  class="w-12 lg:w-12 m-2 bg-white p-1 rounded-lg"
+                  src="https://cdn.worldvectorlogo.com/logos/docker.svg"
+                  loading="lazy"
+                  alt="microsoft"
+                />
+              </div>
+            </div>
+          </div>
     </footer>
   </div>
 </template>
@@ -210,6 +316,12 @@
         'cartCount',
         'getSettings',
       ]), // Map Vuex getters to computed properties
+      authLink() {
+      return this.isAuthenticated ? '/admin' : '/login';
+    },
+    authText() {
+      return this.isAuthenticated ? 'Admin' : 'Log-In';
+    },
     },
   };
 </script>

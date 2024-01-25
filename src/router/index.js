@@ -255,7 +255,7 @@ const routes = [
     path: '/',
     component: DefaultLayout,
     children: [
-      { path: '/', name: 'home', component: SiteHome },
+      { path: '/', name: 'home', component: SiteHome,  meta: { requiresAuth: false } },
       { path: '/about', name: 'about', component: AboutView },
       { path: '/products', name: 'site-products', component: SiteProducts },
       { path: '/products/:id', name: 'site-product', component: SingleProduct },

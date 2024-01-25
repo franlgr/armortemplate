@@ -121,7 +121,7 @@ app.get('/products/:id_product', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://api.armortemplate.site/products/${req.params.id_product}`,
+      `https://api-armor.ploydev.site/products/${req.params.id_product}`,
     );
     console.log('SSR PRODUCTS', response.data.metaData);
     data = response.data.metaData;
@@ -148,7 +148,7 @@ app.get('/products/:id_product', async (req, res) => {
   <meta itemprop="image" content="${data.img}">
 
   <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://armortemplate.site/products/${req.params.id_product}">
+  <meta property="og:url" content="https://armor.ploydev.site/products/${req.params.id_product}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${data.title}">
   <meta property="og:description" content="${data.content}">
@@ -186,7 +186,7 @@ app.get('/events/:id_event', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://api.armortemplate.site/events/${req.params.id_event}`,
+      `https://api-armor.ploydev.site/events/${req.params.id_event}`,
     );
     console.log('SSR EVENTOS', response.data.metaData);
     data = response.data.metaData;
@@ -208,7 +208,7 @@ app.get('/events/:id_event', async (req, res) => {
         <meta itemprop="image" content="${data.img}">
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armor.alguientiene.com/events/${req.params.id_event}">
+        <meta property="og:url" content="https://armor.ploydev.com/events/${req.params.id_event}">
         <meta property="og:type" content="website">
         <meta property="og:title" content="${data.title}">
         <meta property="og:description" content="${data.content}">
@@ -245,7 +245,7 @@ app.get('/blog/:id_blog', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://api.armortemplate.site/blogs/${req.params.id_blog}`,
+      `https://api-armor.ploydev.site/blogs/${req.params.id_blog}`,
     );
     console.log('SSR BLOG', response.data.metaData);
     data = response.data.metaData;
@@ -267,7 +267,7 @@ app.get('/blog/:id_blog', async (req, res) => {
         <meta itemprop="image" content="${data.img}">
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armor.alguientiene.com/blog/${req.params.id_blog}">
+        <meta property="og:url" content="https://armor.ploydev.site/blog/${req.params.id_blog}">
         <meta property="og:type" content="website">
         <meta property="og:title" content="${data.title}">
         <meta property="og:description" content="${data.content}">
@@ -305,7 +305,7 @@ app.get('/users/:id_user', async (req, res) => {
   let data = {};
   try {
     const response = await axios.get(
-      `https://api.armortemplate.site/users/${req.params.id_user}`,
+      `https://api-armor.ploydev.site/users/${req.params.id_user}`,
     );
 
     data = response.data;
@@ -332,7 +332,7 @@ app.get('/users/:id_user', async (req, res) => {
         <meta itemprop="description" content="${data.content}">
         <meta itemprop="image" content="${data.image}">
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armortemplate.site/users/${req.params.id_user}">
+        <meta property="og:url" content="https://armor.ploydev.site/users/${req.params.id_user}">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Armor CMS / User ${data.name} ${data.lastname}">
         <meta property="og:description" content="${data.content}">
@@ -400,7 +400,7 @@ app.get('*', async (req, res) => {
     img: 'https://i.ibb.co/Wn33HgY/meta.jpg',
   };
   try {
-    const settings = await axios.get('https://api.armortemplate.site/settings',{
+    const settings = await axios.get('https://api-armor.ploydev.site/settings',{
       query: {
         $limit: 1,
       },
@@ -428,7 +428,7 @@ app.get('*', async (req, res) => {
         <meta itemprop="image" content="${data.img}">
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://armortemplate.site">
+        <meta property="og:url" content="https://armor-ploydev.site">
         <meta property="og:type" content="website">
         <meta property="og:title" content="${data.title}">
         <meta property="og:description" content="${data.content}">
@@ -497,7 +497,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '/dist'), staticOptions));
 
 // Iniciar el servidor
-const port = process.env.PORT || 2222;
+const port = process.env.PORT || 6102;
 server.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
