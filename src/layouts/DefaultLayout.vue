@@ -191,7 +191,7 @@
             <!-- <p class="text-white">
               Contact me on the different platforms and social networks
             </p> -->
-            <div
+            <div v-if="!isMobile"
               class="flex items-center justify-center space-x-2 mt-4 flex-wrap"
             >
               <a
@@ -296,14 +296,26 @@
 
         subdomain: '',
         templateSettings: {},
+        windowWidth: window.innerWidth,
       };
     },
+    mounted() {
+  window.addEventListener('resize', this.updateWindowWidth);
+  this.updateWindowWidth(); // Llama al método para inicializar el valor
+},
     created() {
       this.$store.dispatch('fetchSettings');
     },
     methods: {
       ...mapActions(['logout', 'cartMenuToggle', 'setLoading ']), // Map Vuex actions to methods
+
+      updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     components: {
       Loading,
     },
@@ -322,6 +334,9 @@
     authText() {
       return this.isAuthenticated ? 'Admin' : 'Log-In';
     },
+    isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
     },
   };
 </script>
