@@ -193,8 +193,8 @@
               </ul>
             </div>
           </div>
-          <div class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4">
-           <MdEditor
+          <!-- <div class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4"> -->
+           <!-- <MdEditor
             htmlPreview
             language="en-US"
             :toggleHtmlPreview="true"
@@ -224,7 +224,7 @@
             theme="white"
             v-model="data.siteViews.htmlContent"
           /></div>
-          {{htmlContent}}
+          {{htmlContent}} -->
           <div
             class="p-6 mx-auto bg-white rounded-xl shadow-md items-center space-x-4 mt-4"
           >

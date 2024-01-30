@@ -23,7 +23,20 @@
             </div>
           </div>
         </div>
+        <div  v-if="isMobile" class=" ">
+            <div class="divide-y divide-gray-200 space-y-5 p-4 mb:p-0">
+              <BlogCategories
+                :categories="categories"
+                :tag="tag"
+              ></BlogCategories>
+              <div class="p-2">
+
+              </div>
+            </div>
+          </div>
       </div>
+
+      
 
       <!-- {{ blogs }} -->
       <div class="px-6 py-8">
@@ -46,7 +59,7 @@
             >
               No hay blogs en esta categoría
             </div>
-            <div class="mt-6" v-for="blog in blogs" :key="blog.index">
+            <div v-if="!isMobile" class="mt-6" v-for="blog in blogs" :key="blog.index">
               <div
                 class="max-w-4xl px-10 py-6 mx-auto bg-white rounded-lg shadow-md"
               >
@@ -57,7 +70,7 @@
 
                   <div
    
-                    class="cursor-pointer px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded hover:bg-gray-500 flex items-center"
+                    class="cursor-pointer px-2 py-1 font-bold text-gray-600 bg-gray-300 rounded hover:bg-gray-500 flex items-center"
                   >                 
 
                   <img  v-if="blog.category.image"
@@ -119,6 +132,72 @@
                 </div>
               </div>
             </div>
+            <!--Mobile-->
+            <div v-if="isMobile" class="mt-6 flex justify-center text-xs" v-for="blog in blogs" :key="blog.index">
+            <div class="w-full max-w-4xl px-2 py-2 mx-auto bg-white rounded-lg shadow-md text-xs">
+              <div class="flex flex-col sm:flex-row items-center sm:justify-between text-xs">
+                <span class="font-light text-gray-600 mr-2 mb-2 mb-0 text-xs">
+                  {{ blog.th }}
+                </span>
+
+                <div class="cursor-pointer sm:px-2 sm:py-1 font-bold text-gray-600 bg-gray-300 rounded hover:bg-gray-500 flex items-center p-1 text-xs">
+                  <img
+                    v-if="blog.category.image"
+                    :src="blog.category.image"
+                    alt="Category Image"
+                    class="h-8 w-8 rounded-full mr-2 p-2"
+                  />
+                  <img
+                    v-else
+                    src="https://picsum.photos/200/300"
+                    alt="Category Image"
+                    class="h-8 w-8 rounded-full mr-2 p-2"
+                  />
+                  {{ blog.category.title }}
+                </div>
+              </div>
+              <div class="mt-2">
+                <router-link
+                  :to="{ name: 'site-blog', params: { id: blog._id } }"
+                  class="text-xl font-bold text-gray-700 hover:underline"
+                >
+                  {{ blog.title }}
+                </router-link>
+                <p
+                  v-html="truncatedContent(blog.content)"
+                  class="mt-2 text-gray-600 text-sm"
+                ></p>
+              </div>
+              <div class="flex flex-col sm:flex-row items-center justify-between mt-4">
+                <router-link
+                  :to="{ name: 'site-blog', params: { id: blog._id } }"
+                  class="text-blue-500 hover:underline mb-2 sm:mb-0 sm:mr-2 font-bold"
+                >
+                  Read more
+                </router-link>
+                <button class="flex items-center bg-white rounded-xl p-2 text-gray-500">
+                  <div class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full">
+                    <img
+                      v-if="blog.user.image"
+                      :src="blog.user.image"
+                      alt="User Image"
+                      class="h-8 w-8 rounded-full"
+                    />
+                    <img
+                      v-else
+                      src="https://picsum.photos/200/300"
+                      alt="User Image"
+                      class="h-8 w-8 rounded-full"
+                    />
+                  </div>
+                  <div class="ml-2 text-sm font-semibold">
+                    {{ blog.user.name }} {{ blog.user.lastname }}
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
             <div class="mt-8">
               <!-- Paginación -->
               <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
@@ -142,7 +221,7 @@
           <Sidebar class="hidden w-3/12 -mx-8 lg:block"></Sidebar>
           <div class="lg:w-1/4">
           <!-- ./sidebar -->
-          <div class=" ">
+          <div v-if="!isMobile" class=" ">
             <div class="divide-y divide-gray-200 space-y-5 p-4 mb:p-0">
               <BlogCategories
                 :categories="categories"
@@ -153,6 +232,7 @@
               </div>
             </div>
           </div>
+
         </div>
         </div>
       </div>
@@ -218,7 +298,15 @@
         currentPage: 1, // Página actual
         perPage: 12, // Cantidad de elementos por página
         sortOption: '',
+        windowWidth: window.innerWidth,
       };
+    },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
+mounted() {
+      window.addEventListener('resize', this.updateWindowWidth);
+      this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
  
 
@@ -227,13 +315,17 @@
       const urlParams = new URLSearchParams(window.location.search);
       this.tag = urlParams.get('tag');
       this.variableDeURL = this.$route.query.slug;
-      this.fetchBlogs();
       this.fetchCategories();
+  
+   
 
       console.log(this.variableDeURL);
       console.log(this.blogs);
     },
     computed: {
+      isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
       filteredItems() {
         return this.items.filter((item) => item.category === this.tag);
       }
@@ -247,6 +339,9 @@
     },
 
     methods: {
+      updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
       async fetchBlogs() {
         try {
       
@@ -271,11 +366,8 @@
             this.blogs = response.data;
             // this.loadingSet(false);
             return;
-          }
-
-          this.products = response.data;
-          this.loadingSet(false);
-        } catch (error) {
+          }} 
+          catch (error) {
           console.log(error);
         }
       },

@@ -7,7 +7,7 @@
     <p>Here, you can manage and view your published blog posts.</p>
 </div>
 
-      <div class="m-4 2xl:container">
+<div class="m-4 sm:container mx-auto ml-2">
         <div class="">
           <div class="overflow-x-auto">
             <table class="table">
@@ -17,9 +17,13 @@
                   <button @click="deleteSelectedBlogs()" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
                       <i class="fas fa-trash-alt text-red-500"></i>
                      </button>
+                        
                   </div>
+                  <button v-if="selectDelete" @click="selectDelete=false" class="border border-red-500 hover:border-red-700 text-white p-2">
+                      Cancel
+                     </button>
                 <tr>
-                  <th>
+                  <th v-if="selectDelete" class="m-0 p-0">
                     <div><span>Select All</span></div>
                     <label>
                       <input
@@ -31,10 +35,10 @@
                     </label>
                   </th>
                   <th>Title</th>
-                  <th>User</th>
-                  <th>TH</th>
+                  <th v-if="!isMobile">Category</th>
+                  <!-- <th v-if="!isMobile">TH</th> -->
                   <th>Actions</th>
-                  <th></th>
+                  <!-- <th></th> -->
                 </tr>
               </thead>
 
@@ -43,7 +47,7 @@
                 <!-- row 1 -->
                 <tr v-for="blog in blogs" :key="blog.index">
 
-                  <th>
+                  <th v-if="selectDelete">
                     <label>
                       <input
                         type="checkbox"
@@ -70,11 +74,11 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-bold">{{ blog.title }}</div>
+                        <div class="text-xs font-bold">{{ blog.title }}</div>
                       </div>
                     </div>
                   </td>
-                  <td>
+                  <td v-if="!isMobile">
                     <button
                       class="flex flex-row items-center bg-white rounded-xl p-2 text-gray-500"
                     >
@@ -82,8 +86,8 @@
                         class="flex items-center justify-center h-8 w-8 bg-purple-300 rounded-full"
                       >
                         <img
-                          v-if="blog.user.image"
-                          :src="blog.user.image"
+                          v-if="blog.category.image"
+                          :src="blog.category.image"
                           alt="User Image"
                           class="h-8 w-8 rounded-full"
                         />
@@ -95,15 +99,29 @@
                         />
                       </div>
                       <div class="ml-4 text-sm font-semibold">
-                        {{ blog.user.name }} {{ blog.user.lastname }}
+                        {{ blog.category.title}} 
                       </div>
                     </button>
                     <br />
                   </td>
-                  <td>
+                  <!-- <td v-if="!isMobile">
                     <div class="text-sm opacity-50">{{ blog.th }}</div>
-                  </td>
-                  <td>
+                  </td> -->
+                  <td v-if="isMobile">
+                    <div class="flex items-center space-x-1">
+              <router-link :to="{ name: 'site-blog', params: { id: blog._id } }">
+                <button class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-1">
+                  <i class="fas fa-eye text-blue-500 text-xs"></i>
+                </button>
+              </router-link>
+              <router-link :to="{ name: 'admin-blogs-edit', params: { id: blog._id } }">
+                <button class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-1">
+                  <i class="fas fa-edit text-yellow-500 text-xs"></i>
+                </button>
+              </router-link>
+            </div>
+              </td>
+                  <td v-if="!isMobile">
                     <div class="flex justify-between">
                       <router-link
                         :to="{ name: 'site-blog', params: { id: blog._id } }"
@@ -156,6 +174,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -174,16 +193,27 @@
         showDeleteButton: false,
         currentPage: 1, // Página actual
         perPage: 10,
+        windowWidth: window.innerWidth,
+        selectDelete:false,
       };
     },
     components: {
       AdminHeader,
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     mounted() {
       this.fetchBlogs();
+      window.addEventListener('resize', this.updateWindowWidth);
+      this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
     methods: {
       ...mapActions(['loadingSet']),
+
+      updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
 
       async deleteBlog(blogId) {
         try {
@@ -209,6 +239,7 @@
       },
 
       deleteSelectedBlogs() {
+        this.selectDelete=true;
         const selectedBlogs = this.blogs.filter((blog) => blog.selected);
         if (selectedBlogs.length > 0) {
           const confirmationMessage =
@@ -258,6 +289,7 @@
             query: {
               user_id: this.getUser._id, // Asegúrate de tener el valor correcto aquí
               $limit: 10, // Cambia la cantidad según tu necesidad
+              $skip: (this.currentPage - 1) * this.perPage,
               $sort: {
                 createdAt: -1,
               },
@@ -304,6 +336,10 @@
     },
     computed: {
       ...mapGetters(['getUser']),
+
+      isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
       totalPages() {
         return Math.ceil(this.blogs.length / 10); // Cambia 10 por la cantidad por página que desees
       },

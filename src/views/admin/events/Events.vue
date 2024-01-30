@@ -1,30 +1,37 @@
-<!-- Modelo para crear una vista nueva dentro de admin -->
 <template>
+  <div>
     <div>
-    
-        <AdminHeader title="My Events"></AdminHeader>
-        <div class="overflow-x-auto">
-        <div class="bg-pink-100 border-t border-b border-pink-500 text-pink-700 px-4 py-3" role="alert">
+      <AdminHeader
+        title="My Events"
+        :count="events.length"
+      ></AdminHeader>
+       <div class="bg-yellow-100 border-t border-b border-yellow-500 text-yellow-700 px-4 py-3" role="alert">
     <p class="font-bold">My Events</p>
-    <p>Here, you can view and manage your events.</p>
+    <p>Here, you can view, edit, or delete your events.</p>
+   <!-- {{ getUser._id }}
+   {{ events }} -->
 </div>
+      <div class="m-2 sm:container mx-auto ml-1">
+        <div class="">
+          <div class="overflow-x-auto">
+         
 
             <table class="table">
-                <!-- head -->
-                <thead>
-                    <tr>
-                        
-                            <th>
-                            <button
-                  :disabled="!showDeleteButton"
-                  @click="deleteSelectedEvents()"
-                  class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2"
-                >
-                  <i class="fas fa-trash-alt text-red-500"></i>
-                </button>
-                <th>
+              <!-- head -->
+              <thead>
+                <div class="flex items-center">
+                  <button @click="deleteSelectedEvents()" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
+                      <i class="fas fa-trash-alt text-red-500"></i>
+                     </button>
+                  </div>
+                  <button v-if="selectDelete" @click="selectDelete=false" class="border border-red-500 hover:border-red-700 text-white p-2">
+                      Cancel
+                     </button>
+                  
+                <tr>
+                  <th v-if="selectDelete">
                     <div><span>Select All</span></div>
-                    <label>
+                    <label >
                       <input
                         type="checkbox"
                         class="checkbox"
@@ -33,18 +40,17 @@
                       />
                     </label>
                   </th>
-                        </th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- row 1 -->
-                    <tr v-for="event in events" :key="event.index">
-                        <th>
-                            <label>
+                  <th>Titulo</th>
+                  <th v-if="!isMobile">Precio</th>
+                  <th v-if="!isMobile">Category</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                <tr v-for="event in events" :key="event.index">
+                  <th v-if="selectDelete">
+                    <label >
                       <input
                         type="checkbox"
                         class="checkbox"
@@ -52,71 +58,115 @@
                         @change="checkDeleteButtonState"
                       />
                     </label>
-                        </th>
-                        <td>
-    
-                            <div class="flex items-center space-x-3">
-                                <div class="avatar">
-                                    <div class="mask mask-squircle w-12 h-12">
-                                        <img :src="event.images[0]" alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-bold">{{event.title}}</div>
-                                    <div class="text-sm opacity-50">{{event.placeName}}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            u$s {{event.price}}
-                            <br />
-    
-                        </td>
-                        <td>{{event.category.title}}</td>
-                        <th>
-                            <div class="flex justify-between">
-                                <router-link :to="{ name: 'site-event', params: { id: event._id } }" class="flex items-center">
-                                    <button class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
-                                            <i class="fas fa-eye text-blue-500"></i>
-                                        </button>
-                                </router-link>
-                                <router-link :to="{ name: 'admin-events-edit', params: { id: event._id } }" class="flex items-center">
-                                    <button class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
-                                            <i class="fas fa-edit text-yellow-500"></i>
-                                        </button>
-                                </router-link>
-                                <div class="flex items-center">
-                                    <!-- <button @click="deleteEventConfirm(event._id)" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
-                                            <i class="fas fa-trash-alt text-red-500"></i>
-                                        </button> -->
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
-                </tbody>
-                <!-- foot -->
-                <!-- <tfoot>
-                                        <tr>
-                                            <th></th>
-                                            <th>Name</th>
-                                            <th>Job</th>
-                                            <th>Favorite Color</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot> -->
-    
+                  </th>
+                  <td>
+                    <div class="flex items-center space-x-3">
+                      <div class="avatar">
+                        <div v-if="!isMobile" class="mask mask-squircle w-12 h-12">
+                          <img
+                            :src="event.images[0]"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                        <div v-if="isMobile" class="mask mask-squircle w-10 h-10">
+                          <img
+                            :src="event.images[0]"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div class="text-xs font-bold">{{ event.title }}</div>
+                        <span v-if="isMobile" >$ {{ event.price }}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td v-if="!isMobile">
+                     $ {{ event.price }}
+                    <br />
+                  </td>
+
+                  <!-- <td v-html="getCategory(product.category)"></td> -->
+                  <td v-if="!isMobile">{{ event.category.title }}</td>
+                  <th>
+                    <div v-if="!isMobile" class="flex justify-between">
+                      <router-link
+                        :to="{ name: 'site-event', params: { id: event._id } }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-eye text-blue-500"></i>
+                        </button>
+                      </router-link>
+                      <router-link
+                        :to="{
+                          name: 'admin-events-edit',
+                          params: { id: event._id },
+                        }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-edit text-yellow-500"></i>
+                        </button>
+                      </router-link>
+                    </div>
+                    <!---->
+                    <div v-if="isMobile" class="flex justify-between">
+                      <router-link
+                        :to="{ name: 'site-event', params: { id: event._id } }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-eye text-blue-500"></i>
+                        </button>
+                      </router-link>
+                      <router-link
+                        :to="{
+                          name: 'admin-events-edit',
+                          params: { id: event._id },
+                        }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-edit text-yellow-500"></i>
+                        </button>
+                      </router-link>
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
             </table>
+
+            <!-- Paginación -->
+            <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
+              <button
+                class="join-item btn btn-outline"
+                @click="prevPage"
+                :disabled="currentPage === 1"
+              >
+                Previous
+              </button>
+              <button
+                class="join-item btn btn-outline"
+                @click="nextPage"
+                :disabled="events.length < perPage"
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
-    
-        <!-- {{ events }} -->
-        <!-- Paginación -->
-        <div class="join grid grid-cols-2 pagination w-64 m-auto py-8">
-            <button class="join-item btn btn-outline" @click="prevPage" :disabled="currentPage === 1">Previous</button>
-            <button class="join-item btn btn-outline" @click="nextPage" :disabled="events.length < perPage">Next</button>
-        </div>
-    
-    
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -124,6 +174,7 @@ import { mapActions, mapGetters } from 'vuex';
 // import BreadCrumbs from '@/components/admin/Breadcrumbs.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 import FeathersClient from '@/FeathersClient'
+import { isMemoSame } from 'vue';
 
 export default {
     layout: "AdminLayout",
@@ -139,14 +190,25 @@ export default {
             perPage: 10, // Cantidad de elementos por página
             selectAll: false,
             showDeleteButton: false,
+            windowWidth: window.innerWidth,
+            selectDelete:false,
 
         }
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     mounted() {
-        this.fetchEvents()
+        this.fetchEvents();
+        window.addEventListener('resize', this.updateWindowWidth);
+        this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
     methods: {
         ...mapActions(['loadingSet']),
+
+        updateWindowWidth() {
+             this.windowWidth = window.innerWidth;
+  },
         async fetchEvents() {
             this.loadingSet(true)
             try {
@@ -191,6 +253,7 @@ export default {
       },
 
       deleteSelectedEvents() {
+        this.selectDelete=true;
         const selectedEvents = this.events.filter((event) => event.selected);
         if (selectedEvents.length > 0) {
           const confirmationMessage =
@@ -255,6 +318,9 @@ export default {
     },
     computed: {
          ...mapGetters(['getUser']),
+         isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
     }
 }
 </script>

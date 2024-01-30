@@ -3,26 +3,41 @@
       <div>
         <AdminHeader title="Blogs Categories" icon="fa-solid fa-blog fa-beat"></AdminHeader>
   
-        <div class="m-4 2xl:container">
+        <div class="m-4 sm:container mx-auto ml-2">
           <div class="">
             <div class="overflow-x-auto">
               <table class="table">
                 <!-- head -->
                 <thead>
-                    <button :disabled="!showDeleteButton" @click="deleteSelectedCategories()"  class="m-3 border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2" >
+                  <div>
+                    <router-link v-if="isMobile"  :to="{ name: 'admin-blogs-categories-create'}">
+                    <button class="m-3 border w-12 h-12 border-green-500 hover:border-green-700 rounded-full p-2">
+                      <i class="fas fa-plus text-green-500"></i>
+                    </button>
+                </router-link>
+                  </div>
+                  <div>
+                    <button @click="deleteSelectedCategories()"  class="m-3 border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2" >
                         <i class="fas fa-trash-alt text-red-500"></i>
                     </button>
+                  </div>
+                    <button v-if="selectDelete" @click="selectDelete=false" class="border border-red-500 hover:border-red-700 text-white p-2">
+                      Cancel
+                     </button>
+                     <!-- Add this new th for the additional button -->
+
+                  
                   <tr>
-                    <th>
+                    <th class="m-0 p-0" v-if="selectDelete">
                         <div><span>Select All</span></div>
                       <label>
                         <input type="checkbox" class="checkbox" v-model="selectAll" @change="selectAllCategories" />
                       </label>
                     </th>
                     <th>Title & Description</th>
-                    <th>Slug</th>
+                    <th v-if="!isMobile">Slug</th>
                     <th>Actions</th>
-                    <th> <!-- Add this new th for the additional button -->
+                    <th v-if="!isMobile"> <!-- Add this new th for the additional button -->
                         <router-link  :to="{ name: 'admin-blogs-categories-create'}">
                     <button class="m-3 border w-12 h-12 border-green-500 hover:border-green-700 rounded-full p-2">
                       <i class="fas fa-plus text-green-500"></i>
@@ -35,34 +50,51 @@
                 <tbody>
                   <!-- row 1 -->
                   <tr v-for="category in categories" :key="category.index">
-                    <th>
+                    <th class="p-0" v-if="selectDelete">
                       <label>
                         <input type="checkbox" class="checkbox" v-model="category.selected" @change="checkDeleteButtonState" />
                       </label>
                     </th>
-                    <td>
-                      <div class="flex items-center space-x-3">
+                    <td >
+                      <div class="flex items-center space-x-2">
                         <div class="avatar">
                           <div class="mask mask-squircle w-12 h-12">
                             <img :src="category.image" alt="Avatar Tailwind CSS Component" />
                           </div>
                         </div>
                         <div>
-                          <div class="font-bold">{{ category.title }}</div>
+                          <div class=" text-xs font-bold">{{ category.title }}</div>
                           <div class="text-sm opacity-50" v-html="category.description"></div>
                         </div>
                       </div>
                     </td>
-                    <td>{{ category.slug }}</td>
+                    <td v-if="!isMobile">{{ category.slug }}</td>
                     <th>
-                      <div class="flex justify-between">
-                        <router-link to="/" class="flex items-center">
-                          <button class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
+                      <div v-if="!isMobile" class="flex justify-between">
+                        <router-link :to="'/blogs?tag='+ category._id" class="flex items-center">
+                          <button class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-2">
                             <i class="fas fa-eye text-blue-500"></i>
                           </button>
                         </router-link>
                         <router-link :to="{ name: 'admin-blogs-categories-edit', params: { id: category._id } }" class="flex items-center">
-                          <button class="border w-12 h-12 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
+                          <button class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
+                            <i class="fas fa-edit text-yellow-500"></i>
+                          </button>
+                        </router-link>
+                        <div class="flex items-center">
+                          <!-- <button @click="deleteCategoryConfirm(category._id)" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
+                            <i class="fas fa-trash-alt text-red-500"></i>
+                          </button> -->
+                        </div>
+                      </div>
+                      <div v-if="isMobile" class="flex justify-between">
+                        <router-link :to="'/blogs?tag='+ category._id" class="flex items-center">
+                          <button class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-2">
+                            <i class="fas fa-eye text-blue-500"></i>
+                          </button>
+                        </router-link>
+                        <router-link :to="{ name: 'admin-blogs-categories-edit', params: { id: category._id } }" class="flex items-center">
+                          <button class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
                             <i class="fas fa-edit text-yellow-500"></i>
                           </button>
                         </router-link>
@@ -101,18 +133,30 @@
         currentPage: 1,
         perPage: 10,
         selectAll: false,
-        showDeleteButton: false,
+        // showDeleteButton: false,
         selectedCategories: [], // Nueva propiedad para almacenar las categorías seleccionadas por ID
+        windowWidth: window.innerWidth,
+        selectDelete:false,
       };
     },
     components: {
       AdminHeader,
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     mounted() {
       this.fetchCategories();
+      window.addEventListener('resize', this.updateWindowWidth);
+      this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
     methods: {
       ...mapActions(['loadingSet']),
+
+
+      updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
   
       checkDeleteButtonState() {
         this.selectedCategories = this.categories.filter((category) => category.selected).map((category) => category._id);
@@ -139,6 +183,7 @@
       },
   
       deleteSelectedCategories() {
+        this.selectDelete=true;
         if (this.selectedCategories.length > 0) {
           const confirmationMessage = 'Are you sure you want to delete selected categories?';
           const toastId = this.$snotify.info(confirmationMessage, 'Delete Categories?', {
@@ -169,6 +214,7 @@
       },
   
       deleteCategories(ids, toastId) {
+       
         console.log('deleteCategories', ids);
         this.loadingSet(true);
   
@@ -226,6 +272,10 @@
       totalPages() {
         return Math.ceil(this.categories.length / this.perPage);
       },
+
+      isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
     },
   };
   </script>

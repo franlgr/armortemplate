@@ -12,7 +12,7 @@
    <!-- {{ getUser._id }}
    {{ products }} -->
 </div>
-      <div class="2xl:container h-screen">
+      <div class="m-2 sm:container mx-auto ml-1">
         <div class="">
           <div class="overflow-x-auto">
          
@@ -25,10 +25,14 @@
                       <i class="fas fa-trash-alt text-red-500"></i>
                      </button>
                   </div>
+                  <button v-if="selectDelete" @click="selectDelete=false" class="border border-red-500 hover:border-red-700 text-white p-2">
+                      Cancel
+                     </button>
+                  
                 <tr>
-                  <th>
+                  <th v-if="selectDelete">
                     <div><span>Select All</span></div>
-                    <label>
+                    <label >
                       <input
                         type="checkbox"
                         class="checkbox"
@@ -38,16 +42,16 @@
                     </label>
                   </th>
                   <th>Titulo</th>
-                  <th>Precio</th>
-                  <th>Category</th>
+                  <th v-if="!isMobile">Precio</th>
+                  <th v-if="!isMobile">Category</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 <!-- row 1 -->
                 <tr v-for="product in products" :key="product.index">
-                  <th>
-                    <label>
+                  <th v-if="selectDelete">
+                    <label >
                       <input
                         type="checkbox"
                         class="checkbox"
@@ -59,7 +63,13 @@
                   <td>
                     <div class="flex items-center space-x-3">
                       <div class="avatar">
-                        <div class="mask mask-squircle w-12 h-12">
+                        <div v-if="!isMobile" class="mask mask-squircle w-12 h-12">
+                          <img
+                            :src="product.images[0]"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                        <div v-if="isMobile" class="mask mask-squircle w-10 h-10">
                           <img
                             :src="product.images[0]"
                             alt="Avatar Tailwind CSS Component"
@@ -67,31 +77,20 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-bold">{{ product.title }}</div>
-                        <!-- <div class="font-bold">{{ product.user }}</div> -->
-
-                        <!-- <div class="text-sm" v-if="getUser">
-                          <img
-                            :src="getUser.image"
-                            alt=""
-                            class="w-8 h-8 rounded-full float-left mr-2"
-                          />
-                          <p class="mt-2 p-1">
-                            {{ getUser.name }} {{ getUser.lastname }}
-                          </p>
-                        </div> -->
+                        <div class="text-xs font-bold">{{ product.title }}</div>
+                        <span v-if="isMobile" >$ {{ product.price }}</span>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    $ {{ product.price }}
+                  <td v-if="!isMobile">
+                     $ {{ product.price }}
                     <br />
                   </td>
 
                   <!-- <td v-html="getCategory(product.category)"></td> -->
-                  <td v-if="product.category">{{ product.category.title }}</td>
+                  <td v-if="!isMobile">{{ product.category.title }}</td>
                   <th>
-                    <div class="flex justify-between">
+                    <div v-if="!isMobile" class="flex justify-between">
                       <router-link
                         :to="{ name: 'site-product', params: { id: product._id } }"
                         class="flex items-center"
@@ -116,44 +115,35 @@
                         </button>
                       </router-link>
                     </div>
-                    <!-- <button class="btn btn-sm border-solid border-black bg-green-400">show</button> -->
-                    <!-- { path: '/admin/products/edit/:id', component: EditProduct}, -->
-                    <!-- <router-link
-                      class="btn btn-sm border-solid border-black bg-green-400"
-                      :to="{
-                        name: 'site-product',
-                        params: { id: product._id },
-                      }"
-                      >SHOW</router-link
-                    >
-                    <router-link
-                      :to="{
-                        name: 'admin-products-edit',
-                        params: { id: product._id },
-                      }"
-                      class="btn btn-sm border-solid border-black bg-blue-400 mx-2"
-                      >edit</router-link
-                    > -->
-
-                    <!-- <button
-                      @click="deleteProductConfirm(product._id)"
-                      class="btn btn-sm border-solid border-black bg-red-400"
-                    >
-                      delete
-                    </button> -->
+                    <!---->
+                    <div v-if="isMobile" class="flex justify-between">
+                      <router-link
+                        :to="{ name: 'site-product', params: { id: product._id } }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-eye text-blue-500"></i>
+                        </button>
+                      </router-link>
+                      <router-link
+                        :to="{
+                          name: 'admin-products-edit',
+                          params: { id: product._id },
+                        }"
+                        class="flex items-center"
+                      >
+                        <button
+                          class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-2"
+                        >
+                          <i class="fas fa-edit text-yellow-500"></i>
+                        </button>
+                      </router-link>
+                    </div>
                   </th>
                 </tr>
               </tbody>
-              <!-- foot -->
-              <!-- <tfoot>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Name</th>
-                                                    <th>Job</th>
-                                                    <th>Favorite Color</th>
-                                                    <th></th>
-                                                </tr>
-                                            </tfoot> -->
             </table>
 
             <!-- Paginación -->
@@ -197,17 +187,29 @@
         perPage: 10, // Cantidad de elementos por página
         selectAll: false,
         showDeleteButton: false,
+        windowWidth: window.innerWidth,
+        selectDelete:false,
       };
     },
     components: {
       BreadCrumbs,
       AdminHeader,
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     mounted() {
       this.fetchProducts();
+      window.addEventListener('resize', this.updateWindowWidth);
+      this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
     methods: {
       ...mapActions(['loadingSet']),
+
+      updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
+
       async fetchProducts() {
         this.loadingSet(true);
         try {
@@ -258,6 +260,7 @@
       },
 
       deleteSelectedProducts() {
+        this.selectDelete=true;
         const selectedProducts = this.products.filter((product) => product.selected);
         if (selectedProducts.length > 0) {
           const confirmationMessage =
@@ -323,6 +326,10 @@
     },
     computed: {
       ...mapGetters(['getUser']),
+
+      isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
       totalPages() {
         return Math.ceil(this.products / this.perPage);
       },

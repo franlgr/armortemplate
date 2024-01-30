@@ -24,34 +24,15 @@
               <!-- <img src="@/assets/logo.svg" class="w-52 mt-2 logo m-0 md:m-auto" alt="tailus logo" /> -->
             </div>
             
-            <div
-              class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden"
-            >
-              <!-- {{ $route.name site-product }} -->
-              <button
-                @click="cartMenuToggle()"
+            <div class="flex items-center justify-end w-full right-8 button-cart opacity-75 hover:opacity-100 sm:hidden">
+                <CartNoty 
                 v-if="
                   $route.name == 'site-products' ||
                   $route.name == 'site-product'
                 "
-                class="text-gray-600 focus:outline-none mx-4 sm:mx-0 flex items-center border-black bg-white"
-              >
-                <span class="mr-2">{{ cartCount }}</span>
-                <svg
-                  class="h-5 w-5"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                  ></path>
-                </svg>
-              </button>
+                class="bg-gray-300 rounded" />
               <div>
+                
                 <button
                   @click="isOpen = !isOpen"
                   type="button"
@@ -285,9 +266,11 @@
 </template>
 
 <script>
+  import CartNoty from '../components/CartNoty.vue';
   import { mapGetters, mapActions } from 'vuex';
   import Loading from '@/components/Loading.vue';
   import FeathersClient from '@/FeathersClient';
+
   export default {
     data() {
       return {
@@ -298,7 +281,11 @@
         templateSettings: {},
         windowWidth: window.innerWidth,
       };
+
     },
+    components:{
+        CartNoty
+      },
     mounted() {
   window.addEventListener('resize', this.updateWindowWidth);
   this.updateWindowWidth(); // Llama al método para inicializar el valor
@@ -317,8 +304,9 @@
   window.removeEventListener('resize', this.updateWindowWidth);
 },
     components: {
-      Loading,
-    },
+    Loading,
+    CartNoty
+},
     computed: {
       ...mapGetters([
         'isAuthenticated',

@@ -8,21 +8,26 @@
                 {{ users }}
             </div>
 
-            <div class="2xl:container">
-                <div class="grid gap-6">
+            <div class="m-4 sm:container mx-auto ml-1">
+                <div >
                     <div class="overflow-x-auto">
                         <table class="table">
                             <!-- head -->
                             <thead>
+                            
+                                <div class="flex items-center">
+                                <button @click="deleteSelectedUsers()" class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2">
+                                    <i class="fas fa-trash-alt text-red-500"></i>
+                                    </button>
+                                        
+                                </div>
+                                <button v-if="selectDelete" @click="selectDelete=false" class="border border-red-500 hover:border-red-700 text-white p-2">
+                                    Cancel
+                                    </button>
+                                
                                 <tr>
-                                    <th>
-                                        <button
-                                        :disabled="!showDeleteButton"
-                                        @click="deleteSelectedUsers()"
-                                        class="border w-12 h-12 border-red-500 hover:border-red-700 rounded-full p-2"
-                                        >
-                                        <i class="fas fa-trash-alt text-red-500"></i>
-                                        </button>
+                                    <th  v-if="selectDelete">
+  
                                         <th>
                                             <div><span>Select All</span></div>
                                             <label>
@@ -36,16 +41,16 @@
                                         </th>
                                     </th>
                                     <th>Full Name</th>
-                                    <th>City</th>
-                                    <th>Email</th>
-                                    <th>Permissions</th>
+                                    <th v-if="!isMobile">City</th>
+                                    <th v-if="!isMobile">Email</th>
+                                    <th v-if="!isMobile">Permissions</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <!-- row 1 -->
                                 <tr v-for="user in users" :key="user.index">
-                                    <th>
+                                    <th  v-if="selectDelete">
                                         <label>
                                         <input
                                             type="checkbox"
@@ -56,9 +61,21 @@
                                         </label>
                                     </th>
                                     <td>
-                                        <div class="flex items-center space-x-3">
-                                            <div class="avatar">
+                                        <div  class="flex items-center space-x-3">
+                                            <div v-if="!isMobile" class="avatar">
                                                 <div class="mask mask-squircle w-12 h-12">
+                                                    <img v-if="user.image" :src="user.image" alt=""
+                                                        class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+                                                    <img v-if="!user.image"
+                                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png?20221210150350"
+                                                        alt=""
+                                                        class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
+
+                                                </div>
+                                            </div>
+                                            <!---->
+                                            <div v-if="isMobile" class="avatar">
+                                                <div class="mask mask-squircle w-10 h-10">
                                                     <img v-if="user.image" :src="user.image" alt=""
                                                         class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28">
                                                     <img v-if="!user.image"
@@ -71,24 +88,28 @@
                                             <div>
                                                 <div class="font-bold">{{ user.name }}</div>
                                                 <div class="text-sm font-bold">{{ user.lastname }}</div>
+                                                <ul v-if="isMobile">
+                                                    <li v-for="permission in user.permissions" :key="user.index">{{ permission }}
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td v-if="!isMobile">
                                         {{ user.city }}
                                         <br />
                                     </td>
-                                    <td>
+                                    <td v-if="!isMobile">
                                         {{ user.email }}
                                     </td>
-                                    <td>
+                                    <td v-if="!isMobile">
                                         <ul>
                                             <li v-for="permission in user.permissions" :key="user.index">{{ permission }}
                                             </li>
                                         </ul>
                                     </td>
-                                    <th>
-                                        <div class="flex justify-between">
+                                    <td>
+                                        <div v-if="!isMobile" class="flex justify-between">
                                 <router-link :to="{ name: 'site-user', params: { id: user._id } }" class="flex items-center">
                                     <button class="border w-12 h-12 border-blue-500 hover:border-blue-700 rounded-full p-2">
                                             <i class="fas fa-eye text-blue-500"></i>
@@ -102,7 +123,22 @@
                                 <div class="flex items-center">
                                 </div>
                             </div>
-                                    </th>
+                            <!---->
+                            <div v-if="isMobile" class="flex justify-between">
+                                <router-link :to="{ name: 'site-user', params: { id: user._id } }" class="flex items-center">
+                                    <button class="border w-8 h-8 border-blue-500 hover:border-blue-700 rounded-full p-2">
+                                            <i class="fas fa-eye text-blue-500"></i>
+                                        </button>
+                                </router-link>
+                                <router-link :to="{ name: 'admin-users-edit', params: { id: user._id } }" class="flex items-center">
+                                    <button class="border w-8 h-8 border-yellow-500 hover:border-yellow-700 rounded-full p-2">
+                                            <i class="fas fa-edit text-yellow-500"></i>
+                                        </button>
+                                </router-link>
+                                <div class="flex items-center">
+                                </div>
+                            </div>
+                                    </td>
                                 </tr>
                             </tbody>
                             <!-- foot -->
@@ -134,16 +170,27 @@ export default {
         perPage: 10,   // Cantidad de elementos por página
         selectAll: false,
         showDeleteButton: false,
+        windowWidth: window.innerWidth,
+        selectDelete:false,
     }),
     components: {
         BreadCrumbs,
         AdminHeader,
     },
+    beforeDestroy() {
+  window.removeEventListener('resize', this.updateWindowWidth);
+},
     mounted() {
         this.fetchUsers();
+        window.addEventListener('resize', this.updateWindowWidth);
+        this.updateWindowWidth(); // Llama al método para inicializar el valor
     },
     methods: {
         ...mapActions(['loadingSet']),
+
+        updateWindowWidth() {
+    this.windowWidth = window.innerWidth;
+  },
         async fetchUsers() {
             this.loadingSet(true);
             try {
@@ -184,6 +231,7 @@ export default {
       },
 
       deleteSelectedUsers() {
+        this.selectDelete=true;
         const selectedUsers = this.users.filter((user) => user.selected);
         if (selectedUsers.length > 0) {
           const confirmationMessage =
@@ -250,6 +298,9 @@ export default {
         totalPages() {
             return Math.ceil(this.totalUsers / this.perPage);
         },
+        isMobile() {
+    return this.windowWidth <= 768; // Puedes ajustar este valor según tus necesidades
+  },
     },
 }
 </script>
