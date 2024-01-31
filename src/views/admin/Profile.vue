@@ -4,7 +4,7 @@
     <div>
       <AdminHeader title="Profile" icon="fa-solid fa-user"></AdminHeader>
       <!-- {{getUser}} -->
-      <div class="mt-6">
+      <!-- <div class="mt-6">
         <router-link
           v-if="!edit"
           to="/admin/"
@@ -26,7 +26,7 @@
           </svg>
           Back
         </router-link>
-      </div>
+      </div> -->
 
       <div class="2xl:container md:w-1/2 m-auto px-8">
         <div class=" ">

@@ -317,7 +317,7 @@
         'getSettings',
       ]), // Map Vuex getters to computed properties
       authLink() {
-      return this.isAuthenticated ? '/admin' : '/login';
+      return this.isAuthenticated ? '/admin/profile' : '/login';
     },
     authText() {
       return this.isAuthenticated ? 'Admin' : 'Log-In';

@@ -64,7 +64,7 @@
             </span>
           </div>
           <ul class="space-y-2 tracking-wide bg-black p-4">
-            <li>
+            <!-- <li>
               <router-link
                 @click="hiddenMenu()"
                 to="/admin/dashboard"
@@ -80,7 +80,7 @@
                 <i class="fa-solid fa-chart-line w-4"></i>
                 <span class="-mr-1 font-medium">Dashboard</span>
               </router-link>
-            </li>
+            </li> -->
             <!-- <li>
 
                             <router-link @click="hiddenMenu()" to="/admin/categories"
@@ -367,7 +367,7 @@
               <router-link
                 @click="hiddenMenu()"
                 to="/admin/profile"
-                v-bind:class="{
+                v-bind:class="{ 
                   activeMenu: $route.path === '/admin/profile',
                 }"
                 class="relative px-4 py-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
@@ -378,7 +378,7 @@
               <router-link
                 @click="hiddenMenu()"
                 to="/admin/default"
-                v-bind:class="{
+                v-bind:class="{ 
                   activeMenu: $route.path === '/admin/default',
                 }"
                 class="relative px-4 py-2 mt-2 flex items-center space-x-4 rounded-xl text-black bg-white collapse hover:bg-[#2c7b60] hover:text-white"
